@@ -14,24 +14,30 @@ struct StandingsView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                GlassCard(cornerRadius: 24, style: .transparent) {
-                    VStack(spacing: 0) {
-                        header
-                        ForEach(viewModel.standings, id: \.id) { standing in
-                            row(for: standing)
+            GlassCard(cornerRadius: 24, style: .transparent) {
+                VStack(spacing: 0) {
+                    header
+                    ScrollView {
+                        VStack(spacing: 0) {
+                            ForEach(viewModel.standings, id: \.id) { standing in
+                                row(for: standing)
+                            }
                         }
                     }
+                    .scrollContentBackground(.hidden)
                 }
-                .padding(16)
+                .frame(maxHeight: .infinity)
             }
-            .scrollContentBackground(.hidden)
+            .padding(16)
+            .frame(maxHeight: .infinity)
             .background(StadiumBackground())
             .navigationTitle("Standings")
             .task { await viewModel.load() }
         }
     }
 
+    // Pinned in place above the ScrollView, like a UITableView section header —
+    // stays visible while only the team rows beneath it scroll.
     private var header: some View {
         HStack(spacing: 0) {
             Color.clear.frame(width: Self.leadingWidth)
@@ -43,7 +49,13 @@ struct StandingsView: View {
             columnHeader("GD", width: Self.goalDifferenceWidth)
             columnHeader("Pts")
         }
+        .fixedSize(horizontal: false, vertical: true)
         .padding(.bottom, 8)
+        .overlay(alignment: .bottom) {
+            Rectangle()
+                .fill(Color.white.opacity(0.12))
+                .frame(height: 0.5)
+        }
     }
 
     private func columnHeader(_ text: String, width: CGFloat = columnWidth) -> some View {
