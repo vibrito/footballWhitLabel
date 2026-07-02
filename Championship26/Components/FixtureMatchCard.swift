@@ -7,7 +7,7 @@ struct FixtureMatchCard: View {
     let match: Match
 
     var body: some View {
-        GlassCard(cornerRadius: 22) {
+        GlassCard(cornerRadius: 22, style: .transparent) {
             VStack(spacing: 12) {
                 header
                 VStack(spacing: 0) {
