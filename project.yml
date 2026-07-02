@@ -1,0 +1,42 @@
+name: Championship26
+options:
+  bundleIdPrefix: com.vibrito
+settings:
+  base:
+    IPHONEOS_DEPLOYMENT_TARGET: "26.0"
+    SWIFT_VERSION: "6.0"
+    CODE_SIGNING_REQUIRED: NO
+    CODE_SIGNING_ALLOWED: NO
+configFiles:
+  Debug: Secrets.xcconfig
+  Release: Secrets.xcconfig
+targets:
+  Championship26:
+    type: application
+    platform: iOS
+    sources:
+      - Championship26
+    info:
+      path: Generated/Championship26-Info.plist
+      properties:
+        API_KEY: $(API_KEY)
+        UILaunchScreen: {}
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.vibrito.Championship26
+  ChampionshipTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - ChampionshipTests
+    dependencies:
+      - target: Championship26
+schemes:
+  Championship26:
+    build:
+      targets:
+        Championship26: all
+        ChampionshipTests: [test]
+    test:
+      targets:
+        - ChampionshipTests
