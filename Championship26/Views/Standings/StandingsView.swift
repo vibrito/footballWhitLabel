@@ -15,7 +15,7 @@ struct StandingsView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                LazyVStack(spacing: 12, pinnedViews: [.sectionHeaders]) {
                     Section {
                         GlassCard(cornerRadius: 24, style: .transparent) {
                             VStack(spacing: 0) {
@@ -41,7 +41,9 @@ struct StandingsView: View {
     // A real SwiftUI pinned section header: scrolls normally with the table until it
     // reaches the top of the viewport (right below the now-collapsed nav bar), then
     // sticks there while the rows scroll beneath it — and un-sticks, following the
-    // content back down, when the user scrolls back up to the top.
+    // content back down, when the user scrolls back up to the top. Same fill/corner
+    // treatment as the row card below it (not `.ultraThinMaterial`, and the same 16pt
+    // outer margin) so it reads as one consistent panel rather than a mismatched bar.
     private var header: some View {
         HStack(spacing: 0) {
             Color.clear.frame(width: Self.leadingWidth)
@@ -54,15 +56,14 @@ struct StandingsView: View {
             columnHeader("Pts")
         }
         .fixedSize(horizontal: false, vertical: true)
-        .padding(.horizontal, 32)
-        .padding(.vertical, 10)
-        .frame(maxWidth: .infinity)
-        .background(.ultraThinMaterial)
-        .overlay(alignment: .bottom) {
-            Rectangle()
-                .fill(Color.white.opacity(0.12))
-                .frame(height: 0.5)
-        }
+        .padding(16)
+        .background(Color.white.opacity(0.05))
+        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                .strokeBorder(Color.white.opacity(0.16), lineWidth: 0.5)
+        )
+        .padding(.horizontal, 16)
     }
 
     private func columnHeader(_ text: String, width: CGFloat = columnWidth) -> some View {
