@@ -4,7 +4,7 @@ import Foundation
 
 @Suite("Team decoding")
 struct TeamTests {
-    @Test("Decodes a team from API JSON")
+    @Test("TeamDTO decodes from API JSON, and Team(dto:) maps it correctly")
     func decodesTeam() throws {
         let json = """
         {
@@ -15,7 +15,8 @@ struct TeamTests {
             "shortName": "Palmeiras"
         }
         """.data(using: .utf8)!
-        let team = try JSONDecoder().decode(Team.self, from: json)
+        let dto = try JSONDecoder().decode(TeamDTO.self, from: json)
+        let team = Team(dto: dto)
         #expect(team.id == 121)
         #expect(team.name == "Palmeiras")
         #expect(team.shortName == "Palmeiras")
@@ -27,7 +28,8 @@ struct TeamTests {
         let json = """
         { "id": 1, "tla": null, "name": "Test FC", "crest": null, "shortName": null }
         """.data(using: .utf8)!
-        let team = try JSONDecoder().decode(Team.self, from: json)
+        let dto = try JSONDecoder().decode(TeamDTO.self, from: json)
+        let team = Team(dto: dto)
         #expect(team.crestURL == nil)
         #expect(team.shortName == nil)
     }

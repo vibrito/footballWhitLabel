@@ -6,8 +6,8 @@ struct MatchDTO: Decodable {
     let status: MatchStatus
     let matchday: Int
     let stage: String
-    let homeTeam: Team
-    let awayTeam: Team
+    let homeTeam: TeamDTO
+    let awayTeam: TeamDTO
     let score: ScoreDTO
     let venue: String?
     let minute: Int?
