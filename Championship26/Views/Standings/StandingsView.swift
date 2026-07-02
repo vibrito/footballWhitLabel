@@ -12,18 +12,23 @@ struct StandingsView: View {
     private static let positionWidth: CGFloat = 24
     private static let leadingWidth: CGFloat = 58
 
+    private static let cardFill = Color.white.opacity(0.05)
+    private static let cardStroke = Color.white.opacity(0.16)
+
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVStack(spacing: 12, pinnedViews: [.sectionHeaders]) {
+                LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
                     Section {
-                        GlassCard(cornerRadius: 24, style: .transparent) {
-                            VStack(spacing: 0) {
-                                ForEach(viewModel.standings, id: \.id) { standing in
-                                    row(for: standing)
-                                }
+                        VStack(spacing: 0) {
+                            ForEach(viewModel.standings, id: \.id) { standing in
+                                row(for: standing)
                             }
                         }
+                        .padding(.horizontal, 16)
+                        .padding(.bottom, 16)
+                        .background(rowsShape.fill(Self.cardFill))
+                        .overlay(rowsShape.strokeBorder(Self.cardStroke, lineWidth: 0.5))
                         .padding(.horizontal, 16)
                     } header: {
                         header
@@ -38,12 +43,13 @@ struct StandingsView: View {
         }
     }
 
-    // A real SwiftUI pinned section header: scrolls normally with the table until it
-    // reaches the top of the viewport (right below the now-collapsed nav bar), then
-    // sticks there while the rows scroll beneath it — and un-sticks, following the
-    // content back down, when the user scrolls back up to the top. Same fill/corner
-    // treatment as the row card below it (not `.ultraThinMaterial`, and the same 16pt
-    // outer margin) so it reads as one consistent panel rather than a mismatched bar.
+    // Header and rows share one fill/stroke and sit flush against each other (no gap,
+    // no independent rounded pill) so they read as a single card — only the header's
+    // top corners and the rows' bottom corners are rounded, like one shape split in two
+    // pieces. A real SwiftUI pinned section header: scrolls normally with the table
+    // until it reaches the top of the viewport (right below the collapsed nav bar),
+    // then sticks there while the rows scroll beneath it, and un-sticks, following the
+    // content back down, when the user scrolls back up to the top.
     private var header: some View {
         HStack(spacing: 0) {
             Color.clear.frame(width: Self.leadingWidth)
@@ -56,14 +62,32 @@ struct StandingsView: View {
             columnHeader("Pts")
         }
         .fixedSize(horizontal: false, vertical: true)
-        .padding(16)
-        .background(Color.white.opacity(0.05))
-        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-        .overlay(
-            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .strokeBorder(Color.white.opacity(0.16), lineWidth: 0.5)
-        )
         .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .frame(maxWidth: .infinity)
+        .background(headerShape.fill(Self.cardFill))
+        .overlay(headerShape.strokeBorder(Self.cardStroke, lineWidth: 0.5))
+        .padding(.horizontal, 16)
+    }
+
+    private var headerShape: UnevenRoundedRectangle {
+        UnevenRoundedRectangle(
+            topLeadingRadius: 24,
+            bottomLeadingRadius: 0,
+            bottomTrailingRadius: 0,
+            topTrailingRadius: 24,
+            style: .continuous
+        )
+    }
+
+    private var rowsShape: UnevenRoundedRectangle {
+        UnevenRoundedRectangle(
+            topLeadingRadius: 0,
+            bottomLeadingRadius: 24,
+            bottomTrailingRadius: 24,
+            topTrailingRadius: 0,
+            style: .continuous
+        )
     }
 
     private func columnHeader(_ text: String, width: CGFloat = columnWidth) -> some View {
