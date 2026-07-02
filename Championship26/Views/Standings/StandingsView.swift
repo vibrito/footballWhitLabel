@@ -14,30 +14,34 @@ struct StandingsView: View {
 
     var body: some View {
         NavigationStack {
-            GlassCard(cornerRadius: 24, style: .transparent) {
-                VStack(spacing: 0) {
-                    header
-                    ScrollView {
-                        VStack(spacing: 0) {
-                            ForEach(viewModel.standings, id: \.id) { standing in
-                                row(for: standing)
+            ScrollView {
+                LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                    Section {
+                        GlassCard(cornerRadius: 24, style: .transparent) {
+                            VStack(spacing: 0) {
+                                ForEach(viewModel.standings, id: \.id) { standing in
+                                    row(for: standing)
+                                }
                             }
                         }
+                        .padding(.horizontal, 16)
+                    } header: {
+                        header
                     }
-                    .scrollContentBackground(.hidden)
                 }
-                .frame(maxHeight: .infinity)
+                .padding(.vertical, 16)
             }
-            .padding(16)
-            .frame(maxHeight: .infinity)
+            .scrollContentBackground(.hidden)
             .background(StadiumBackground())
             .navigationTitle("Standings")
             .task { await viewModel.load() }
         }
     }
 
-    // Pinned in place above the ScrollView, like a UITableView section header —
-    // stays visible while only the team rows beneath it scroll.
+    // A real SwiftUI pinned section header: scrolls normally with the table until it
+    // reaches the top of the viewport (right below the now-collapsed nav bar), then
+    // sticks there while the rows scroll beneath it — and un-sticks, following the
+    // content back down, when the user scrolls back up to the top.
     private var header: some View {
         HStack(spacing: 0) {
             Color.clear.frame(width: Self.leadingWidth)
@@ -50,7 +54,10 @@ struct StandingsView: View {
             columnHeader("Pts")
         }
         .fixedSize(horizontal: false, vertical: true)
-        .padding(.bottom, 8)
+        .padding(.horizontal, 32)
+        .padding(.vertical, 10)
+        .frame(maxWidth: .infinity)
+        .background(.ultraThinMaterial)
         .overlay(alignment: .bottom) {
             Rectangle()
                 .fill(Color.white.opacity(0.12))
