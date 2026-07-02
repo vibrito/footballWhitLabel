@@ -18,9 +18,7 @@ struct FixturesView: View {
                                 .tracking(0.8)
                                 .foregroundStyle(.white.opacity(0.5))
                             ForEach(group.matches, id: \.id) { match in
-                                GlassCard {
-                                    ScoreRow(match: match)
-                                }
+                                FixtureMatchCard(match: match)
                             }
                         }
                     }
