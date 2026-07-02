@@ -8,3 +8,9 @@ build/
 
 # Secrets
 Secrets.xcconfig
+
+# macOS
+.DS_Store
+
+# Reference material, not part of the app
+prints/

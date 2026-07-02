@@ -21,7 +21,7 @@ struct ScoreRow: View {
     private func teamLabel(_ team: Team) -> some View {
         HStack(spacing: 8) {
             TeamCrestBadge(team: team)
-            Text(team.shortName ?? team.name)
+            Text(team.displayName)
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundStyle(.white)
         }

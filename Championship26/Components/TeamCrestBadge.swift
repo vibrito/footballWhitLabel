@@ -27,6 +27,6 @@ struct TeamCrestBadge: View {
     }
 
     private var initials: String {
-        String((team.shortName ?? team.name).prefix(2)).uppercased()
+        String(team.displayName.prefix(2)).uppercased()
     }
 }

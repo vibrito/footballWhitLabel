@@ -33,4 +33,16 @@ struct TeamTests {
         #expect(team.crestURL == nil)
         #expect(team.shortName == nil)
     }
+
+    @Test("Overrides Atletico Paranaense's display name")
+    func overridesDisplayName() {
+        let team = Team(id: 134, name: "Atletico Paranaense", shortName: "Atletico Paranaense", crestURL: nil)
+        #expect(team.displayName == "At. Paranaense")
+    }
+
+    @Test("Falls back to shortName when no override exists")
+    func displayNameFallsBackToShortName() {
+        let team = Team(id: 999, name: "Some FC", shortName: "SFC", crestURL: nil)
+        #expect(team.displayName == "SFC")
+    }
 }

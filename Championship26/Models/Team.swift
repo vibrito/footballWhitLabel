@@ -22,6 +22,17 @@ struct Team: Codable, Identifiable, Hashable {
     init(dto: TeamDTO) {
         self.init(id: dto.id, name: dto.name, shortName: dto.shortName, crestURL: dto.crest)
     }
+
+    /// The name to show in the UI. Most teams display fine as the API's `shortName`;
+    /// a small number are overridden client-side (e.g. "Atletico Paranaense" reads
+    /// awkwardly at table width) rather than waiting on the backend to change.
+    var displayName: String {
+        Team.displayNameOverrides[id] ?? shortName ?? name
+    }
+
+    private static let displayNameOverrides: [Int: String] = [
+        134: "At. Paranaense"
+    ]
 }
 
 struct TeamDTO: Decodable {
