@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65FB0DB0FB93FBC756435AEF /* TeamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB99FAC9260CBA1C530BBB2 /* TeamTests.swift */; };
+		690C074E4F5D6F5775D0459E /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2857A2D8E548A98467A410B /* Team.swift */; };
+		79426BB06F3E72A077E71A93 /* ChampionshipConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE35A6B06B0651D8BE817FD /* ChampionshipConfig.swift */; };
 		7EF6D9B56463FB7C4D1035B2 /* Championship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5627533A840F20D9006D9F8A /* Championship.swift */; };
+		BDB0716BD639638081F1013B /* ChampionshipConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97BD37168206AFAB21CDFC /* ChampionshipConfigTests.swift */; };
 		F39E2DF00433A100A477E5AE /* ChampionshipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD80DAD5A5BDD8D65E882E3 /* ChampionshipTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -24,9 +28,13 @@
 /* Begin PBXFileReference section */
 		06802C3BE75C9FF544FC2726 /* ChampionshipTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ChampionshipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1498C18F04919BFBCBF7C94C /* Championship26.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Championship26.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EE35A6B06B0651D8BE817FD /* ChampionshipConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionshipConfig.swift; sourceTree = "<group>"; };
+		2FB99FAC9260CBA1C530BBB2 /* TeamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTests.swift; sourceTree = "<group>"; };
 		5627533A840F20D9006D9F8A /* Championship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Championship.swift; sourceTree = "<group>"; };
 		D9C3E516C795E8DD30B04AA6 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		DCD80DAD5A5BDD8D65E882E3 /* ChampionshipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionshipTests.swift; sourceTree = "<group>"; };
+		E2857A2D8E548A98467A410B /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		EE97BD37168206AFAB21CDFC /* ChampionshipConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionshipConfigTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -39,6 +47,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		40B2B0985F0BC3B82F2D66C2 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				2EE35A6B06B0651D8BE817FD /* ChampionshipConfig.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		8656A0D26D4695F9E2917AFB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E2857A2D8E548A98467A410B /* Team.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		885D7F4FC438BE589F21DB2E = {
 			isa = PBXGroup;
 			children = (
@@ -47,6 +71,22 @@
 				986C9610918168F0FFA6D5CA /* footballWhiteLabel */,
 				016D117240E10FE0A5C4F5E7 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		892ACDCF192A0592EF6F9331 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2FB99FAC9260CBA1C530BBB2 /* TeamTests.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		897B80643AD917D0C4F96B75 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				EE97BD37168206AFAB21CDFC /* ChampionshipConfigTests.swift */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		986C9610918168F0FFA6D5CA /* footballWhiteLabel */ = {
@@ -62,6 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				FDC1A71430A6974AA807B8E5 /* App */,
+				40B2B0985F0BC3B82F2D66C2 /* Config */,
+				8656A0D26D4695F9E2917AFB /* Models */,
 			);
 			path = Championship26;
 			sourceTree = "<group>";
@@ -70,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				DCD80DAD5A5BDD8D65E882E3 /* ChampionshipTests.swift */,
+				897B80643AD917D0C4F96B75 /* Config */,
+				892ACDCF192A0592EF6F9331 /* Models */,
 			);
 			path = ChampionshipTests;
 			sourceTree = "<group>";
@@ -157,6 +201,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EF6D9B56463FB7C4D1035B2 /* Championship.swift in Sources */,
+				79426BB06F3E72A077E71A93 /* ChampionshipConfig.swift in Sources */,
+				690C074E4F5D6F5775D0459E /* Team.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +210,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDB0716BD639638081F1013B /* ChampionshipConfigTests.swift in Sources */,
 				F39E2DF00433A100A477E5AE /* ChampionshipTests.swift in Sources */,
+				65FB0DB0FB93FBC756435AEF /* TeamTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
