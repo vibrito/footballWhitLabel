@@ -22,6 +22,7 @@
 		9B5F0025CC1600678B3EDD4B /* MatchDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C8271B85021BE25D113383 /* MatchDTO.swift */; };
 		B5CA9CB82A647CFAF7F8FB80 /* MatchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FDFF0178CCA28BC4966E5 /* MatchStatus.swift */; };
 		BDB0716BD639638081F1013B /* ChampionshipConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97BD37168206AFAB21CDFC /* ChampionshipConfigTests.swift */; };
+		F34E380720613BDE63897E0D /* LiveMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B378312B227AA7ACBD5A95CD /* LiveMatchService.swift */; };
 		F39E2DF00433A100A477E5AE /* ChampionshipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD80DAD5A5BDD8D65E882E3 /* ChampionshipTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		5627533A840F20D9006D9F8A /* Championship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Championship.swift; sourceTree = "<group>"; };
 		659ECB4252F33FB9F3C7584B /* MatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchService.swift; sourceTree = "<group>"; };
 		7A3FDFF0178CCA28BC4966E5 /* MatchStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchStatus.swift; sourceTree = "<group>"; };
+		B378312B227AA7ACBD5A95CD /* LiveMatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveMatchService.swift; sourceTree = "<group>"; };
 		C8C8271B85021BE25D113383 /* MatchDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDTO.swift; sourceTree = "<group>"; };
 		D9C3E516C795E8DD30B04AA6 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		DCD80DAD5A5BDD8D65E882E3 /* ChampionshipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionshipTests.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 		2139E8FE829DD1C0122DDA60 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B378312B227AA7ACBD5A95CD /* LiveMatchService.swift */,
 				659ECB4252F33FB9F3C7584B /* MatchService.swift */,
 				55E80D9527DD75B0E68B375B /* MockMatchService.swift */,
 			);
@@ -256,6 +259,7 @@
 			files = (
 				7EF6D9B56463FB7C4D1035B2 /* Championship.swift in Sources */,
 				79426BB06F3E72A077E71A93 /* ChampionshipConfig.swift in Sources */,
+				F34E380720613BDE63897E0D /* LiveMatchService.swift in Sources */,
 				5F932DBF6602838329B74ED6 /* Match.swift in Sources */,
 				9B5F0025CC1600678B3EDD4B /* MatchDTO.swift in Sources */,
 				54691184E0904D30BAF093EA /* MatchService.swift in Sources */,
