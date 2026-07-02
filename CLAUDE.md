@@ -1,0 +1,221 @@
+# CLAUDE.md — Football 2026 iOS App
+
+## Project Overview
+A config-driven white-label iOS app for national football championships. Each championship
+(starting with the Brasileirão) is represented by a `ChampionshipConfig` — competition code,
+display name, accent color — so new championships can be added without new app code.
+Four tabs: **Matchday**, **Fixtures**, **Standings**, **More**.
+Design language: Apple Liquid Glass over a deep stadium-night gradient.
+
+---
+
+## Architecture
+- **MVVM** — Views own no business logic. Each screen has a dedicated `ViewModel` (`@Observable`).
+- Keep `View` files focused on layout and binding only.
+- `Model` types are plain Swift structs/classes — no UI imports.
+- `ViewModel` handles state, filtering, and data access.
+- `ChampionshipConfig` (in `Config/`) captures which championship this build targets
+  (competition code, display name, accent color) — injected once at launch; adding a
+  championship means adding a config value, not new types.
+
+---
+
+## Tech Stack
+| Concern | Choice |
+|---|---|
+| UI | SwiftUI (iOS 26+) |
+| Persistence | SwiftData |
+| Testing | Swift Testing (`@Test`, `@Suite`) |
+| Concurrency | Swift Concurrency (`async/await`, `Actor`) |
+| External dependencies | None |
+| Minimum deployment | iOS 26 |
+
+---
+
+## Design System — Liquid Glass
+
+### Background
+```
+radial-gradient: #173a68 → #0b2143 → #061325 (top-center light source)
+```
+Two soft blurred blobs behind content: top-left accent @ 40% alpha, bottom-right teal `rgba(45,212,191,0.32)`.
+
+### Glass Surface (every card, tab bar, table)
+In SwiftUI use `.ultraThinMaterial` / `.regularMaterial` and iOS 26 Liquid Glass APIs.
+Do **not** reproduce CSS `backdrop-filter` literally.
+
+| Property | Value |
+|---|---|
+| Active card fill | `white @ 0.07` |
+| Muted/finished fill | `white @ 0.05` |
+| Border | `0.5px, white @ 0.16` |
+| Inner highlight | `inset 0 1px 0, white @ 0.22` |
+| Card shadow | `0 8px 22px black @ 0.22` |
+| Tab bar shadow | `0 12px 32px black @ 0.40` |
+
+### Corner Radii
+| Element | Radius |
+|---|---|
+| Position chip | 7px |
+| Buttons / pills | 13–15px |
+| Slim rows | 18px |
+| Match cards | 22px |
+| Tables / large panels | 24px |
+| Tab bar | 26px |
+| Hero featured card | 28px |
+
+### Accent Color (themeable, default Sunset Red)
+- Sunset Red `#ff4d5e` ← default
+- Pitch Teal `#2dd4bf`
+- Gold `#fbbf24`
+
+Derived: live chip fill = accent @ 18%, text = accent, border = accent @ 45%.
+
+### Typography (SF Pro via system font)
+| Role | Size | Weight | Notes |
+|---|---|---|---|
+| Screen title | 32 | 800 | tracking -0.5, leading 1.1 |
+| Eyebrow / date label | 11 | 700 | tracking 1.4, white @ 0.5, uppercase |
+| Section header | 13 | 700 | tracking 0.8, white @ 0.5 |
+| Hero score | 46 | 800 | tabular-nums |
+| Card team name | 16 | 600 | white |
+| Card score | 19 | 800 | tabular-nums |
+| Table cell | 14 | 600/700 | tabular-nums for numbers |
+| Chip / meta | 11 | 800/600 | tracking 0.3–1 |
+| Tab label | 10 | 600 | |
+
+All numeric scores/stats: `.monospacedDigit()`.
+
+### Colors
+```swift
+// Backgrounds
+#173a68, #0b2143, #061325, #07142b
+
+// Text
+white, white@0.85, white@0.70, white@0.55, white@0.45, white@0.40
+
+// Status
+advance: #2dd4bf   // teal
+playoff: #fbbf24   // amber
+```
+
+---
+
+## Project Structure
+```
+Championship26/
+├── App/
+│   └── Championship.swift
+├── Config/
+│   └── ChampionshipConfig.swift
+├── Models/
+│   ├── Match.swift
+│   ├── Team.swift
+│   └── Standing.swift
+├── MockData/
+│   └── MockDataProvider.swift
+├── Services/
+│   ├── MatchService.swift        # protocol
+│   ├── LiveMatchService.swift
+│   └── MockMatchService.swift
+├── ViewModels/
+│   ├── MatchdayViewModel.swift
+│   ├── FixturesViewModel.swift
+│   └── StandingsViewModel.swift
+├── Views/
+│   ├── Root/
+│   │   └── ContentView.swift     # TabView: Matchday, Fixtures, Standings, More
+│   ├── Matchday/
+│   ├── Fixtures/
+│   ├── Standings/
+│   └── More/
+├── Components/
+│   ├── GlassCard.swift
+│   ├── TeamCrestBadge.swift
+│   ├── LiveChip.swift
+│   ├── ScoreRow.swift
+│   ├── AccentPill.swift
+│   └── Color+Hex.swift
+└── Resources/
+    └── Localizable.xcstrings
+```
+
+---
+
+## Localization
+- **Supported locales:** `pt-BR`, `pt-PT`, `fr`, `en-US`, `en-GB`
+- **Default fallback:** `en-US` (when system language is not covered)
+- Language is set by the system — no in-app language picker.
+- All user-facing strings must go through `String(localized:)` or `.xcstrings`.
+- No hardcoded English strings in View or ViewModel files.
+- Team, venue, and competition names come dynamically from the live API and are displayed
+  as-is — there is no local translation table for server-driven content.
+
+---
+
+## Data & Persistence
+- **SwiftData** for the `Match` model (`@Model`) — persisted, supports partial updates.
+- `Standing` is a plain `Decodable` struct — the whole table is replaced on each fetch, not
+  persisted incrementally.
+- `MatchService` protocol abstracts the data source. `MockMatchService` is used in all
+  automated tests; `LiveMatchService` talks to the live API — both conform to the same
+  protocol.
+- Match data updates incrementally as games progress — models support partial updates
+  (score, minute, status) via `Match.update(from:)`.
+- Avoid full-reload refreshes for matches; upsert by `id` instead.
+
+---
+
+## Backend API
+- Base URL: `https://football-api-production-16d9.up.railway.app`
+- Auth: `X-Auth-Token` header, value in `Secrets.xcconfig` (see `Secrets.xcconfig.example`);
+  never commit the real key.
+- `GET /v4/competitions/{code}/matches` — supports `?status=LIVE`, `?matchday=N`
+- `GET /v4/competitions/{code}/standings`
+- `GET /v4/competitions/{code}/matches/:id/{statistics,events,lineups}` — not yet consumed;
+  deferred to a future match-detail phase.
+- Brasileirão's competition code is `BSA`, set via `ChampionshipConfig.brasileirao`.
+
+---
+
+## Assets
+- **Team crests:** loaded remotely via `AsyncImage` from each team's `crest` URL. No
+  bundled team images. Show a placeholder (team initials on a muted glass fill) while
+  loading or if the URL is missing/fails.
+- **Icons:** SF Symbols only. No custom raster icons.
+  - Matchday → `soccerball`
+  - Fixtures → `calendar`
+  - Standings → `chart.bar`
+  - More → `ellipsis.circle`
+
+---
+
+## Coding Guidelines
+- Keep changes small and focused — one concern per PR/commit.
+- Prefer clear SwiftUI structure over premature abstractions.
+- No `UIKit` unless SwiftUI has no equivalent.
+- No force-unwraps (`!`) outside of tests.
+- `@Observable` over `ObservableObject` (iOS 26 standard).
+- Use `SwiftData` `@Model` for persistence; plain structs for transient/display models.
+- Animations: use SwiftUI `.animation()` and `withAnimation` — no manual timers for pulse.
+  - Live pulse: opacity `1→0.35→1`, scale `1→0.8→1`, 1.4s ease-in-out, repeat forever.
+
+---
+
+## Testing
+- Framework: **Swift Testing** (`import Testing`).
+- Unit test ViewModels and Services — not Views.
+- Test files live in `ChampionshipTests/`, mirroring the source structure.
+- Use `MockMatchService` in all tests — no network calls, no SwiftData container in unit tests.
+- Name tests descriptively: `@Test("Matchday tab shows only today's matches")`.
+
+---
+
+## Scope (current phase)
+- 4 tabs: Matchday, Fixtures, Standings, More.
+- This white label will be used by other apps — championships beyond Brasileirão are a
+  future phase, added via new `ChampionshipConfig` values.
+- Brasileirão is the only wired-up championship; match detail (stats/events/lineups),
+  a championship switcher UI, and theming beyond one accent color are out of scope.
+- Alternate home variants (B/C) are **out of scope**.
+- No user accounts, no notifications, no watchOS/widgets — future phases.
