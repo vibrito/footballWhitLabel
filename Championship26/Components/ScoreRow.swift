@@ -7,7 +7,12 @@ struct ScoreRow: View {
         HStack {
             teamLabel(match.homeTeam)
             Spacer()
-            scoreText
+            VStack(spacing: 4) {
+                if match.status == .live {
+                    LiveChip(minute: match.minute)
+                }
+                scoreText
+            }
             Spacer()
             teamLabel(match.awayTeam)
         }

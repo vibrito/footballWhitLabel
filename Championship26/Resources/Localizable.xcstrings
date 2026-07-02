@@ -77,6 +77,17 @@
           }
         }
       }
+    },
+    "LIVE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LIVE"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

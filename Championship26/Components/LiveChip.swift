@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct LiveChip: View {
+    var minute: Int? = nil
     @State private var pulse = false
 
     var body: some View {
@@ -10,9 +11,10 @@ struct LiveChip: View {
                 .frame(width: 6, height: 6)
                 .opacity(pulse ? 0.35 : 1)
                 .scaleEffect(pulse ? 0.8 : 1)
-            Text("LIVE")
+            Text(minute.map { "\($0)'" } ?? "LIVE")
                 .font(.system(size: 11, weight: .heavy))
                 .tracking(0.5)
+                .monospacedDigit()
         }
         .foregroundStyle(Color.accentColor)
         .padding(.horizontal, 8)
