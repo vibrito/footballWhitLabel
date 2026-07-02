@@ -2,10 +2,6 @@ import SwiftUI
 
 struct StandingsView: View {
     @State private var viewModel: StandingsViewModel
-    // Test probe: true once the list has scrolled far enough that the header would be
-    // pinned, false again back at the top — lets us visually confirm the pin is
-    // actually triggering by snapping the header's fill to fully opaque while pinned.
-    @State private var isHeaderPinned = false
 
     init(service: MatchService) {
         _viewModel = State(initialValue: StandingsViewModel(service: service))
@@ -39,13 +35,6 @@ struct StandingsView: View {
             .background(StadiumBackground())
             .navigationTitle("Standings")
             .task { await viewModel.load() }
-            .onScrollGeometryChange(for: Bool.self) { geometry in
-                geometry.contentOffset.y > 20
-            } action: { _, isPastTop in
-                withAnimation(.easeInOut(duration: 0.2)) {
-                    isHeaderPinned = isPastTop
-                }
-            }
         }
     }
 
@@ -68,7 +57,7 @@ struct StandingsView: View {
         }
         .fixedSize(horizontal: false, vertical: true)
         .padding(16)
-        .background(Color.white.opacity(isHeaderPinned ? 1 : 0.05))
+        .background(Color.white.opacity(0.05))
         .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: 24, style: .continuous)
