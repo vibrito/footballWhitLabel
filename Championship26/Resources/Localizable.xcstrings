@@ -44,6 +44,17 @@
           }
         }
       }
+    },
+    "Standings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standings"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
