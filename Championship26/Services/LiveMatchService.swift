@@ -6,6 +6,13 @@ enum MatchServiceError: Error {
     case invalidResponse
 }
 
+// Confined to the main actor: `ModelContext` and the `Match` objects it fetches/inserts
+// are not safe to touch from more than one thread. Without this, `fetchMatches()` could
+// resume (after its `await` on the network call) on a background executor, mutating and
+// fetching from the same ModelContext the main-actor UI is simultaneously reading —
+// exactly the cross-thread SwiftData access that crashed FixtureMatchCard with a bad
+// memory access reading `Match.awayTeam`.
+@MainActor
 final class LiveMatchService: MatchService {
     private let config: ChampionshipConfig
     private let apiKey: String

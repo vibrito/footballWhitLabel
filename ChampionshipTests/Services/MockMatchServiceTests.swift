@@ -2,6 +2,7 @@ import Testing
 @testable import Championship26
 
 @Suite("MockMatchService")
+@MainActor
 struct MockMatchServiceTests {
     @Test("Returns non-empty sample matches")
     func returnsMatches() async throws {
