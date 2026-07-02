@@ -17,6 +17,7 @@ struct MoreView: View {
                     .foregroundStyle(.white.opacity(0.45))
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(StadiumBackground())
             .navigationTitle("More")
         }
     }

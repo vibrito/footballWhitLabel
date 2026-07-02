@@ -23,6 +23,8 @@ struct MatchdayView: View {
                 }
                 .padding(16)
             }
+            .scrollContentBackground(.hidden)
+            .background(StadiumBackground())
             .navigationTitle("Matchday")
             .task { await viewModel.load() }
         }

@@ -17,6 +17,7 @@ struct ChampionshipApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(config: config, service: makeService())
+                .preferredColorScheme(.dark)
         }
         .modelContainer(modelContainer)
     }

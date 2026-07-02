@@ -32,6 +32,8 @@ struct StandingsView: View {
                 }
                 .padding(16)
             }
+            .scrollContentBackground(.hidden)
+            .background(StadiumBackground())
             .navigationTitle("Standings")
             .task { await viewModel.load() }
         }

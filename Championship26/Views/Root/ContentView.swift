@@ -16,5 +16,6 @@ struct ContentView: View {
                 .tabItem { Label("More", systemImage: "ellipsis.circle") }
         }
         .tint(Color(hex: config.accentColorHex))
+        .background(StadiumBackground())
     }
 }
