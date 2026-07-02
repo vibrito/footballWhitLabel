@@ -2,6 +2,10 @@ import SwiftUI
 
 struct StandingsView: View {
     @State private var viewModel: StandingsViewModel
+    // Measured height of the fixed header chrome (including its own top/side margins),
+    // so the scrolling content below can reserve exactly that much space and the rows
+    // start right where the header visually ends, with no gap and no overlap.
+    @State private var headerChromeHeight: CGFloat = 0
 
     init(service: MatchService) {
         _viewModel = State(initialValue: StandingsViewModel(service: service))
@@ -15,11 +19,18 @@ struct StandingsView: View {
     private static let cardFill = Color.white.opacity(0.05)
     private static let cardStroke = Color.white.opacity(0.16)
 
+    // The header is NOT part of the ScrollView's content — SwiftUI's native
+    // LazyVStack(pinnedViews: [.sectionHeaders]) mechanism did not actually stay fixed
+    // in practice under this NavigationStack. Instead it's a permanent ZStack overlay
+    // above the ScrollView, which is unconditionally fixed by construction, and the
+    // scrolling content reserves matching empty space (`headerChromeHeight`) at its top
+    // so the row card starts exactly where the header visually ends.
     var body: some View {
         NavigationStack {
-            ScrollView {
-                LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                    Section {
+            ZStack(alignment: .top) {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        Color.clear.frame(height: headerChromeHeight)
                         VStack(spacing: 0) {
                             ForEach(viewModel.standings, id: \.id) { standing in
                                 row(for: standing)
@@ -30,13 +41,20 @@ struct StandingsView: View {
                         .background(rowsShape.fill(Self.cardFill))
                         .overlay(rowsShape.strokeBorder(Self.cardStroke, lineWidth: 0.5))
                         .padding(.horizontal, 16)
-                    } header: {
-                        header
                     }
+                    .padding(.bottom, 16)
                 }
-                .padding(.vertical, 16)
+                .scrollContentBackground(.hidden)
+
+                header
+                    .padding(.horizontal, 16)
+                    .padding(.top, 16)
+                    .background {
+                        GeometryReader { proxy in
+                            Color.clear.onAppear { headerChromeHeight = proxy.size.height }
+                        }
+                    }
             }
-            .scrollContentBackground(.hidden)
             .background(StadiumBackground())
             .navigationTitle("Standings")
             .task { await viewModel.load() }
@@ -46,10 +64,7 @@ struct StandingsView: View {
     // Header and rows share one fill/stroke and sit flush against each other (no gap,
     // no independent rounded pill) so they read as a single card — only the header's
     // top corners and the rows' bottom corners are rounded, like one shape split in two
-    // pieces. A real SwiftUI pinned section header: scrolls normally with the table
-    // until it reaches the top of the viewport (right below the collapsed nav bar),
-    // then sticks there while the rows scroll beneath it, and un-sticks, following the
-    // content back down, when the user scrolls back up to the top.
+    // pieces.
     private var header: some View {
         HStack(spacing: 0) {
             Color.clear.frame(width: Self.leadingWidth)
