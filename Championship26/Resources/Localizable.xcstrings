@@ -33,6 +33,17 @@
           }
         }
       }
+    },
+    "Fixtures" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fixtures"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
