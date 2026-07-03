@@ -1,6 +1,6 @@
 import Testing
 import Foundation
-@testable import Championship26
+@testable import BR2026
 
 @Suite("Standing decoding")
 struct StandingTests {

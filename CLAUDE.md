@@ -103,7 +103,7 @@ playoff: #fbbf24   // amber
 
 ## Project Structure
 ```
-Championship26/
+BR2026/
 ├── App/
 │   └── Championship.swift
 ├── Config/
@@ -210,7 +210,7 @@ Championship26/
 ## Testing
 - Framework: **Swift Testing** (`import Testing`).
 - Unit test ViewModels and Services — not Views.
-- Test files live in `ChampionshipTests/`, mirroring the source structure.
+- Test files live in `BR2026Tests/`, mirroring the source structure.
 - Use `MockMatchService` in all tests — no network calls, no SwiftData container in unit tests.
 - Name tests descriptively: `@Test("Matchday tab shows only today's matches")`.
 

@@ -1,7 +1,7 @@
 import Testing
 import Foundation
 import SwiftData
-@testable import Championship26
+@testable import BR2026
 
 // Deliberate, scoped exception to "no SwiftData container in unit tests": this is a
 // regression test for a real crash (Team's custom CodingKeys conflicting with

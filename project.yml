@@ -1,4 +1,4 @@
-name: Championship26
+name: BR2026
 options:
   bundleIdPrefix: com.vibrito
 settings:
@@ -13,13 +13,13 @@ configFiles:
   Debug: Secrets.xcconfig
   Release: Secrets.xcconfig
 targets:
-  Championship26:
+  BR2026:
     type: application
     platform: iOS
     sources:
-      - Championship26
+      - BR2026
     info:
-      path: Generated/Championship26-Info.plist
+      path: Generated/BR2026-Info.plist
       properties:
         API_KEY: $(API_KEY)
         UILaunchScreen: {}
@@ -28,22 +28,22 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.vibrito.br2026
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-  ChampionshipTests:
+  BR2026Tests:
     type: bundle.unit-test
     platform: iOS
     sources:
-      - ChampionshipTests
+      - BR2026Tests
     dependencies:
-      - target: Championship26
+      - target: BR2026
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
 schemes:
-  Championship26:
+  BR2026:
     build:
       targets:
-        Championship26: all
-        ChampionshipTests: [test]
+        BR2026: all
+        BR2026Tests: [test]
     test:
       targets:
-        - ChampionshipTests
+        - BR2026Tests

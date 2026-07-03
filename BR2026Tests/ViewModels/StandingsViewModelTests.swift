@@ -1,5 +1,5 @@
 import Testing
-@testable import Championship26
+@testable import BR2026
 
 @Suite("StandingsViewModel")
 @MainActor
