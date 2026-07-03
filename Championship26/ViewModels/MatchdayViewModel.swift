@@ -12,10 +12,20 @@ final class MatchdayViewModel {
         self.service = service
     }
 
-    var todaysMatches: [Match] {
+    // The featured match is the earliest one still to be decided — a match already
+    // live sorts before any future kickoff, so it naturally wins over a later
+    // scheduled match without special-casing status.
+    var nextMatch: Match? {
+        matches
+            .filter { $0.status == .live || $0.status == .scheduled }
+            .min { $0.utcDate < $1.utcDate }
+    }
+
+    var otherMatchesForNextMatchDay: [Match] {
+        guard let nextMatch else { return [] }
         let calendar = Calendar.current
         return matches
-            .filter { calendar.isDateInToday($0.utcDate) }
+            .filter { $0.id != nextMatch.id && calendar.isDate($0.utcDate, inSameDayAs: nextMatch.utcDate) }
             .sorted { $0.utcDate < $1.utcDate }
     }
 

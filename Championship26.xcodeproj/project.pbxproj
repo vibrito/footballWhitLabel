@@ -41,6 +41,7 @@
 		D0FE1BDD86043DDC20DED22E /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4540AFEAE2777F4C726BDD57 /* MoreView.swift */; };
 		D5BB7220C7680C2546816E86 /* MatchdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570570BC1054A1BA7948D284 /* MatchdayView.swift */; };
 		D6962AC1C34004F68B03CE43 /* AccentPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479B6A71B3A4C9E42F1CE262 /* AccentPill.swift */; };
+		DF817146BBFCD6DEC8550FCC /* HeroMatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B185381C29A432F1DDF8830 /* HeroMatchCard.swift */; };
 		E16FD4C13F7E669DB3CF1EAC /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A51074C0F6227B866CAA1 /* StandingsView.swift */; };
 		F34E380720613BDE63897E0D /* LiveMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B378312B227AA7ACBD5A95CD /* LiveMatchService.swift */; };
 		F39E2DF00433A100A477E5AE /* ChampionshipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD80DAD5A5BDD8D65E882E3 /* ChampionshipTests.swift */; };
@@ -66,6 +67,7 @@
 		2EE35A6B06B0651D8BE817FD /* ChampionshipConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionshipConfig.swift; sourceTree = "<group>"; };
 		2FB99FAC9260CBA1C530BBB2 /* TeamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTests.swift; sourceTree = "<group>"; };
 		308F9C6E61BA7C1AB62CA0A7 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		3B185381C29A432F1DDF8830 /* HeroMatchCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroMatchCard.swift; sourceTree = "<group>"; };
 		3F4983E807298262C5DAEE0E /* MatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTests.swift; sourceTree = "<group>"; };
 		4540AFEAE2777F4C726BDD57 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 		479B6A71B3A4C9E42F1CE262 /* AccentPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccentPill.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				F7626EAB603E5BF3AAD5AC32 /* Color+Hex.swift */,
 				B22B7496DFE15B2D0FF38424 /* FixtureMatchCard.swift */,
 				A5AFB6BA77198F0AEC01A816 /* GlassCard.swift */,
+				3B185381C29A432F1DDF8830 /* HeroMatchCard.swift */,
 				17C67F040DB98ECE52333F9A /* LiveChip.swift */,
 				B86FC88BAA1B959DBA1924C4 /* ScoreRow.swift */,
 				AA92E2EE6BA37C32F139C20E /* StadiumBackground.swift */,
@@ -421,6 +424,7 @@
 				4F06362C369BD8F6B9159021 /* FixturesView.swift in Sources */,
 				02CA31AD0EBE6483E3AE06BF /* FixturesViewModel.swift in Sources */,
 				0E9E1BC07B03C4C76F2FFFF1 /* GlassCard.swift in Sources */,
+				DF817146BBFCD6DEC8550FCC /* HeroMatchCard.swift in Sources */,
 				69A24E72F2C6EFC27892450B /* LiveChip.swift in Sources */,
 				F34E380720613BDE63897E0D /* LiveMatchService.swift in Sources */,
 				5F932DBF6602838329B74ED6 /* Match.swift in Sources */,

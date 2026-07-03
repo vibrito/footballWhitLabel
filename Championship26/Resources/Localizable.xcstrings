@@ -41,13 +41,13 @@
         }
       }
     },
-    "Check Fixtures for upcoming rounds" : {
+    "Check Fixtures for the full schedule" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Check Fixtures for upcoming rounds"
+            "value" : "Check Fixtures for the full schedule"
           }
         }
       }
@@ -129,13 +129,24 @@
         }
       }
     },
-    "No matches today" : {
+    "No upcoming matches" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No matches today"
+            "value" : "No upcoming matches"
+          }
+        }
+      }
+    },
+    "Today" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today"
           }
         }
       }
