@@ -70,6 +70,29 @@ struct FixturesViewModelTests {
         #expect(viewModel.selectedRound == 2)
     }
 
+    @Test("Loading skips a round whose only match was postponed, in favor of the next scheduled round")
+    func skipsRoundWithOnlyPostponedMatches() async {
+        let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
+        let round1Finished = Match(
+            id: 1, utcDate: Date(timeIntervalSince1970: 100), status: .finished, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: 1, awayScore: 0, winner: "HOME_TEAM", venue: nil, minute: 90
+        )
+        let round2Postponed = Match(
+            id: 2, utcDate: Date(timeIntervalSince1970: 200), status: .postponed, matchday: 2, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let round3Scheduled = Match(
+            id: 3, utcDate: Date(timeIntervalSince1970: 300), status: .scheduled, matchday: 3, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let service = StubMatchService(matches: [round3Scheduled, round1Finished, round2Postponed], standings: [])
+        let viewModel = FixturesViewModel(service: service)
+
+        await viewModel.load()
+
+        #expect(viewModel.selectedRound == 3)
+    }
+
     @Test("Loading falls back to the last round when every match is finished")
     func selectsLastRoundWhenAllMatchesFinished() async {
         let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)

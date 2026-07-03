@@ -37,12 +37,15 @@ final class FixturesViewModel {
         }
     }
 
-    // The "current" round is the earliest one with a match that hasn't finished yet —
-    // matching how the reference date-picker defaults to today. Once the whole season
-    // is finished, fall back to the last round instead of leaving nothing selected.
+    // The "current" round is the earliest one with a match still to be played —
+    // matching how the reference date-picker defaults to today. Postponed matches
+    // don't count: a round made up only of postponed fixtures has no real kickoff
+    // to look forward to, so skip it in favor of the next round that does. Once the
+    // whole season is finished, fall back to the last round instead of leaving
+    // nothing selected.
     private func currentRound() -> Int? {
         let byRound = matchesByRound
-        let firstUnfinished = byRound.first { $0.matches.contains { $0.status != .finished } }
-        return firstUnfinished?.round ?? byRound.last?.round
+        let firstUpcoming = byRound.first { $0.matches.contains { $0.status == .scheduled || $0.status == .live } }
+        return firstUpcoming?.round ?? byRound.last?.round
     }
 }
