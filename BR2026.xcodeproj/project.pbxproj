@@ -364,6 +364,7 @@
 			buildPhases = (
 				4A4FA446D5F73EAE1C9245D1 /* Sources */,
 				0725F692AD27876A0AE3342B /* Resources */,
+				E0C1DD85EB449F289A53FEB4 /* Set build number from git commit count */,
 			);
 			buildRules = (
 			);
@@ -444,6 +445,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E0C1DD85EB449F289A53FEB4 /* Set build number from git commit count */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set build number from git commit count";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Archives need a CFBundleVersion that actually changes between\n# uploads (App Store Connect rejects a repeat), and the\n# xcodegen-generated Info.plist is rewritten from a static value\n# on every `xcodegen generate`, so nothing here persists on its\n# own — derive it from git history instead, every archive.\nif [ \"$ACTION\" = \"install\" ]; then\n  buildNumber=$(git -C \"${SRCROOT}\" rev-list --count HEAD)\n  plist=\"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n  /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$plist\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4A4FA446D5F73EAE1C9245D1 /* Sources */ = {
