@@ -39,14 +39,24 @@ struct FixtureMatchCard: View {
     private var statusView: some View {
         switch match.status {
         case .finished:
-            Text("FT")
+            Text("\(dateLabel) · FT")
         case .live:
             LiveChip(minute: match.minute)
         case .postponed:
+            // A postponed match's stored date may just be a stale placeholder from
+            // before the postponement, so it isn't shown alongside the status.
             Text("PPD")
         case .scheduled:
-            Text(match.utcDate, style: .time)
+            Text("\(dateLabel) · \(timeLabel)")
         }
+    }
+
+    private var dateLabel: Text {
+        Text(match.utcDate, format: .dateTime.day().month(.abbreviated))
+    }
+
+    private var timeLabel: Text {
+        Text(match.utcDate, style: .time)
     }
 
     private func teamRow(_ team: Team, score: Int?) -> some View {
