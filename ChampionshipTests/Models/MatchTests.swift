@@ -67,6 +67,8 @@ struct MatchTests {
         #expect(match.homeTeam.name == "Botafogo")
         #expect(match.homeScore == 4)
         #expect(match.awayScore == 0)
+        #expect(match.halfTimeHomeScore == 0)
+        #expect(match.halfTimeAwayScore == 0)
     }
 
     @Test("update(from:) applies a partial score/status change without touching identity fields")
@@ -97,5 +99,7 @@ struct MatchTests {
         #expect(match.homeScore == 2)
         #expect(match.awayScore == 1)
         #expect(match.minute == 63)
+        #expect(match.halfTimeHomeScore == 1)
+        #expect(match.halfTimeAwayScore == 0)
     }
 }

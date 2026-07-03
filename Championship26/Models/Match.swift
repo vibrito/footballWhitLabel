@@ -2,7 +2,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class Match {
+final class Match: Identifiable {
     @Attribute(.unique) var id: Int
     var utcDate: Date
     var status: MatchStatus
@@ -12,6 +12,8 @@ final class Match {
     var awayTeam: Team
     var homeScore: Int?
     var awayScore: Int?
+    var halfTimeHomeScore: Int?
+    var halfTimeAwayScore: Int?
     var winner: String?
     var venue: String?
     var minute: Int?
@@ -26,6 +28,8 @@ final class Match {
         awayTeam: Team,
         homeScore: Int?,
         awayScore: Int?,
+        halfTimeHomeScore: Int? = nil,
+        halfTimeAwayScore: Int? = nil,
         winner: String?,
         venue: String?,
         minute: Int?
@@ -39,6 +43,8 @@ final class Match {
         self.awayTeam = awayTeam
         self.homeScore = homeScore
         self.awayScore = awayScore
+        self.halfTimeHomeScore = halfTimeHomeScore
+        self.halfTimeAwayScore = halfTimeAwayScore
         self.winner = winner
         self.venue = venue
         self.minute = minute
@@ -55,6 +61,8 @@ final class Match {
             awayTeam: Team(dto: dto.awayTeam),
             homeScore: dto.score.fullTime.home,
             awayScore: dto.score.fullTime.away,
+            halfTimeHomeScore: dto.score.halfTime.home,
+            halfTimeAwayScore: dto.score.halfTime.away,
             winner: dto.score.winner,
             venue: dto.venue,
             minute: dto.minute
@@ -65,6 +73,8 @@ final class Match {
         status = dto.status
         homeScore = dto.score.fullTime.home
         awayScore = dto.score.fullTime.away
+        halfTimeHomeScore = dto.score.halfTime.home
+        halfTimeAwayScore = dto.score.halfTime.away
         winner = dto.score.winner
         minute = dto.minute
         venue = dto.venue

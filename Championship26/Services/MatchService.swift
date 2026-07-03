@@ -5,4 +5,5 @@
 protocol MatchService {
     func fetchMatches() async throws -> [Match]
     func fetchStandings() async throws -> [Standing]
+    func fetchEvents(matchID: Int) async throws -> [MatchEvent]
 }

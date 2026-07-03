@@ -2,9 +2,12 @@ import SwiftUI
 
 struct MatchdayView: View {
     @State private var viewModel: MatchdayViewModel
+    @State private var selectedMatch: Match?
+    let service: MatchService
 
     init(service: MatchService) {
         _viewModel = State(initialValue: MatchdayViewModel(service: service))
+        self.service = service
     }
 
     var body: some View {
@@ -13,7 +16,10 @@ struct MatchdayView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     if let nextMatch = viewModel.nextMatch {
                         header
-                        HeroMatchCard(match: nextMatch)
+                        Button { selectedMatch = nextMatch } label: {
+                            HeroMatchCard(match: nextMatch)
+                        }
+                        .buttonStyle(.plain)
                         if !viewModel.finishedMatchesForNextMatchDay.isEmpty {
                             matchSection(title: Text("Finished"), matches: viewModel.finishedMatchesForNextMatchDay)
                         }
@@ -30,6 +36,9 @@ struct MatchdayView: View {
             .background(StadiumBackground())
             .navigationBarTitleDisplayMode(.inline)
             .task { await viewModel.load() }
+            .sheet(item: $selectedMatch) { match in
+                MatchDetailView(match: match, service: service)
+            }
         }
     }
 
@@ -56,7 +65,10 @@ struct MatchdayView: View {
                 .foregroundStyle(.white.opacity(0.5))
                 .textCase(.uppercase)
             ForEach(matches, id: \.id) { match in
-                FixtureMatchCard(match: match)
+                Button { selectedMatch = match } label: {
+                    FixtureMatchCard(match: match)
+                }
+                .buttonStyle(.plain)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

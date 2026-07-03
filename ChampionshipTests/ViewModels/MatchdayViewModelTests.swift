@@ -119,10 +119,13 @@ struct MatchdayViewModelTests {
 final class StubMatchService: MatchService {
     let matches: [Match]
     let standings: [Standing]
-    init(matches: [Match], standings: [Standing]) {
+    let events: [MatchEvent]
+    init(matches: [Match], standings: [Standing], events: [MatchEvent] = []) {
         self.matches = matches
         self.standings = standings
+        self.events = events
     }
     func fetchMatches() async throws -> [Match] { matches }
     func fetchStandings() async throws -> [Standing] { standings }
+    func fetchEvents(matchID: Int) async throws -> [MatchEvent] { events }
 }

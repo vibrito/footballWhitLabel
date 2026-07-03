@@ -55,6 +55,13 @@ final class LiveMatchService: MatchService {
         return response.standings
     }
 
+    func fetchEvents(matchID: Int) async throws -> [MatchEvent] {
+        let url = config.apiBaseURL
+            .appendingPathComponent("v4/competitions/\(config.competitionCode)/matches/\(matchID)/events")
+        let response: MatchEventsResponse = try await get(url)
+        return response.events
+    }
+
     private func upsert(_ dto: MatchDTO) {
         let targetID = dto.id
         let descriptor = FetchDescriptor<Match>(predicate: #Predicate { $0.id == targetID })

@@ -16,6 +16,7 @@ struct MatchDTO: Decodable {
 struct ScoreDTO: Decodable {
     let winner: String?
     let fullTime: FullTimeDTO
+    let halfTime: FullTimeDTO
 }
 
 struct FullTimeDTO: Decodable {

@@ -2,9 +2,12 @@ import SwiftUI
 
 struct FixturesView: View {
     @State private var viewModel: FixturesViewModel
+    @State private var selectedMatch: Match?
+    let service: MatchService
 
     init(service: MatchService) {
         _viewModel = State(initialValue: FixturesViewModel(service: service))
+        self.service = service
     }
 
     var body: some View {
@@ -14,7 +17,10 @@ struct FixturesView: View {
                 ScrollView {
                     LazyVStack(spacing: 12) {
                         ForEach(viewModel.selectedRoundMatches, id: \.id) { match in
-                            FixtureMatchCard(match: match)
+                            Button { selectedMatch = match } label: {
+                                FixtureMatchCard(match: match)
+                            }
+                            .buttonStyle(.plain)
                         }
                     }
                     .padding(16)
@@ -25,6 +31,9 @@ struct FixturesView: View {
             .navigationTitle("Fixtures")
             .navigationBarTitleDisplayMode(.inline)
             .task { await viewModel.load() }
+            .sheet(item: $selectedMatch) { match in
+                MatchDetailView(match: match, service: service)
+            }
         }
     }
 

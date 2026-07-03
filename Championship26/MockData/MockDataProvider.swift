@@ -44,6 +44,17 @@ enum MockDataProvider {
     }
     """
 
+    static let eventsJSON = """
+    {
+        "events": [
+            { "team": "home", "type": "YELLOW_CARD", "assist": null, "detail": "Yellow Card", "minute": 17, "player": "R. Dias", "playerOut": null, "extraMinute": null },
+            { "team": "away", "type": "SUBSTITUTION", "assist": null, "detail": "Substitution 1", "minute": 46, "player": "A. Budimir", "playerOut": "I. Matanovic", "extraMinute": null },
+            { "team": "away", "type": "GOAL", "assist": null, "detail": "Normal Goal", "minute": 53, "player": "I. Perisic", "playerOut": null, "extraMinute": null },
+            { "team": "home", "type": "GOAL", "assist": null, "detail": "Penalty", "minute": 68, "player": "C. Ronaldo", "playerOut": null, "extraMinute": null }
+        ]
+    }
+    """
+
     static let standingsJSON = """
     {
         "standings": [
