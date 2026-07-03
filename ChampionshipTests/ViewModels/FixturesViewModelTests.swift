@@ -47,54 +47,102 @@ struct FixturesViewModelTests {
         #expect(viewModel.rounds == [1, 2, 3])
     }
 
-    @Test("Loading selects the earliest round that still has an unplayed match")
-    func selectsCurrentRoundAsFirstRoundWithUnplayedMatch() async {
+    @Test("Loading selects the round right after the furthest round with a finished match")
+    func selectsRoundAfterFurthestFinishedRound() async {
         let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
-        let round1Finished = Match(
-            id: 1, utcDate: Date(timeIntervalSince1970: 100), status: .finished, matchday: 1, stage: "REGULAR_SEASON",
+        let round17Finished = Match(
+            id: 1, utcDate: Date(timeIntervalSince1970: 100), status: .finished, matchday: 17, stage: "REGULAR_SEASON",
             homeTeam: team, awayTeam: team, homeScore: 1, awayScore: 0, winner: "HOME_TEAM", venue: nil, minute: 90
         )
-        let round2Scheduled = Match(
+        let round18Finished = Match(
+            id: 2, utcDate: Date(timeIntervalSince1970: 200), status: .finished, matchday: 18, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: 2, awayScore: 1, winner: "HOME_TEAM", venue: nil, minute: 90
+        )
+        let round19Scheduled = Match(
+            id: 3, utcDate: Date(timeIntervalSince1970: 300), status: .scheduled, matchday: 19, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let service = StubMatchService(matches: [round19Scheduled, round17Finished, round18Finished], standings: [])
+        let viewModel = FixturesViewModel(service: service)
+
+        await viewModel.load()
+
+        #expect(viewModel.selectedRound == 19)
+    }
+
+    @Test("A round holding makeup games rescheduled far later doesn't hijack selection from the round the season has actually reached")
+    func makeupGamesInAnEarlyRoundDoNotHijackSelection() async {
+        let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
+        // Round 4 mostly finished back in February, but two matches got rescheduled
+        // (not postponed — still SCHEDULED) to July, alongside Round 19. Without
+        // ignoring round order, an "earliest unplayed match" scan would pick Round 4
+        // even though the league has actually progressed to Round 19.
+        let round4FinishedA = Match(
+            id: 1, utcDate: Date(timeIntervalSince1970: 100), status: .finished, matchday: 4, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: 1, awayScore: 0, winner: "HOME_TEAM", venue: nil, minute: 90
+        )
+        let round4MakeupGame = Match(
+            id: 2, utcDate: Date(timeIntervalSince1970: 1000), status: .scheduled, matchday: 4, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let round18Finished = Match(
+            id: 3, utcDate: Date(timeIntervalSince1970: 200), status: .finished, matchday: 18, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: 2, awayScore: 1, winner: "HOME_TEAM", venue: nil, minute: 90
+        )
+        let round19Scheduled = Match(
+            id: 4, utcDate: Date(timeIntervalSince1970: 900), status: .scheduled, matchday: 19, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let service = StubMatchService(
+            matches: [round19Scheduled, round4FinishedA, round4MakeupGame, round18Finished], standings: []
+        )
+        let viewModel = FixturesViewModel(service: service)
+
+        await viewModel.load()
+
+        #expect(viewModel.selectedRound == 19)
+    }
+
+    @Test("Loading selects the round with a live match, even if earlier rounds have unfinished makeup games")
+    func selectsLiveRoundOverEarlierUnfinishedRound() async {
+        let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
+        let round4Scheduled = Match(
+            id: 1, utcDate: Date(timeIntervalSince1970: 1000), status: .scheduled, matchday: 4, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let round19Live = Match(
+            id: 2, utcDate: Date(timeIntervalSince1970: 300), status: .live, matchday: 19, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: 1, awayScore: 0, winner: nil, venue: nil, minute: 30
+        )
+        let service = StubMatchService(matches: [round4Scheduled, round19Live], standings: [])
+        let viewModel = FixturesViewModel(service: service)
+
+        await viewModel.load()
+
+        #expect(viewModel.selectedRound == 19)
+    }
+
+    @Test("Loading falls back to the first round when nothing has been played yet")
+    func selectsFirstRoundWhenNothingFinished() async {
+        let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
+        let round1 = Match(
+            id: 1, utcDate: Date(timeIntervalSince1970: 100), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let round2 = Match(
             id: 2, utcDate: Date(timeIntervalSince1970: 200), status: .scheduled, matchday: 2, stage: "REGULAR_SEASON",
             homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
         )
-        let round3Scheduled = Match(
-            id: 3, utcDate: Date(timeIntervalSince1970: 300), status: .scheduled, matchday: 3, stage: "REGULAR_SEASON",
-            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
-        )
-        let service = StubMatchService(matches: [round3Scheduled, round1Finished, round2Scheduled], standings: [])
+        let service = StubMatchService(matches: [round2, round1], standings: [])
         let viewModel = FixturesViewModel(service: service)
 
         await viewModel.load()
 
-        #expect(viewModel.selectedRound == 2)
+        #expect(viewModel.selectedRound == 1)
     }
 
-    @Test("Loading skips a round whose only match was postponed, in favor of the next scheduled round")
-    func skipsRoundWithOnlyPostponedMatches() async {
-        let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
-        let round1Finished = Match(
-            id: 1, utcDate: Date(timeIntervalSince1970: 100), status: .finished, matchday: 1, stage: "REGULAR_SEASON",
-            homeTeam: team, awayTeam: team, homeScore: 1, awayScore: 0, winner: "HOME_TEAM", venue: nil, minute: 90
-        )
-        let round2Postponed = Match(
-            id: 2, utcDate: Date(timeIntervalSince1970: 200), status: .postponed, matchday: 2, stage: "REGULAR_SEASON",
-            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
-        )
-        let round3Scheduled = Match(
-            id: 3, utcDate: Date(timeIntervalSince1970: 300), status: .scheduled, matchday: 3, stage: "REGULAR_SEASON",
-            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
-        )
-        let service = StubMatchService(matches: [round3Scheduled, round1Finished, round2Postponed], standings: [])
-        let viewModel = FixturesViewModel(service: service)
-
-        await viewModel.load()
-
-        #expect(viewModel.selectedRound == 3)
-    }
-
-    @Test("Loading falls back to the last round when every match is finished")
-    func selectsLastRoundWhenAllMatchesFinished() async {
+    @Test("Loading falls back to the last round when every round has a finished match")
+    func selectsLastRoundWhenEverythingFinished() async {
         let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
         let round1 = Match(
             id: 1, utcDate: Date(timeIntervalSince1970: 100), status: .finished, matchday: 1, stage: "REGULAR_SEASON",
