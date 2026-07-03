@@ -5,8 +5,10 @@ settings:
   base:
     IPHONEOS_DEPLOYMENT_TARGET: "26.0"
     SWIFT_VERSION: "6.0"
-    CODE_SIGNING_REQUIRED: NO
-    CODE_SIGNING_ALLOWED: NO
+    CODE_SIGNING_REQUIRED: YES
+    CODE_SIGNING_ALLOWED: YES
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: R4L6C6JGYH
 configFiles:
   Debug: Secrets.xcconfig
   Release: Secrets.xcconfig
@@ -32,6 +34,9 @@ targets:
       - ChampionshipTests
     dependencies:
       - target: Championship26
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
 schemes:
   Championship26:
     build:
