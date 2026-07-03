@@ -46,6 +46,7 @@
 		DB0ED2D8E5CE3A0CED7F9D84 /* MatchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB158C687CD9FC20F7987EF /* MatchDetailViewModel.swift */; };
 		DF817146BBFCD6DEC8550FCC /* HeroMatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B185381C29A432F1DDF8830 /* HeroMatchCard.swift */; };
 		E16FD4C13F7E669DB3CF1EAC /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22A51074C0F6227B866CAA1 /* StandingsView.swift */; };
+		E941B370B7D431328D308FF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FD538AD8F6A0BD4C2E9E31E /* Assets.xcassets */; };
 		EDE45E48339C24D0F1CEDD99 /* MatchTimelineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A9706D90D95A0A9665151 /* MatchTimelineRow.swift */; };
 		F34E380720613BDE63897E0D /* LiveMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B378312B227AA7ACBD5A95CD /* LiveMatchService.swift */; };
 		F39E2DF00433A100A477E5AE /* ChampionshipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD80DAD5A5BDD8D65E882E3 /* ChampionshipTests.swift */; };
@@ -71,6 +72,7 @@
 		20BCB3E771EFCC3E2FD0408A /* MockMatchServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMatchServiceTests.swift; sourceTree = "<group>"; };
 		2EE35A6B06B0651D8BE817FD /* ChampionshipConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionshipConfig.swift; sourceTree = "<group>"; };
 		2FB99FAC9260CBA1C530BBB2 /* TeamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTests.swift; sourceTree = "<group>"; };
+		2FD538AD8F6A0BD4C2E9E31E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		308F9C6E61BA7C1AB62CA0A7 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		3B185381C29A432F1DDF8830 /* HeroMatchCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroMatchCard.swift; sourceTree = "<group>"; };
 		3F4983E807298262C5DAEE0E /* MatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTests.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 		0A3D9A261AFBDD6CF9FB2FF1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2FD538AD8F6A0BD4C2E9E31E /* Assets.xcassets */,
 				DBD86267D4D236F0B6B15529 /* Localizable.xcstrings */,
 			);
 			path = Resources;
@@ -435,6 +438,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E941B370B7D431328D308FF1 /* Assets.xcassets in Resources */,
 				47E7BD2A2CCD5CD17ACFA9C1 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,7 +558,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.Championship26;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.br2026;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -638,7 +642,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.Championship26;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.br2026;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
