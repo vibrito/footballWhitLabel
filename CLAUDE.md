@@ -110,6 +110,7 @@ Championship26/
 │   └── ChampionshipConfig.swift
 ├── Models/
 │   ├── Match.swift
+│   ├── MatchEvent.swift
 │   ├── Team.swift
 │   └── Standing.swift
 ├── MockData/
@@ -121,13 +122,15 @@ Championship26/
 ├── ViewModels/
 │   ├── MatchdayViewModel.swift
 │   ├── FixturesViewModel.swift
-│   └── StandingsViewModel.swift
+│   ├── StandingsViewModel.swift
+│   └── MatchDetailViewModel.swift
 ├── Views/
 │   ├── Root/
 │   │   └── ContentView.swift     # TabView: Matchday, Fixtures, Standings, More
 │   ├── Matchday/
 │   ├── Fixtures/
 │   ├── Standings/
+│   ├── MatchDetail/               # sheet presented from match cards
 │   └── More/
 ├── Components/
 │   ├── GlassCard.swift
@@ -172,8 +175,10 @@ Championship26/
   never commit the real key.
 - `GET /v4/competitions/{code}/matches` — supports `?status=LIVE`, `?matchday=N`
 - `GET /v4/competitions/{code}/standings`
-- `GET /v4/competitions/{code}/matches/:id/{statistics,events,lineups}` — not yet consumed;
-  deferred to a future match-detail phase.
+- `GET /v4/competitions/{code}/matches/:id/events` — consumed by the match-detail sheet
+  (`MatchDetailView`), which shows a goals/cards/substitutions timeline.
+- `GET /v4/competitions/{code}/matches/:id/{statistics,lineups}` — not yet consumed;
+  deferred to a future phase.
 - Brasileirão's competition code is `BSA`, set via `ChampionshipConfig.brasileirao`.
 
 ---
@@ -215,7 +220,8 @@ Championship26/
 - 4 tabs: Matchday, Fixtures, Standings, More.
 - This white label will be used by other apps — championships beyond Brasileirão are a
   future phase, added via new `ChampionshipConfig` values.
-- Brasileirão is the only wired-up championship; match detail (stats/events/lineups),
-  a championship switcher UI, and theming beyond one accent color are out of scope.
+- Brasileirão is the only wired-up championship; a championship switcher UI and theming
+  beyond one accent color are out of scope. Match detail covers the events timeline;
+  statistics and lineups are deferred to a future phase.
 - Alternate home variants (B/C) are **out of scope**.
 - No user accounts, no notifications, no watchOS/widgets — future phases.
