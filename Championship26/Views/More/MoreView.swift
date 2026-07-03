@@ -19,6 +19,7 @@ struct MoreView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(StadiumBackground())
             .navigationTitle("More")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

@@ -28,6 +28,7 @@ struct FixturesView: View {
             .scrollContentBackground(.hidden)
             .background(StadiumBackground())
             .navigationTitle("Fixtures")
+            .navigationBarTitleDisplayMode(.inline)
             .task { await viewModel.load() }
         }
     }

@@ -26,6 +26,7 @@ struct MatchdayView: View {
             .scrollContentBackground(.hidden)
             .background(StadiumBackground())
             .navigationTitle("Matchday")
+            .navigationBarTitleDisplayMode(.inline)
             .task { await viewModel.load() }
         }
     }
