@@ -88,7 +88,7 @@
 		56C5C675322020A4A48668C2 /* LiveMatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveMatchService.swift; sourceTree = "<group>"; };
 		56ED24EAB2931D750D08DD21 /* MatchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailViewModel.swift; sourceTree = "<group>"; };
 		5AE7CD31B3A17497FD8945EA /* StandingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsView.swift; sourceTree = "<group>"; };
-		5D52C33397FE46F99B0076D8 /* BR2026.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BR2026.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D52C33397FE46F99B0076D8 /* BR2026.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BR2026.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60EB245877F3BE6246A841B9 /* MockMatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMatchService.swift; sourceTree = "<group>"; };
 		65807B78425B289771974EE6 /* MatchDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailViewModelTests.swift; sourceTree = "<group>"; };
 		750454E4C32D9EEA69417686 /* MatchdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchdayViewModel.swift; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 		C2D44350EAD06089AFB83195 /* MatchTimelineRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTimelineRow.swift; sourceTree = "<group>"; };
 		C8B5197C926950D13285B1E1 /* StandingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingTests.swift; sourceTree = "<group>"; };
 		CF19AF830233C51EF5882C73 /* MockMatchServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMatchServiceTests.swift; sourceTree = "<group>"; };
-		D171E9A2D09CD427D7F26420 /* BR2026Tests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BR2026Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D171E9A2D09CD427D7F26420 /* BR2026Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BR2026Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50CB1386053224A356B2C76 /* MatchSwiftDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchSwiftDataTests.swift; sourceTree = "<group>"; };
 		DEB0996F787521F2EF840C43 /* MatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchService.swift; sourceTree = "<group>"; };
 		E5F0E8AA4BDCF972420F7225 /* StandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModel.swift; sourceTree = "<group>"; };
@@ -364,7 +364,6 @@
 			buildPhases = (
 				4A4FA446D5F73EAE1C9245D1 /* Sources */,
 				0725F692AD27876A0AE3342B /* Resources */,
-				E0C1DD85EB449F289A53FEB4 /* Set build number from git commit count */,
 			);
 			buildRules = (
 			);
@@ -445,28 +444,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		E0C1DD85EB449F289A53FEB4 /* Set build number from git commit count */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Set build number from git commit count";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Archives need a CFBundleVersion that actually changes between\n# uploads (App Store Connect rejects a repeat), and the\n# xcodegen-generated Info.plist is rewritten from a static value\n# on every `xcodegen generate`, so nothing here persists on its\n# own — derive it from git history instead, every archive.\nif [ \"$ACTION\" = \"install\" ]; then\n  buildNumber=$(git -C \"${SRCROOT}\" rev-list --count HEAD)\n  plist=\"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n  /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$plist\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4A4FA446D5F73EAE1C9245D1 /* Sources */ = {
@@ -705,15 +682,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Generated/BR2026-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "BR 2026";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.br2026;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -722,15 +706,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Generated/BR2026-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "BR 2026";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.br2026;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
