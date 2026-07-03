@@ -29,6 +29,14 @@ final class MatchdayViewModel {
             .sorted { $0.utcDate < $1.utcDate }
     }
 
+    var finishedMatchesForNextMatchDay: [Match] {
+        otherMatchesForNextMatchDay.filter { $0.status == .finished }
+    }
+
+    var upcomingMatchesForNextMatchDay: [Match] {
+        otherMatchesForNextMatchDay.filter { $0.status != .finished }
+    }
+
     func load() async {
         isLoading = true
         defer { isLoading = false }

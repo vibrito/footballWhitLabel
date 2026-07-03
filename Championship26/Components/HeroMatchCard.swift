@@ -1,47 +1,51 @@
 import SwiftUI
 
 /// The featured card at the top of Matchday: the next match still to be decided,
-/// shown larger than a regular ScoreRow/FixtureMatchCard entry.
+/// centered around large crests and a "vs" separator rather than the compact
+/// side-by-side layout used elsewhere.
 struct HeroMatchCard: View {
     let match: Match
 
     var body: some View {
         GlassCard(cornerRadius: 28, style: .transparent) {
             VStack(spacing: 20) {
-                header
-                HStack(alignment: .top, spacing: 12) {
+                topInfo
+                HStack(alignment: .center, spacing: 12) {
                     teamColumn(match.homeTeam)
                     centerContent
-                        .frame(maxWidth: 90)
+                        .frame(minWidth: 70)
                     teamColumn(match.awayTeam)
                 }
+                Text(venueLabel)
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundStyle(.white.opacity(0.5))
+                    .lineLimit(1)
             }
+            .frame(maxWidth: .infinity)
         }
     }
 
-    private var header: some View {
-        HStack {
-            Text(venueLabel)
-                .lineLimit(1)
-            Spacer()
-            if match.status == .live {
-                LiveChip(minute: match.minute)
-            }
+    @ViewBuilder
+    private var topInfo: some View {
+        if match.status == .live {
+            LiveChip(minute: match.minute)
+        } else {
+            Text(match.utcDate, style: .time)
+                .font(.system(size: 15, weight: .bold))
+                .tracking(0.6)
+                .foregroundStyle(.white.opacity(0.65))
         }
-        .font(.system(size: 11, weight: .bold))
-        .tracking(0.6)
-        .foregroundStyle(.white.opacity(0.5))
     }
 
     private var venueLabel: String {
-        match.venue?.uppercased() ?? String(localized: "Venue TBD").uppercased()
+        match.venue ?? String(localized: "Venue TBD")
     }
 
     private func teamColumn(_ team: Team) -> some View {
-        VStack(spacing: 10) {
-            TeamCrestBadge(team: team, size: 52)
+        VStack(spacing: 12) {
+            TeamCrestBadge(team: team, size: 88)
             Text(team.displayName)
-                .font(.system(size: 15, weight: .semibold))
+                .font(.system(size: 19, weight: .bold))
                 .foregroundStyle(.white)
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
@@ -53,18 +57,15 @@ struct HeroMatchCard: View {
     private var centerContent: some View {
         if let home = match.homeScore, let away = match.awayScore {
             Text("\(home) – \(away)")
-                .font(.system(size: 46, weight: .heavy))
+                .font(.system(size: 40, weight: .heavy))
                 .monospacedDigit()
                 .foregroundStyle(.white)
                 .lineLimit(1)
                 .minimumScaleFactor(0.6)
         } else {
-            VStack(spacing: 4) {
-                Text(match.utcDate, format: .dateTime.day().month(.abbreviated))
-                Text(match.utcDate, style: .time)
-            }
-            .font(.system(size: 13, weight: .bold))
-            .foregroundStyle(.white.opacity(0.7))
+            Text("VS")
+                .font(.system(size: 30, weight: .heavy))
+                .foregroundStyle(.white.opacity(0.35))
         }
     }
 }

@@ -77,6 +77,29 @@ struct MatchdayViewModelTests {
         #expect(viewModel.otherMatchesForNextMatchDay.map(\.id) == [3, 2])
     }
 
+    @Test("finishedMatchesForNextMatchDay and upcomingMatchesForNextMatchDay split same-day matches by status")
+    func splitsOtherMatchesByFinishedStatus() async {
+        let next = Match(
+            id: 1, utcDate: date(day: 10, hour: 12), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let finishedSameDay = Match(
+            id: 2, utcDate: date(day: 10, hour: 9), status: .finished, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: 1, awayScore: 0, winner: "HOME_TEAM", venue: nil, minute: 90
+        )
+        let scheduledSameDay = Match(
+            id: 3, utcDate: date(day: 10, hour: 20), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let service = StubMatchService(matches: [scheduledSameDay, next, finishedSameDay], standings: [])
+        let viewModel = MatchdayViewModel(service: service)
+
+        await viewModel.load()
+
+        #expect(viewModel.finishedMatchesForNextMatchDay.map(\.id) == [2])
+        #expect(viewModel.upcomingMatchesForNextMatchDay.map(\.id) == [3])
+    }
+
     @Test("nextMatch and otherMatchesForNextMatchDay are empty when nothing is live or scheduled")
     func emptyWhenNothingUpcoming() async {
         let finished = Match(

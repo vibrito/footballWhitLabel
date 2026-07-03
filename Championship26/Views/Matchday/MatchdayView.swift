@@ -10,11 +10,15 @@ struct MatchdayView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 20) {
+                VStack(alignment: .leading, spacing: 20) {
                     if let nextMatch = viewModel.nextMatch {
+                        header
                         HeroMatchCard(match: nextMatch)
-                        if !viewModel.otherMatchesForNextMatchDay.isEmpty {
-                            dayMatches
+                        if !viewModel.finishedMatchesForNextMatchDay.isEmpty {
+                            matchSection(title: Text("Finished"), matches: viewModel.finishedMatchesForNextMatchDay)
+                        }
+                        if !viewModel.upcomingMatchesForNextMatchDay.isEmpty {
+                            matchSection(title: alsoTodayLabel, matches: viewModel.upcomingMatchesForNextMatchDay)
                         }
                     } else {
                         emptyState
@@ -24,33 +28,62 @@ struct MatchdayView: View {
             }
             .scrollContentBackground(.hidden)
             .background(StadiumBackground())
-            .navigationTitle("Matchday")
             .navigationBarTitleDisplayMode(.inline)
             .task { await viewModel.load() }
         }
     }
 
-    private var dayMatches: some View {
+    private var header: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            eyebrowLabel
+                .font(.system(size: 11, weight: .bold))
+                .tracking(1.4)
+                .foregroundStyle(.white.opacity(0.5))
+                .textCase(.uppercase)
+            Text(titleLabel)
+                .font(.system(size: 32, weight: .heavy))
+                .tracking(-0.5)
+                .foregroundStyle(.white)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func matchSection(title: Text, matches: [Match]) -> some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text(dayLabel)
+            title
                 .font(.system(size: 13, weight: .bold))
                 .tracking(0.8)
                 .foregroundStyle(.white.opacity(0.5))
-            ForEach(viewModel.otherMatchesForNextMatchDay, id: \.id) { match in
-                GlassCard(style: .transparent) {
-                    ScoreRow(match: match)
-                }
+                .textCase(.uppercase)
+            ForEach(matches, id: \.id) { match in
+                FixtureMatchCard(match: match)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private var dayLabel: String {
+    private var eyebrowLabel: Text {
+        guard let date = viewModel.nextMatch?.utcDate else { return Text("") }
+        let weekday = Text(date, format: .dateTime.weekday(.abbreviated))
+        let dayMonth = Text(date, format: .dateTime.day().month(.abbreviated))
+        return Text("\(weekday) · \(dayMonth)")
+    }
+
+    private var titleLabel: String {
         guard let date = viewModel.nextMatch?.utcDate else { return "" }
         if Calendar.current.isDateInToday(date) {
             return String(localized: "Today")
         }
-        return date.formatted(.dateTime.weekday(.wide).month(.abbreviated).day())
+        return date.formatted(.dateTime.weekday(.wide))
+    }
+
+    private var alsoTodayLabel: Text {
+        guard let date = viewModel.nextMatch?.utcDate else { return Text("") }
+        if Calendar.current.isDateInToday(date) {
+            return Text("Also Today")
+        }
+        let weekday = Text(date, format: .dateTime.weekday(.wide))
+        return Text("Also \(weekday)")
     }
 
     private var emptyState: some View {
@@ -62,6 +95,7 @@ struct MatchdayView: View {
                 .font(.system(size: 13))
                 .foregroundStyle(.white.opacity(0.45))
         }
+        .frame(maxWidth: .infinity)
         .padding(.top, 60)
     }
 }
