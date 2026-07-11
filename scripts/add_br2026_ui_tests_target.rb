@@ -17,7 +17,7 @@ if ui_test_target.nil?
     config.build_settings['SWIFT_VERSION'] = '6.0'
     config.build_settings['GENERATE_INFOPLIST_FILE'] = 'YES'
     config.build_settings['CODE_SIGN_STYLE'] = 'Automatic'
-    config.build_settings['DEVELOPMENT_TEAM'] = app_target.build_configurations.first.build_settings['DEVELOPMENT_TEAM']
+    config.build_settings['DEVELOPMENT_TEAM'] = 'R4L6C6JGYH'
   end
 
   scheme_path = Xcodeproj::XCScheme.shared_data_dir(project_path) + 'BR2026.xcscheme'
