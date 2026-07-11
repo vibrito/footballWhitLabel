@@ -31,6 +31,22 @@ Run the BR2026Tests unit test suite
 
 Generate App Store screenshots for all supported locales
 
+### ios release_notes
+
+```sh
+[bundle exec] fastlane ios release_notes
+```
+
+Push release notes (What's New) to App Store Connect
+
+### ios beta
+
+```sh
+[bundle exec] fastlane ios beta
+```
+
+Build and upload a TestFlight beta
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
