@@ -54,12 +54,17 @@ from the other three tabs.
 
 ## Views
 
-- `Views/More/MoreView.swift` — `NavigationStack` over `ScrollView`; renders each `MoreSection`
-  as a titled `GlassCard` group. Enabled rows use `NavigationLink(value: row.destination)` with a
-  `.navigationDestination(for: MoreDestination.self)` modifier mapping `.termsOfService` to
+- `Views/More/MoreView.swift` — `NavigationStack` over `ScrollView`. For each `MoreSection`:
+  a section-header `Text` above the card (CLAUDE.md's existing "Section header" style — 13pt/700,
+  tracking 0.8, `white @ 0.5`, uppercase), then a single `GlassCard` whose content is a `VStack`
+  of that section's rows (`GlassCard` has no title parameter of its own — the header sits outside
+  it, same pattern as Standings). Enabled rows use `NavigationLink(value: row.destination)` with
+  a `.navigationDestination(for: MoreDestination.self)` modifier mapping `.termsOfService` to
   `TermsOfServiceView()`. Disabled rows are a plain `HStack` (icon + label) at `white @ 0.3`
   opacity, no chevron, no tap gesture — matching the "Muted/finished fill" tone already used
   elsewhere for non-interactive states.
+- Row icons (SF Symbols only, per CLAUDE.md): Terms of Service → `doc.text`, Settings →
+  `gearshape`, In-App Purchases → `cart`.
 - `Views/More/TermsOfServiceView.swift` — `ScrollView` + `Text(String(localized: "terms_of_service_body"))`,
   `.navigationTitle("Terms of Service")`.
 
