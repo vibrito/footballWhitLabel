@@ -609,7 +609,7 @@ git commit -m "Add beta lane: archive + upload to TestFlight with an in-memory b
 
 **Interfaces:** None (documentation only).
 
-- [ ] **Step 1: Add a Fastlane section to `CLAUDE.md`**
+- [x] **Step 1: Add a Fastlane section to `CLAUDE.md`**
 
 Insert a new section after the existing `## Backend API` section:
 ```markdown
@@ -637,7 +637,7 @@ launch argument is present (which `snapshot` sets automatically via `app.launchA
 screenshots are deterministic regardless of the live season/API state.
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add CLAUDE.md
