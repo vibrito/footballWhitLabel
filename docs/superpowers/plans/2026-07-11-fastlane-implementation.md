@@ -562,7 +562,7 @@ git commit -m "Add release_notes lane pushing What's New metadata via deliver"
 - Consumes: `asc_api_key` helper from Task 6.
 - Produces: lane `beta`.
 
-- [ ] **Step 1: Add the `beta` lane**
+- [x] **Step 1: Add the `beta` lane**
 
 In `fastlane/Fastfile`, add inside `platform :ios do ... end`, after `release_notes`:
 ```ruby
@@ -585,7 +585,7 @@ In `fastlane/Fastfile`, add inside `platform :ios do ... end`, after `release_no
 
 Note: the build number bump is passed only via `xcargs` to that one `xcodebuild` invocation inside `gym` — it is never written back to `project.pbxproj` or Xcode's General tab field, matching the constraint in the design spec.
 
-- [ ] **Step 2: Verify the Fastfile still parses**
+- [x] **Step 2: Verify the Fastfile still parses**
 
 Run:
 ```bash
@@ -593,7 +593,7 @@ Run:
 ```
 Expected: lists all four lanes (`test`, `screenshots`, `release_notes`, `beta`) with no Ruby errors. (Full execution of `beta` requires a real App Store Connect API key and an existing TestFlight build history for `latest_testflight_build_number` to read from — run `bundle exec fastlane beta` yourself once `fastlane/.env.default` has real values; it archives and uploads a real build to TestFlight.)
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add fastlane/Fastfile
