@@ -1,0 +1,17 @@
+devices([
+  "iPhone 17 Pro Max",
+  "iPhone 17"
+])
+
+languages([
+  "en-US",
+  "en-GB",
+  "pt-BR",
+  "pt-PT",
+  "fr-FR"
+])
+
+scheme("BR2026")
+output_directory("./fastlane/screenshots")
+clear_previous_screenshots(true)
+override_status_bar(true)

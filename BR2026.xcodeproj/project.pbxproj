@@ -29,6 +29,7 @@
 		6D80CD57F315AA7754892F04 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514F93D54D23D318A9A8666 /* ContentView.swift */; };
 		72F338DA66E12545A4365454 /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F0E8AA4BDCF972420F7225 /* StandingsViewModel.swift */; };
 		75DE03B8E1137D2C966442E0 /* HeroMatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD698E976EAC4B8C3CF2B7 /* HeroMatchCard.swift */; };
+		762424664C420A948ED479CF /* SnapshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D1B6F631C0641FD3AE6EAB /* SnapshotUITests.swift */; };
 		77DED74D3903F724B5E21F94 /* Championship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF94F1B7FFEA78845976994 /* Championship.swift */; };
 		787DE133D67249675B69A70D /* MatchDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65807B78425B289771974EE6 /* MatchDetailViewModelTests.swift */; };
 		861DC66411E9369FEFE4763F /* MatchDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD89602CB168BCB0121EAA /* MatchDTO.swift */; };
@@ -53,6 +54,7 @@
 		DE3F15138FC6258D10F0E345 /* MatchdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750454E4C32D9EEA69417686 /* MatchdayViewModel.swift */; };
 		E535AD91E7B1012DA85F64BE /* MockMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB245877F3BE6246A841B9 /* MockMatchService.swift */; };
 		E621210241C77A2CF5EFBFD8 /* MatchSwiftDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CB1386053224A356B2C76 /* MatchSwiftDataTests.swift */; };
+		EE93D29554178004DEE4F837 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20CF52F4BFAD92BCBBDC839 /* SnapshotHelper.swift */; };
 		F369FDEBDDC5ED968A7E38D9 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCD3323E3758CD78F54E1C6 /* Match.swift */; };
 		F73B51C7980BB214B1A8A273 /* FixturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B4F41036B3BF67A1879D29 /* FixturesViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -107,6 +109,7 @@
 		7A20B375D7094C6D4E1961B1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		855292C3DDAE65CCAE220B7F /* MatchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailView.swift; sourceTree = "<group>"; };
 		8A550575E6347EE4F9B8C7E8 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		90D1B6F631C0641FD3AE6EAB /* SnapshotUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnapshotUITests.swift; sourceTree = "<group>"; };
 		94BD89602CB168BCB0121EAA /* MatchDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDTO.swift; sourceTree = "<group>"; };
 		97F0B10181CB912E1D1C2625 /* FixturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesView.swift; sourceTree = "<group>"; };
 		A0FD16E360A6B3F8DCB8362C /* TeamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTests.swift; sourceTree = "<group>"; };
@@ -126,6 +129,7 @@
 		E7E434E6CB924EEBF2ED52FF /* TeamCrestBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCrestBadge.swift; sourceTree = "<group>"; };
 		EA49AD74DF6CAFC576234443 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		EC51FB666340CB6033EB7277 /* ChampionshipConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionshipConfig.swift; sourceTree = "<group>"; };
+		F20CF52F4BFAD92BCBBDC839 /* SnapshotHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		FDD0E9B9C297140406B72B2D /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				4E5EDFC5DF52B8C490E1782D /* SmokeUITests.swift */,
+				F20CF52F4BFAD92BCBBDC839 /* SnapshotHelper.swift */,
+				90D1B6F631C0641FD3AE6EAB /* SnapshotUITests.swift */,
 			);
 			name = BR2026UITests;
 			path = BR2026UITests;
@@ -593,6 +599,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				029EA74BF6FAE3BEB141BF5F /* SmokeUITests.swift in Sources */,
+				EE93D29554178004DEE4F837 /* SnapshotHelper.swift in Sources */,
+				762424664C420A948ED479CF /* SnapshotUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
