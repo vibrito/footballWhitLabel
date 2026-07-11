@@ -64,6 +64,16 @@
                ReferencedContainer = "container:BR2026.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9A932244CA7F4616EF62261C"
+               BuildableName = "BR2026UITests.xctest"
+               BlueprintName = "BR2026UITests"
+               ReferencedContainer = "container:BR2026.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <CommandLineArguments>
       </CommandLineArguments>

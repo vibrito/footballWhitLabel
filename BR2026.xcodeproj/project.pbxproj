@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		029EA74BF6FAE3BEB141BF5F /* SmokeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5EDFC5DF52B8C490E1782D /* SmokeUITests.swift */; };
 		04249833CE0F4BF3399D4B15 /* ScoreRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422EC54CAAA878A2718771BB /* ScoreRow.swift */; };
 		194015D468A77E17C9C7D8D4 /* Standing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB1160665D8A2136DF3C6B /* Standing.swift */; };
 		1C8AF1AEF8E1E472A3884429 /* FixturesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47120683E2BA4B90B153AD31 /* FixturesViewModelTests.swift */; };
@@ -19,6 +20,7 @@
 		412C383E82A46F860B5F5AC8 /* MatchdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB8A210105388EE24ECD77 /* MatchdayView.swift */; };
 		48C0CC49389B1FFF50713EE7 /* MatchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828CC19752FF614A96C2286 /* MatchStatus.swift */; };
 		5585F0B7AC148CE814D13A0B /* MatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0996F787521F2EF840C43 /* MatchService.swift */; };
+		56DA2E708A2F8AE9CE8B7FF6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E997B71FC9534C0287BE63 /* Foundation.framework */; };
 		5934939FE0B8AE66CBECFF9E /* ChampionshipConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C0853686C424F6AFEC39D1 /* ChampionshipConfigTests.swift */; };
 		5F4BF5DFEA4CC9C72DFF2BF2 /* GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287F723E6555472EAEA55D5E /* GlassCard.swift */; };
 		61772B18B94F670701FC38FC /* MatchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED24EAB2931D750D08DD21 /* MatchDetailViewModel.swift */; };
@@ -62,10 +64,18 @@
 			remoteGlobalIDString = 1159F24D61A995330CC21750;
 			remoteInfo = BR2026;
 		};
+		841852E18B047A8155AAF835 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41A74A0B122456B244816B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1159F24D61A995330CC21750;
+			remoteInfo = BR2026;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		02B4F41036B3BF67A1879D29 /* FixturesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesViewModel.swift; sourceTree = "<group>"; };
+		05E997B71FC9534C0287BE63 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		07C00E16086BB9C6ED819462 /* MatchdayViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchdayViewModelTests.swift; sourceTree = "<group>"; };
 		0B84BA767820581A92592C99 /* MatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTests.swift; sourceTree = "<group>"; };
 		0BF94F1B7FFEA78845976994 /* Championship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Championship.swift; sourceTree = "<group>"; };
@@ -81,6 +91,7 @@
 		45BD698E976EAC4B8C3CF2B7 /* HeroMatchCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroMatchCard.swift; sourceTree = "<group>"; };
 		47120683E2BA4B90B153AD31 /* FixturesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesViewModelTests.swift; sourceTree = "<group>"; };
 		4828CC19752FF614A96C2286 /* MatchStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchStatus.swift; sourceTree = "<group>"; };
+		4E5EDFC5DF52B8C490E1782D /* SmokeUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SmokeUITests.swift; sourceTree = "<group>"; };
 		4F8EA6912B1D21368F06E9D0 /* MatchEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEvent.swift; sourceTree = "<group>"; };
 		4FD0A7BD56D54A97E185D54C /* AccentPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccentPill.swift; sourceTree = "<group>"; };
 		5323866C610E927C418D01F7 /* FixtureMatchCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureMatchCard.swift; sourceTree = "<group>"; };
@@ -107,6 +118,7 @@
 		D171E9A2D09CD427D7F26420 /* BR2026Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BR2026Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50CB1386053224A356B2C76 /* MatchSwiftDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchSwiftDataTests.swift; sourceTree = "<group>"; };
 		DEB0996F787521F2EF840C43 /* MatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchService.swift; sourceTree = "<group>"; };
+		DEB603739E340853E8DCF6E1 /* BR2026UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BR2026UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F0E8AA4BDCF972420F7225 /* StandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModel.swift; sourceTree = "<group>"; };
 		E7100EA66C41E9266FB5296A /* ChampionshipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionshipTests.swift; sourceTree = "<group>"; };
 		E7E434E6CB924EEBF2ED52FF /* TeamCrestBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCrestBadge.swift; sourceTree = "<group>"; };
@@ -114,6 +126,17 @@
 		EC51FB666340CB6033EB7277 /* ChampionshipConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionshipConfig.swift; sourceTree = "<group>"; };
 		FDD0E9B9C297140406B72B2D /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B27161CCA49DF85790099195 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56DA2E708A2F8AE9CE8B7FF6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		03B57D264A672EBFC9A9A17D /* Models */ = {
@@ -174,6 +197,31 @@
 				A0FD16E360A6B3F8DCB8362C /* TeamTests.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		39AD7993C78258E57C05BB55 /* BR2026UITests */ = {
+			isa = PBXGroup;
+			children = (
+				4E5EDFC5DF52B8C490E1782D /* SmokeUITests.swift */,
+			);
+			name = BR2026UITests;
+			path = BR2026UITests;
+			sourceTree = "<group>";
+		};
+		3F79B39D4224A6398C22D502 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				05E997B71FC9534C0287BE63 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		575C8F3DCAE803C7D96274CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F79B39D4224A6398C22D502 /* iOS */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		584338B08ABF7F7095DF2E75 /* Views */ = {
@@ -317,6 +365,8 @@
 				A5D9E527A988965EF78E317A /* BR2026Tests */,
 				A6912845E3940B2E9F5A562F /* footballWhiteLabel */,
 				F1211F711150B31E5C7873B6 /* Products */,
+				575C8F3DCAE803C7D96274CF /* Frameworks */,
+				39AD7993C78258E57C05BB55 /* BR2026UITests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -351,6 +401,7 @@
 			children = (
 				5D52C33397FE46F99B0076D8 /* BR2026.app */,
 				D171E9A2D09CD427D7F26420 /* BR2026Tests.xctest */,
+				DEB603739E340853E8DCF6E1 /* BR2026UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -370,8 +421,6 @@
 			dependencies = (
 			);
 			name = BR2026;
-			packageProductDependencies = (
-			);
 			productName = BR2026;
 			productReference = 5D52C33397FE46F99B0076D8 /* BR2026.app */;
 			productType = "com.apple.product-type.application";
@@ -388,11 +437,27 @@
 				092FC7865B1F279D0C17B8C1 /* PBXTargetDependency */,
 			);
 			name = BR2026Tests;
-			packageProductDependencies = (
-			);
 			productName = BR2026Tests;
 			productReference = D171E9A2D09CD427D7F26420 /* BR2026Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9A932244CA7F4616EF62261C /* BR2026UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 723B7605E218BA96C6D1CA1B /* Build configuration list for PBXNativeTarget "BR2026UITests" */;
+			buildPhases = (
+				E60EA7BFF75B4D59838ED038 /* Sources */,
+				B27161CCA49DF85790099195 /* Frameworks */,
+				75A30D794F911ADCFE142610 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				78C849143782C278D0B7C79E /* PBXTargetDependency */,
+			);
+			name = BR2026UITests;
+			productName = BR2026UITests;
+			productReference = DEB603739E340853E8DCF6E1 /* BR2026UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -429,6 +494,7 @@
 			targets = (
 				1159F24D61A995330CC21750 /* BR2026 */,
 				78C6B9E9B67D1498742D6B7C /* BR2026Tests */,
+				9A932244CA7F4616EF62261C /* BR2026UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -440,6 +506,13 @@
 			files = (
 				261FFCAAB309FB7860858788 /* Assets.xcassets in Resources */,
 				89D54DD920AF8B23605BED08 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75A30D794F911ADCFE142610 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +576,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E60EA7BFF75B4D59838ED038 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				029EA74BF6FAE3BEB141BF5F /* SmokeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -510,6 +591,12 @@
 			isa = PBXTargetDependency;
 			target = 1159F24D61A995330CC21750 /* BR2026 */;
 			targetProxy = 00317A9D69E52D5728ABEECF /* PBXContainerItemProxy */;
+		};
+		78C849143782C278D0B7C79E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BR2026;
+			target = 1159F24D61A995330CC21750 /* BR2026 */;
+			targetProxy = 841852E18B047A8155AAF835 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -592,6 +679,21 @@
 			};
 			name = Release;
 		};
+		5F8FA861F056907706E3F516 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.BR2026UITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TEST_TARGET_NAME = BR2026;
+			};
+			name = Debug;
+		};
 		BFD4F6CFEEF879E3E8CB43EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -608,6 +710,22 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BR2026.app/BR2026";
 			};
 			name = Debug;
+		};
+		C8E2743D20E9C040F9A44201 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.BR2026UITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TEST_TARGET_NAME = BR2026;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
 		};
 		DA5FDE2B6DE1B6A1E23F7FE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -728,6 +846,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		723B7605E218BA96C6D1CA1B /* Build configuration list for PBXNativeTarget "BR2026UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8E2743D20E9C040F9A44201 /* Release */,
+				5F8FA861F056907706E3F516 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A18BD01A0E99ABD3DE658571 /* Build configuration list for PBXNativeTarget "BR2026" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
