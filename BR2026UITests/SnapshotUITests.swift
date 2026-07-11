@@ -11,15 +11,15 @@ final class SnapshotUITests: XCTestCase {
         _ = tabBar.waitForExistence(timeout: 10)
 
         tabBar.buttons.element(boundBy: 0).tap()
-        sleep(2)
+        sleep(5)
         snapshot("01Matchday")
 
         tabBar.buttons.element(boundBy: 1).tap()
-        sleep(1)
+        sleep(5)
         snapshot("02Fixtures")
 
         tabBar.buttons.element(boundBy: 2).tap()
-        sleep(1)
+        sleep(5)
         snapshot("03Standings")
 
         tabBar.buttons.element(boundBy: 3).tap()
