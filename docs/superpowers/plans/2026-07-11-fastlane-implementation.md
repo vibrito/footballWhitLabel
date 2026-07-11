@@ -463,7 +463,7 @@ git commit -m "Add screenshots lane capturing all 5 locales via fastlane snapsho
 **Interfaces:**
 - Produces: lane `release_notes`; a private `asc_api_key` helper method reused by `beta` in Task 7 — signature: `asc_api_key() -> Hash` (fastlane's `app_store_connect_api_key` action return value), reads `ENV["ASC_KEY_ID"]`, `ENV["ASC_ISSUER_ID"]`, `ENV["ASC_KEY_FILEPATH"]`.
 
-- [ ] **Step 1: Create `fastlane/.env.default.example`**
+- [x] **Step 1: Create `fastlane/.env.default.example`**
 
 ```
 # Copy to fastlane/.env.default (gitignored) and fill in real values.
@@ -473,14 +473,14 @@ ASC_ISSUER_ID=00000000-0000-0000-0000-000000000000
 ASC_KEY_FILEPATH=/path/to/AuthKey_XXXXXXXXXX.p8
 ```
 
-- [ ] **Step 2: Create `fastlane/Deliverfile`**
+- [x] **Step 2: Create `fastlane/Deliverfile`**
 
 ```ruby
 app_identifier("com.vibrito.br2026")
 force(true)
 ```
 
-- [ ] **Step 3: Create the release notes metadata files**
+- [x] **Step 3: Create the release notes metadata files**
 
 `fastlane/metadata/en-US/release_notes.txt`:
 ```
@@ -509,7 +509,7 @@ Scores en direct, calendrier et classement du Brasileirão — tout en un seul e
 
 (These are real, working starter copy — not placeholders — but are meant to be reviewed/rewritten by the user before an actual App Store submission.)
 
-- [ ] **Step 4: Add the `asc_api_key` helper and `release_notes` lane**
+- [x] **Step 4: Add the `asc_api_key` helper and `release_notes` lane**
 
 In `fastlane/Fastfile`, add before the `platform :ios do` line:
 ```ruby
@@ -536,7 +536,7 @@ Add inside `platform :ios do ... end`, after `screenshots`:
   end
 ```
 
-- [ ] **Step 5: Verify the Fastfile still parses**
+- [x] **Step 5: Verify the Fastfile still parses**
 
 Run:
 ```bash
@@ -544,7 +544,7 @@ Run:
 ```
 Expected: lists `test`, `screenshots`, `release_notes` with their `desc` text, no Ruby errors. (Full execution of `release_notes` requires a real App Store Connect API key in `fastlane/.env.default` — copy `fastlane/.env.default.example`, fill in real values, then `source fastlane/.env.default && bundle exec fastlane release_notes` once you have that key. Do this yourself when ready; it pushes real metadata to App Store Connect.)
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add fastlane/Deliverfile fastlane/metadata fastlane/.env.default.example fastlane/Fastfile
