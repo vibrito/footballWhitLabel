@@ -11,12 +11,13 @@ struct MockMatchServiceTests {
         #expect(!matches.isEmpty)
     }
 
-    @Test("Returns standings led by Palmeiras with 41 points")
+    @Test("Returns a full 20-team table led by Palmeiras with 33 points")
     func returnsStandings() async throws {
         let service = MockMatchService()
         let standings = try await service.fetchStandings()
+        #expect(standings.count == 20)
         #expect(standings.first?.team.name == "Palmeiras")
-        #expect(standings.first?.points == 41)
+        #expect(standings.first?.points == 33)
     }
 
     @Test("Sample data includes at least one finished, one scheduled, and one postponed match")
