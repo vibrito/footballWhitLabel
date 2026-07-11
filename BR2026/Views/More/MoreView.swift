@@ -33,7 +33,7 @@ struct MoreView: View {
                 .tracking(0.8)
                 .foregroundStyle(.white.opacity(0.5))
                 .textCase(.uppercase)
-            GlassCard(cornerRadius: 18) {
+            GlassCard(cornerRadius: 18, style: .transparent) {
                 VStack(spacing: 0) {
                     ForEach(Array(section.rows.enumerated()), id: \.element.id) { index, row in
                         rowView(row)

@@ -312,17 +312,6 @@
         }
       }
     },
-    "In-App Purchases" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "In-App Purchases"
-          }
-        }
-      }
-    },
     "Legal" : {
       "extractionState" : "manual",
       "localizations" : {

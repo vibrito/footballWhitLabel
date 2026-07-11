@@ -12,11 +12,11 @@ struct MoreViewModelTests {
         #expect(legal?.rows.first?.isEnabled == true)
     }
 
-    @Test("Preferences section has two disabled, destination-less rows")
+    @Test("Preferences section has one disabled, destination-less row")
     func preferencesSection() {
         let viewModel = MoreViewModel()
         let preferences = viewModel.sections.first { $0.id == "preferences" }
-        #expect(preferences?.rows.count == 2)
+        #expect(preferences?.rows.count == 1)
         #expect(preferences?.rows.allSatisfy { $0.destination == nil && !$0.isEnabled } == true)
     }
 }

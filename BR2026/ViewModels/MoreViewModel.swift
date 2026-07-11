@@ -27,13 +27,6 @@ final class MoreViewModel {
                     systemImage: "gearshape",
                     destination: nil,
                     isEnabled: false
-                ),
-                MoreRow(
-                    id: "inAppPurchases",
-                    titleKey: "In-App Purchases",
-                    systemImage: "cart",
-                    destination: nil,
-                    isEnabled: false
                 )
             ]
         )
