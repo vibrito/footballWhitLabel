@@ -2,6 +2,14 @@ default_platform(:ios)
 
 SCHEME = "BR2026"
 
+def asc_api_key
+  app_store_connect_api_key(
+    key_id: ENV["ASC_KEY_ID"],
+    issuer_id: ENV["ASC_ISSUER_ID"],
+    key_filepath: ENV["ASC_KEY_FILEPATH"]
+  )
+end
+
 platform :ios do
   desc "Run the BR2026Tests unit test suite"
   lane :test do
@@ -11,5 +19,16 @@ platform :ios do
   desc "Generate App Store screenshots for all supported locales"
   lane :screenshots do
     snapshot
+  end
+
+  desc "Push release notes (What's New) to App Store Connect"
+  lane :release_notes do
+    deliver(
+      api_key: asc_api_key,
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      skip_metadata: false,
+      submit_for_review: false
+    )
   end
 end
