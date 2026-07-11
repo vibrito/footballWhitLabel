@@ -4,7 +4,7 @@
 
 **Goal:** Add fastlane to the BR2026 project with four lanes — `test`, `screenshots`, `release_notes`, `beta` — per `docs/superpowers/specs/2026-07-11-fastlane-design.md`.
 
-**Architecture:** Ruby toolchain pinned via `Gemfile`/`.ruby-version` (rbenv 3.2.2, already installed on this machine). A new `BR2026UITests` XCUITest target (created via a committed `xcodeproj`-gem script, not hand-edited pbxproj) hosts `fastlane snapshot`'s screenshot capture. `Championship.swift` returns `MockMatchService` whenever `FASTLANE_SNAPSHOT=YES` is set, so screenshots are deterministic. Auth is via an App Store Connect API key, never Apple ID/2FA.
+**Architecture:** Ruby toolchain pinned via `Gemfile`/`.ruby-version` (rbenv 3.2.2, already installed on this machine). A new `BR2026UITests` XCUITest target (created via a committed `xcodeproj`-gem script, not hand-edited pbxproj) hosts `fastlane snapshot`'s screenshot capture. `Championship.swift` returns `MockMatchService` whenever fastlane's `-FASTLANE_SNAPSHOT` launch argument is present, so screenshots are deterministic. Auth is via an App Store Connect API key, never Apple ID/2FA.
 
 **Tech Stack:** fastlane 2.237.x, xcodeproj gem 1.28.x, XCUITest, Ruby 3.2.2 via rbenv, Xcode 26.4 / iOS 26 SDK.
 
@@ -235,34 +235,36 @@ git commit -m "Add BR2026UITests XCUITest target for fastlane snapshot"
 
 **Files:**
 - Modify: `BR2026/App/Championship.swift`
-- Test: `BR2026Tests/App/ChampionshipTests.swift` (new file — the existing `BR2026Tests/ChampionshipTests.swift` is an unrelated scaffold smoke test; do not touch it)
+- Test: `BR2026Tests/App/ChampionshipServiceSelectionTests.swift` (new file — Swift requires unique filenames within a target even across directories, and the existing `BR2026Tests/ChampionshipTests.swift` is an unrelated scaffold smoke test; do not touch it, and do not reuse its basename)
 
 **Interfaces:**
 - Consumes: `MatchService` protocol, `MockMatchService()` (no-arg initializer), `LiveMatchService.makeFromBundle(config:modelContext:)` — all already exist in the codebase, unchanged.
-- Produces: `ChampionshipApp.makeService()` behavior — returns `MockMatchService` whenever `ProcessInfo.processInfo.environment["FASTLANE_SNAPSHOT"] == "YES"`, checked *before* the existing live/mock fallback. `fastlane snapshot` sets this environment variable automatically on every launch it drives.
+- Produces: `ChampionshipApp.makeService()` behavior — returns `MockMatchService` whenever the `-FASTLANE_SNAPSHOT` launch argument is present in `ProcessInfo.processInfo.arguments`, checked *before* the existing live/mock fallback. `fastlane snapshot`'s generated `SnapshotHelper.swift` sets this via `app.launchArguments += ["-FASTLANE_SNAPSHOT", "YES", "-ui_testing"]` on every launch it drives — this is a process argument, not an environment variable (an earlier version of this plan incorrectly assumed `ProcessInfo.processInfo.environment`, which `launchArguments` does not populate; corrected after Task 5's real end-to-end smoke test showed live API data instead of mock fixtures in the captured screenshots).
 
 `makeService()` is `private` on `ChampionshipApp`, so it isn't unit-testable directly. Instead, this task adds a test for the underlying decision as a small pure helper, extracted from the two-branch logic already in `makeService()`.
 
 - [ ] **Step 1: Write the failing test**
 
-Create `BR2026Tests/App/ChampionshipTests.swift`:
+Create `BR2026Tests/App/ChampionshipServiceSelectionTests.swift`:
 ```swift
 import Testing
 @testable import BR2026
 
 @Suite("Snapshot service selection")
 struct ChampionshipServiceSelectionTests {
-    @Test("Uses mock data when FASTLANE_SNAPSHOT is set")
+    @Test("Uses mock data when the -FASTLANE_SNAPSHOT launch argument is present")
     func usesMockWhenSnapshotting() {
-        #expect(ChampionshipApp.shouldUseMockService(environment: ["FASTLANE_SNAPSHOT": "YES"]))
+        #expect(ChampionshipApp.shouldUseMockService(arguments: ["/path/to/app", "-FASTLANE_SNAPSHOT", "YES"]))
     }
 
     @Test("Does not force mock data in normal launches")
     func doesNotForceOtherwise() {
-        #expect(!ChampionshipApp.shouldUseMockService(environment: [:]))
+        #expect(!ChampionshipApp.shouldUseMockService(arguments: ["/path/to/app"]))
     }
 }
 ```
+
+**Correction (discovered during Task 5's real end-to-end verification):** fastlane's generated `SnapshotHelper.swift` signals snapshot mode via `app.launchArguments += ["-FASTLANE_SNAPSHOT", "YES", "-ui_testing"]` — a process **argument**, not an environment variable. `ProcessInfo.processInfo.environment` does not see it; `ProcessInfo.processInfo.arguments` does (it reflects argv). The steps below use `arguments: [String]` and `.contains("-FASTLANE_SNAPSHOT")`, not the environment-dictionary approach an earlier version of this plan specified.
 
 - [ ] **Step 2: Run it to confirm it fails to compile (helper doesn't exist yet)**
 
@@ -288,14 +290,15 @@ In `BR2026/App/Championship.swift`, replace:
 ```
 with:
 ```swift
-    static func shouldUseMockService(environment: [String: String]) -> Bool {
-        environment["FASTLANE_SNAPSHOT"] == "YES"
+    static func shouldUseMockService(arguments: [String]) -> Bool {
+        arguments.contains("-FASTLANE_SNAPSHOT")
     }
 
     private func makeService() -> MatchService {
-        // fastlane's `snapshot` action sets FASTLANE_SNAPSHOT=YES in the launch environment;
-        // screenshots must use fixed mock data regardless of the live season/API state.
-        if Self.shouldUseMockService(environment: ProcessInfo.processInfo.environment) {
+        // fastlane's `snapshot` action passes -FASTLANE_SNAPSHOT as a launch argument (not an
+        // environment variable); screenshots must use fixed mock data regardless of the live
+        // season/API state.
+        if Self.shouldUseMockService(arguments: ProcessInfo.processInfo.arguments) {
             return MockMatchService()
         }
         // Falls back to mock data if Secrets.xcconfig hasn't been set up yet, so the app
@@ -319,7 +322,7 @@ Expected: `Number of failures | 0`, now covering both `BR2026Tests` and `BR2026U
 - [ ] **Step 5: Commit**
 
 ```bash
-git add BR2026/App/Championship.swift BR2026Tests/App/ChampionshipTests.swift
+git add BR2026/App/Championship.swift BR2026Tests/App/ChampionshipServiceSelectionTests.swift
 git commit -m "Use MockMatchService whenever FASTLANE_SNAPSHOT=YES for deterministic screenshots"
 ```
 
@@ -629,9 +632,9 @@ Integrations > App Store Connect API > Team Keys).
 `BR2026UITests` is a dedicated XCUITest target (not part of the Swift Testing unit suite),
 used only by the `screenshots` lane — its tab navigation taps `tabBars.buttons` by index
 (SwiftUI `TabView` tab bar buttons don't propagate `.accessibilityIdentifier`, verified
-empirically). `Championship.swift` returns `MockMatchService` whenever
-`FASTLANE_SNAPSHOT=YES` is set (which `snapshot` sets automatically), so screenshots are
-deterministic regardless of the live season/API state.
+empirically). `Championship.swift` returns `MockMatchService` whenever the `-FASTLANE_SNAPSHOT`
+launch argument is present (which `snapshot` sets automatically via `app.launchArguments`), so
+screenshots are deterministic regardless of the live season/API state.
 ```
 
 - [ ] **Step 2: Commit**

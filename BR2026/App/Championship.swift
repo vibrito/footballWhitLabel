@@ -22,14 +22,15 @@ struct ChampionshipApp: App {
         .modelContainer(modelContainer)
     }
 
-    static func shouldUseMockService(environment: [String: String]) -> Bool {
-        environment["FASTLANE_SNAPSHOT"] == "YES"
+    static func shouldUseMockService(arguments: [String]) -> Bool {
+        arguments.contains("-FASTLANE_SNAPSHOT")
     }
 
     private func makeService() -> MatchService {
-        // fastlane's `snapshot` action sets FASTLANE_SNAPSHOT=YES in the launch environment;
-        // screenshots must use fixed mock data regardless of the live season/API state.
-        if Self.shouldUseMockService(environment: ProcessInfo.processInfo.environment) {
+        // fastlane's `snapshot` action passes -FASTLANE_SNAPSHOT as a launch argument (not an
+        // environment variable); screenshots must use fixed mock data regardless of the live
+        // season/API state.
+        if Self.shouldUseMockService(arguments: ProcessInfo.processInfo.arguments) {
             return MockMatchService()
         }
         // Falls back to mock data if Secrets.xcconfig hasn't been set up yet, so the app
