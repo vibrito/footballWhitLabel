@@ -32,13 +32,13 @@
 **Interfaces:**
 - Produces: a `bundle exec fastlane <lane>` invocation pattern every later task relies on.
 
-- [ ] **Step 1: Create `.ruby-version`**
+- [x] **Step 1: Create `.ruby-version`**
 
 ```
 3.2.2
 ```
 
-- [ ] **Step 2: Create `Gemfile`**
+- [x] **Step 2: Create `Gemfile`**
 
 ```ruby
 source "https://rubygems.org"
@@ -46,7 +46,7 @@ source "https://rubygems.org"
 gem "fastlane", "~> 2.237"
 ```
 
-- [ ] **Step 3: Install and verify**
+- [x] **Step 3: Install and verify**
 
 Run:
 ```bash
@@ -54,7 +54,7 @@ Run:
 ```
 Expected: ends with `Bundle complete! 1 Gemfile dependency, N gems now installed.` and creates `Gemfile.lock`. If it prints a Ruby-version error, run `rbenv install 3.2.2` first (already installed on this machine as of this plan, so this should not be needed).
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add .ruby-version Gemfile Gemfile.lock
@@ -74,14 +74,14 @@ git commit -m "Add Ruby/fastlane toolchain (Gemfile, pinned to rbenv 3.2.2)"
 - Consumes: `bundle exec fastlane` from Task 1.
 - Produces: lane `test`, constant `SCHEME = "BR2026"` in the Fastfile that later tasks' lanes are added alongside.
 
-- [ ] **Step 1: Create `fastlane/Appfile`**
+- [x] **Step 1: Create `fastlane/Appfile`**
 
 ```ruby
 app_identifier("com.vibrito.br2026")
 team_id("R4L6C6JGYH")
 ```
 
-- [ ] **Step 2: Create `fastlane/Fastfile`**
+- [x] **Step 2: Create `fastlane/Fastfile`**
 
 ```ruby
 default_platform(:ios)
@@ -96,7 +96,7 @@ platform :ios do
 end
 ```
 
-- [ ] **Step 3: Add fastlane output paths to `.gitignore`**
+- [x] **Step 3: Add fastlane output paths to `.gitignore`**
 
 Append to `.gitignore`:
 ```
@@ -108,7 +108,7 @@ fastlane/.env.default
 *.p8
 ```
 
-- [ ] **Step 4: Run the lane and verify it passes**
+- [x] **Step 4: Run the lane and verify it passes**
 
 Run:
 ```bash
@@ -116,7 +116,7 @@ Run:
 ```
 Expected: ends with `fastlane.tools finished successfully 🎉` and a "Test Results" table showing `Number of failures | 0`. This runs the existing `BR2026Tests` suite (no UI test target exists yet at this point — that's expected, added in Task 3).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add fastlane/Appfile fastlane/Fastfile .gitignore
@@ -136,7 +136,7 @@ git commit -m "Scaffold fastlane with a test lane running BR2026Tests via scan"
 **Interfaces:**
 - Produces: an Xcode target named `BR2026UITests`, wired into the `BR2026` scheme's `TestAction`, bundle id `com.vibrito.BR2026UITests`, `TEST_TARGET_NAME = BR2026`. Re-running the script is a no-op if the target already exists, and it auto-adds any new `.swift` file placed under `BR2026UITests/` to the target — Task 5 relies on this to add `SnapshotHelper.swift` and `SnapshotUITests.swift` without editing the script again.
 
-- [ ] **Step 1: Create `BR2026UITests/SmokeUITests.swift`**
+- [x] **Step 1: Create `BR2026UITests/SmokeUITests.swift`**
 
 ```swift
 import XCTest
@@ -148,7 +148,7 @@ final class SmokeUITests: XCTestCase {
 }
 ```
 
-- [ ] **Step 2: Create `scripts/add_br2026_ui_tests_target.rb`**
+- [x] **Step 2: Create `scripts/add_br2026_ui_tests_target.rb`**
 
 ```ruby
 require 'xcodeproj'
@@ -194,7 +194,7 @@ end
 project.save
 ```
 
-- [ ] **Step 3: Run the script**
+- [x] **Step 3: Run the script**
 
 Run:
 ```bash
@@ -206,7 +206,7 @@ Created BR2026UITests target and wired it into the BR2026 scheme
 Added SmokeUITests.swift to BR2026UITests
 ```
 
-- [ ] **Step 4: Verify the target builds and the smoke test passes**
+- [x] **Step 4: Verify the target builds and the smoke test passes**
 
 Run:
 ```bash
@@ -214,7 +214,7 @@ xcodebuild -scheme BR2026 -project BR2026.xcodeproj -destination 'platform=iOS S
 ```
 Expected: ends with `** TEST SUCCEEDED **` and shows `Test Case '-[BR2026UITests.SmokeUITests testLaunches]' passed`.
 
-- [ ] **Step 5: Re-run the script to confirm it's idempotent**
+- [x] **Step 5: Re-run the script to confirm it's idempotent**
 
 Run:
 ```bash
@@ -222,7 +222,7 @@ Run:
 ```
 Expected: no output (target already exists, `SmokeUITests.swift` already tracked) — confirms safe to re-run in Task 5.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add scripts/add_br2026_ui_tests_target.rb BR2026UITests/SmokeUITests.swift BR2026.xcodeproj/project.pbxproj BR2026.xcodeproj/xcshareddata/xcschemes/BR2026.xcscheme
@@ -243,7 +243,7 @@ git commit -m "Add BR2026UITests XCUITest target for fastlane snapshot"
 
 `makeService()` is `private` on `ChampionshipApp`, so it isn't unit-testable directly. Instead, this task adds a test for the underlying decision as a small pure helper, extracted from the two-branch logic already in `makeService()`.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `BR2026Tests/App/ChampionshipServiceSelectionTests.swift`:
 ```swift
@@ -266,7 +266,7 @@ struct ChampionshipServiceSelectionTests {
 
 **Correction (discovered during Task 5's real end-to-end verification):** fastlane's generated `SnapshotHelper.swift` signals snapshot mode via `app.launchArguments += ["-FASTLANE_SNAPSHOT", "YES", "-ui_testing"]` — a process **argument**, not an environment variable. `ProcessInfo.processInfo.environment` does not see it; `ProcessInfo.processInfo.arguments` does (it reflects argv). The steps below use `arguments: [String]` and `.contains("-FASTLANE_SNAPSHOT")`, not the environment-dictionary approach an earlier version of this plan specified.
 
-- [ ] **Step 2: Run it to confirm it fails to compile (helper doesn't exist yet)**
+- [x] **Step 2: Run it to confirm it fails to compile (helper doesn't exist yet)**
 
 Run:
 ```bash
@@ -274,7 +274,7 @@ Run:
 ```
 Expected: build failure — `type 'ChampionshipApp' has no member 'shouldUseMockService'`.
 
-- [ ] **Step 3: Add the helper and wire it into `makeService()`**
+- [x] **Step 3: Add the helper and wire it into `makeService()`**
 
 In `BR2026/App/Championship.swift`, replace:
 ```swift
@@ -311,7 +311,7 @@ with:
     }
 ```
 
-- [ ] **Step 4: Run tests again to confirm they pass**
+- [x] **Step 4: Run tests again to confirm they pass**
 
 Run:
 ```bash
@@ -319,7 +319,7 @@ Run:
 ```
 Expected: `Number of failures | 0`, now covering both `BR2026Tests` and `BR2026UITests` (the `SmokeUITests` from Task 3).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add BR2026/App/Championship.swift BR2026Tests/App/ChampionshipServiceSelectionTests.swift
@@ -343,7 +343,7 @@ git commit -m "Use MockMatchService whenever FASTLANE_SNAPSHOT=YES for determini
 
 Tab bar buttons in this SwiftUI `TabView` do **not** pick up `.accessibilityIdentifier` (verified empirically — both applying it to the tab's root view and to the inner `Label` leave `XCUIElement.identifier` empty; only `.label` — the localized text — is set). Tab order is stable and locale-independent, so the UI test taps tab bar buttons by index instead of by identifier or by localized text.
 
-- [ ] **Step 1: Generate `SnapshotHelper.swift` and the initial `Snapfile`**
+- [x] **Step 1: Generate `SnapshotHelper.swift` and the initial `Snapfile`**
 
 Run:
 ```bash
@@ -352,7 +352,7 @@ mv fastlane/SnapshotHelper.swift BR2026UITests/SnapshotHelper.swift
 ```
 Expected: `fastlane/Snapfile` and `BR2026UITests/SnapshotHelper.swift` now exist. Leave `fastlane/README.md` (also auto-generated) in place — it's fastlane's own standard scaffold file.
 
-- [ ] **Step 2: Replace the generated `fastlane/Snapfile` with the project's locale/device matrix**
+- [x] **Step 2: Replace the generated `fastlane/Snapfile` with the project's locale/device matrix**
 
 ```ruby
 devices([
@@ -374,7 +374,7 @@ clear_previous_screenshots(true)
 override_status_bar(true)
 ```
 
-- [ ] **Step 3: Create `BR2026UITests/SnapshotUITests.swift`**
+- [x] **Step 3: Create `BR2026UITests/SnapshotUITests.swift`**
 
 ```swift
 import XCTest
@@ -409,7 +409,7 @@ final class SnapshotUITests: XCTestCase {
 ```
 (The class is `@MainActor` because `setupSnapshot`/`snapshot` are main-actor-isolated globals, and the project's `SWIFT_VERSION = 6.0` enforces strict concurrency checking — a plain `XCTestCase` method is otherwise treated as nonisolated.)
 
-- [ ] **Step 4: Wire the two new files into the `BR2026UITests` target**
+- [x] **Step 4: Wire the two new files into the `BR2026UITests` target**
 
 Run:
 ```bash
@@ -421,7 +421,7 @@ Added SnapshotHelper.swift to BR2026UITests
 Added SnapshotUITests.swift to BR2026UITests
 ```
 
-- [ ] **Step 5: Add the `screenshots` lane**
+- [x] **Step 5: Add the `screenshots` lane**
 
 In `fastlane/Fastfile`, add inside the `platform :ios do ... end` block, after `test`:
 ```ruby
@@ -431,7 +431,7 @@ In `fastlane/Fastfile`, add inside the `platform :ios do ... end` block, after `
   end
 ```
 
-- [ ] **Step 6: Smoke-test with a single locale/device before running the full matrix**
+- [x] **Step 6: Smoke-test with a single locale/device before running the full matrix**
 
 Temporarily copy `fastlane/Snapfile` aside and replace its `devices`/`languages` calls with `devices(["iPhone 17"])` / `languages(["en-US"])`, then run:
 ```bash
@@ -439,7 +439,7 @@ Temporarily copy `fastlane/Snapfile` aside and replace its `devices`/`languages`
 ```
 Expected: ends with a `snapshot results` table showing `💚` for `iPhone 17` / `en-US`, and four PNGs appear under `fastlane/screenshots/en-US/`: `iPhone 17-01Matchday.png`, `-02Fixtures.png`, `-03Standings.png`, `-04More.png`. Open `iPhone 17-01Matchday.png` and confirm it shows the hero match card (Bahia vs Chapecoense-sc) — this is the mock fixture data, confirming Task 4's `FASTLANE_SNAPSHOT` wiring is working. Then restore the full 5-locale/2-device `Snapfile` from Step 2.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add BR2026UITests/SnapshotHelper.swift BR2026UITests/SnapshotUITests.swift fastlane/Snapfile fastlane/Fastfile fastlane/README.md BR2026.xcodeproj/project.pbxproj
