@@ -1,0 +1,10 @@
+default_platform(:ios)
+
+SCHEME = "BR2026"
+
+platform :ios do
+  desc "Run the BR2026Tests unit test suite"
+  lane :test do
+    scan(scheme: SCHEME, devices: ["iPhone 17"])
+  end
+end

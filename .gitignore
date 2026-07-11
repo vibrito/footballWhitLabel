@@ -14,3 +14,10 @@ Secrets.xcconfig
 
 # Reference material, not part of the app
 prints/
+
+# fastlane
+fastlane/screenshots/
+fastlane/test_output/
+fastlane/report.xml
+fastlane/.env.default
+*.p8
