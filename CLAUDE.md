@@ -200,9 +200,9 @@ Integrations > App Store Connect API > Team Keys).
 `BR2026UITests` is a dedicated XCUITest target (not part of the Swift Testing unit suite),
 used only by the `screenshots` lane — its tab navigation taps `tabBars.buttons` by index
 (SwiftUI `TabView` tab bar buttons don't propagate `.accessibilityIdentifier`, verified
-empirically). `Championship.swift` returns `MockMatchService` whenever the `-FASTLANE_SNAPSHOT`
-launch argument is present (which `snapshot` sets automatically via `app.launchArguments`), so
-screenshots are deterministic regardless of the live season/API state.
+empirically). The `screenshots` lane hits the real live API — `Secrets.xcconfig` must be
+configured with a real API key before running it (see Backend API section), and captured
+screenshots reflect whatever matches/standings are live or scheduled at capture time.
 
 ---
 
