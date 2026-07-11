@@ -183,6 +183,29 @@ BR2026/
 
 ---
 
+## Fastlane / Release Automation
+
+Ruby toolchain pinned via `Gemfile`/`.ruby-version` (rbenv). Invoke all lanes as
+`bundle exec fastlane <lane>`. One-time setup: copy `fastlane/.env.default.example` to
+`fastlane/.env.default` and fill in an App Store Connect API key (Users and Access >
+Integrations > App Store Connect API > Team Keys).
+
+| Lane | What it does |
+|---|---|
+| `test` | Runs the `BR2026Tests` suite via `scan`. |
+| `screenshots` | Captures App Store screenshots for all 5 locales via `snapshot` (uses the `BR2026UITests` target); writes to `fastlane/screenshots/`, no upload. |
+| `release_notes` | Pushes `fastlane/metadata/<locale>/release_notes.txt` ("What's New") to App Store Connect via `deliver`. Metadata only — no binary, no screenshots, no submission. |
+| `beta` | Builds an archive and uploads to TestFlight via `gym` + `upload_to_testflight`. Build number is `latest_testflight_build_number + 1`, applied only for that build (`xcargs`) — never written back to `project.pbxproj` or Xcode's General tab. |
+
+`BR2026UITests` is a dedicated XCUITest target (not part of the Swift Testing unit suite),
+used only by the `screenshots` lane — its tab navigation taps `tabBars.buttons` by index
+(SwiftUI `TabView` tab bar buttons don't propagate `.accessibilityIdentifier`, verified
+empirically). `Championship.swift` returns `MockMatchService` whenever the `-FASTLANE_SNAPSHOT`
+launch argument is present (which `snapshot` sets automatically via `app.launchArguments`), so
+screenshots are deterministic regardless of the live season/API state.
+
+---
+
 ## Assets
 - **Team crests:** loaded remotely via `AsyncImage` from each team's `crest` URL. No
   bundled team images. Show a placeholder (team initials on a muted glass fill) while
