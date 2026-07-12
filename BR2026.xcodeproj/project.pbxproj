@@ -37,6 +37,7 @@
 		75DE03B8E1137D2C966442E0 /* HeroMatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD698E976EAC4B8C3CF2B7 /* HeroMatchCard.swift */; };
 		762424664C420A948ED479CF /* SnapshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D1B6F631C0641FD3AE6EAB /* SnapshotUITests.swift */; };
 		77DED74D3903F724B5E21F94 /* Championship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF94F1B7FFEA78845976994 /* Championship.swift */; };
+		B255956FD8DA37CE9548E75E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A891A6379A8E24051EBE4113 /* GoogleService-Info.plist */; };
 		787DE133D67249675B69A70D /* MatchDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65807B78425B289771974EE6 /* MatchDetailViewModelTests.swift */; };
 		861DC66411E9369FEFE4763F /* MatchDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD89602CB168BCB0121EAA /* MatchDTO.swift */; };
 		8919015A2F075B957EF63415 /* StandingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B5197C926950D13285B1E1 /* StandingTests.swift */; };
@@ -98,6 +99,7 @@
 		07C00E16086BB9C6ED819462 /* MatchdayViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchdayViewModelTests.swift; sourceTree = "<group>"; };
 		0B84BA767820581A92592C99 /* MatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTests.swift; sourceTree = "<group>"; };
 		0BF94F1B7FFEA78845976994 /* Championship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Championship.swift; sourceTree = "<group>"; };
+		A891A6379A8E24051EBE4113 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0FEB1160665D8A2136DF3C6B /* Standing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standing.swift; sourceTree = "<group>"; };
 		159E2AE600FA152C8E2E8B89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17A71A2EA3718A5D31948205 /* StadiumBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadiumBackground.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				721F0DDE2FADE19F27795CB5 /* App */,
 				205CF1B9C4A23560404EEB19 /* Components */,
 				D3348B30D85E2CADDAE50851 /* Config */,
+				A891A6379A8E24051EBE4113 /* GoogleService-Info.plist */,
 				859F1AA992CDE83C296ABA07 /* MockData */,
 				03B57D264A672EBFC9A9A17D /* Models */,
 				78397F9D89D7AF6D6FBF537F /* Resources */,
@@ -586,6 +589,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				261FFCAAB309FB7860858788 /* Assets.xcassets in Resources */,
+				B255956FD8DA37CE9548E75E /* GoogleService-Info.plist in Resources */,
 				89D54DD920AF8B23605BED08 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
