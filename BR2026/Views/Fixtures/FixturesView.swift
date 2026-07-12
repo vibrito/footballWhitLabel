@@ -26,10 +26,18 @@ struct FixturesView: View {
                     .padding(16)
                 }
                 .scrollContentBackground(.hidden)
+                .refreshable { await viewModel.load() }
             }
             .background(StadiumBackground())
             .navigationTitle("Fixtures")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    if viewModel.isRefreshing {
+                        RefreshPulseDot()
+                    }
+                }
+            }
             .task { await viewModel.load() }
             .sheet(item: $selectedMatch) { match in
                 MatchDetailView(match: match, service: service)

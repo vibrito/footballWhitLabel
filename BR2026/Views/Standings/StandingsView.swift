@@ -26,9 +26,17 @@ struct StandingsView: View {
                 .padding(16)
             }
             .scrollContentBackground(.hidden)
+            .refreshable { await viewModel.load() }
             .background(StadiumBackground())
             .navigationTitle("Standings")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    if viewModel.isRefreshing {
+                        RefreshPulseDot()
+                    }
+                }
+            }
             .task { await viewModel.load() }
         }
     }

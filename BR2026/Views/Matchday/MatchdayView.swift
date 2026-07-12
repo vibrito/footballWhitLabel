@@ -35,6 +35,14 @@ struct MatchdayView: View {
             .scrollContentBackground(.hidden)
             .background(StadiumBackground())
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    if viewModel.isRefreshing {
+                        RefreshPulseDot()
+                    }
+                }
+            }
+            .refreshable { await viewModel.load() }
             .task { await viewModel.load() }
             .sheet(item: $selectedMatch) { match in
                 MatchDetailView(match: match, service: service)
