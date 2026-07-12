@@ -14,19 +14,30 @@ struct FixturesView: View {
         NavigationStack {
             VStack(spacing: 0) {
                 roundPicker
-                ScrollView {
-                    LazyVStack(spacing: 12) {
-                        ForEach(viewModel.selectedRoundMatches, id: \.id) { match in
-                            Button { selectedMatch = match } label: {
-                                FixtureMatchCard(match: match)
+                ScrollViewReader { proxy in
+                    ScrollView {
+                        LazyVStack(spacing: 12) {
+                            Color.clear.frame(height: 0).id(Self.topAnchor)
+                            ForEach(viewModel.selectedRoundMatches, id: \.id) { match in
+                                Button { selectedMatch = match } label: {
+                                    FixtureMatchCard(match: match)
+                                }
+                                .buttonStyle(.plain)
                             }
-                            .buttonStyle(.plain)
                         }
+                        .padding(16)
                     }
-                    .padding(16)
+                    .scrollContentBackground(.hidden)
+                    // See MatchdayView's `.refreshable` for why: `.refreshable`'s
+                    // content-inset negotiation can leave the scroll position settled
+                    // away from where it started once `load()` reassigns `matches`
+                    // mid-gesture. Forcing it back to the top anchor is safe since
+                    // pull-to-refresh only triggers from at/near the top already.
+                    .refreshable {
+                        await viewModel.load()
+                        proxy.scrollTo(Self.topAnchor, anchor: .top)
+                    }
                 }
-                .scrollContentBackground(.hidden)
-                .refreshable { await viewModel.load() }
             }
             .background(StadiumBackground())
             .navigationTitle("Fixtures")
@@ -88,4 +99,6 @@ struct FixturesView: View {
         .buttonStyle(.plain)
         .id(round)
     }
+
+    private static let topAnchor = "fixturesTop"
 }

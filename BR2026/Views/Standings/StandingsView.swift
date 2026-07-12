@@ -14,32 +14,45 @@ struct StandingsView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                GlassCard(cornerRadius: 24, style: .transparent) {
-                    VStack(spacing: 0) {
-                        header
-                        ForEach(viewModel.standings, id: \.id) { standing in
-                            row(for: standing)
+            ScrollViewReader { proxy in
+                ScrollView {
+                    GlassCard(cornerRadius: 24, style: .transparent) {
+                        VStack(spacing: 0) {
+                            Color.clear.frame(height: 0).id(Self.topAnchor)
+                            header
+                            ForEach(viewModel.standings, id: \.id) { standing in
+                                row(for: standing)
+                            }
+                        }
+                    }
+                    .padding(16)
+                }
+                .scrollContentBackground(.hidden)
+                // See MatchdayView's `.refreshable` for why: `.refreshable`'s
+                // content-inset negotiation can leave the scroll position settled away
+                // from where it started once `load()` reassigns `standings` mid-gesture.
+                // Forcing it back to the top anchor is safe since pull-to-refresh only
+                // triggers from at/near the top already.
+                .refreshable {
+                    await viewModel.load()
+                    proxy.scrollTo(Self.topAnchor, anchor: .top)
+                }
+                .background(StadiumBackground())
+                .navigationTitle("Standings")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        if viewModel.isRefreshing {
+                            RefreshPulseDot()
                         }
                     }
                 }
-                .padding(16)
+                .task { await viewModel.loadOnce() }
             }
-            .scrollContentBackground(.hidden)
-            .refreshable { await viewModel.load() }
-            .background(StadiumBackground())
-            .navigationTitle("Standings")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    if viewModel.isRefreshing {
-                        RefreshPulseDot()
-                    }
-                }
-            }
-            .task { await viewModel.loadOnce() }
         }
     }
+
+    private static let topAnchor = "standingsTop"
 
     private var header: some View {
         HStack(spacing: 0) {

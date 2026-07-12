@@ -12,53 +12,66 @@ struct MatchdayView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    if let nextMatch = viewModel.nextMatch {
-                        header
-                        Button { selectedMatch = nextMatch } label: {
-                            HeroMatchCard(match: nextMatch)
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 20) {
+                        Color.clear.frame(height: 0).id(Self.topAnchor)
+                        if let nextMatch = viewModel.nextMatch {
+                            header
+                            Button { selectedMatch = nextMatch } label: {
+                                HeroMatchCard(match: nextMatch)
+                            }
+                            .buttonStyle(.plain)
+                            if !viewModel.finishedMatchesForNextMatchDay.isEmpty {
+                                matchSection(title: Text("Finished"), matches: viewModel.finishedMatchesForNextMatchDay)
+                            }
+                            if !viewModel.upcomingMatchesForNextMatchDay.isEmpty {
+                                matchSection(title: alsoTodayLabel, matches: viewModel.upcomingMatchesForNextMatchDay)
+                            }
+                        } else {
+                            emptyState
                         }
-                        .buttonStyle(.plain)
-                        if !viewModel.finishedMatchesForNextMatchDay.isEmpty {
-                            matchSection(title: Text("Finished"), matches: viewModel.finishedMatchesForNextMatchDay)
+                    }
+                    .padding(16)
+                }
+                .scrollContentBackground(.hidden)
+                .background(StadiumBackground())
+                // Matchday renders its own title inline in the scrolled content (see
+                // `header` below) rather than a system nav title, so this stays empty.
+                // But leaving `.navigationTitle` unset entirely (the only one of the
+                // three tabs to do so) combined with `.refreshable` caused a visible
+                // content jump right at first launch — the nav bar had no stable title
+                // to anchor its layout against while `.refreshable`'s content-inset
+                // negotiation settled. Fixtures/Standings don't need this because they
+                // already set a real title.
+                .navigationTitle("")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        if viewModel.isRefreshing {
+                            RefreshPulseDot()
                         }
-                        if !viewModel.upcomingMatchesForNextMatchDay.isEmpty {
-                            matchSection(title: alsoTodayLabel, matches: viewModel.upcomingMatchesForNextMatchDay)
-                        }
-                    } else {
-                        emptyState
                     }
                 }
-                .padding(16)
-            }
-            .scrollContentBackground(.hidden)
-            .background(StadiumBackground())
-            // Matchday renders its own title inline in the scrolled content (see `header`
-            // below) rather than a system nav title, so this stays empty. But leaving
-            // `.navigationTitle` unset entirely (the only one of the three tabs to do so)
-            // combined with `.refreshable` caused a visible content jump right at first
-            // launch — the nav bar had no stable title to anchor its layout against while
-            // `.refreshable`'s content-inset negotiation settled. Fixtures/Standings don't
-            // need this because they already set a real title. (A separate, related jump
-            // on every tab revisit — not just first launch — is fixed by `loadOnce()`
-            // below, not by this line.)
-            .navigationTitle("")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    if viewModel.isRefreshing {
-                        RefreshPulseDot()
-                    }
+                // `.refreshable`'s content-inset negotiation can leave the scroll
+                // position settled somewhere other than where it started once `load()`
+                // reassigns `matches` mid-gesture — visible as the list appearing
+                // shifted after a pull-to-refresh completes. Forcing it back to the top
+                // anchor is safe (pull-to-refresh only triggers from at/near the top
+                // already) and matches what most apps do after a manual refresh anyway.
+                .refreshable {
+                    await viewModel.load()
+                    proxy.scrollTo(Self.topAnchor, anchor: .top)
                 }
-            }
-            .refreshable { await viewModel.load() }
-            .task { await viewModel.loadOnce() }
-            .sheet(item: $selectedMatch) { match in
-                MatchDetailView(match: match, service: service)
+                .task { await viewModel.loadOnce() }
+                .sheet(item: $selectedMatch) { match in
+                    MatchDetailView(match: match, service: service)
+                }
             }
         }
     }
+
+    private static let topAnchor = "matchdayTop"
 
     private var header: some View {
         VStack(alignment: .leading, spacing: 4) {
