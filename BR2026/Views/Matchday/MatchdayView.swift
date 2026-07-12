@@ -34,6 +34,14 @@ struct MatchdayView: View {
             }
             .scrollContentBackground(.hidden)
             .background(StadiumBackground())
+            // Matchday renders its own title inline in the scrolled content (see `header`
+            // below) rather than a system nav title, so this stays empty. But leaving
+            // `.navigationTitle` unset entirely (the only one of the three tabs to do so)
+            // combined with `.refreshable` caused a visible one-time upward content jump
+            // shortly after appearing — the nav bar had no stable title to anchor its
+            // layout against while `.refreshable`'s content-inset negotiation settled.
+            // Fixtures/Standings don't need this because they already set a real title.
+            .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
