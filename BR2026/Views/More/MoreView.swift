@@ -78,5 +78,10 @@ struct MoreView: View {
         }
         .foregroundStyle(.white)
         .padding(.vertical, 10)
+        // Without this, the row's tappable area stops at the last piece of drawn
+        // content (the icon/title on the left, or the chevron on the right) — the
+        // `Spacer()` in between has nothing to hit-test against, so tapping the empty
+        // middle of the row does nothing.
+        .contentShape(Rectangle())
     }
 }
