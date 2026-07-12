@@ -158,8 +158,13 @@ BR2026/
 
 ## Data & Persistence
 - **SwiftData** for the `Match` model (`@Model`) — persisted, supports partial updates.
-- `Standing` is a plain `Decodable` struct — the whole table is replaced on each fetch, not
-  persisted incrementally.
+- `Standing` is also a SwiftData `@Model` — the whole table is replaced on each fetch via a
+  clear-and-reinsert (not persisted incrementally, same principle as before), so it now
+  survives a relaunch too.
+- Matchday, Fixtures, and Standings show their last-known persisted data immediately on load,
+  then refresh from the API in the background via `MatchService.cachedMatches()`/
+  `cachedStandings()` — a failed background refresh keeps the last-known data on screen rather
+  than clearing it.
 - `MatchService` protocol abstracts the data source. `MockMatchService` is used in all
   automated tests; `LiveMatchService` talks to the live API — both conform to the same
   protocol.
@@ -227,6 +232,8 @@ screenshots reflect whatever matches/standings are live or scheduled at capture 
 - Use `SwiftData` `@Model` for persistence; plain structs for transient/display models.
 - Animations: use SwiftUI `.animation()` and `withAnimation` — no manual timers for pulse.
   - Live pulse: opacity `1→0.35→1`, scale `1→0.8→1`, 1.4s ease-in-out, repeat forever.
+  - Refresh pulse: same values as the live pulse, in muted `white @ 0.5` instead of accent
+    color — shown in the nav bar while a background data refresh (`isRefreshing`) is in flight.
 
 ---
 
