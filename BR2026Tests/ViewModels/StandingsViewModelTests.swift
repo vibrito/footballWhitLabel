@@ -55,4 +55,22 @@ struct StandingsViewModelTests {
 
         #expect(viewModel.standings.map(\.id) == [freshStanding.id])
     }
+
+    @Test("loadOnce() only fetches on the first call, not on repeated calls")
+    func loadOnceOnlyFetchesOnce() async {
+        let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
+        let standing = Standing(
+            position: 1, team: team, playedGames: 5, won: 3, draw: 1, lost: 1,
+            goalsFor: 10, goalsAgainst: 5, goalDifference: 5, points: 10
+        )
+        let service = StubMatchService(matches: [], standings: [standing])
+        let viewModel = StandingsViewModel(service: service)
+
+        await viewModel.loadOnce()
+        await viewModel.loadOnce()
+        await viewModel.loadOnce()
+
+        #expect(service.fetchStandingsCallCount == 1)
+        #expect(viewModel.standings.map(\.id) == [standing.id])
+    }
 }

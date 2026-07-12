@@ -38,7 +38,7 @@ struct FixturesView: View {
                     }
                 }
             }
-            .task { await viewModel.load() }
+            .task { await viewModel.loadOnce() }
             .sheet(item: $selectedMatch) { match in
                 MatchDetailView(match: match, service: service)
             }

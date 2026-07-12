@@ -51,7 +51,7 @@ struct MatchdayView: View {
                 }
             }
             .refreshable { await viewModel.load() }
-            .task { await viewModel.load() }
+            .task { await viewModel.loadOnce() }
             .sheet(item: $selectedMatch) { match in
                 MatchDetailView(match: match, service: service)
             }

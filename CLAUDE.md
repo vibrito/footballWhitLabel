@@ -164,7 +164,11 @@ BR2026/
 - Matchday, Fixtures, and Standings show their last-known persisted data immediately on load,
   then refresh from the API in the background via `MatchService.cachedMatches()`/
   `cachedStandings()` — a failed background refresh keeps the last-known data on screen rather
-  than clearing it.
+  than clearing it. This auto-refresh only fires once, on each ViewModel's first `loadOnce()`
+  call — calling it again (e.g. `.task` restarting when a tab reappears) is a no-op. Repeating
+  it on every reappear collided with `.refreshable`'s own layout negotiation and caused a
+  visible content jump; pull-to-refresh (`.refreshable`, which calls `load()` directly) is the
+  way to force a refresh after the first one.
 - `MatchService` protocol abstracts the data source. `MockMatchService` is used in all
   automated tests; `LiveMatchService` talks to the live API — both conform to the same
   protocol.

@@ -216,4 +216,22 @@ struct FixturesViewModelTests {
 
         #expect(viewModel.matches.map(\.id) == [2])
     }
+
+    @Test("loadOnce() only fetches on the first call, not on repeated calls")
+    func loadOnceOnlyFetchesOnce() async {
+        let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
+        let match = Match(
+            id: 1, utcDate: Date(timeIntervalSince1970: 100), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let service = StubMatchService(matches: [match], standings: [])
+        let viewModel = FixturesViewModel(service: service)
+
+        await viewModel.loadOnce()
+        await viewModel.loadOnce()
+        await viewModel.loadOnce()
+
+        #expect(service.fetchMatchesCallCount == 1)
+        #expect(viewModel.matches.map(\.id) == [1])
+    }
 }

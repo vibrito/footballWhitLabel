@@ -6,6 +6,7 @@ import Observation
 final class FixturesViewModel {
     private(set) var matches: [Match] = []
     private(set) var isRefreshing = false
+    private var hasLoadedOnce = false
     var selectedRound: Int?
     private nonisolated(unsafe) let service: MatchService
 
@@ -26,6 +27,20 @@ final class FixturesViewModel {
     var selectedRoundMatches: [Match] {
         guard let selectedRound else { return [] }
         return matchesByRound.first { $0.round == selectedRound }?.matches ?? []
+    }
+
+    // `.task` on the view restarts every time the tab reappears, not just on first
+    // launch. Calling `load()` unconditionally there — on top of `.refreshable` also
+    // being attached to the same ScrollView — caused a visible content jump on every
+    // tab revisit: the pull-to-refresh control's layout negotiation collides with the
+    // `isRefreshing`/`matches` state changes `load()` makes mid-reappear. Auto-loading
+    // only once keeps the cached-then-refresh behavior on first launch while leaving
+    // later refreshes to the explicit `.refreshable` pull gesture, which isn't racing
+    // against a reappear transition.
+    func loadOnce() async {
+        guard !hasLoadedOnce else { return }
+        hasLoadedOnce = true
+        await load()
     }
 
     func load() async {

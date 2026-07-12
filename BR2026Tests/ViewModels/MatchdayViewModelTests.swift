@@ -150,6 +150,23 @@ struct MatchdayViewModelTests {
 
         #expect(viewModel.matches.map(\.id) == [2])
     }
+
+    @Test("loadOnce() only fetches on the first call, not on repeated calls")
+    func loadOnceOnlyFetchesOnce() async {
+        let match = Match(
+            id: 1, utcDate: date(day: 1, hour: 12), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let service = StubMatchService(matches: [match], standings: [])
+        let viewModel = MatchdayViewModel(service: service)
+
+        await viewModel.loadOnce()
+        await viewModel.loadOnce()
+        await viewModel.loadOnce()
+
+        #expect(service.fetchMatchesCallCount == 1)
+        #expect(viewModel.matches.map(\.id) == [1])
+    }
 }
 
 final class StubMatchService: MatchService {
@@ -159,6 +176,8 @@ final class StubMatchService: MatchService {
     var cachedMatchesOverride: [Match]?
     var cachedStandingsOverride: [Standing]?
     var shouldThrowOnFetch = false
+    private(set) var fetchMatchesCallCount = 0
+    private(set) var fetchStandingsCallCount = 0
 
     init(matches: [Match], standings: [Standing], events: [MatchEvent] = []) {
         self.matches = matches
@@ -167,11 +186,13 @@ final class StubMatchService: MatchService {
     }
 
     func fetchMatches() async throws -> [Match] {
+        fetchMatchesCallCount += 1
         if shouldThrowOnFetch { throw StubServiceError.simulatedFailure }
         return matches
     }
 
     func fetchStandings() async throws -> [Standing] {
+        fetchStandingsCallCount += 1
         if shouldThrowOnFetch { throw StubServiceError.simulatedFailure }
         return standings
     }

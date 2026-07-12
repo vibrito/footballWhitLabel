@@ -37,7 +37,7 @@ struct StandingsView: View {
                     }
                 }
             }
-            .task { await viewModel.load() }
+            .task { await viewModel.loadOnce() }
         }
     }
 
