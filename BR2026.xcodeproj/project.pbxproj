@@ -492,6 +492,7 @@
 				4A4FA446D5F73EAE1C9245D1 /* Sources */,
 				0725F692AD27876A0AE3342B /* Resources */,
 				89343E4C7B1FED6831A3B19C /* Frameworks */,
+				6322ED5BB0459993D6CE2859 /* Upload Crashlytics dSYMs */,
 			);
 			buildRules = (
 			);
@@ -607,6 +608,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6322ED5BB0459993D6CE2859 /* Upload Crashlytics dSYMs */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(DWARF_DSYM_FOLDER_PATH)/$(DWARF_DSYM_FILE_NAME)",
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Upload Crashlytics dSYMs";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4A4FA446D5F73EAE1C9245D1 /* Sources */ = {
