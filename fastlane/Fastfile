@@ -97,4 +97,24 @@ platform :ios do
     Spaceship::ConnectAPI.patch_app_store_version_with_build(app_store_version_id: version.id, build_id: build.id)
     UI.success("Attached build #{build_number} to App Store version #{version.version_string}")
   end
+
+  desc "Submit the currently-attached build for Apple review — does NOT auto-release; requires a manual Release click in App Store Connect after approval"
+  lane :submit_for_review do
+    deliver(
+      api_key: asc_api_key,
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      skip_metadata: true,
+      submit_for_review: true,
+      automatic_release: false,
+      run_precheck_before_submit: false,
+      force: true,
+      submission_information: {
+        # This app only talks to its backend over standard HTTPS — no custom
+        # or non-exempt encryption — so it qualifies for the export
+        # compliance exemption.
+        export_compliance_uses_encryption: false
+      }
+    )
+  end
 end

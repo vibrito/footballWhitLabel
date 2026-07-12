@@ -55,6 +55,14 @@ Build and upload a TestFlight beta
 
 Build a fresh binary, attach it to the App Store version, and push metadata + screenshots — does NOT submit for review
 
+### ios submit_for_review
+
+```sh
+[bundle exec] fastlane ios submit_for_review
+```
+
+Submit the currently-attached build for Apple review — does NOT auto-release; requires a manual Release click in App Store Connect after approval
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
