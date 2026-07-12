@@ -20,7 +20,8 @@ struct StandingTests {
             "points": 41
         }
         """.utf8)
-        let standing = try JSONDecoder().decode(Standing.self, from: json)
+        let dto = try JSONDecoder().decode(StandingDTO.self, from: json)
+        let standing = Standing(dto: dto)
         #expect(standing.position == 1)
         #expect(standing.team.name == "Palmeiras")
         #expect(standing.points == 41)

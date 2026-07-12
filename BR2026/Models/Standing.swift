@@ -1,17 +1,21 @@
 import Foundation
+import SwiftData
 
-struct Standing: Decodable, Identifiable {
-    var id: Int { team.id }
-    let position: Int
-    let team: Team
-    let playedGames: Int
-    let won: Int
-    let draw: Int
-    let lost: Int
-    let goalsFor: Int
-    let goalsAgainst: Int
-    let goalDifference: Int
-    let points: Int
+@Model
+final class Standing: Identifiable {
+    @Attribute(.unique) var teamID: Int
+    var position: Int
+    var team: Team
+    var playedGames: Int
+    var won: Int
+    var draw: Int
+    var lost: Int
+    var goalsFor: Int
+    var goalsAgainst: Int
+    var goalDifference: Int
+    var points: Int
+
+    var id: Int { teamID }
 
     init(
         position: Int,
@@ -25,6 +29,7 @@ struct Standing: Decodable, Identifiable {
         goalDifference: Int,
         points: Int
     ) {
+        self.teamID = team.id
         self.position = position
         self.team = team
         self.playedGames = playedGames
@@ -37,21 +42,18 @@ struct Standing: Decodable, Identifiable {
         self.points = points
     }
 
-    private enum CodingKeys: String, CodingKey {
-        case position, team, playedGames, won, draw, lost, goalsFor, goalsAgainst, goalDifference, points
-    }
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        position = try container.decode(Int.self, forKey: .position)
-        team = Team(dto: try container.decode(TeamDTO.self, forKey: .team))
-        playedGames = try container.decode(Int.self, forKey: .playedGames)
-        won = try container.decode(Int.self, forKey: .won)
-        draw = try container.decode(Int.self, forKey: .draw)
-        lost = try container.decode(Int.self, forKey: .lost)
-        goalsFor = try container.decode(Int.self, forKey: .goalsFor)
-        goalsAgainst = try container.decode(Int.self, forKey: .goalsAgainst)
-        goalDifference = try container.decode(Int.self, forKey: .goalDifference)
-        points = try container.decode(Int.self, forKey: .points)
+    convenience init(dto: StandingDTO) {
+        self.init(
+            position: dto.position,
+            team: Team(dto: dto.team),
+            playedGames: dto.playedGames,
+            won: dto.won,
+            draw: dto.draw,
+            lost: dto.lost,
+            goalsFor: dto.goalsFor,
+            goalsAgainst: dto.goalsAgainst,
+            goalDifference: dto.goalDifference,
+            points: dto.points
+        )
     }
 }

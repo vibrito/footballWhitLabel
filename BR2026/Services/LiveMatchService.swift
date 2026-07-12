@@ -52,7 +52,12 @@ final class LiveMatchService: MatchService {
     func fetchStandings() async throws -> [Standing] {
         let url = config.apiBaseURL.appendingPathComponent("v4/competitions/\(config.competitionCode)/standings")
         let response: StandingsResponse = try await get(url)
-        return response.standings
+        try modelContext.delete(model: Standing.self)
+        for dto in response.standings {
+            modelContext.insert(Standing(dto: dto))
+        }
+        try modelContext.save()
+        return try modelContext.fetch(FetchDescriptor<Standing>())
     }
 
     func fetchEvents(matchID: Int) async throws -> [MatchEvent] {

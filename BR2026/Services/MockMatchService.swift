@@ -5,7 +5,7 @@ struct MatchesResponse: Decodable {
 }
 
 struct StandingsResponse: Decodable {
-    let standings: [Standing]
+    let standings: [StandingDTO]
 }
 
 final class MockMatchService: MatchService {
@@ -23,7 +23,7 @@ final class MockMatchService: MatchService {
         let standingsResponse = try? decoder.decode(StandingsResponse.self, from: standingsData)
         let eventsResponse = try? decoder.decode(MatchEventsResponse.self, from: eventsData)
         self.matches = (matchResponse?.matches ?? []).map(Match.init(dto:))
-        self.standings = standingsResponse?.standings ?? []
+        self.standings = (standingsResponse?.standings ?? []).map(Standing.init(dto:))
         self.events = eventsResponse?.events ?? []
     }
 
