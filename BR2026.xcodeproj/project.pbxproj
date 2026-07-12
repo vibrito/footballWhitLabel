@@ -133,7 +133,7 @@
 		CF19AF830233C51EF5882C73 /* MockMatchServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMatchServiceTests.swift; sourceTree = "<group>"; };
 		D171E9A2D09CD427D7F26420 /* BR2026Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BR2026Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50CB1386053224A356B2C76 /* MatchSwiftDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchSwiftDataTests.swift; sourceTree = "<group>"; };
-		DB65CB58B6DA37E6E8C02103 /* StandingDTO.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BR2026/Models/StandingDTO.swift; sourceTree = SOURCE_ROOT; };
+		DB65CB58B6DA37E6E8C02103 /* StandingDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingDTO.swift; sourceTree = "<group>"; };
 		DEB0996F787521F2EF840C43 /* MatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchService.swift; sourceTree = "<group>"; };
 		DEB603739E340853E8DCF6E1 /* BR2026UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BR2026UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F0E8AA4BDCF972420F7225 /* StandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModel.swift; sourceTree = "<group>"; };
@@ -165,6 +165,7 @@
 				4F8EA6912B1D21368F06E9D0 /* MatchEvent.swift */,
 				4828CC19752FF614A96C2286 /* MatchStatus.swift */,
 				0FEB1160665D8A2136DF3C6B /* Standing.swift */,
+				DB65CB58B6DA37E6E8C02103 /* StandingDTO.swift */,
 				1C30CEF69E76665DF012094F /* Team.swift */,
 				58243C349D4EF0FFEFA192A4 /* MoreDestination.swift */,
 				3F82B99CAA89D84274D4532B /* MoreRow.swift */,
