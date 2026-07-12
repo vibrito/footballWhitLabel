@@ -5,7 +5,7 @@ import Observation
 @MainActor
 final class StandingsViewModel {
     private(set) var standings: [Standing] = []
-    private(set) var isLoading = false
+    private(set) var isRefreshing = false
     private nonisolated(unsafe) let service: MatchService
 
     init(service: MatchService) {
@@ -13,9 +13,11 @@ final class StandingsViewModel {
     }
 
     func load() async {
-        isLoading = true
-        defer { isLoading = false }
-        let fetched = (try? await service.fetchStandings()) ?? []
-        standings = fetched.sorted { $0.position < $1.position }
+        standings = service.cachedStandings().sorted { $0.position < $1.position }
+        isRefreshing = true
+        defer { isRefreshing = false }
+        if let fresh = try? await service.fetchStandings() {
+            standings = fresh.sorted { $0.position < $1.position }
+        }
     }
 }

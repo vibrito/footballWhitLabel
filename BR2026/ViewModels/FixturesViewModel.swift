@@ -5,7 +5,7 @@ import Observation
 @MainActor
 final class FixturesViewModel {
     private(set) var matches: [Match] = []
-    private(set) var isLoading = false
+    private(set) var isRefreshing = false
     var selectedRound: Int?
     private nonisolated(unsafe) let service: MatchService
 
@@ -29,11 +29,13 @@ final class FixturesViewModel {
     }
 
     func load() async {
-        isLoading = true
-        defer { isLoading = false }
-        matches = (try? await service.fetchMatches()) ?? []
-        if selectedRound == nil {
-            selectedRound = currentRound()
+        matches = service.cachedMatches()
+        selectRoundIfNeeded()
+        isRefreshing = true
+        defer { isRefreshing = false }
+        if let fresh = try? await service.fetchMatches() {
+            matches = fresh
+            selectRoundIfNeeded()
         }
     }
 
@@ -61,5 +63,16 @@ final class FixturesViewModel {
 
         let nextRound = byRound.first { $0.round > maxFinishedRound }
         return nextRound?.round ?? byRound.last?.round
+    }
+
+    // Called once from cache and again after a successful fetch — a no-op the second
+    // time whenever the cache was already non-empty, since selectedRound is only ever
+    // auto-picked once. Without the cache-time call, a returning user's round picker
+    // would stay empty (selectedRoundMatches == []) during the instant-paint phase,
+    // even though matches are already on screen.
+    private func selectRoundIfNeeded() {
+        if selectedRound == nil {
+            selectedRound = currentRound()
+        }
     }
 }

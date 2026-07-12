@@ -5,7 +5,7 @@ import Observation
 @MainActor
 final class MatchdayViewModel {
     private(set) var matches: [Match] = []
-    private(set) var isLoading = false
+    private(set) var isRefreshing = false
     private nonisolated(unsafe) let service: MatchService
 
     init(service: MatchService) {
@@ -38,8 +38,11 @@ final class MatchdayViewModel {
     }
 
     func load() async {
-        isLoading = true
-        defer { isLoading = false }
-        matches = (try? await service.fetchMatches()) ?? []
+        matches = service.cachedMatches()
+        isRefreshing = true
+        defer { isRefreshing = false }
+        if let fresh = try? await service.fetchMatches() {
+            matches = fresh
+        }
     }
 }

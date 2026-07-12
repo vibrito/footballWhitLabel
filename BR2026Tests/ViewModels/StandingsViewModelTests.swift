@@ -17,4 +17,42 @@ struct StandingsViewModelTests {
 
         #expect(viewModel.standings.map(\.position) == [1, 2])
     }
+
+    @Test("load() shows cached standings immediately and keeps them if the background refresh fails")
+    func loadKeepsCachedDataWhenRefreshFails() async {
+        let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
+        let cachedStanding = Standing(
+            position: 1, team: team, playedGames: 5, won: 3, draw: 1, lost: 1,
+            goalsFor: 10, goalsAgainst: 5, goalDifference: 5, points: 10
+        )
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedStandingsOverride = [cachedStanding]
+        service.shouldThrowOnFetch = true
+        let viewModel = StandingsViewModel(service: service)
+
+        await viewModel.load()
+
+        #expect(viewModel.standings.map(\.id) == [cachedStanding.id])
+    }
+
+    @Test("load() replaces stale cached standings with freshly fetched ones on success")
+    func loadReplacesCacheWithFreshDataOnSuccess() async {
+        let staleTeam = Team(id: 1, name: "Stale FC", shortName: "STL", crestURL: nil)
+        let freshTeam = Team(id: 2, name: "Fresh FC", shortName: "FRS", crestURL: nil)
+        let staleStanding = Standing(
+            position: 1, team: staleTeam, playedGames: 5, won: 3, draw: 1, lost: 1,
+            goalsFor: 10, goalsAgainst: 5, goalDifference: 5, points: 10
+        )
+        let freshStanding = Standing(
+            position: 1, team: freshTeam, playedGames: 6, won: 4, draw: 1, lost: 1,
+            goalsFor: 12, goalsAgainst: 5, goalDifference: 7, points: 13
+        )
+        let service = StubMatchService(matches: [], standings: [freshStanding])
+        service.cachedStandingsOverride = [staleStanding]
+        let viewModel = StandingsViewModel(service: service)
+
+        await viewModel.load()
+
+        #expect(viewModel.standings.map(\.id) == [freshStanding.id])
+    }
 }

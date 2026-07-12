@@ -114,20 +114,74 @@ struct MatchdayViewModelTests {
         #expect(viewModel.nextMatch == nil)
         #expect(viewModel.otherMatchesForNextMatchDay.isEmpty)
     }
+
+    @Test("load() shows cached matches immediately and keeps them if the background refresh fails")
+    func loadKeepsCachedDataWhenRefreshFails() async {
+        let cachedMatch = Match(
+            id: 99, utcDate: date(day: 1, hour: 12), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedMatchesOverride = [cachedMatch]
+        service.shouldThrowOnFetch = true
+        let viewModel = MatchdayViewModel(service: service)
+
+        await viewModel.load()
+
+        #expect(viewModel.matches.map(\.id) == [99])
+        #expect(viewModel.isRefreshing == false)
+    }
+
+    @Test("load() replaces stale cached matches with freshly fetched ones on success")
+    func loadReplacesCacheWithFreshDataOnSuccess() async {
+        let staleMatch = Match(
+            id: 1, utcDate: date(day: 1, hour: 12), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let freshMatch = Match(
+            id: 2, utcDate: date(day: 2, hour: 12), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let service = StubMatchService(matches: [freshMatch], standings: [])
+        service.cachedMatchesOverride = [staleMatch]
+        let viewModel = MatchdayViewModel(service: service)
+
+        await viewModel.load()
+
+        #expect(viewModel.matches.map(\.id) == [2])
+    }
 }
 
 final class StubMatchService: MatchService {
     let matches: [Match]
     let standings: [Standing]
     let events: [MatchEvent]
+    var cachedMatchesOverride: [Match]?
+    var cachedStandingsOverride: [Standing]?
+    var shouldThrowOnFetch = false
+
     init(matches: [Match], standings: [Standing], events: [MatchEvent] = []) {
         self.matches = matches
         self.standings = standings
         self.events = events
     }
-    func fetchMatches() async throws -> [Match] { matches }
-    func fetchStandings() async throws -> [Standing] { standings }
+
+    func fetchMatches() async throws -> [Match] {
+        if shouldThrowOnFetch { throw StubServiceError.simulatedFailure }
+        return matches
+    }
+
+    func fetchStandings() async throws -> [Standing] {
+        if shouldThrowOnFetch { throw StubServiceError.simulatedFailure }
+        return standings
+    }
+
     func fetchEvents(matchID: Int) async throws -> [MatchEvent] { events }
-    func cachedMatches() -> [Match] { matches }
-    func cachedStandings() -> [Standing] { standings }
+
+    func cachedMatches() -> [Match] { cachedMatchesOverride ?? matches }
+    func cachedStandings() -> [Standing] { cachedStandingsOverride ?? standings }
+}
+
+enum StubServiceError: Error {
+    case simulatedFailure
 }

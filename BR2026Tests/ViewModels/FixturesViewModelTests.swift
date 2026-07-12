@@ -179,4 +179,41 @@ struct FixturesViewModelTests {
 
         #expect(viewModel.selectedRoundMatches.map(\.id) == [1])
     }
+
+    @Test("load() shows cached matches immediately and keeps them if the background refresh fails")
+    func loadKeepsCachedDataWhenRefreshFails() async {
+        let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
+        let cachedMatch = Match(
+            id: 99, utcDate: Date(timeIntervalSince1970: 100), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedMatchesOverride = [cachedMatch]
+        service.shouldThrowOnFetch = true
+        let viewModel = FixturesViewModel(service: service)
+
+        await viewModel.load()
+
+        #expect(viewModel.matches.map(\.id) == [99])
+    }
+
+    @Test("load() replaces stale cached matches with freshly fetched ones on success")
+    func loadReplacesCacheWithFreshDataOnSuccess() async {
+        let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
+        let staleMatch = Match(
+            id: 1, utcDate: Date(timeIntervalSince1970: 100), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let freshMatch = Match(
+            id: 2, utcDate: Date(timeIntervalSince1970: 200), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let service = StubMatchService(matches: [freshMatch], standings: [])
+        service.cachedMatchesOverride = [staleMatch]
+        let viewModel = FixturesViewModel(service: service)
+
+        await viewModel.load()
+
+        #expect(viewModel.matches.map(\.id) == [2])
+    }
 }
