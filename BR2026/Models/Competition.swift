@@ -1,13 +1,38 @@
 import Foundation
+import SwiftData
 
-struct Competition: Decodable {
-    let code: String
-    let name: String
-    let season: Int
-    let logoURL: URL
+@Model
+final class Competition {
+    @Attribute(.unique) var code: String
+    var name: String
+    var season: Int
+    var logoURL: URL
+    var logoData: Data?
+    var cachedAt: Date
 
-    private enum CodingKeys: String, CodingKey {
-        case code, name, season
-        case logoURL = "logo"
+    init(
+        code: String,
+        name: String,
+        season: Int,
+        logoURL: URL,
+        logoData: Data? = nil,
+        cachedAt: Date = Date()
+    ) {
+        self.code = code
+        self.name = name
+        self.season = season
+        self.logoURL = logoURL
+        self.logoData = logoData
+        self.cachedAt = cachedAt
+    }
+
+    convenience init(dto: CompetitionDTO, logoData: Data? = nil) {
+        self.init(
+            code: dto.code,
+            name: dto.name,
+            season: dto.season,
+            logoURL: dto.logoURL,
+            logoData: logoData
+        )
     }
 }

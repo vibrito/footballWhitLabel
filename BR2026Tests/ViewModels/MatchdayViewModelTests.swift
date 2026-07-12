@@ -176,6 +176,7 @@ final class StubMatchService: MatchService {
     let competition: Competition
     var cachedMatchesOverride: [Match]?
     var cachedStandingsOverride: [Standing]?
+    var cachedCompetitionOverride: Competition?
     var shouldThrowOnFetch = false
     private(set) var fetchMatchesCallCount = 0
     private(set) var fetchStandingsCallCount = 0
@@ -216,6 +217,7 @@ final class StubMatchService: MatchService {
 
     func cachedMatches() -> [Match] { cachedMatchesOverride ?? matches }
     func cachedStandings() -> [Standing] { cachedStandingsOverride ?? standings }
+    func cachedCompetition() -> Competition? { cachedCompetitionOverride }
 }
 
 enum StubServiceError: Error {

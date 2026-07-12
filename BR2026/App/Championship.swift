@@ -9,7 +9,7 @@ struct ChampionshipApp: App {
 
     init() {
         do {
-            modelContainer = try ModelContainer(for: Match.self, Standing.self)
+            modelContainer = try ModelContainer(for: Match.self, Standing.self, Competition.self)
         } catch {
             fatalError("Failed to create SwiftData ModelContainer: \(error)")
         }

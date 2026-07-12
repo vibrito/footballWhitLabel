@@ -9,4 +9,5 @@ protocol MatchService {
     func fetchCompetition() async throws -> Competition
     func cachedMatches() -> [Match]
     func cachedStandings() -> [Standing]
+    func cachedCompetition() -> Competition?
 }

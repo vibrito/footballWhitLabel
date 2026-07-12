@@ -27,7 +27,8 @@ final class MockMatchService: MatchService {
         self.matches = (matchResponse?.matches ?? []).map(Match.init(dto:))
         self.standings = (standingsResponse?.standings ?? []).map(Standing.init(dto:))
         self.events = eventsResponse?.events ?? []
-        self.competition = try? decoder.decode(Competition.self, from: competitionData)
+        let competitionDTO = try? decoder.decode(CompetitionDTO.self, from: competitionData)
+        self.competition = competitionDTO.map { Competition(dto: $0) }
     }
 
     func fetchMatches() async throws -> [Match] { matches }
@@ -41,4 +42,5 @@ final class MockMatchService: MatchService {
 
     func cachedMatches() -> [Match] { matches }
     func cachedStandings() -> [Standing] { standings }
+    func cachedCompetition() -> Competition? { competition }
 }

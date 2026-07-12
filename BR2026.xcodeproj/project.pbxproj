@@ -31,6 +31,7 @@
 		61772B18B94F670701FC38FC /* MatchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED24EAB2931D750D08DD21 /* MatchDetailViewModel.swift */; };
 		6687E4423A11B9EE5F1FC2BF /* MatchTimelineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D44350EAD06089AFB83195 /* MatchTimelineRow.swift */; };
 		67622E12C650627FEC121458 /* Competition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741DC2065FBFD04140A95C /* Competition.swift */; };
+		B62013EF7A954AE86EFD70EA /* CompetitionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4E5DB77DD896FEAF3C9B6 /* CompetitionDTO.swift */; };
 		69729BDF0FF6C62927561AB3 /* MatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B84BA767820581A92592C99 /* MatchTests.swift */; };
 		6D80CD57F315AA7754892F04 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514F93D54D23D318A9A8666 /* ContentView.swift */; };
 		72F338DA66E12545A4365454 /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F0E8AA4BDCF972420F7225 /* StandingsViewModel.swift */; };
@@ -110,6 +111,7 @@
 		286FB1656839DC4F8940242C /* LiveChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveChip.swift; sourceTree = "<group>"; };
 		287F723E6555472EAEA55D5E /* GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCard.swift; sourceTree = "<group>"; };
 		30741DC2065FBFD04140A95C /* Competition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Competition.swift; sourceTree = "<group>"; };
+		B9E4E5DB77DD896FEAF3C9B6 /* CompetitionDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionDTO.swift; sourceTree = "<group>"; };
 		322CAB2B4DE8D3A9DEA34EE0 /* MockDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataProvider.swift; sourceTree = "<group>"; };
 		3D40C5B68AD965EA2F417DC1 /* MoreSection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreSection.swift; sourceTree = "<group>"; };
 		3F82B99CAA89D84274D4532B /* MoreRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreRow.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				BBCD3323E3758CD78F54E1C6 /* Match.swift */,
 				94BD89602CB168BCB0121EAA /* MatchDTO.swift */,
 				30741DC2065FBFD04140A95C /* Competition.swift */,
+				B9E4E5DB77DD896FEAF3C9B6 /* CompetitionDTO.swift */,
 				AE7BD7162D81299AB5D44D51 /* AppIconOption.swift */,
 				4F8EA6912B1D21368F06E9D0 /* MatchEvent.swift */,
 				4828CC19752FF614A96C2286 /* MatchStatus.swift */,
@@ -675,6 +678,7 @@
 				8F65BAA745936203EE0275CA /* AppIconPickerView.swift in Sources */,
 				B704D55D61C78DBB6C4D04B6 /* StandingDTO.swift in Sources */,
 				67622E12C650627FEC121458 /* Competition.swift in Sources */,
+				B62013EF7A954AE86EFD70EA /* CompetitionDTO.swift in Sources */,
 				5A3917C26582E8F0CDD8388E /* AppIconOption.swift in Sources */,
 				A20D80976CBBEB3645DE256E /* AppIconSetting.swift in Sources */,
 				34F0DAE6D739362541F6EDF8 /* AppIconPickerViewModel.swift in Sources */,
