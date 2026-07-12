@@ -180,6 +180,7 @@ final class StubMatchService: MatchService {
     var shouldThrowOnFetch = false
     private(set) var fetchMatchesCallCount = 0
     private(set) var fetchStandingsCallCount = 0
+    private(set) var fetchCompetitionCallCount = 0
 
     init(
         matches: [Match],
@@ -211,6 +212,7 @@ final class StubMatchService: MatchService {
     func fetchEvents(matchID: Int) async throws -> [MatchEvent] { events }
 
     func fetchCompetition() async throws -> Competition {
+        fetchCompetitionCallCount += 1
         if shouldThrowOnFetch { throw StubServiceError.simulatedFailure }
         return competition
     }

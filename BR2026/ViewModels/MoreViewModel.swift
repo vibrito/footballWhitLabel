@@ -6,6 +6,7 @@ import Observation
 final class MoreViewModel {
     private(set) var competitionName: String?
     private(set) var competitionLogoURL: URL?
+    private(set) var competitionLogoData: Data?
     let sections: [MoreSection] = [
         MoreSection(
             id: "legal",
@@ -40,9 +41,28 @@ final class MoreViewModel {
         self.service = service
     }
 
-    func loadCompetition() async {
-        guard let competition = try? await service.fetchCompetition() else { return }
+    private static let refreshInterval: TimeInterval = 7 * 24 * 60 * 60
+    private var hasLoadedOnce = false
+
+    func loadOnce() async {
+        guard !hasLoadedOnce else { return }
+        hasLoadedOnce = true
+        await load()
+    }
+
+    func load() async {
+        if let cached = service.cachedCompetition() {
+            apply(cached)
+            guard Date().timeIntervalSince(cached.cachedAt) > Self.refreshInterval else { return }
+        }
+        if let fresh = try? await service.fetchCompetition() {
+            apply(fresh)
+        }
+    }
+
+    private func apply(_ competition: Competition) {
         competitionName = competition.name
         competitionLogoURL = competition.logoURL
+        competitionLogoData = competition.logoData
     }
 }
