@@ -30,4 +30,6 @@ final class MockMatchService: MatchService {
     func fetchMatches() async throws -> [Match] { matches }
     func fetchStandings() async throws -> [Standing] { standings }
     func fetchEvents(matchID: Int) async throws -> [MatchEvent] { events }
+    func cachedMatches() -> [Match] { matches }
+    func cachedStandings() -> [Standing] { standings }
 }

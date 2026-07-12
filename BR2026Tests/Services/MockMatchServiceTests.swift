@@ -29,4 +29,16 @@ struct MockMatchServiceTests {
         #expect(statuses.contains(.scheduled))
         #expect(statuses.contains(.postponed))
     }
+
+    @Test("cachedMatches returns the same sample matches, with no fetch required")
+    func cachedMatchesReturnsSampleData() {
+        let service = MockMatchService()
+        #expect(!service.cachedMatches().isEmpty)
+    }
+
+    @Test("cachedStandings returns the same full 20-team sample table")
+    func cachedStandingsReturnsSampleData() {
+        let service = MockMatchService()
+        #expect(service.cachedStandings().count == 20)
+    }
 }

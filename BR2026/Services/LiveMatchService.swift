@@ -67,6 +67,14 @@ final class LiveMatchService: MatchService {
         return response.events
     }
 
+    func cachedMatches() -> [Match] {
+        (try? modelContext.fetch(FetchDescriptor<Match>())) ?? []
+    }
+
+    func cachedStandings() -> [Standing] {
+        (try? modelContext.fetch(FetchDescriptor<Standing>())) ?? []
+    }
+
     private func upsert(_ dto: MatchDTO) {
         let targetID = dto.id
         let descriptor = FetchDescriptor<Match>(predicate: #Predicate { $0.id == targetID })
