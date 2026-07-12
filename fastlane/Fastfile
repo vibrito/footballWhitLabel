@@ -10,6 +10,31 @@ def asc_api_key
   )
 end
 
+# Shared by beta and prepare_release: xcodebuild's automatic signing only
+# refreshes provisioning profiles (e.g. to pick up a newly added capability
+# like Push Notifications) when explicitly told to via -allowProvisioningUpdates,
+# and needs API key auth (with at least the App Manager role — Developer-role
+# keys can't manage certs/profiles) to do so non-interactively from the CLI.
+def build_and_upload_to_testflight(api_key:, build_number:, skip_submission: false)
+  provisioning_update_args = [
+    "-allowProvisioningUpdates",
+    "-authenticationKeyPath \"#{ENV['ASC_KEY_FILEPATH']}\"",
+    "-authenticationKeyID \"#{ENV['ASC_KEY_ID']}\"",
+    "-authenticationKeyIssuerID \"#{ENV['ASC_ISSUER_ID']}\""
+  ].join(" ")
+
+  gym(
+    scheme: SCHEME,
+    export_method: "app-store",
+    output_directory: "./build",
+    clean: true,
+    xcargs: "CURRENT_PROJECT_VERSION=#{build_number}",
+    export_xcargs: provisioning_update_args
+  )
+
+  upload_to_testflight(api_key: api_key, skip_submission: skip_submission, skip_waiting_for_build_processing: false)
+end
+
 platform :ios do
   desc "Run the BR2026Tests unit test suite"
   lane :test do
@@ -40,27 +65,35 @@ platform :ios do
     api_key = asc_api_key
     build_number = (latest_testflight_build_number(api_key: api_key) + 1).to_s
 
-    # xcodebuild's automatic signing only refreshes provisioning profiles (e.g. to
-    # pick up a newly added capability like Push Notifications) when explicitly told
-    # to via -allowProvisioningUpdates, and needs API key auth (with at least the
-    # App Manager role — Developer-role keys can't manage certs/profiles) to do so
-    # non-interactively from the command line.
-    provisioning_update_args = [
-      "-allowProvisioningUpdates",
-      "-authenticationKeyPath \"#{ENV['ASC_KEY_FILEPATH']}\"",
-      "-authenticationKeyID \"#{ENV['ASC_KEY_ID']}\"",
-      "-authenticationKeyIssuerID \"#{ENV['ASC_ISSUER_ID']}\""
-    ].join(" ")
+    build_and_upload_to_testflight(api_key: api_key, build_number: build_number)
+  end
 
-    gym(
-      scheme: SCHEME,
-      export_method: "app-store",
-      output_directory: "./build",
-      clean: true,
-      xcargs: "CURRENT_PROJECT_VERSION=#{build_number}",
-      export_xcargs: provisioning_update_args
+  desc "Build a fresh binary, attach it to the App Store version, and push metadata + screenshots — does NOT submit for review"
+  lane :prepare_release do
+    api_key = asc_api_key
+    build_number = (latest_testflight_build_number(api_key: api_key) + 1).to_s
+
+    build_and_upload_to_testflight(api_key: api_key, build_number: build_number, skip_submission: true)
+
+    deliver(
+      api_key: api_key,
+      build_number: build_number,
+      skip_binary_upload: true,
+      skip_screenshots: false,
+      skip_metadata: false,
+      submit_for_review: false,
+      run_precheck_before_submit: false,
+      force: true
     )
 
-    upload_to_testflight(api_key: api_key)
+    # deliver's build_number: param does not reliably attach the build to the
+    # App Store version (observed: it silently left a July 3rd build attached
+    # instead of the one just uploaded) — set it explicitly via the Connect API.
+    app = Spaceship::ConnectAPI::App.find(app_identifier)
+    version = app.get_edit_app_store_version
+    build = app.get_builds(filter: { processingState: "VALID", version: build_number }).first
+    UI.user_error!("Build #{build_number} not found or not yet VALID") unless build
+    Spaceship::ConnectAPI.patch_app_store_version_with_build(app_store_version_id: version.id, build_id: build.id)
+    UI.success("Attached build #{build_number} to App Store version #{version.version_string}")
   end
 end
