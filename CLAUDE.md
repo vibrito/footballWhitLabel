@@ -161,6 +161,11 @@ BR2026/
 - `Standing` is also a SwiftData `@Model` — the whole table is replaced on each fetch via a
   clear-and-reinsert (not persisted incrementally, same principle as before), so it now
   survives a relaunch too.
+- `Competition` is also a SwiftData `@Model`, caching the name and logo image bytes
+  together. Unlike Matchday/Fixtures/Standings (which always background-refresh),
+  `MoreViewModel.load()` skips the network entirely once a cache exists and is under 7 days
+  old — competition branding doesn't change the way scores do, so there's nothing to keep
+  continuously fresh.
 - Matchday, Fixtures, and Standings show their last-known persisted data immediately on load,
   then refresh from the API in the background via `MatchService.cachedMatches()`/
   `cachedStandings()` — a failed background refresh keeps the last-known data on screen rather
