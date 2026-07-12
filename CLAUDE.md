@@ -27,7 +27,7 @@ Design language: Apple Liquid Glass over a deep stadium-night gradient.
 | Persistence | SwiftData |
 | Testing | Swift Testing (`@Test`, `@Suite`) |
 | Concurrency | Swift Concurrency (`async/await`, `Actor`) |
-| External dependencies | None |
+| External dependencies | Firebase (Analytics, Crashlytics, Messaging) via SPM |
 | Minimum deployment | iOS 26 |
 
 ---
@@ -194,6 +194,29 @@ BR2026/
 
 ---
 
+## Firebase
+
+- First external dependency (`firebase-ios-sdk`, pinned `upToNextMajorVersion` from
+  `12.0.0`), added via Swift Package Manager. Three products linked to the `BR2026` app
+  target only (not the test targets): `FirebaseAnalytics`, `FirebaseCrashlytics`,
+  `FirebaseMessaging`.
+- SPM integration was scripted with the `xcodeproj` Ruby gem rather than hand-edited — see
+  `docs/superpowers/plans/2026-07-12-firebase-integration-implementation.md` Task 1 for the
+  script, if a future Firebase product needs adding the same way.
+- `GoogleService-Info.plist` is committed directly to the repo at `BR2026/GoogleService-Info.plist`
+  (unlike `Secrets.xcconfig`, this file isn't a traditional secret per Google's own guidance).
+- `AppDelegate` (`BR2026/App/AppDelegate.swift`, bridged via `@UIApplicationDelegateAdaptor`)
+  calls `FirebaseApp.configure()` and `registerForRemoteNotifications()` on launch — this
+  silently mints an FCM token but **never** calls
+  `UNUserNotificationCenter.requestAuthorization`, so no permission prompt or visible push
+  UI ever appears. `BR2026.entitlements` sets `aps-environment: development` (Xcode swaps in
+  `production` for distribution builds automatically); `UIBackgroundModes` includes
+  `remote-notification` for silent delivery.
+- Analytics collection is automatic-only — no `Analytics.logEvent(...)` calls anywhere in
+  the codebase. Crashlytics uploads dSYMs via a Run Script build phase on the app target.
+
+---
+
 ## Fastlane / Release Automation
 
 Ruby toolchain pinned via `Gemfile`/`.ruby-version` (rbenv). Invoke all lanes as
@@ -267,4 +290,7 @@ screenshots reflect whatever matches/standings are live or scheduled at capture 
   beyond one accent color are out of scope. Match detail covers the events timeline;
   statistics and lineups are deferred to a future phase.
 - Alternate home variants (B/C) are **out of scope**.
-- No user accounts, no notifications, no watchOS/widgets — future phases.
+- No user accounts, no user-visible notifications, no watchOS/widgets — future phases.
+  Firebase Messaging is wired up at the plumbing level (APNs registration, FCM token
+  generation) as scaffolding for a future phase, but no permission is requested and no
+  push-consuming feature exists yet.

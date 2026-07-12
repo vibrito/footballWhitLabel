@@ -28,10 +28,10 @@
         <p>Cette application ne collecte, ne stocke et ne partage aucune information personnelle. Elle ne nécessite ni création de compte, ni connexion, ni aucune donnée personnelle. L'application récupère des données sportives publiques — scores, calendrier et classement du Championnat brésilien (Brasileirão) — auprès d'une API sportive tierce. Ces données sont mises en cache localement sur votre appareil afin d'améliorer les performances et ne sont transmises nulle part ailleurs.</p>
 
         <h2>2. Analyse et suivi</h2>
-        <p>Cette application n'utilise aucun logiciel d'analyse, de publicité ou de suivi.</p>
+        <p>Cette application utilise Firebase Analytics et Firebase Crashlytics (tous deux fournis par Google) pour comprendre l'utilisation de l'application et diagnostiquer les plantages. Firebase Analytics collecte des données d'utilisation générales, comme les écrans consultés et la fréquence d'ouverture de l'application ; Firebase Crashlytics collecte des rapports de plantage, qui peuvent inclure le modèle de l'appareil, la version du système d'exploitation et l'état de l'application au moment du plantage. Aucun de ces services n'est utilisé à des fins publicitaires, et aucun ne collecte votre nom, votre adresse e-mail ou d'autres informations personnelles identifiables.</p>
 
         <h2>3. Services tiers</h2>
-        <p>Les données de matchs, d'équipes et de compétition (y compris les images des écussons d'équipe) sont chargées depuis une API sportive tierce. Le chargement de ces données peut exposer l'adresse IP de votre appareil à ce service, comme c'est le cas pour toute requête réseau standard. Nous ne contrôlons pas et ne sommes pas responsables des pratiques de ce service en matière de données.</p>
+        <p>Les données de matchs, d'équipes et de compétition (y compris les images des écussons d'équipe) sont chargées depuis une API sportive tierce. Cette application utilise également Firebase (Google) pour l'analyse et le diagnostic des plantages, comme décrit ci-dessus. Le chargement de ces données peut exposer l'adresse IP de votre appareil à ces services, comme c'est le cas pour toute requête réseau standard. Nous ne contrôlons pas et ne sommes pas responsables des pratiques de données de ces services.</p>
 
         <h2>4. Données stockées sur votre appareil</h2>
         <p>L'application utilise un stockage local pour mettre en cache les données de match afin d'accélérer leur chargement. Ces données restent sur votre appareil et ne nous sont jamais transmises.</p>
