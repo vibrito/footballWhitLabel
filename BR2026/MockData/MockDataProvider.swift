@@ -55,6 +55,15 @@ enum MockDataProvider {
     }
     """
 
+    static let competitionJSON = """
+    {
+        "code": "BSA",
+        "name": "Campeonato Brasileiro Série A",
+        "season": 2026,
+        "logo": "https://media.api-sports.io/football/leagues/71.png"
+    }
+    """
+
     static let standingsJSON = """
     {
         "standings": [

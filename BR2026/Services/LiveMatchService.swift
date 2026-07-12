@@ -67,6 +67,11 @@ final class LiveMatchService: MatchService {
         return response.events
     }
 
+    func fetchCompetition() async throws -> Competition {
+        let url = config.apiBaseURL.appendingPathComponent("v4/competitions/\(config.competitionCode)")
+        return try await get(url)
+    }
+
     func cachedMatches() -> [Match] {
         (try? modelContext.fetch(FetchDescriptor<Match>())) ?? []
     }

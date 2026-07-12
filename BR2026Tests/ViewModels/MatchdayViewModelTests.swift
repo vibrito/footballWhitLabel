@@ -173,16 +173,26 @@ final class StubMatchService: MatchService {
     let matches: [Match]
     let standings: [Standing]
     let events: [MatchEvent]
+    let competition: Competition
     var cachedMatchesOverride: [Match]?
     var cachedStandingsOverride: [Standing]?
     var shouldThrowOnFetch = false
     private(set) var fetchMatchesCallCount = 0
     private(set) var fetchStandingsCallCount = 0
 
-    init(matches: [Match], standings: [Standing], events: [MatchEvent] = []) {
+    init(
+        matches: [Match],
+        standings: [Standing],
+        events: [MatchEvent] = [],
+        competition: Competition = Competition(
+            code: "BSA", name: "Campeonato Brasileiro Série A", season: 2026,
+            logoURL: URL(string: "https://example.com/logo.png")!
+        )
+    ) {
         self.matches = matches
         self.standings = standings
         self.events = events
+        self.competition = competition
     }
 
     func fetchMatches() async throws -> [Match] {
@@ -198,6 +208,11 @@ final class StubMatchService: MatchService {
     }
 
     func fetchEvents(matchID: Int) async throws -> [MatchEvent] { events }
+
+    func fetchCompetition() async throws -> Competition {
+        if shouldThrowOnFetch { throw StubServiceError.simulatedFailure }
+        return competition
+    }
 
     func cachedMatches() -> [Match] { cachedMatchesOverride ?? matches }
     func cachedStandings() -> [Standing] { cachedStandingsOverride ?? standings }

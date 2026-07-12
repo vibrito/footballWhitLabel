@@ -1,4 +1,5 @@
 import Testing
+import Foundation
 @testable import BR2026
 
 @Suite("MockMatchService")
@@ -40,5 +41,14 @@ struct MockMatchServiceTests {
     func cachedStandingsReturnsSampleData() {
         let service = MockMatchService()
         #expect(service.cachedStandings().count == 20)
+    }
+
+    @Test("Returns the Campeonato Brasileiro Série A competition with its logo URL")
+    func returnsCompetition() async throws {
+        let service = MockMatchService()
+        let competition = try await service.fetchCompetition()
+        #expect(competition.code == "BSA")
+        #expect(competition.name == "Campeonato Brasileiro Série A")
+        #expect(competition.logoURL == URL(string: "https://media.api-sports.io/football/leagues/71.png"))
     }
 }

@@ -52,6 +52,7 @@
 		B34A3BF270A30927F93DC6ED /* LiveMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5C675322020A4A48668C2 /* LiveMatchService.swift */; };
 		B4E221725A379F4CB96949DC /* StadiumBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A71A2EA3718A5D31948205 /* StadiumBackground.swift */; };
 		B704D55D61C78DBB6C4D04B6 /* StandingDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65CB58B6DA37E6E8C02103 /* StandingDTO.swift */; };
+		67622E12C650627FEC121458 /* Competition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741DC2065FBFD04140A95C /* Competition.swift */; };
 		BC4C976AFD4417B1FF89DCD4 /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322CAB2B4DE8D3A9DEA34EE0 /* MockDataProvider.swift */; };
 		BDDC6D884846562BE921A699 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7CD31B3A17497FD8945EA /* StandingsView.swift */; };
 		C5CD5BC1DF03FA93E7175767 /* StandingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C275BFBA9A3D380BE80231BA /* StandingsViewModelTests.swift */; };
@@ -136,6 +137,7 @@
 		D171E9A2D09CD427D7F26420 /* BR2026Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BR2026Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50CB1386053224A356B2C76 /* MatchSwiftDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchSwiftDataTests.swift; sourceTree = "<group>"; };
 		DB65CB58B6DA37E6E8C02103 /* StandingDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingDTO.swift; sourceTree = "<group>"; };
+		30741DC2065FBFD04140A95C /* Competition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Competition.swift; sourceTree = "<group>"; };
 		DEB0996F787521F2EF840C43 /* MatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchService.swift; sourceTree = "<group>"; };
 		DEB603739E340853E8DCF6E1 /* BR2026UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BR2026UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F0E8AA4BDCF972420F7225 /* StandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModel.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			children = (
 				BBCD3323E3758CD78F54E1C6 /* Match.swift */,
 				94BD89602CB168BCB0121EAA /* MatchDTO.swift */,
+				30741DC2065FBFD04140A95C /* Competition.swift */,
 				4F8EA6912B1D21368F06E9D0 /* MatchEvent.swift */,
 				4828CC19752FF614A96C2286 /* MatchStatus.swift */,
 				0FEB1160665D8A2136DF3C6B /* Standing.swift */,
@@ -604,6 +607,7 @@
 				EC5A593E224B594925407E82 /* MoreViewModel.swift in Sources */,
 				5D1B5C22E68044C6635E8F8D /* TermsOfServiceView.swift in Sources */,
 				B704D55D61C78DBB6C4D04B6 /* StandingDTO.swift in Sources */,
+				67622E12C650627FEC121458 /* Competition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

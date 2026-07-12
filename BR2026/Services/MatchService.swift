@@ -6,6 +6,7 @@ protocol MatchService {
     func fetchMatches() async throws -> [Match]
     func fetchStandings() async throws -> [Standing]
     func fetchEvents(matchID: Int) async throws -> [MatchEvent]
+    func fetchCompetition() async throws -> Competition
     func cachedMatches() -> [Match]
     func cachedStandings() -> [Standing]
 }
