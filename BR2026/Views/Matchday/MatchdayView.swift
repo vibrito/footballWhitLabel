@@ -37,10 +37,12 @@ struct MatchdayView: View {
             // Matchday renders its own title inline in the scrolled content (see `header`
             // below) rather than a system nav title, so this stays empty. But leaving
             // `.navigationTitle` unset entirely (the only one of the three tabs to do so)
-            // combined with `.refreshable` caused a visible one-time upward content jump
-            // shortly after appearing — the nav bar had no stable title to anchor its
-            // layout against while `.refreshable`'s content-inset negotiation settled.
-            // Fixtures/Standings don't need this because they already set a real title.
+            // combined with `.refreshable` caused a visible content jump right at first
+            // launch — the nav bar had no stable title to anchor its layout against while
+            // `.refreshable`'s content-inset negotiation settled. Fixtures/Standings don't
+            // need this because they already set a real title. (A separate, related jump
+            // on every tab revisit — not just first launch — is fixed by `loadOnce()`
+            // below, not by this line.)
             .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
