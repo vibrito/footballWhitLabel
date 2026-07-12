@@ -1,6 +1,7 @@
 default_platform(:ios)
 
 SCHEME = "BR2026"
+APP_IDENTIFIER = "com.vibrito.br2026"
 
 def asc_api_key
   app_store_connect_api_key(
@@ -89,7 +90,7 @@ platform :ios do
     # deliver's build_number: param does not reliably attach the build to the
     # App Store version (observed: it silently left a July 3rd build attached
     # instead of the one just uploaded) — set it explicitly via the Connect API.
-    app = Spaceship::ConnectAPI::App.find(app_identifier)
+    app = Spaceship::ConnectAPI::App.find(APP_IDENTIFIER)
     version = app.get_edit_app_store_version
     build = app.get_builds(filter: { processingState: "VALID", version: build_number }).first
     UI.user_error!("Build #{build_number} not found or not yet VALID") unless build
