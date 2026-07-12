@@ -70,7 +70,8 @@ final class LiveMatchService: MatchService {
     func fetchCompetition() async throws -> Competition {
         let url = config.apiBaseURL.appendingPathComponent("v4/competitions/\(config.competitionCode)")
         let dto: CompetitionDTO = try await get(url)
-        let logoData = try? await downloadData(dto.logoURL)
+        let previousLogoData = cachedCompetition()?.logoData
+        let logoData = (try? await downloadData(dto.logoURL)) ?? previousLogoData
         try modelContext.delete(model: Competition.self)
         let competition = Competition(dto: dto, logoData: logoData)
         modelContext.insert(competition)
