@@ -26,6 +26,8 @@ struct MoreView: View {
                 switch destination {
                 case .termsOfService:
                     TermsOfServiceView()
+                case .appIconPicker:
+                    AppIconPickerView(viewModel: AppIconPickerViewModel(iconSetting: UIKitAppIconSetting()))
                 }
             }
             .task { await viewModel.loadCompetition() }

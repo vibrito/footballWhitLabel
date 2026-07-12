@@ -14,12 +14,13 @@ struct MoreViewModelTests {
         #expect(legal?.rows.first?.isEnabled == true)
     }
 
-    @Test("Preferences section has one disabled, destination-less row")
+    @Test("Preferences section has one enabled App Icon row")
     func preferencesSection() {
         let viewModel = MoreViewModel(service: StubMatchService(matches: [], standings: []))
         let preferences = viewModel.sections.first { $0.id == "preferences" }
         #expect(preferences?.rows.count == 1)
-        #expect(preferences?.rows.allSatisfy { $0.destination == nil && !$0.isEnabled } == true)
+        #expect(preferences?.rows.first?.destination == .appIconPicker)
+        #expect(preferences?.rows.first?.isEnabled == true)
     }
 
     @Test("loadCompetition() populates the competition name and logo URL")

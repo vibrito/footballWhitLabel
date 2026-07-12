@@ -184,6 +184,8 @@ BR2026/
   never commit the real key.
 - `GET /v4/competitions/{code}/matches` — supports `?status=LIVE`, `?matchday=N`
 - `GET /v4/competitions/{code}/standings`
+- `GET /v4/competitions/{code}` — competition name and logo, consumed by the More screen's
+  competition header.
 - `GET /v4/competitions/{code}/matches/:id/events` — consumed by the match-detail sheet
   (`MatchDetailView`), which shows a goals/cards/substitutions timeline.
 - `GET /v4/competitions/{code}/matches/:id/{statistics,lineups}` — not yet consumed;
@@ -224,6 +226,10 @@ screenshots reflect whatever matches/standings are live or scheduled at capture 
   - Fixtures → `calendar`
   - Standings → `chart.bar`
   - More → `ellipsis.circle`
+- **Alternate app icons:** Light (default), Brasil, Stadium — switchable from the More screen's
+  App Icon row via `UIApplication.setAlternateIconName(_:)`. Each has a matching
+  `AppIconPreview-*` plain Image Set for the picker's thumbnail (App Icon Set assets aren't
+  reliably loadable via plain SwiftUI `Image(_:)`).
 
 ---
 

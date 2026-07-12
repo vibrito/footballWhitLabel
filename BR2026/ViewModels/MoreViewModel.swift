@@ -25,11 +25,11 @@ final class MoreViewModel {
             titleKey: "Preferences",
             rows: [
                 MoreRow(
-                    id: "settings",
-                    titleKey: "Settings",
-                    systemImage: "gearshape",
-                    destination: nil,
-                    isEnabled: false
+                    id: "appIcon",
+                    titleKey: "App Icon",
+                    systemImage: "app.badge",
+                    destination: .appIconPicker,
+                    isEnabled: true
                 )
             ]
         )
