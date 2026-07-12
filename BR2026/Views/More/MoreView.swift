@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct MoreView: View {
     @State private var viewModel: MoreViewModel
@@ -30,12 +31,31 @@ struct MoreView: View {
                     AppIconPickerView(viewModel: AppIconPickerViewModel(iconSetting: UIKitAppIconSetting()))
                 }
             }
-            .task { await viewModel.loadCompetition() }
+            .task { await viewModel.loadOnce() }
         }
     }
 
     private var competitionHeader: some View {
         VStack(spacing: 8) {
+            logoView
+                .frame(width: 64, height: 64)
+            if let name = viewModel.competitionName {
+                Text(name)
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundStyle(.white)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.bottom, 8)
+    }
+
+    @ViewBuilder
+    private var logoView: some View {
+        if let logoData = viewModel.competitionLogoData, let uiImage = UIImage(data: logoData) {
+            Image(uiImage: uiImage)
+                .resizable()
+                .scaledToFit()
+        } else {
             AsyncImage(url: viewModel.competitionLogoURL) { phase in
                 switch phase {
                 case .success(let image):
@@ -50,15 +70,7 @@ struct MoreView: View {
                         )
                 }
             }
-            .frame(width: 64, height: 64)
-            if let name = viewModel.competitionName {
-                Text(name)
-                    .font(.system(size: 16, weight: .semibold))
-                    .foregroundStyle(.white)
-            }
         }
-        .frame(maxWidth: .infinity)
-        .padding(.bottom, 8)
     }
 
     private func sectionView(_ section: MoreSection) -> some View {
