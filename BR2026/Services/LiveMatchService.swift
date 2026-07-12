@@ -69,7 +69,13 @@ final class LiveMatchService: MatchService {
 
     func fetchCompetition() async throws -> Competition {
         let url = config.apiBaseURL.appendingPathComponent("v4/competitions/\(config.competitionCode)")
-        return try await get(url)
+        let dto: CompetitionDTO = try await get(url)
+        let logoData = try? await downloadData(dto.logoURL)
+        try modelContext.delete(model: Competition.self)
+        let competition = Competition(dto: dto, logoData: logoData)
+        modelContext.insert(competition)
+        try modelContext.save()
+        return competition
     }
 
     func cachedMatches() -> [Match] {
@@ -78,6 +84,10 @@ final class LiveMatchService: MatchService {
 
     func cachedStandings() -> [Standing] {
         (try? modelContext.fetch(FetchDescriptor<Standing>())) ?? []
+    }
+
+    func cachedCompetition() -> Competition? {
+        (try? modelContext.fetch(FetchDescriptor<Competition>()))?.first
     }
 
     private func upsert(_ dto: MatchDTO) {
@@ -98,5 +108,13 @@ final class LiveMatchService: MatchService {
             throw MatchServiceError.invalidResponse
         }
         return try decoder.decode(T.self, from: data)
+    }
+
+    private func downloadData(_ url: URL) async throws -> Data {
+        let (data, response) = try await urlSession.data(from: url)
+        guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
+            throw MatchServiceError.invalidResponse
+        }
+        return data
     }
 }
