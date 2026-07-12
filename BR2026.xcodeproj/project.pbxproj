@@ -53,11 +53,15 @@
 		B4E221725A379F4CB96949DC /* StadiumBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A71A2EA3718A5D31948205 /* StadiumBackground.swift */; };
 		B704D55D61C78DBB6C4D04B6 /* StandingDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65CB58B6DA37E6E8C02103 /* StandingDTO.swift */; };
 		67622E12C650627FEC121458 /* Competition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741DC2065FBFD04140A95C /* Competition.swift */; };
+		5A3917C26582E8F0CDD8388E /* AppIconOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7BD7162D81299AB5D44D51 /* AppIconOption.swift */; };
+		A20D80976CBBEB3645DE256E /* AppIconSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBD8CC8C85D68BA0C23F8 /* AppIconSetting.swift */; };
+		34F0DAE6D739362541F6EDF8 /* AppIconPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C4923C4C3A35A6E0D97D /* AppIconPickerViewModel.swift */; };
 		BC4C976AFD4417B1FF89DCD4 /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322CAB2B4DE8D3A9DEA34EE0 /* MockDataProvider.swift */; };
 		BDDC6D884846562BE921A699 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7CD31B3A17497FD8945EA /* StandingsView.swift */; };
 		C5CD5BC1DF03FA93E7175767 /* StandingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C275BFBA9A3D380BE80231BA /* StandingsViewModelTests.swift */; };
 		CB9EEE216AE845D22D321EB0 /* MatchEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8EA6912B1D21368F06E9D0 /* MatchEvent.swift */; };
 		DA1F1C68819F4844D66DB70C /* MoreViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D9AD201506F2944831655 /* MoreViewModelTests.swift */; };
+		0DA4761CA3613C120DDBFC6B /* AppIconPickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CAF5081983FCB3F4E3601 /* AppIconPickerViewModelTests.swift */; };
 		DE3F15138FC6258D10F0E345 /* MatchdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750454E4C32D9EEA69417686 /* MatchdayViewModel.swift */; };
 		E535AD91E7B1012DA85F64BE /* MockMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB245877F3BE6246A841B9 /* MockMatchService.swift */; };
 		E621210241C77A2CF5EFBFD8 /* MatchSwiftDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CB1386053224A356B2C76 /* MatchSwiftDataTests.swift */; };
@@ -133,11 +137,15 @@
 		C2D44350EAD06089AFB83195 /* MatchTimelineRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTimelineRow.swift; sourceTree = "<group>"; };
 		C8B5197C926950D13285B1E1 /* StandingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingTests.swift; sourceTree = "<group>"; };
 		CD8D9AD201506F2944831655 /* MoreViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreViewModelTests.swift; sourceTree = "<group>"; };
+		433CAF5081983FCB3F4E3601 /* AppIconPickerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconPickerViewModelTests.swift; sourceTree = "<group>"; };
 		CF19AF830233C51EF5882C73 /* MockMatchServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMatchServiceTests.swift; sourceTree = "<group>"; };
 		D171E9A2D09CD427D7F26420 /* BR2026Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BR2026Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50CB1386053224A356B2C76 /* MatchSwiftDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchSwiftDataTests.swift; sourceTree = "<group>"; };
 		DB65CB58B6DA37E6E8C02103 /* StandingDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingDTO.swift; sourceTree = "<group>"; };
 		30741DC2065FBFD04140A95C /* Competition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Competition.swift; sourceTree = "<group>"; };
+		AE7BD7162D81299AB5D44D51 /* AppIconOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconOption.swift; sourceTree = "<group>"; };
+		43EEBD8CC8C85D68BA0C23F8 /* AppIconSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconSetting.swift; sourceTree = "<group>"; };
+		D952C4923C4C3A35A6E0D97D /* AppIconPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconPickerViewModel.swift; sourceTree = "<group>"; };
 		DEB0996F787521F2EF840C43 /* MatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchService.swift; sourceTree = "<group>"; };
 		DEB603739E340853E8DCF6E1 /* BR2026UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BR2026UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F0E8AA4BDCF972420F7225 /* StandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModel.swift; sourceTree = "<group>"; };
@@ -167,6 +175,7 @@
 				BBCD3323E3758CD78F54E1C6 /* Match.swift */,
 				94BD89602CB168BCB0121EAA /* MatchDTO.swift */,
 				30741DC2065FBFD04140A95C /* Competition.swift */,
+				AE7BD7162D81299AB5D44D51 /* AppIconOption.swift */,
 				4F8EA6912B1D21368F06E9D0 /* MatchEvent.swift */,
 				4828CC19752FF614A96C2286 /* MatchStatus.swift */,
 				0FEB1160665D8A2136DF3C6B /* Standing.swift */,
@@ -187,6 +196,7 @@
 				56ED24EAB2931D750D08DD21 /* MatchDetailViewModel.swift */,
 				E5F0E8AA4BDCF972420F7225 /* StandingsViewModel.swift */,
 				64C49CB2060A7D052977CA91 /* MoreViewModel.swift */,
+				D952C4923C4C3A35A6E0D97D /* AppIconPickerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -395,6 +405,7 @@
 				65807B78425B289771974EE6 /* MatchDetailViewModelTests.swift */,
 				C275BFBA9A3D380BE80231BA /* StandingsViewModelTests.swift */,
 				CD8D9AD201506F2944831655 /* MoreViewModelTests.swift */,
+				433CAF5081983FCB3F4E3601 /* AppIconPickerViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -425,6 +436,7 @@
 				56C5C675322020A4A48668C2 /* LiveMatchService.swift */,
 				DEB0996F787521F2EF840C43 /* MatchService.swift */,
 				60EB245877F3BE6246A841B9 /* MockMatchService.swift */,
+				43EEBD8CC8C85D68BA0C23F8 /* AppIconSetting.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -608,6 +620,9 @@
 				5D1B5C22E68044C6635E8F8D /* TermsOfServiceView.swift in Sources */,
 				B704D55D61C78DBB6C4D04B6 /* StandingDTO.swift in Sources */,
 				67622E12C650627FEC121458 /* Competition.swift in Sources */,
+				5A3917C26582E8F0CDD8388E /* AppIconOption.swift in Sources */,
+				A20D80976CBBEB3645DE256E /* AppIconSetting.swift in Sources */,
+				34F0DAE6D739362541F6EDF8 /* AppIconPickerViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +642,7 @@
 				C5CD5BC1DF03FA93E7175767 /* StandingsViewModelTests.swift in Sources */,
 				30AF65D8AF1709A5F18A7A50 /* TeamTests.swift in Sources */,
 				DA1F1C68819F4844D66DB70C /* MoreViewModelTests.swift in Sources */,
+				0DA4761CA3613C120DDBFC6B /* AppIconPickerViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
