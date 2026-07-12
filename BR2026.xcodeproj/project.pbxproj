@@ -36,6 +36,7 @@
 		72F338DA66E12545A4365454 /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F0E8AA4BDCF972420F7225 /* StandingsViewModel.swift */; };
 		75DE03B8E1137D2C966442E0 /* HeroMatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD698E976EAC4B8C3CF2B7 /* HeroMatchCard.swift */; };
 		762424664C420A948ED479CF /* SnapshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D1B6F631C0641FD3AE6EAB /* SnapshotUITests.swift */; };
+		2982955CC3DBD80896B9EDA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2CB89C3BBC773A2685A57 /* AppDelegate.swift */; };
 		77DED74D3903F724B5E21F94 /* Championship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF94F1B7FFEA78845976994 /* Championship.swift */; };
 		B255956FD8DA37CE9548E75E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A891A6379A8E24051EBE4113 /* GoogleService-Info.plist */; };
 		787DE133D67249675B69A70D /* MatchDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65807B78425B289771974EE6 /* MatchDetailViewModelTests.swift */; };
@@ -99,6 +100,7 @@
 		07C00E16086BB9C6ED819462 /* MatchdayViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchdayViewModelTests.swift; sourceTree = "<group>"; };
 		0B84BA767820581A92592C99 /* MatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTests.swift; sourceTree = "<group>"; };
 		0BF94F1B7FFEA78845976994 /* Championship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Championship.swift; sourceTree = "<group>"; };
+		B2F2CB89C3BBC773A2685A57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A891A6379A8E24051EBE4113 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0FEB1160665D8A2136DF3C6B /* Standing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standing.swift; sourceTree = "<group>"; };
 		159E2AE600FA152C8E2E8B89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 		721F0DDE2FADE19F27795CB5 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				B2F2CB89C3BBC773A2685A57 /* AppDelegate.swift */,
 				0BF94F1B7FFEA78845976994 /* Championship.swift */,
 			);
 			path = App;
@@ -609,6 +612,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				308BDF07837206FEA99E2593 /* AccentPill.swift in Sources */,
+				2982955CC3DBD80896B9EDA7 /* AppDelegate.swift in Sources */,
 				77DED74D3903F724B5E21F94 /* Championship.swift in Sources */,
 				2046BCCA92D95F60C13B21B6 /* ChampionshipConfig.swift in Sources */,
 				90F8DB51F22EB5E7497DB311 /* Color+Hex.swift in Sources */,

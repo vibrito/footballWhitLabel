@@ -3,6 +3,7 @@ import SwiftData
 
 @main
 struct ChampionshipApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     let config = ChampionshipConfig.brasileirao
     let modelContainer: ModelContainer
 
