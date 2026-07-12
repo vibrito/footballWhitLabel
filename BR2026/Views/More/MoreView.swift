@@ -1,12 +1,17 @@
 import SwiftUI
 
 struct MoreView: View {
-    @State private var viewModel = MoreViewModel()
+    @State private var viewModel: MoreViewModel
+
+    init(service: MatchService) {
+        _viewModel = State(initialValue: MoreViewModel(service: service))
+    }
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
+                    competitionHeader
                     ForEach(viewModel.sections) { section in
                         sectionView(section)
                     }
@@ -23,7 +28,35 @@ struct MoreView: View {
                     TermsOfServiceView()
                 }
             }
+            .task { await viewModel.loadCompetition() }
         }
+    }
+
+    private var competitionHeader: some View {
+        VStack(spacing: 8) {
+            AsyncImage(url: viewModel.competitionLogoURL) { phase in
+                switch phase {
+                case .success(let image):
+                    image.resizable().scaledToFit()
+                default:
+                    Circle()
+                        .fill(.white.opacity(0.07))
+                        .overlay(
+                            Image(systemName: "soccerball")
+                                .font(.system(size: 28))
+                                .foregroundStyle(.white.opacity(0.55))
+                        )
+                }
+            }
+            .frame(width: 64, height: 64)
+            if let name = viewModel.competitionName {
+                Text(name)
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundStyle(.white)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.bottom, 8)
     }
 
     private func sectionView(_ section: MoreSection) -> some View {
