@@ -238,6 +238,9 @@ screenshots reflect whatever matches/standings are live or scheduled at capture 
   - Live pulse: opacity `1→0.35→1`, scale `1→0.8→1`, 1.4s ease-in-out, repeat forever.
   - Refresh pulse: same values as the live pulse, in muted `white @ 0.5` instead of accent
     color — shown in the nav bar while a background data refresh (`isRefreshing`) is in flight.
+    Fixtures and Standings show it; Matchday deliberately doesn't (its blank system title
+    made the dot's mount/unmount visibly destabilize that screen's nav bar layout) — see
+    the comment in `MatchdayView.swift`.
 
 ---
 

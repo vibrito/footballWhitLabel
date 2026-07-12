@@ -46,13 +46,16 @@ struct MatchdayView: View {
                 // already set a real title.
                 .navigationTitle("")
                 .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        if viewModel.isRefreshing {
-                            RefreshPulseDot()
-                        }
-                    }
-                }
+                // Unlike Fixtures/Standings, Matchday doesn't show `RefreshPulseDot` in
+                // its toolbar: even after the fixes above, a report of the screen still
+                // shifting during refresh went away once the dot was removed here.
+                // The exact mechanism wasn't isolated the way `.navigationTitle` and
+                // `.refreshable`'s scroll correction were above — Matchday's blank
+                // system title is the one structural difference from Fixtures/Standings
+                // (which still show the dot without issue), so the dot's mount/unmount
+                // likely interacts with that, but this fix is empirical, not proven.
+                // `isRefreshing` is still tracked on the ViewModel; it's just not
+                // surfaced here.
                 // `.refreshable`'s content-inset negotiation can leave the scroll
                 // position settled somewhere other than where it started once `load()`
                 // reassigns `matches` mid-gesture — visible as the list appearing
