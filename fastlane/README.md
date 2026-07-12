@@ -47,6 +47,14 @@ Push release notes (What's New) to App Store Connect
 
 Build and upload a TestFlight beta
 
+### ios prepare_release
+
+```sh
+[bundle exec] fastlane ios prepare_release
+```
+
+Build a fresh binary, attach it to the App Store version, and push metadata + screenshots — does NOT submit for review
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
