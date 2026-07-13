@@ -4,7 +4,15 @@ import SwiftData
 @main
 struct ChampionshipApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    #if TARGET_PREMIER_LEAGUE
+    let config = ChampionshipConfig.premierLeague
+    #elseif TARGET_LIGUE_1
+    let config = ChampionshipConfig.ligue1
+    #elseif TARGET_PRIMEIRA_LIGA
+    let config = ChampionshipConfig.primeiraLiga
+    #else
     let config = ChampionshipConfig.brasileirao
+    #endif
     let modelContainer: ModelContainer
 
     init() {

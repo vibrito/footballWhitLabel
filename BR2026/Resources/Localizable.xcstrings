@@ -625,37 +625,37 @@
         }
       }
     },
-    "Light": {
+    "Default": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Light"
+            "value": "Default"
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Light"
+            "value": "Default"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clair"
+            "value": "Par défaut"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claro"
+            "value": "Padrão"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claro"
+            "value": "Padrão"
           }
         }
       }

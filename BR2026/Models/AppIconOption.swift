@@ -2,16 +2,23 @@ import Foundation
 
 enum AppIconOption: String, CaseIterable, Identifiable {
     case light
+    // Brasil/Stadium are Brasileirão-specific alternate icons. Other championship
+    // targets share this file but must not offer them — see `ChampionshipConfig`'s
+    // per-target #if selection in `Championship.swift` for the same pattern.
+    #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
     case brasil
     case stadium
+    #endif
 
     var id: String { rawValue }
 
     var displayName: LocalizedStringResource {
         switch self {
-        case .light: "Light"
+        case .light: "Default"
+        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
         case .brasil: "Brasil"
         case .stadium: "Stadium"
+        #endif
         }
     }
 
@@ -20,8 +27,10 @@ enum AppIconOption: String, CaseIterable, Identifiable {
     var iconAssetName: String? {
         switch self {
         case .light: nil
+        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
         case .brasil: "AppIcon-Brasil"
         case .stadium: "AppIcon-Stadium"
+        #endif
         }
     }
 
@@ -30,9 +39,20 @@ enum AppIconOption: String, CaseIterable, Identifiable {
     /// loadable via plain SwiftUI `Image(_:)` across iOS versions).
     var previewImageName: String {
         switch self {
-        case .light: "AppIconPreview-Light"
+        case .light:
+            #if TARGET_PREMIER_LEAGUE
+            "AppIconPreview-PremierLeague"
+            #elseif TARGET_LIGUE_1
+            "AppIconPreview-Ligue1"
+            #elseif TARGET_PRIMEIRA_LIGA
+            "AppIconPreview-PrimeiraLiga"
+            #else
+            "AppIconPreview-Light"
+            #endif
+        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
         case .brasil: "AppIconPreview-Brasil"
         case .stadium: "AppIconPreview-Stadium"
+        #endif
         }
     }
 }

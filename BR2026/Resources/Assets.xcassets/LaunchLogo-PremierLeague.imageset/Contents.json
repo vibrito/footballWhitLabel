@@ -1,0 +1,8 @@
+{
+  "images" : [
+    { "filename" : "LaunchLogo-PremierLeague@1x.png", "idiom" : "universal", "scale" : "1x" },
+    { "filename" : "LaunchLogo-PremierLeague@2x.png", "idiom" : "universal", "scale" : "2x" },
+    { "filename" : "LaunchLogo-PremierLeague.png", "idiom" : "universal", "scale" : "3x" }
+  ],
+  "info" : { "author" : "xcode", "version" : 1 }
+}
