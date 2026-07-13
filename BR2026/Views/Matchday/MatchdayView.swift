@@ -72,6 +72,7 @@ struct MatchdayView: View {
                 }
             }
         }
+        .trackScreen("Matchday")
     }
 
     private static let topAnchor = "matchdayTop"

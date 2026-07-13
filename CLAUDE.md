@@ -217,8 +217,13 @@ BR2026/
   UI ever appears. `BR2026.entitlements` sets `aps-environment: development` (Xcode swaps in
   `production` for distribution builds automatically); `UIBackgroundModes` includes
   `remote-notification` for silent delivery.
-- Analytics collection is automatic-only — no `Analytics.logEvent(...)` calls anywhere in
-  the codebase. Crashlytics uploads dSYMs via a Run Script build phase on the app target.
+- Firebase's automatic `screen_view` tracking relies on swizzling `UIViewController`
+  lifecycle methods, which SwiftUI's non-UIKit-backed view hierarchy never triggers — so
+  every top-level screen calls `View.trackScreen(_:)` (`BR2026/Services/ScreenTracking.swift`)
+  on appear, which manually logs `AnalyticsEventScreenView` via `Analytics.logEvent(...)`.
+  This is the only place analytics events are logged explicitly; everything else Firebase
+  reports (`first_open`, `session_start`, etc.) remains automatic. Crashlytics uploads
+  dSYMs via a Run Script build phase on the app target.
 
 ---
 

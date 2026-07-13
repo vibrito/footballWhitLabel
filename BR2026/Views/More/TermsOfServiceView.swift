@@ -13,5 +13,6 @@ struct TermsOfServiceView: View {
         .background(StadiumBackground())
         .navigationTitle("Terms of Service")
         .navigationBarTitleDisplayMode(.inline)
+        .trackScreen("TermsOfService")
     }
 }

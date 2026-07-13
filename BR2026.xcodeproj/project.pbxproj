@@ -19,6 +19,7 @@
 		0DA4761CA3613C120DDBFC6B /* AppIconPickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CAF5081983FCB3F4E3601 /* AppIconPickerViewModelTests.swift */; };
 		0DD89A55A83B7442558808AC /* LiveChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286FB1656839DC4F8940242C /* LiveChip.swift */; };
 		1067F3CFAC923A62A05BB51B /* CompetitionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4E5DB77DD896FEAF3C9B6 /* CompetitionDTO.swift */; };
+		12B669F88738808BFF8A5F0C /* ScreenTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404494D46245C078DB19DE9E /* ScreenTracking.swift */; };
 		1307E3DE65E860962CC46AFD /* CompetitionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4E5DB77DD896FEAF3C9B6 /* CompetitionDTO.swift */; };
 		164A200E52B7510A29A0867A /* TeamCrestCacheStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387160DBDCC7939421B9C3AE /* TeamCrestCacheStore.swift */; };
 		17023105D58971A38864B800 /* TeamCrestCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEB1ACAA1C8C48F9424806E /* TeamCrestCache.swift */; };
@@ -65,6 +66,7 @@
 		371A2DE7EB1FB90A480FFE94 /* MatchdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750454E4C32D9EEA69417686 /* MatchdayViewModel.swift */; };
 		3759A7CAD306054ADEA8894E /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCD3323E3758CD78F54E1C6 /* Match.swift */; };
 		3940783C59FBAA955353BF2F /* MatchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855292C3DDAE65CCAE220B7F /* MatchDetailView.swift */; };
+		395DEC187D387AA8D6AC2B61 /* ScreenTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404494D46245C078DB19DE9E /* ScreenTracking.swift */; };
 		3A4963061B520B3CA1C72593 /* FixtureMatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5323866C610E927C418D01F7 /* FixtureMatchCard.swift */; };
 		3B95EFBE4C88EB14E4F31E90 /* MatchDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD89602CB168BCB0121EAA /* MatchDTO.swift */; };
 		3C791B326F68ACB2847373B5 /* FixtureMatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5323866C610E927C418D01F7 /* FixtureMatchCard.swift */; };
@@ -101,6 +103,7 @@
 		5F844D1A1BFE7FF0FC6E9DD4 /* AccentPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0A7BD56D54A97E185D54C /* AccentPill.swift */; };
 		5FAFA44052FB85D4AA42697A /* MockMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB245877F3BE6246A841B9 /* MockMatchService.swift */; };
 		5FBE66615A9343F209583887 /* StadiumBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A71A2EA3718A5D31948205 /* StadiumBackground.swift */; };
+		610E3989F74E3B10B719FD83 /* ScreenTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404494D46245C078DB19DE9E /* ScreenTracking.swift */; };
 		61772B18B94F670701FC38FC /* MatchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED24EAB2931D750D08DD21 /* MatchDetailViewModel.swift */; };
 		61CDD32622B4B8E59ADB348E /* Standing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB1160665D8A2136DF3C6B /* Standing.swift */; };
 		62816290B66561889C7AE924 /* MatchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED24EAB2931D750D08DD21 /* MatchDetailViewModel.swift */; };
@@ -169,6 +172,7 @@
 		9931DA32EB37756C7A35F694 /* FixturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0B10181CB912E1D1C2625 /* FixturesView.swift */; };
 		9A9E0033D61EC0CCC87AEF22 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCD3323E3758CD78F54E1C6 /* Match.swift */; };
 		9AD1B326A17E4676A94418A1 /* CrossAppLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A4F30D065FAD4962486232 /* CrossAppLink.swift */; };
+		9C15B057365410DF5C1E6488 /* ScreenTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404494D46245C078DB19DE9E /* ScreenTracking.swift */; };
 		9CE891312A9D178A93B488D7 /* MoreDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58243C349D4EF0FFEFA192A4 /* MoreDestination.swift */; };
 		9FFA5084B6DF59DF0F1939D0 /* FixtureMatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5323866C610E927C418D01F7 /* FixtureMatchCard.swift */; };
 		A20D80976CBBEB3645DE256E /* AppIconSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBD8CC8C85D68BA0C23F8 /* AppIconSetting.swift */; };
@@ -293,6 +297,7 @@
 		387160DBDCC7939421B9C3AE /* TeamCrestCacheStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamCrestCacheStore.swift; sourceTree = "<group>"; };
 		3D40C5B68AD965EA2F417DC1 /* MoreSection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreSection.swift; sourceTree = "<group>"; };
 		3F82B99CAA89D84274D4532B /* MoreRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreRow.swift; sourceTree = "<group>"; };
+		404494D46245C078DB19DE9E /* ScreenTracking.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScreenTracking.swift; sourceTree = "<group>"; };
 		405A27244C12B147F7F5B26E /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		422EC54CAAA878A2718771BB /* ScoreRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreRow.swift; sourceTree = "<group>"; };
 		433CAF5081983FCB3F4E3601 /* AppIconPickerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconPickerViewModelTests.swift; sourceTree = "<group>"; };
@@ -734,6 +739,7 @@
 				43EEBD8CC8C85D68BA0C23F8 /* AppIconSetting.swift */,
 				58D8B29BA18BFFE20D1E0801 /* CrossAppLinkResolver.swift */,
 				387160DBDCC7939421B9C3AE /* TeamCrestCacheStore.swift */,
+				404494D46245C078DB19DE9E /* ScreenTracking.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1137,6 +1143,7 @@
 				35AB6C15F199028D687BE27E /* CrossAppLinkResolver.swift in Sources */,
 				17023105D58971A38864B800 /* TeamCrestCache.swift in Sources */,
 				53D7D1E6B16FA4EA133E7809 /* TeamCrestCacheStore.swift in Sources */,
+				395DEC187D387AA8D6AC2B61 /* ScreenTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1194,6 +1201,7 @@
 				5F2DC62D2D965EF57EE6535B /* CrossAppLinkResolver.swift in Sources */,
 				EF95FF8344CFE3108B7BADB5 /* TeamCrestCache.swift in Sources */,
 				164A200E52B7510A29A0867A /* TeamCrestCacheStore.swift in Sources */,
+				12B669F88738808BFF8A5F0C /* ScreenTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1274,6 +1282,7 @@
 				7B1BCF71A46CE594F588DCFE /* CrossAppLinkResolver.swift in Sources */,
 				9060954E957F2F2126977068 /* TeamCrestCache.swift in Sources */,
 				30F680135B37591061E1B1C7 /* TeamCrestCacheStore.swift in Sources */,
+				610E3989F74E3B10B719FD83 /* ScreenTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1331,6 +1340,7 @@
 				7821482A81C084D242D51FAE /* CrossAppLinkResolver.swift in Sources */,
 				950CE77BC987981429614E98 /* TeamCrestCache.swift in Sources */,
 				F671DCCC61A861EA084D16AD /* TeamCrestCacheStore.swift in Sources */,
+				9C15B057365410DF5C1E6488 /* ScreenTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,6 +25,7 @@ struct MatchDetailView: View {
         .background(StadiumBackground())
         .presentationDragIndicator(.visible)
         .task { await viewModel.load() }
+        .trackScreen("MatchDetail")
     }
 
     private var header: some View {

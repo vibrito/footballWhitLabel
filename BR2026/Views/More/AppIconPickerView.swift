@@ -36,6 +36,7 @@ struct AppIconPickerView: View {
         .background(StadiumBackground())
         .navigationTitle("App Icon")
         .navigationBarTitleDisplayMode(.inline)
+        .trackScreen("AppIconPicker")
     }
 
     private func rowView(_ option: AppIconOption) -> some View {

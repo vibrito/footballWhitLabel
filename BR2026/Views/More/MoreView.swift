@@ -38,6 +38,7 @@ struct MoreView: View {
             }
             .task { await viewModel.loadOnce() }
         }
+        .trackScreen("More")
     }
 
     private var competitionHeader: some View {

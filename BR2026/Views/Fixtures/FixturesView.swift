@@ -54,6 +54,7 @@ struct FixturesView: View {
                 MatchDetailView(match: match, service: service)
             }
         }
+        .trackScreen("Fixtures")
     }
 
     private var roundPicker: some View {

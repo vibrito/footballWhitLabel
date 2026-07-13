@@ -50,6 +50,7 @@ struct StandingsView: View {
                 .task { await viewModel.loadOnce() }
             }
         }
+        .trackScreen("Standings")
     }
 
     private static let topAnchor = "standingsTop"
