@@ -170,12 +170,38 @@ platform :ios do
   desc "Register a bundle ID and create its App Store Connect app record (one-time, per new app)"
   lane :create_app do |options|
     app = resolve_app(options)
-    produce(
-      api_key: asc_api_key,
-      app_identifier: app[:bundle_id],
-      app_name: options[:app_name] || UI.user_error!("Pass app_name: \"Display Name\""),
-      language: "English",
-      skip_itc: false
-    )
+    app_name = options[:app_name] || UI.user_error!("Pass app_name: \"Display Name\"")
+
+    # `produce` unconditionally requires a username even with an API key configured
+    # (a limitation of this fastlane version) — talk to the Connect API directly
+    # instead, via the same Spaceship session app_store_connect_api_key sets up.
+    asc_api_key
+
+    bundle_id = Spaceship::ConnectAPI::BundleId.all(filter: { identifier: app[:bundle_id] }).first
+    if bundle_id
+      UI.success("Bundle ID #{app[:bundle_id]} already registered — reusing it")
+    else
+      bundle_id = Spaceship::ConnectAPI::BundleId.create(
+        name: app_name,
+        platform: "IOS",
+        identifier: app[:bundle_id]
+      )
+      UI.success("Registered bundle ID #{app[:bundle_id]}")
+    end
+
+    existing_app = Spaceship::ConnectAPI::App.find(app[:bundle_id])
+    if existing_app
+      UI.success("App Store Connect app for #{app[:bundle_id]} already exists — nothing to do")
+    else
+      Spaceship::ConnectAPI::App.create(
+        name: app_name,
+        version_string: "1.0",
+        sku: app[:bundle_id],
+        primary_locale: "en-US",
+        bundle_id: bundle_id.id,
+        platforms: ["IOS"]
+      )
+      UI.success("Created App Store Connect app '#{app_name}' (#{app[:bundle_id]})")
+    end
   end
 end
