@@ -70,6 +70,7 @@
 		4CD1E855D1C656941C28C7BA /* MatchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828CC19752FF614A96C2286 /* MatchStatus.swift */; };
 		52111A2B37EC80C751EB0F77 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7CD31B3A17497FD8945EA /* StandingsView.swift */; };
 		52AC218C2E201C2208F0492C /* AppIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A466914FB52022A91A3EFDC /* AppIconPickerView.swift */; };
+		52AC6703D4B7539B1CABB611 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0623F774E7695B36808EDD20 /* GoogleService-Info.plist */; };
 		5456BE329E2096D14135D784 /* AppIconPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C4923C4C3A35A6E0D97D /* AppIconPickerViewModel.swift */; };
 		5585F0B7AC148CE814D13A0B /* MatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0996F787521F2EF840C43 /* MatchService.swift */; };
 		56DA2E708A2F8AE9CE8B7FF6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E997B71FC9534C0287BE63 /* Foundation.framework */; };
@@ -168,7 +169,6 @@
 		AE1EAA6BD4DAC31C22E2924C /* LiveMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5C675322020A4A48668C2 /* LiveMatchService.swift */; };
 		AF0603ED0A3D0378569DF7B6 /* HeroMatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD698E976EAC4B8C3CF2B7 /* HeroMatchCard.swift */; };
 		AFFFEB7744B080B447DED361 /* Championship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF94F1B7FFEA78845976994 /* Championship.swift */; };
-		B255956FD8DA37CE9548E75E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A891A6379A8E24051EBE4113 /* GoogleService-Info.plist */; };
 		B26645A9BC6FF7CE8E8848A0 /* MoreRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F82B99CAA89D84274D4532B /* MoreRow.swift */; };
 		B268EAFDC8E0F99C8C731B97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 159E2AE600FA152C8E2E8B89 /* Assets.xcassets */; };
 		B34A3BF270A30927F93DC6ED /* LiveMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5C675322020A4A48668C2 /* LiveMatchService.swift */; };
@@ -258,6 +258,7 @@
 /* Begin PBXFileReference section */
 		02B4F41036B3BF67A1879D29 /* FixturesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesViewModel.swift; sourceTree = "<group>"; };
 		05E997B71FC9534C0287BE63 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		0623F774E7695B36808EDD20 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		07C00E16086BB9C6ED819462 /* MatchdayViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchdayViewModelTests.swift; sourceTree = "<group>"; };
 		0B84BA767820581A92592C99 /* MatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTests.swift; sourceTree = "<group>"; };
 		0BF94F1B7FFEA78845976994 /* Championship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Championship.swift; sourceTree = "<group>"; };
@@ -519,6 +520,14 @@
 			path = Matchday;
 			sourceTree = "<group>";
 		};
+		669E6A1A4285F1A0DFB694D2 /* BR2026 */ = {
+			isa = PBXGroup;
+			children = (
+				0623F774E7695B36808EDD20 /* GoogleService-Info.plist */,
+			);
+			name = BR2026;
+			sourceTree = "<group>";
+		};
 		7057C6184FF2D44AA95632AD /* BR2026 */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,6 +542,7 @@
 				C82B55BC23D2E2B7E687DD1B /* Services */,
 				085C7A50BD926D609AA11002 /* ViewModels */,
 				584338B08ABF7F7095DF2E75 /* Views */,
+				FD3F4A978718622027186302 /* Firebase */,
 			);
 			path = BR2026;
 			sourceTree = "<group>";
@@ -684,6 +694,14 @@
 				9D6DA06CFA4EC9C1C40A3F48 /* PrimeiraLiga2026.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FD3F4A978718622027186302 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				669E6A1A4285F1A0DFB694D2 /* BR2026 */,
+			);
+			name = Firebase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -882,8 +900,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				261FFCAAB309FB7860858788 /* Assets.xcassets in Resources */,
-				B255956FD8DA37CE9548E75E /* GoogleService-Info.plist in Resources */,
 				89D54DD920AF8B23605BED08 /* Localizable.xcstrings in Resources */,
+				52AC6703D4B7539B1CABB611 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
