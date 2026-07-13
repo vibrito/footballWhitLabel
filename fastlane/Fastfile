@@ -1,7 +1,36 @@
 default_platform(:ios)
 
-SCHEME = "BR2026"
-APP_IDENTIFIER = "com.vibrito.br2026"
+APPS = {
+  "br2026" => {
+    scheme: "BR2026",
+    bundle_id: "com.vibrito.br2026",
+    metadata_path: "fastlane/metadata/br2026",
+    screenshots_path: "fastlane/screenshots/br2026"
+  },
+  "premier_league" => {
+    scheme: "PremierLeague2026",
+    bundle_id: "com.vibrito.premierleague2026",
+    metadata_path: "fastlane/metadata/premier_league",
+    screenshots_path: "fastlane/screenshots/premier_league"
+  },
+  "ligue1" => {
+    scheme: "Ligue12026",
+    bundle_id: "com.vibrito.ligue12026",
+    metadata_path: "fastlane/metadata/ligue1",
+    screenshots_path: "fastlane/screenshots/ligue1"
+  },
+  "primeira_liga" => {
+    scheme: "PrimeiraLiga2026",
+    bundle_id: "com.vibrito.primeiraliga2026",
+    metadata_path: "fastlane/metadata/primeira_liga",
+    screenshots_path: "fastlane/screenshots/primeira_liga"
+  }
+}.freeze
+
+def resolve_app(options)
+  key = (options[:app] || "br2026").to_s
+  APPS.fetch(key) { UI.user_error!("Unknown app '#{key}' — expected one of: #{APPS.keys.join(', ')}") }
+end
 
 def asc_api_key
   app_store_connect_api_key(
@@ -16,7 +45,7 @@ end
 # like Push Notifications) when explicitly told to via -allowProvisioningUpdates,
 # and needs API key auth (with at least the App Manager role — Developer-role
 # keys can't manage certs/profiles) to do so non-interactively from the CLI.
-def build_and_upload_to_testflight(api_key:, build_number:, skip_submission: false)
+def build_and_upload_to_testflight(app:, api_key:, build_number:, skip_submission: false)
   provisioning_update_args = [
     "-allowProvisioningUpdates",
     "-authenticationKeyPath \"#{ENV['ASC_KEY_FILEPATH']}\"",
@@ -25,7 +54,7 @@ def build_and_upload_to_testflight(api_key:, build_number:, skip_submission: fal
   ].join(" ")
 
   gym(
-    scheme: SCHEME,
+    scheme: app[:scheme],
     export_method: "app-store",
     output_directory: "./build",
     clean: true,
@@ -33,51 +62,68 @@ def build_and_upload_to_testflight(api_key:, build_number:, skip_submission: fal
     export_xcargs: provisioning_update_args
   )
 
-  upload_to_testflight(api_key: api_key, skip_submission: skip_submission, skip_waiting_for_build_processing: false)
+  upload_to_testflight(
+    api_key: api_key,
+    app_identifier: app[:bundle_id],
+    skip_submission: skip_submission,
+    skip_waiting_for_build_processing: false
+  )
 end
 
 platform :ios do
   desc "Run the BR2026Tests unit test suite"
-  lane :test do
-    scan(scheme: SCHEME, devices: ["iPhone 17"])
+  lane :test do |options|
+    app = resolve_app(options)
+    scan(scheme: app[:scheme], devices: ["iPhone 17"])
   end
 
   desc "Generate App Store screenshots for all supported locales"
-  lane :screenshots do
-    snapshot
+  lane :screenshots do |options|
+    app = resolve_app(options)
+    snapshot(
+      scheme: app[:scheme],
+      output_directory: app[:screenshots_path],
+      xcargs: "TEST_RUNNER_SNAPSHOT_BUNDLE_ID=#{app[:bundle_id]}"
+    )
   end
 
   desc "Push release notes (What's New) to App Store Connect"
-  lane :release_notes do
+  lane :release_notes do |options|
+    app = resolve_app(options)
     deliver(
       api_key: asc_api_key,
+      app_identifier: app[:bundle_id],
+      metadata_path: app[:metadata_path],
       skip_binary_upload: true,
       skip_screenshots: true,
       skip_metadata: false,
       submit_for_review: false,
-      # precheck's in-app purchase check requires a full Apple ID web session and
-      # can't run with API-key-only auth; this app has no IAP so it's a no-op anyway.
       run_precheck_before_submit: false
     )
   end
 
   desc "Build and upload a TestFlight beta"
-  lane :beta do
+  lane :beta do |options|
+    app = resolve_app(options)
     api_key = asc_api_key
-    build_number = (latest_testflight_build_number(api_key: api_key) + 1).to_s
+    build_number = (latest_testflight_build_number(api_key: api_key, app_identifier: app[:bundle_id]) + 1).to_s
 
-    build_and_upload_to_testflight(api_key: api_key, build_number: build_number)
+    build_and_upload_to_testflight(app: app, api_key: api_key, build_number: build_number)
   end
 
   desc "Build a fresh binary, attach it to the App Store version, and push metadata + screenshots — does NOT submit for review"
-  lane :prepare_release do
+  lane :prepare_release do |options|
+    app = resolve_app(options)
     api_key = asc_api_key
-    build_number = (latest_testflight_build_number(api_key: api_key) + 1).to_s
+    build_number = (latest_testflight_build_number(api_key: api_key, app_identifier: app[:bundle_id]) + 1).to_s
 
-    build_and_upload_to_testflight(api_key: api_key, build_number: build_number, skip_submission: true)
+    build_and_upload_to_testflight(app: app, api_key: api_key, build_number: build_number, skip_submission: true)
 
     deliver(
       api_key: api_key,
+      app_identifier: app[:bundle_id],
+      metadata_path: app[:metadata_path],
+      screenshots_path: app[:screenshots_path],
       build_number: build_number,
       skip_binary_upload: true,
       skip_screenshots: false,
@@ -90,18 +136,21 @@ platform :ios do
     # deliver's build_number: param does not reliably attach the build to the
     # App Store version (observed: it silently left a July 3rd build attached
     # instead of the one just uploaded) — set it explicitly via the Connect API.
-    app = Spaceship::ConnectAPI::App.find(APP_IDENTIFIER)
-    version = app.get_edit_app_store_version
-    build = app.get_builds(filter: { processingState: "VALID", version: build_number }).first
+    connect_app = Spaceship::ConnectAPI::App.find(app[:bundle_id])
+    version = connect_app.get_edit_app_store_version
+    build = connect_app.get_builds(filter: { processingState: "VALID", version: build_number }).first
     UI.user_error!("Build #{build_number} not found or not yet VALID") unless build
     Spaceship::ConnectAPI.patch_app_store_version_with_build(app_store_version_id: version.id, build_id: build.id)
     UI.success("Attached build #{build_number} to App Store version #{version.version_string}")
   end
 
   desc "Submit the currently-attached build for Apple review — does NOT auto-release; requires a manual Release click in App Store Connect after approval"
-  lane :submit_for_review do
+  lane :submit_for_review do |options|
+    app = resolve_app(options)
     deliver(
       api_key: asc_api_key,
+      app_identifier: app[:bundle_id],
+      metadata_path: app[:metadata_path],
       skip_binary_upload: true,
       skip_screenshots: true,
       skip_metadata: true,
@@ -115,6 +164,18 @@ platform :ios do
         # compliance exemption.
         export_compliance_uses_encryption: false
       }
+    )
+  end
+
+  desc "Register a bundle ID and create its App Store Connect app record (one-time, per new app)"
+  lane :create_app do |options|
+    app = resolve_app(options)
+    produce(
+      api_key: asc_api_key,
+      app_identifier: app[:bundle_id],
+      app_name: options[:app_name] || UI.user_error!("Pass app_name: \"Display Name\""),
+      language: "English",
+      skip_itc: false
     )
   end
 end
