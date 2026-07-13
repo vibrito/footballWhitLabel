@@ -15,7 +15,7 @@ struct ContentView: View {
             StandingsView(service: service)
                 .tabItem { Label("Standings", systemImage: "chart.bar") }
                 .tint(Color(hex: config.accentColorHex))
-            MoreView(service: service)
+            MoreView(service: service, tabSelectionColorHex: config.tabSelectionColorHex)
                 .tabItem { Label("More", systemImage: "ellipsis.circle") }
                 .tint(Color(hex: config.accentColorHex))
         }

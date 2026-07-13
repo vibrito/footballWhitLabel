@@ -3,9 +3,11 @@ import UIKit
 
 struct MoreView: View {
     @State private var viewModel: MoreViewModel
+    let tabSelectionColorHex: String
 
-    init(service: MatchService) {
+    init(service: MatchService, tabSelectionColorHex: String) {
         _viewModel = State(initialValue: MoreViewModel(service: service))
+        self.tabSelectionColorHex = tabSelectionColorHex
     }
 
     var body: some View {
@@ -28,7 +30,10 @@ struct MoreView: View {
                 case .termsOfService:
                     TermsOfServiceView()
                 case .appIconPicker:
-                    AppIconPickerView(viewModel: AppIconPickerViewModel(iconSetting: UIKitAppIconSetting()))
+                    AppIconPickerView(
+                        viewModel: AppIconPickerViewModel(iconSetting: UIKitAppIconSetting()),
+                        selectionColorHex: tabSelectionColorHex
+                    )
                 }
             }
             .task { await viewModel.loadOnce() }
