@@ -2,8 +2,12 @@ import XCTest
 
 @MainActor
 final class SnapshotUITests: XCTestCase {
+    private var targetBundleID: String {
+        ProcessInfo.processInfo.environment["SNAPSHOT_BUNDLE_ID"] ?? "com.vibrito.br2026"
+    }
+
     func testCaptureScreenshots() {
-        let app = XCUIApplication()
+        let app = XCUIApplication(bundleIdentifier: targetBundleID)
         setupSnapshot(app)
         app.launch()
 
