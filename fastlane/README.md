@@ -63,6 +63,14 @@ Build a fresh binary, attach it to the App Store version, and push metadata + sc
 
 Submit the currently-attached build for Apple review — does NOT auto-release; requires a manual Release click in App Store Connect after approval
 
+### ios create_app
+
+```sh
+[bundle exec] fastlane ios create_app
+```
+
+Register a bundle ID and create its App Store Connect app record (one-time, per new app)
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
