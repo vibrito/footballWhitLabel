@@ -214,6 +214,7 @@
 		E2262624ABC32658B42DDBF7 /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F0E8AA4BDCF972420F7225 /* StandingsViewModel.swift */; };
 		E535AD91E7B1012DA85F64BE /* MockMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB245877F3BE6246A841B9 /* MockMatchService.swift */; };
 		E621210241C77A2CF5EFBFD8 /* MatchSwiftDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CB1386053224A356B2C76 /* MatchSwiftDataTests.swift */; };
+		E66DD634624912B581FAEF55 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8CF323F6CB078DD95C97DFF /* GoogleService-Info.plist */; };
 		E89B0406F1D37EFC15F2E56D /* StadiumBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A71A2EA3718A5D31948205 /* StadiumBackground.swift */; };
 		E966C0E3021F7E1DD363EF9F /* RefreshPulseDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E56E6E7A24AE0A0C87B950 /* RefreshPulseDot.swift */; };
 		EA287A6CAFE19BF88695D490 /* AppIconPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C4923C4C3A35A6E0D97D /* AppIconPickerViewModel.swift */; };
@@ -233,7 +234,6 @@
 		F73B51C7980BB214B1A8A273 /* FixturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B4F41036B3BF67A1879D29 /* FixturesViewModel.swift */; };
 		F8753E7148445780C5008DB5 /* AppIconSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBD8CC8C85D68BA0C23F8 /* AppIconSetting.swift */; };
 		FB714CB75250CF9105A811D7 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FE51A17C184987431DD87C7A /* FirebaseMessaging */; };
-		FC0E5C25C73B7601407ACCDA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A891A6379A8E24051EBE4113 /* GoogleService-Info.plist */; };
 		FCDFE9BEC30AA85EDC5A3EE2 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7CD31B3A17497FD8945EA /* StandingsView.swift */; };
 		FDD275A764EAA7CCC95B5311 /* MatchdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB8A210105388EE24ECD77 /* MatchdayView.swift */; };
 /* End PBXBuildFile section */
@@ -319,6 +319,7 @@
 		C275BFBA9A3D380BE80231BA /* StandingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModelTests.swift; sourceTree = "<group>"; };
 		C2D44350EAD06089AFB83195 /* MatchTimelineRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTimelineRow.swift; sourceTree = "<group>"; };
 		C8B5197C926950D13285B1E1 /* StandingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingTests.swift; sourceTree = "<group>"; };
+		C8CF323F6CB078DD95C97DFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD8D9AD201506F2944831655 /* MoreViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreViewModelTests.swift; sourceTree = "<group>"; };
 		CF19AF830233C51EF5882C73 /* MockMatchServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMatchServiceTests.swift; sourceTree = "<group>"; };
 		D171E9A2D09CD427D7F26420 /* BR2026Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BR2026Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -443,6 +444,14 @@
 				7A466914FB52022A91A3EFDC /* AppIconPickerView.swift */,
 			);
 			path = More;
+			sourceTree = "<group>";
+		};
+		2D9B9DF2A411D84BA4CA09DF /* PremierLeague2026 */ = {
+			isa = PBXGroup;
+			children = (
+				C8CF323F6CB078DD95C97DFF /* GoogleService-Info.plist */,
+			);
+			name = PremierLeague2026;
 			sourceTree = "<group>";
 		};
 		3404D8F54614FEA31C43870A /* Models */ = {
@@ -700,6 +709,7 @@
 			isa = PBXGroup;
 			children = (
 				669E6A1A4285F1A0DFB694D2 /* BR2026 */,
+				2D9B9DF2A411D84BA4CA09DF /* PremierLeague2026 */,
 			);
 			name = Firebase;
 			sourceTree = "<group>";
@@ -928,9 +938,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9419259149DB9E3125BCFA2D /* Assets.xcassets in Resources */,
-				FC0E5C25C73B7601407ACCDA /* GoogleService-Info.plist in Resources */,
 				AB9FA617F36BF0CAB80DB868 /* Localizable.xcstrings in Resources */,
 				77A1373A7BA2F68B2DC1D9B2 /* LaunchScreen-PremierLeague.storyboard in Resources */,
+				E66DD634624912B581FAEF55 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
