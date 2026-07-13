@@ -1,0 +1,11 @@
+Follow the Premier League like never before. Live scores, fixtures, and the full standings table — fast, clean, and always up to date.
+
+FEATURES
+
+• Matchday — live scores that update as goals go in, with a clean view of everything happening today
+• Fixtures — the full season schedule, match by match
+• Standings — the complete Premier League table, updated after every round
+• Match Details — goals, cards, and substitutions for any match, in order
+• Instant on launch — your last-seen scores and table load immediately, then refresh automatically
+
+Built for speed and clarity: no clutter, no accounts, no sign-in. Just open the app and see what's happening in the Premier League right now.

@@ -1,0 +1,11 @@
+Acompanhe a Premier League como nunca antes. Placares ao vivo, jogos e a tabela completa — rápido, limpo e sempre atualizado.
+
+RECURSOS
+
+• Rodada — placares ao vivo que atualizam a cada gol, com uma visão clara de tudo que acontece hoje
+• Jogos — o calendário completo da temporada, partida por partida
+• Classificação — a tabela completa da Premier League, atualizada após cada rodada
+• Detalhes da Partida — gols, cartões e substituições de qualquer jogo, em ordem
+• Instantâneo ao abrir — seus últimos placares e a tabela carregam na hora, depois atualizam automaticamente
+
+Feito para ser rápido e claro: sem poluição visual, sem conta, sem login. Basta abrir o app e ver o que está acontecendo na Premier League agora.
