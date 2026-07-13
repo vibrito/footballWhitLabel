@@ -3,7 +3,7 @@
 ## Goal
 
 Expand the white-label architecture from one app (Brasileirão) to four: add three new
-Xcode targets — Premier League, Ligue 1, and Primeira Liga — sharing all existing source
+Xcode targets — Premier League, Ligue 1, and Liga Portugal — sharing all existing source
 code, differing only in configuration, branding, and per-target assets. This is the first
 of several planned expansions (see Scope below for what's explicitly deferred).
 
@@ -17,7 +17,7 @@ live API before starting this design:
 |---|---|---|---|
 | Premier League | `PL` | 380 matches | populated |
 | Ligue 1 | `FL1` | 306 matches | populated |
-| Primeira Liga | `PPL` | 306 matches | populated |
+| Liga Portugal | `PPL` | 306 matches | populated |
 
 No backend changes are needed for this phase.
 
@@ -66,7 +66,7 @@ leagues):
 |---|---|---|---|---|
 | Premier League | `"premier-league"` | `"PL"` | `#3D195B` | Official "Purple Power" brand color |
 | Ligue 1 | `"ligue-1"` | `"FL1"` | `#FACC15` | Accent color from Ligue 1's 2024 rebrand palette |
-| Primeira Liga | `"primeira-liga"` | `"PPL"` | `#00235A` | Official Primeira Liga navy blue |
+| Liga Portugal | `"primeira-liga"` | `"PPL"` | `#00235A` | Official Liga Portugal navy blue |
 
 ## Per-Target Bundle IDs and Display Names
 
@@ -76,7 +76,7 @@ Matches the existing `com.vibrito.br2026` / "BR 2026" pattern:
 |---|---|---|
 | `PremierLeague2026` | `com.vibrito.premierleague2026` | Premier League 2026 |
 | `Ligue12026` | `com.vibrito.ligue12026` | Ligue 1 2026 |
-| `PrimeiraLiga2026` | `com.vibrito.primeiraliga2026` | Primeira Liga 2026 |
+| `PrimeiraLiga2026` | `com.vibrito.primeiraliga2026` | Liga Portugal 2026 |
 
 ## Localization
 

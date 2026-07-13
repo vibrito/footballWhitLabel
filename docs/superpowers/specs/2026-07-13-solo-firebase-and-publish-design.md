@@ -1,4 +1,4 @@
-# Solo Firebase + Publish for Premier League, Ligue 1, Primeira Liga — Design
+# Solo Firebase + Publish for Premier League, Ligue 1, Liga Portugal — Design
 
 ## Context
 
@@ -19,11 +19,11 @@ project, and each is taken through the same publish pipeline `BR2026` already we
 
 ## Goal
 
-Premier League, Ligue 1, and Primeira Liga each end this phase with: their own Firebase
+Premier League, Ligue 1, and Liga Portugal each end this phase with: their own Firebase
 project (separate Analytics/Crashlytics data from BR2026 and from each other), their own
 registered bundle ID and App Store Connect app record, and a build submitted for Apple
 review — done one app at a time, matching how icons/splash screens were reviewed earlier
-(Premier League → Ligue 1 → Primeira Liga).
+(Premier League → Ligue 1 → Liga Portugal).
 
 ## Firebase: per-target file separation, no code changes
 

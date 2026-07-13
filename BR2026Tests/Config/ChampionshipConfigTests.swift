@@ -36,7 +36,7 @@ struct ChampionshipConfigTests {
         #expect(config.apiBaseURL.absoluteString == "https://football-api-production-16d9.up.railway.app")
     }
 
-    @Test("Primeira Liga config has expected values")
+    @Test("Liga Portugal config has expected values")
     func primeiraLigaDefaults() {
         let config = ChampionshipConfig.primeiraLiga
         #expect(config.id == "primeira-liga")

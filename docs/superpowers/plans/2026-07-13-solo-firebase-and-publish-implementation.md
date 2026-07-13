@@ -10,7 +10,7 @@
 > proceed without a live human action (either the user's, in the Firebase console, or an
 > explicit go-ahead before an irreversible submission).
 
-**Goal:** Give Premier League, Ligue 1, and Primeira Liga each their own standalone Firebase
+**Goal:** Give Premier League, Ligue 1, and Liga Portugal each their own standalone Firebase
 project, then take each through the same TestFlight → App Store pipeline BR2026 already
 completed, per `docs/superpowers/specs/2026-07-13-solo-firebase-and-publish-design.md`.
 
@@ -19,7 +19,7 @@ completed, per `docs/superpowers/specs/2026-07-13-solo-firebase-and-publish-desi
 auto-discovers by filename). Fastlane's lanes become parameterized by an `app:` key resolving
 to that app's scheme/bundle ID/metadata path. Apple-side app creation goes through
 `fastlane produce` using the existing ASC API key. The 3 apps are done one at a time, in order:
-Premier League → Ligue 1 → Primeira Liga.
+Premier League → Ligue 1 → Liga Portugal.
 
 **Tech Stack:** `xcodeproj` Ruby gem (pbxproj surgery), fastlane (`produce`, `scan`, `snapshot`,
 `gym`, `deliver`, `upload_to_testflight`), XCUITest (`XCUIApplication(bundleIdentifier:)`).
@@ -30,7 +30,7 @@ Premier League → Ligue 1 → Primeira Liga.
   `com.vibrito.premierleague2026`, `com.vibrito.ligue12026`, `com.vibrito.primeiraliga2026`.
 - Scheme names (fixed): `BR2026`, `PremierLeague2026`, `Ligue12026`, `PrimeiraLiga2026`.
 - Order: Premier League fully done (through `submit_for_review`) before starting Ligue 1;
-  Ligue 1 fully done before starting Primeira Liga.
+  Ligue 1 fully done before starting Liga Portugal.
 - Every `submit_for_review` invocation requires an explicit go-ahead in chat first — this is
   the one genuinely irreversible action in the whole plan (per the project's own safety rules
   around actions "visible to others or affecting shared state").
@@ -590,9 +590,9 @@ git commit -m "Give Ligue 1 its own Firebase project; publish through App Store 
 
 ---
 
-### Task 6: Primeira Liga — Firebase, Apple registration, publish, and final cleanup
+### Task 6: Liga Portugal — Firebase, Apple registration, publish, and final cleanup
 
-Same shape as Tasks 4/5, substituting Primeira Liga's own values, plus a final cleanup step
+Same shape as Tasks 4/5, substituting Liga Portugal's own values, plus a final cleanup step
 once all 3 apps have their own Firebase project.
 
 - [ ] **Step 1: STOP — external action required.** Create a new Firebase project for Primeira
@@ -666,7 +666,7 @@ passes.
 git add BR2026.xcodeproj/project.pbxproj BR2026/Firebase/PrimeiraLiga2026 \
   fastlane/metadata/primeira_liga fastlane/screenshots/primeira_liga \
   website/liga-portugal website/index.html BR2026/GoogleService-Info.plist
-git commit -m "Give Primeira Liga its own Firebase project; publish through App Store review; remove orphaned shared Firebase file"
+git commit -m "Give Liga Portugal its own Firebase project; publish through App Store review; remove orphaned shared Firebase file"
 ```
 
 ---

@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Add three new Xcode targets (Premier League, Ligue 1, Primeira Liga) sharing all
+**Goal:** Add three new Xcode targets (Premier League, Ligue 1, Liga Portugal) sharing all
 existing source with `BR2026`, per
 `docs/superpowers/specs/2026-07-13-multi-championship-expansion-design.md`.
 
@@ -24,7 +24,7 @@ toolchain), Swift compiler conditionals, AppKit (`NSImage(systemSymbolName:)` +
   with populated standings) — no backend work in this plan.
 - New targets: `PremierLeague2026` (`com.vibrito.premierleague2026`, "Premier League 2026",
   accent `#3D195B`), `Ligue12026` (`com.vibrito.ligue12026`, "Ligue 1 2026", accent
-  `#FACC15`), `PrimeiraLiga2026` (`com.vibrito.primeiraliga2026`, "Primeira Liga 2026",
+  `#FACC15`), `PrimeiraLiga2026` (`com.vibrito.primeiraliga2026`, "Liga Portugal 2026",
   accent `#00235A`).
 - The `CrossAppLink` model/resolver (item #6) is built but explicitly **not** wired into
   any View in this phase — no "Our Other Apps" section ships yet.
@@ -181,7 +181,7 @@ toolchain), Swift compiler conditionals, AppKit (`NSImage(systemSymbolName:)` +
 
   duplicate_target(project, source_target, new_name: "PremierLeague2026", bundle_id: "com.vibrito.premierleague2026", display_name: "Premier League 2026", compilation_condition: "TARGET_PREMIER_LEAGUE")
   duplicate_target(project, source_target, new_name: "Ligue12026", bundle_id: "com.vibrito.ligue12026", display_name: "Ligue 1 2026", compilation_condition: "TARGET_LIGUE_1")
-  duplicate_target(project, source_target, new_name: "PrimeiraLiga2026", bundle_id: "com.vibrito.primeiraliga2026", display_name: "Primeira Liga 2026", compilation_condition: "TARGET_PRIMEIRA_LIGA")
+  duplicate_target(project, source_target, new_name: "PrimeiraLiga2026", bundle_id: "com.vibrito.primeiraliga2026", display_name: "Liga Portugal 2026", compilation_condition: "TARGET_PRIMEIRA_LIGA")
   project.save
   ```
 
@@ -220,7 +220,7 @@ toolchain), Swift compiler conditionals, AppKit (`NSImage(systemSymbolName:)` +
 Discovered during Task 3 verification: `AppIconOption` (shared code, the More screen's
 "App Icon" picker) hardcodes `.brasil`/`.stadium` alongside `.light` — meaning the new
 apps would offer a Brasil-flag-themed alternate icon, which is wrong branding for
-Premier League/Ligue 1/Primeira Liga.
+Premier League/Ligue 1/Liga Portugal.
 
 - [x] **Step 1:** Wrap the `.brasil`/`.stadium` cases (and their matching arms in every
   `switch self` in the file) in
@@ -264,7 +264,7 @@ Premier League/Ligue 1/Primeira Liga.
 - [x] **Step 5: Manual verification.** Installed all three new apps to a Simulator
   alongside `BR2026` and confirmed via home-screen screenshot: four visually distinct
   icons (green ball/cream for `BR2026`, purple/white for Premier League, yellow/white for
-  Ligue 1, navy/white for Primeira Liga), each correctly labeled with its target's
+  Ligue 1, navy/white for Liga Portugal), each correctly labeled with its target's
   display name.
 - [x] **Step 6:** Commit.
 

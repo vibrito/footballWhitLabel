@@ -1276,7 +1276,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Generated/Ligue1-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Ligue 1 2026";
+				INFOPLIST_KEY_CFBundleDisplayName = "L1 2026";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1321,7 +1321,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Generated/PremierLeague-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Premier League 2026";
+				INFOPLIST_KEY_CFBundleDisplayName = "PL 2026";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1349,7 +1349,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Generated/Ligue1-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Ligue 1 2026";
+				INFOPLIST_KEY_CFBundleDisplayName = "L1 2026";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1453,7 +1453,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Generated/PrimeiraLiga-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Liga Portugal 2026";
+				INFOPLIST_KEY_CFBundleDisplayName = "LP 2026";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1582,7 +1582,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Generated/PremierLeague-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Premier League 2026";
+				INFOPLIST_KEY_CFBundleDisplayName = "PL 2026";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1610,7 +1610,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Generated/PrimeiraLiga-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Liga Portugal 2026";
+				INFOPLIST_KEY_CFBundleDisplayName = "LP 2026";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
