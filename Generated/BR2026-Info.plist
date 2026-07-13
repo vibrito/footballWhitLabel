@@ -33,5 +33,9 @@
 		<key>UIImageName</key>
 		<string>$(LAUNCH_SCREEN_IMAGE_NAME)</string>
 	</dict>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
 </dict>
 </plist>
