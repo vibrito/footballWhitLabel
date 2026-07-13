@@ -3,7 +3,13 @@ import XCTest
 @MainActor
 final class SnapshotUITests: XCTestCase {
     private var targetBundleID: String {
-        ProcessInfo.processInfo.environment["SNAPSHOT_BUNDLE_ID"] ?? "com.vibrito.br2026"
+        // The scheme declares this variable so xcodebuild can forward it when explicitly
+        // passed as a build setting (see the screenshots lane) — but that declaration
+        // means it's always present in the environment, just empty when nothing was
+        // passed (e.g. plain `scan`/`fastlane test`), not absent. Nil-coalescing alone
+        // wouldn't catch that.
+        let value = ProcessInfo.processInfo.environment["SNAPSHOT_BUNDLE_ID"]
+        return (value?.isEmpty ?? true) ? "com.vibrito.br2026" : value!
     }
 
     func testCaptureScreenshots() {

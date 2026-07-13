@@ -20,6 +20,8 @@
 		0DD89A55A83B7442558808AC /* LiveChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286FB1656839DC4F8940242C /* LiveChip.swift */; };
 		1067F3CFAC923A62A05BB51B /* CompetitionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4E5DB77DD896FEAF3C9B6 /* CompetitionDTO.swift */; };
 		1307E3DE65E860962CC46AFD /* CompetitionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4E5DB77DD896FEAF3C9B6 /* CompetitionDTO.swift */; };
+		164A200E52B7510A29A0867A /* TeamCrestCacheStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387160DBDCC7939421B9C3AE /* TeamCrestCacheStore.swift */; };
+		17023105D58971A38864B800 /* TeamCrestCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEB1ACAA1C8C48F9424806E /* TeamCrestCache.swift */; };
 		1916F6288BA3D05349D072D0 /* MatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0996F787521F2EF840C43 /* MatchService.swift */; };
 		194015D468A77E17C9C7D8D4 /* Standing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB1160665D8A2136DF3C6B /* Standing.swift */; };
 		1A0CE715F834328901A633DD /* FixturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B4F41036B3BF67A1879D29 /* FixturesViewModel.swift */; };
@@ -38,9 +40,11 @@
 		2982955CC3DBD80896B9EDA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2CB89C3BBC773A2685A57 /* AppDelegate.swift */; };
 		2C0D429CE1ECB63F34C738D1 /* TeamCrestBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E434E6CB924EEBF2ED52FF /* TeamCrestBadge.swift */; };
 		2D1D13154628F8AAF783AC7D /* CompetitionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4E5DB77DD896FEAF3C9B6 /* CompetitionDTO.swift */; };
+		2E73B64412A38F7593501D13 /* TeamCrestCacheStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89986C46CD012826E8C1C464 /* TeamCrestCacheStoreTests.swift */; };
 		2FD7068B45D0E592BE39108E /* AppIconOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7BD7162D81299AB5D44D51 /* AppIconOption.swift */; };
 		308BDF07837206FEA99E2593 /* AccentPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0A7BD56D54A97E185D54C /* AccentPill.swift */; };
 		30AF65D8AF1709A5F18A7A50 /* TeamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FD16E360A6B3F8DCB8362C /* TeamTests.swift */; };
+		30F680135B37591061E1B1C7 /* TeamCrestCacheStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387160DBDCC7939421B9C3AE /* TeamCrestCacheStore.swift */; };
 		315EF61C9DD0867544ACEEE6 /* ChampionshipConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51FB666340CB6033EB7277 /* ChampionshipConfig.swift */; };
 		32AF651125BFD50820EC7DEC /* MockMatchServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF19AF830233C51EF5882C73 /* MockMatchServiceTests.swift */; };
 		3356F95BB22E16A40F529663 /* CrossAppLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A4F30D065FAD4962486232 /* CrossAppLink.swift */; };
@@ -71,6 +75,7 @@
 		52111A2B37EC80C751EB0F77 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7CD31B3A17497FD8945EA /* StandingsView.swift */; };
 		52AC218C2E201C2208F0492C /* AppIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A466914FB52022A91A3EFDC /* AppIconPickerView.swift */; };
 		52AC6703D4B7539B1CABB611 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0623F774E7695B36808EDD20 /* GoogleService-Info.plist */; };
+		53D7D1E6B16FA4EA133E7809 /* TeamCrestCacheStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387160DBDCC7939421B9C3AE /* TeamCrestCacheStore.swift */; };
 		5456BE329E2096D14135D784 /* AppIconPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C4923C4C3A35A6E0D97D /* AppIconPickerViewModel.swift */; };
 		5585F0B7AC148CE814D13A0B /* MatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0996F787521F2EF840C43 /* MatchService.swift */; };
 		56DA2E708A2F8AE9CE8B7FF6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E997B71FC9534C0287BE63 /* Foundation.framework */; };
@@ -136,6 +141,7 @@
 		8E3C946421CF6EBD29F2990B /* MatchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828CC19752FF614A96C2286 /* MatchStatus.swift */; };
 		8F1B9B0FE5717B61C17DC87D /* MatchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855292C3DDAE65CCAE220B7F /* MatchDetailView.swift */; };
 		8F65BAA745936203EE0275CA /* AppIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A466914FB52022A91A3EFDC /* AppIconPickerView.swift */; };
+		9060954E957F2F2126977068 /* TeamCrestCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEB1ACAA1C8C48F9424806E /* TeamCrestCache.swift */; };
 		909922ED17B4F860C8A7FE49 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C30CEF69E76665DF012094F /* Team.swift */; };
 		90F16B5361A7462A192C423A /* MoreSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D40C5B68AD965EA2F417DC1 /* MoreSection.swift */; };
 		90F8DB51F22EB5E7497DB311 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A550575E6347EE4F9B8C7E8 /* Color+Hex.swift */; };
@@ -144,6 +150,7 @@
 		93FF44629C97CF33BA9076AF /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD0E9B9C297140406B72B2D /* MoreView.swift */; };
 		9419259149DB9E3125BCFA2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 159E2AE600FA152C8E2E8B89 /* Assets.xcassets */; };
 		9484F1F401031E232FFF4350 /* FixturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B4F41036B3BF67A1879D29 /* FixturesViewModel.swift */; };
+		950CE77BC987981429614E98 /* TeamCrestCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEB1ACAA1C8C48F9424806E /* TeamCrestCache.swift */; };
 		966CFE626322BDD728F1F199 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C30CEF69E76665DF012094F /* Team.swift */; };
 		96BC963B98E3D01544FD06FD /* ScoreRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422EC54CAAA878A2718771BB /* ScoreRow.swift */; };
 		972B0B0CABAE8F3E15A53187 /* AppIconSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBD8CC8C85D68BA0C23F8 /* AppIconSetting.swift */; };
@@ -222,6 +229,7 @@
 		EC5A593E224B594925407E82 /* MoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C49CB2060A7D052977CA91 /* MoreViewModel.swift */; };
 		ECF957A5B1ABC90B57AAFD6E /* MatchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855292C3DDAE65CCAE220B7F /* MatchDetailView.swift */; };
 		EE93D29554178004DEE4F837 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20CF52F4BFAD92BCBBDC839 /* SnapshotHelper.swift */; };
+		EF95FF8344CFE3108B7BADB5 /* TeamCrestCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEB1ACAA1C8C48F9424806E /* TeamCrestCache.swift */; };
 		F04E31A6EE716373491B931C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2CB89C3BBC773A2685A57 /* AppDelegate.swift */; };
 		F1946410CA819269FE2A6DA0 /* FixturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0B10181CB912E1D1C2625 /* FixturesView.swift */; };
 		F1BFBDBFF2402D0064D7845C /* LiveMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5C675322020A4A48668C2 /* LiveMatchService.swift */; };
@@ -230,6 +238,7 @@
 		F369FDEBDDC5ED968A7E38D9 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCD3323E3758CD78F54E1C6 /* Match.swift */; };
 		F5039B5D75764BDC85EAFBE2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C30CEF69E76665DF012094F /* Team.swift */; };
 		F60920D09DDEC63C623B5743 /* MoreDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58243C349D4EF0FFEFA192A4 /* MoreDestination.swift */; };
+		F671DCCC61A861EA084D16AD /* TeamCrestCacheStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387160DBDCC7939421B9C3AE /* TeamCrestCacheStore.swift */; };
 		F6B32E7E91551A7FE8AAFE47 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD0E9B9C297140406B72B2D /* MoreView.swift */; };
 		F73B51C7980BB214B1A8A273 /* FixturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B4F41036B3BF67A1879D29 /* FixturesViewModel.swift */; };
 		F8753E7148445780C5008DB5 /* AppIconSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBD8CC8C85D68BA0C23F8 /* AppIconSetting.swift */; };
@@ -271,6 +280,7 @@
 		287F723E6555472EAEA55D5E /* GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCard.swift; sourceTree = "<group>"; };
 		30741DC2065FBFD04140A95C /* Competition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Competition.swift; sourceTree = "<group>"; };
 		322CAB2B4DE8D3A9DEA34EE0 /* MockDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataProvider.swift; sourceTree = "<group>"; };
+		387160DBDCC7939421B9C3AE /* TeamCrestCacheStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamCrestCacheStore.swift; sourceTree = "<group>"; };
 		3D40C5B68AD965EA2F417DC1 /* MoreSection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreSection.swift; sourceTree = "<group>"; };
 		3F82B99CAA89D84274D4532B /* MoreRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreRow.swift; sourceTree = "<group>"; };
 		422EC54CAAA878A2718771BB /* ScoreRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreRow.swift; sourceTree = "<group>"; };
@@ -302,12 +312,14 @@
 		7A20B375D7094C6D4E1961B1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		7A466914FB52022A91A3EFDC /* AppIconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconPickerView.swift; sourceTree = "<group>"; };
 		855292C3DDAE65CCAE220B7F /* MatchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailView.swift; sourceTree = "<group>"; };
+		89986C46CD012826E8C1C464 /* TeamCrestCacheStoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamCrestCacheStoreTests.swift; sourceTree = "<group>"; };
 		8A550575E6347EE4F9B8C7E8 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		90D1B6F631C0641FD3AE6EAB /* SnapshotUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnapshotUITests.swift; sourceTree = "<group>"; };
 		94BD89602CB168BCB0121EAA /* MatchDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDTO.swift; sourceTree = "<group>"; };
 		955A3500BC9553CCAE8CD493 /* LaunchScreen-PremierLeague.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = "LaunchScreen-PremierLeague.storyboard"; path = "LaunchScreen-PremierLeague.storyboard"; sourceTree = "<group>"; };
 		97F0B10181CB912E1D1C2625 /* FixturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesView.swift; sourceTree = "<group>"; };
 		9D6DA06CFA4EC9C1C40A3F48 /* PrimeiraLiga2026.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PrimeiraLiga2026.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EEB1ACAA1C8C48F9424806E /* TeamCrestCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamCrestCache.swift; sourceTree = "<group>"; };
 		A0FD16E360A6B3F8DCB8362C /* TeamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTests.swift; sourceTree = "<group>"; };
 		A891A6379A8E24051EBE4113 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AE7BD7162D81299AB5D44D51 /* AppIconOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconOption.swift; sourceTree = "<group>"; };
@@ -401,6 +413,7 @@
 				3F82B99CAA89D84274D4532B /* MoreRow.swift */,
 				3D40C5B68AD965EA2F417DC1 /* MoreSection.swift */,
 				B6A4F30D065FAD4962486232 /* CrossAppLink.swift */,
+				9EEB1ACAA1C8C48F9424806E /* TeamCrestCache.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -613,6 +626,7 @@
 			children = (
 				CF19AF830233C51EF5882C73 /* MockMatchServiceTests.swift */,
 				D4423DE97316CCFFA3D61AAB /* CrossAppLinkResolverTests.swift */,
+				89986C46CD012826E8C1C464 /* TeamCrestCacheStoreTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -680,6 +694,7 @@
 				60EB245877F3BE6246A841B9 /* MockMatchService.swift */,
 				43EEBD8CC8C85D68BA0C23F8 /* AppIconSetting.swift */,
 				58D8B29BA18BFFE20D1E0801 /* CrossAppLinkResolver.swift */,
+				387160DBDCC7939421B9C3AE /* TeamCrestCacheStore.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1078,6 +1093,8 @@
 				5456BE329E2096D14135D784 /* AppIconPickerViewModel.swift in Sources */,
 				3356F95BB22E16A40F529663 /* CrossAppLink.swift in Sources */,
 				35AB6C15F199028D687BE27E /* CrossAppLinkResolver.swift in Sources */,
+				17023105D58971A38864B800 /* TeamCrestCache.swift in Sources */,
+				53D7D1E6B16FA4EA133E7809 /* TeamCrestCacheStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1133,6 +1150,8 @@
 				34F0DAE6D739362541F6EDF8 /* AppIconPickerViewModel.swift in Sources */,
 				0CE6931B96BC76CF8DF839BD /* CrossAppLink.swift in Sources */,
 				5F2DC62D2D965EF57EE6535B /* CrossAppLinkResolver.swift in Sources */,
+				EF95FF8344CFE3108B7BADB5 /* TeamCrestCache.swift in Sources */,
+				164A200E52B7510A29A0867A /* TeamCrestCacheStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1155,6 +1174,7 @@
 				0DA4761CA3613C120DDBFC6B /* AppIconPickerViewModelTests.swift in Sources */,
 				0D3C8F8C57D2DEC84882EF6F /* CrossAppLinkResolverTests.swift in Sources */,
 				8A9DAFC0D7423F13C744C218 /* CrossAppLinkTests.swift in Sources */,
+				2E73B64412A38F7593501D13 /* TeamCrestCacheStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1210,6 +1230,8 @@
 				EA287A6CAFE19BF88695D490 /* AppIconPickerViewModel.swift in Sources */,
 				B8A9380B37C00E3BC71E39A8 /* CrossAppLink.swift in Sources */,
 				7B1BCF71A46CE594F588DCFE /* CrossAppLinkResolver.swift in Sources */,
+				9060954E957F2F2126977068 /* TeamCrestCache.swift in Sources */,
+				30F680135B37591061E1B1C7 /* TeamCrestCacheStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1265,6 +1287,8 @@
 				C66E875A29EAA1AD7FBEBA62 /* AppIconPickerViewModel.swift in Sources */,
 				9AD1B326A17E4676A94418A1 /* CrossAppLink.swift in Sources */,
 				7821482A81C084D242D51FAE /* CrossAppLinkResolver.swift in Sources */,
+				950CE77BC987981429614E98 /* TeamCrestCache.swift in Sources */,
+				F671DCCC61A861EA084D16AD /* TeamCrestCacheStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
