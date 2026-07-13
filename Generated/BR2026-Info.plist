@@ -26,13 +26,8 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
-	<key>UILaunchScreen</key>
-	<dict>
-		<key>UIColorName</key>
-		<string>$(LAUNCH_SCREEN_COLOR_NAME)</string>
-		<key>UIImageName</key>
-		<string>$(LAUNCH_SCREEN_IMAGE_NAME)</string>
-	</dict>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen-BR2026</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

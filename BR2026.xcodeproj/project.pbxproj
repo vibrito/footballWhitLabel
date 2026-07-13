@@ -131,6 +131,7 @@
 		7821482A81C084D242D51FAE /* CrossAppLinkResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8B29BA18BFFE20D1E0801 /* CrossAppLinkResolver.swift */; };
 		787DE133D67249675B69A70D /* MatchDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65807B78425B289771974EE6 /* MatchDetailViewModelTests.swift */; };
 		7889E0FD0A21BF707540909A /* FixturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B4F41036B3BF67A1879D29 /* FixturesViewModel.swift */; };
+		7A36BDE06B32547E5FD32A12 /* LaunchScreen-BR2026.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88EC8470376301D3F8715B43 /* LaunchScreen-BR2026.storyboard */; };
 		7B1BCF71A46CE594F588DCFE /* CrossAppLinkResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8B29BA18BFFE20D1E0801 /* CrossAppLinkResolver.swift */; };
 		7C18FD9DAE81681C79731F2D /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCD3323E3758CD78F54E1C6 /* Match.swift */; };
 		8037C2656880CA18A3EA25EE /* MatchdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750454E4C32D9EEA69417686 /* MatchdayViewModel.swift */; };
@@ -323,6 +324,7 @@
 		7A20B375D7094C6D4E1961B1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		7A466914FB52022A91A3EFDC /* AppIconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconPickerView.swift; sourceTree = "<group>"; };
 		855292C3DDAE65CCAE220B7F /* MatchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailView.swift; sourceTree = "<group>"; };
+		88EC8470376301D3F8715B43 /* LaunchScreen-BR2026.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = "LaunchScreen-BR2026.storyboard"; sourceTree = "<group>"; };
 		89986C46CD012826E8C1C464 /* TeamCrestCacheStoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamCrestCacheStoreTests.swift; sourceTree = "<group>"; };
 		8A550575E6347EE4F9B8C7E8 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		90D1B6F631C0641FD3AE6EAB /* SnapshotUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnapshotUITests.swift; sourceTree = "<group>"; };
@@ -597,6 +599,7 @@
 				955A3500BC9553CCAE8CD493 /* LaunchScreen-PremierLeague.storyboard */,
 				5DB9E7F8F15157A617B36888 /* LaunchScreen-Ligue1.storyboard */,
 				4C8FD2FCAA34ACDFF84F73A8 /* LaunchScreen-PrimeiraLiga.storyboard */,
+				88EC8470376301D3F8715B43 /* LaunchScreen-BR2026.storyboard */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -965,6 +968,7 @@
 				261FFCAAB309FB7860858788 /* Assets.xcassets in Resources */,
 				89D54DD920AF8B23605BED08 /* Localizable.xcstrings in Resources */,
 				52AC6703D4B7539B1CABB611 /* GoogleService-Info.plist in Resources */,
+				7A36BDE06B32547E5FD32A12 /* LaunchScreen-BR2026.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1731,8 +1735,6 @@
 				INFOPLIST_FILE = "Generated/BR2026-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "BR 2026";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
-				LAUNCH_SCREEN_COLOR_NAME = LaunchBackground;
-				LAUNCH_SCREEN_IMAGE_NAME = LaunchLogo;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1760,8 +1762,6 @@
 				INFOPLIST_FILE = "Generated/BR2026-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "BR 2026";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
-				LAUNCH_SCREEN_COLOR_NAME = LaunchBackground;
-				LAUNCH_SCREEN_IMAGE_NAME = LaunchLogo;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
