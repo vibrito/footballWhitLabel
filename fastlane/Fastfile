@@ -83,7 +83,7 @@ platform :ios do
     snapshot(
       scheme: app[:scheme],
       output_directory: app[:screenshots_path],
-      xcargs: "TEST_RUNNER_SNAPSHOT_BUNDLE_ID=#{app[:bundle_id]}"
+      xcargs: "SNAPSHOT_BUNDLE_ID=#{app[:bundle_id]}"
     )
   end
 
