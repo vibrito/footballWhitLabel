@@ -481,13 +481,22 @@ project.save
 Verify: build `PremierLeague2026`, install + launch on a simulator, confirm it reaches the
 Matchday screen (no Firebase-config crash).
 
-- [ ] **Step 3: Register the bundle ID and create the App Store Connect app record**
+- [x] **Step 3: Register the bundle ID; create the App Store Connect app record**
 
-Run: `eval "$(rbenv init -)" && bundle exec fastlane create_app app:premier_league app_name:"Premier League 2026"`
-Expected: `produce` reports the bundle ID registered (or already-registered) and the app
-created in App Store Connect. If `app_name` collides with something already taken, `produce`
-will error — re-run with a distinguishing variant (e.g. "Premier League 2026 — Live Scores")
-and confirm the choice with the user first, since the app's public name is user-facing.
+**Correction discovered while executing this step for Premier League:** app creation via API
+key is not actually possible — `produce` unconditionally requires a full Apple ID username
+even with an API key configured, and talking to `Spaceship::ConnectAPI::App.create` directly
+hits `"The resource 'apps' does not allow 'CREATE'"` regardless of the key's role. Apple's
+public App Store Connect API has never supported creating new apps via any API key; it's
+web-UI (or full Apple ID session) only. `create_app` was rewritten to only register the
+bundle ID (which the API does support) and idempotently verify the app record exists.
+
+Run: `eval "$(rbenv init -)" && bundle exec fastlane create_app app:<key> app_name:"<Display Name>"`
+first — it registers the bundle ID and tells you whether the app record already exists.
+If not, create it manually in App Store Connect: **Apps → + → New App** — iOS, the display
+name, English (U.S.), the bundle ID (already registered, selectable from the dropdown), and a
+SKU following the `<scheme-lowercase><year>` convention (e.g. `premierleague2026`). Then
+re-run the `create_app` command above to confirm it's now found.
 
 - [ ] **Step 4: Add the website section**
 
@@ -561,8 +570,12 @@ Same shape as Task 4, substituting Ligue 1's own values throughout.
 - [ ] **Step 2:** Run the same Ruby helper with `target_name: "Ligue12026"` and the downloaded
   file's path. Verify: build `Ligue12026`, install + launch, confirm it reaches Matchday
   without crashing.
-- [ ] **Step 3:** `bundle exec fastlane create_app app:ligue1 app_name:"Ligue 1 2026"`
-  (adjust the name if it collides, confirming with the user first).
+- [ ] **Step 3:** Run `bundle exec fastlane create_app app:ligue1 app_name:"Ligue 1 2026"` to
+  register the bundle ID and check whether the app record exists. It won't yet — app creation
+  requires the App Store Connect web UI (Apple's API doesn't support it via any key role, see
+  Task 4 Step 3's note). Create it manually: **Apps → + → New App** — iOS, "Ligue 1 2026",
+  English (U.S.), bundle ID `com.vibrito.ligue12026`, SKU `ligue12026`. Re-run the same
+  `create_app` command to confirm it's now found.
 - [ ] **Step 4:** Create `website/ligue-1/index.html`, `website/ligue-1/support/index.html`,
   `website/ligue-1/privacy/<locale>/index.html` (all 5 locales) mirroring the existing site
   structure, reworded for Ligue 1 (accent `#FACC15`). Add an entry to `website/index.html`.
@@ -601,8 +614,11 @@ once all 3 apps have their own Firebase project.
 - [ ] **Step 2:** Run the Ruby helper with `target_name: "PrimeiraLiga2026"` and the downloaded
   file's path. Verify: build `PrimeiraLiga2026`, install + launch, confirm it reaches Matchday
   without crashing.
-- [ ] **Step 3:** `bundle exec fastlane create_app app:primeira_liga app_name:"Liga Portugal 2026"`
-  (matching the in-app rename already done; adjust if it collides, confirming with the user).
+- [ ] **Step 3:** Run `bundle exec fastlane create_app app:primeira_liga app_name:"Liga Portugal 2026"`
+  to register the bundle ID and check whether the app record exists. Create it manually in App
+  Store Connect (see Task 4 Step 3's note on why): **Apps → + → New App** — iOS,
+  "Liga Portugal 2026", English (U.S.), bundle ID `com.vibrito.primeiraliga2026`, SKU
+  `primeiraliga2026`. Re-run the same `create_app` command to confirm it's now found.
 - [ ] **Step 4:** Create `website/liga-portugal/index.html`,
   `website/liga-portugal/support/index.html`, `website/liga-portugal/privacy/<locale>/index.html`
   (all 5 locales) mirroring the existing site structure, reworded for Liga Portugal (accent
