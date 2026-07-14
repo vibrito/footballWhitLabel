@@ -12,6 +12,7 @@
 		04B6D54307ABCABB96C45E0F /* MatchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828CC19752FF614A96C2286 /* MatchStatus.swift */; };
 		05623FB127524A90E0297D5C /* MockMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB245877F3BE6246A841B9 /* MockMatchService.swift */; };
 		06066DC029835A2187233B56 /* ChampionshipConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51FB666340CB6033EB7277 /* ChampionshipConfig.swift */; };
+		067C95F6FD79A0961D5AC208 /* TeamThemeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DA98E9D76EDBA19465271D /* TeamThemeStore.swift */; };
 		07F41E524217D53DC9FDD53C /* TeamThemeOptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488E6D224DEAE7CA297007DD /* TeamThemeOptionTests.swift */; };
 		08001FA0EE21E73B579D3F7F /* ThemeTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105A10788BCFFB4D2950B8EF /* ThemeTokens.swift */; };
 		0C21749DC14E676A145EED88 /* AccentPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0A7BD56D54A97E185D54C /* AccentPill.swift */; };
@@ -93,10 +94,12 @@
 		49B30E60D7CDE0DFCFD7F46D /* StandingDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65CB58B6DA37E6E8C02103 /* StandingDTO.swift */; };
 		4A664AEA6B5DCD2F2C0850C6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 7A20B375D7094C6D4E1961B1 /* Localizable.xcstrings */; };
 		4CD1E855D1C656941C28C7BA /* MatchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828CC19752FF614A96C2286 /* MatchStatus.swift */; };
+		4E2AFFF5F3AB8909D0571038 /* TeamThemeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DA98E9D76EDBA19465271D /* TeamThemeStore.swift */; };
 		516DCEFFEC2A861895812738 /* ThemeTokensTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DF4A284E1FEB1CFD556FE6 /* ThemeTokensTests.swift */; };
 		52111A2B37EC80C751EB0F77 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7CD31B3A17497FD8945EA /* StandingsView.swift */; };
 		52AC218C2E201C2208F0492C /* AppIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A466914FB52022A91A3EFDC /* AppIconPickerView.swift */; };
 		52AC6703D4B7539B1CABB611 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0623F774E7695B36808EDD20 /* GoogleService-Info.plist */; };
+		52DCD0214130CC8C5772997C /* TeamThemeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DA98E9D76EDBA19465271D /* TeamThemeStore.swift */; };
 		53D7D1E6B16FA4EA133E7809 /* TeamCrestCacheStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387160DBDCC7939421B9C3AE /* TeamCrestCacheStore.swift */; };
 		5456BE329E2096D14135D784 /* AppIconPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C4923C4C3A35A6E0D97D /* AppIconPickerViewModel.swift */; };
 		54F08B858D2E3E13DAD709E4 /* TeamThemeColorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D9F3F1E0EAD3ECE1FE272D /* TeamThemeColorsTests.swift */; };
@@ -214,6 +217,7 @@
 		B34A3BF270A30927F93DC6ED /* LiveMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5C675322020A4A48668C2 /* LiveMatchService.swift */; };
 		B4E221725A379F4CB96949DC /* StadiumBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A71A2EA3718A5D31948205 /* StadiumBackground.swift */; };
 		B5CFE9339676BFAFADB25D1F /* MatchDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD89602CB168BCB0121EAA /* MatchDTO.swift */; };
+		B61F78105FD06E983F3ED8B5 /* TeamThemeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DA98E9D76EDBA19465271D /* TeamThemeStore.swift */; };
 		B62013EF7A954AE86EFD70EA /* CompetitionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4E5DB77DD896FEAF3C9B6 /* CompetitionDTO.swift */; };
 		B67B57687FFF48EB0DCB2B23 /* RefreshPulseDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E56E6E7A24AE0A0C87B950 /* RefreshPulseDot.swift */; };
 		B704D55D61C78DBB6C4D04B6 /* StandingDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65CB58B6DA37E6E8C02103 /* StandingDTO.swift */; };
@@ -228,6 +232,7 @@
 		BDDC6D884846562BE921A699 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7CD31B3A17497FD8945EA /* StandingsView.swift */; };
 		BDEA74E7292D7F7EC645F478 /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F044BBD1673E744B7A1A7F /* TermsOfServiceView.swift */; };
 		BF7E3955732CBD39FC4A8A6B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 60CE4BCCE4350DF3321B3667 /* FirebaseAnalytics */; };
+		C2C2A9550B1BC700D285BE32 /* TeamThemeStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4792BA65EDA88BE348EAF2C /* TeamThemeStoreTests.swift */; };
 		C33D966C4A767AD8AAE7BF16 /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F0E8AA4BDCF972420F7225 /* StandingsViewModel.swift */; };
 		C53EAF87F38D4B9D25AB7A6D /* MoreSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D40C5B68AD965EA2F417DC1 /* MoreSection.swift */; };
 		C55FB2D6601CCF3150C229B6 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7B366A838D69FA9D60CAA769 /* FirebaseCrashlytics */; };
@@ -357,6 +362,7 @@
 		78F044BBD1673E744B7A1A7F /* TermsOfServiceView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TermsOfServiceView.swift; sourceTree = "<group>"; };
 		7A20B375D7094C6D4E1961B1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		7A466914FB52022A91A3EFDC /* AppIconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconPickerView.swift; sourceTree = "<group>"; };
+		81DA98E9D76EDBA19465271D /* TeamThemeStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamThemeStore.swift; sourceTree = "<group>"; };
 		855292C3DDAE65CCAE220B7F /* MatchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailView.swift; sourceTree = "<group>"; };
 		86008BEECC1A587434098BF9 /* ColorHexTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ColorHexTests.swift; sourceTree = "<group>"; };
 		88EC8470376301D3F8715B43 /* LaunchScreen-BR2026.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = "LaunchScreen-BR2026.storyboard"; sourceTree = "<group>"; };
@@ -371,6 +377,7 @@
 		9EEB1ACAA1C8C48F9424806E /* TeamCrestCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamCrestCache.swift; sourceTree = "<group>"; };
 		A0FD16E360A6B3F8DCB8362C /* TeamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTests.swift; sourceTree = "<group>"; };
 		A2DF4A284E1FEB1CFD556FE6 /* ThemeTokensTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ThemeTokensTests.swift; sourceTree = "<group>"; };
+		A4792BA65EDA88BE348EAF2C /* TeamThemeStoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamThemeStoreTests.swift; sourceTree = "<group>"; };
 		A891A6379A8E24051EBE4113 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AE7BD7162D81299AB5D44D51 /* AppIconOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconOption.swift; sourceTree = "<group>"; };
 		B2F2CB89C3BBC773A2685A57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -715,6 +722,7 @@
 				D4423DE97316CCFFA3D61AAB /* CrossAppLinkResolverTests.swift */,
 				89986C46CD012826E8C1C464 /* TeamCrestCacheStoreTests.swift */,
 				045C8F6338B1FFDC9717B6A1 /* TeamThemeSettingTests.swift */,
+				A4792BA65EDA88BE348EAF2C /* TeamThemeStoreTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -794,6 +802,7 @@
 				387160DBDCC7939421B9C3AE /* TeamCrestCacheStore.swift */,
 				404494D46245C078DB19DE9E /* ScreenTracking.swift */,
 				E710CF947578637722A0CC6A /* TeamThemeSetting.swift */,
+				81DA98E9D76EDBA19465271D /* TeamThemeStore.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1203,6 +1212,7 @@
 				E0E20A54E332A9FA3DD18D67 /* ThemeTokens.swift in Sources */,
 				1813358B77FF3076A24EA10B /* TeamThemeSetting.swift in Sources */,
 				67CAF846DD6EFDCB91402418 /* TeamThemeOption.swift in Sources */,
+				B61F78105FD06E983F3ED8B5 /* TeamThemeStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1266,6 +1276,7 @@
 				1EDC2704F0F3F64AC11ECFC5 /* ThemeTokens.swift in Sources */,
 				39F5814A46A443DE22EB3176 /* TeamThemeSetting.swift in Sources */,
 				CDDE44D31B0E7D7C4B86FA05 /* TeamThemeOption.swift in Sources */,
+				52DCD0214130CC8C5772997C /* TeamThemeStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1294,6 +1305,7 @@
 				516DCEFFEC2A861895812738 /* ThemeTokensTests.swift in Sources */,
 				9218A73E2C317C9E3F6C3FD0 /* TeamThemeSettingTests.swift in Sources */,
 				07F41E524217D53DC9FDD53C /* TeamThemeOptionTests.swift in Sources */,
+				C2C2A9550B1BC700D285BE32 /* TeamThemeStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1357,6 +1369,7 @@
 				08001FA0EE21E73B579D3F7F /* ThemeTokens.swift in Sources */,
 				355A153179B83EAC691198FD /* TeamThemeSetting.swift in Sources */,
 				55A17600BF1079AE3CF8BF35 /* TeamThemeOption.swift in Sources */,
+				067C95F6FD79A0961D5AC208 /* TeamThemeStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1420,6 +1433,7 @@
 				8BC248FAE0DB30BC91E0E368 /* ThemeTokens.swift in Sources */,
 				67A95683D8D12620275AD82D /* TeamThemeSetting.swift in Sources */,
 				FD4AC943B33551CE3444A31A /* TeamThemeOption.swift in Sources */,
+				4E2AFFF5F3AB8909D0571038 /* TeamThemeStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

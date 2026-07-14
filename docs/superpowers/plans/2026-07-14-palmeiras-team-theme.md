@@ -867,6 +867,7 @@ git commit -m "Add ThemeTokens, TeamThemeSetting, and TeamThemeOption"
 Create `BR2026Tests/Services/TeamThemeStoreTests.swift`:
 ```swift
 import Testing
+import SwiftUI
 @testable import BR2026
 
 @Suite("TeamThemeStore")
