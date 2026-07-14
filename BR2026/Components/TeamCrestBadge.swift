@@ -7,6 +7,7 @@ struct TeamCrestBadge: View {
     var size: CGFloat = 32
 
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.themeTokens) private var themeTokens
     @State private var imageData: Data?
 
     var body: some View {
@@ -46,7 +47,7 @@ struct TeamCrestBadge: View {
             .overlay(
                 Text(initials)
                     .font(.system(size: size * 0.4, weight: .bold))
-                    .foregroundStyle(.white.opacity(0.55))
+                    .foregroundStyle(themeTokens.textColor.opacity(0.55))
             )
     }
 

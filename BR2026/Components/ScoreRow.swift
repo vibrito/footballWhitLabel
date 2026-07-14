@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ScoreRow: View {
     let match: Match
+    @Environment(\.themeTokens) private var themeTokens
 
     var body: some View {
         HStack {
@@ -23,7 +24,7 @@ struct ScoreRow: View {
             TeamCrestBadge(team: team)
             Text(team.displayName)
                 .font(.system(size: 16, weight: .semibold))
-                .foregroundStyle(.white)
+                .foregroundStyle(themeTokens.textColor)
         }
     }
 
@@ -37,6 +38,6 @@ struct ScoreRow: View {
         }
         .font(.system(size: 19, weight: .heavy))
         .monospacedDigit()
-        .foregroundStyle(.white)
+        .foregroundStyle(themeTokens.textColor)
     }
 }

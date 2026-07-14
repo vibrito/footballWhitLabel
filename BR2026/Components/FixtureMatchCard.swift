@@ -5,6 +5,7 @@ import SwiftUI
 /// design rather than ScoreRow's side-by-side layout.
 struct FixtureMatchCard: View {
     let match: Match
+    @Environment(\.themeTokens) private var themeTokens
 
     var body: some View {
         GlassCard(cornerRadius: 22, style: .transparent) {
@@ -28,7 +29,7 @@ struct FixtureMatchCard: View {
         }
         .font(.system(size: 11, weight: .bold))
         .tracking(0.6)
-        .foregroundStyle(.white.opacity(0.5))
+        .foregroundStyle(themeTokens.textColor.opacity(0.5))
     }
 
     private var venueLabel: String {
@@ -64,14 +65,14 @@ struct FixtureMatchCard: View {
             TeamCrestBadge(team: team, size: 28)
             Text(team.displayName)
                 .font(.system(size: 16, weight: .semibold))
-                .foregroundStyle(.white)
+                .foregroundStyle(themeTokens.textColor)
                 .lineLimit(1)
             Spacer()
             if let score {
                 Text("\(score)")
                     .font(.system(size: 19, weight: .heavy))
                     .monospacedDigit()
-                    .foregroundStyle(.white)
+                    .foregroundStyle(themeTokens.textColor)
             }
         }
         .padding(.vertical, 10)

@@ -19,7 +19,7 @@ struct HeroMatchCard: View {
                 }
                 Text(venueLabel)
                     .font(.system(size: 13, weight: .medium))
-                    .foregroundStyle(.white.opacity(0.5))
+                    .foregroundStyle(themeTokens.textColor.opacity(0.5))
                     .lineLimit(1)
             }
             .frame(maxWidth: .infinity)
@@ -38,7 +38,7 @@ struct HeroMatchCard: View {
             Text(match.utcDate, style: .time)
                 .font(.system(size: 15, weight: .bold))
                 .tracking(0.6)
-                .foregroundStyle(.white.opacity(0.65))
+                .foregroundStyle(themeTokens.textColor.opacity(0.65))
         }
     }
 
@@ -51,7 +51,7 @@ struct HeroMatchCard: View {
             TeamCrestBadge(team: team, size: 88)
             Text(team.displayName)
                 .font(.system(size: 19, weight: .bold))
-                .foregroundStyle(.white)
+                .foregroundStyle(themeTokens.textColor)
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
         }
@@ -64,13 +64,13 @@ struct HeroMatchCard: View {
             Text("\(home) – \(away)")
                 .font(.system(size: 40, weight: .heavy))
                 .monospacedDigit()
-                .foregroundStyle(.white)
+                .foregroundStyle(themeTokens.textColor)
                 .lineLimit(1)
                 .minimumScaleFactor(0.6)
         } else {
             Text("VS")
                 .font(.system(size: 30, weight: .heavy))
-                .foregroundStyle(.white.opacity(0.35))
+                .foregroundStyle(themeTokens.textColor.opacity(0.35))
         }
     }
 }
