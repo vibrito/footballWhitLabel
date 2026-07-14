@@ -5,6 +5,7 @@ struct MoreView: View {
     @State private var viewModel: MoreViewModel
     let tabSelectionColorHex: String
     let themeStore: TeamThemeStore
+    @Environment(\.themeTokens) private var themeTokens
 
     init(service: MatchService, tabSelectionColorHex: String, themeStore: TeamThemeStore) {
         _viewModel = State(initialValue: MoreViewModel(service: service))
@@ -54,7 +55,7 @@ struct MoreView: View {
             if let name = viewModel.competitionName {
                 Text(name)
                     .font(.system(size: 16, weight: .semibold))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(themeTokens.textColor)
             }
         }
         .frame(maxWidth: .infinity)
@@ -78,7 +79,7 @@ struct MoreView: View {
                         .overlay(
                             Image(systemName: "soccerball")
                                 .font(.system(size: 28))
-                                .foregroundStyle(.white.opacity(0.55))
+                                .foregroundStyle(themeTokens.textColor.opacity(0.55))
                         )
                 }
             }
@@ -90,7 +91,7 @@ struct MoreView: View {
             Text(section.titleKey)
                 .font(.system(size: 13, weight: .bold))
                 .tracking(0.8)
-                .foregroundStyle(.white.opacity(0.5))
+                .foregroundStyle(themeTokens.textColor.opacity(0.5))
                 .textCase(.uppercase)
             GlassCard(cornerRadius: 18, style: .transparent) {
                 VStack(spacing: 0) {
@@ -132,10 +133,10 @@ struct MoreView: View {
             if showsChevron {
                 Image(systemName: "chevron.right")
                     .font(.system(size: 13, weight: .semibold))
-                    .foregroundStyle(.white.opacity(0.3))
+                    .foregroundStyle(themeTokens.textColor.opacity(0.3))
             }
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(themeTokens.textColor)
         .padding(.vertical, 10)
         // Without this, the row's tappable area stops at the last piece of drawn
         // content (the icon/title on the left, or the chevron on the right) — the

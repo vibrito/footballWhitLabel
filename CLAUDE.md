@@ -180,6 +180,9 @@ BR2026/
 - Match data updates incrementally as games progress — models support partial updates
   (score, minute, status) via `Match.update(from:)`.
 - Avoid full-reload refreshes for matches; upsert by `id` instead.
+- `TeamThemeColorCache` is also a SwiftData `@Model`, one row per team holding all 3 kits'
+  colors together (mirrors the per-team crest caching used for team crest images). Cached
+  indefinitely, no TTL — kit colors don't change like scores do.
 
 ---
 
@@ -195,7 +198,33 @@ BR2026/
   (`MatchDetailView`), which shows a goals/cards/substitutions timeline.
 - `GET /v4/competitions/{code}/matches/:id/{statistics,lineups}` — not yet consumed;
   deferred to a future phase.
+- `GET /v4/competitions/{code}/teams/{id}/colors` — per-team home/away/third kit colors
+  (`mainColor`/`fontColor`/`secondaryColor`, hex without a leading `#`), consumed by the More
+  screen's Team Theme picker.
 - Brasileirão's competition code is `BSA`, set via `ChampionshipConfig.brasileirao`.
+
+---
+
+## Theming
+
+- `ThemeTokens` (`BR2026/Models/ThemeTokens.swift`) is the single source of truth for every
+  theme-reactive color in the app — `overrideAccentColor` (nil when no theme is active),
+  `textColor`, `gradientStops`, `blobColors` — injected once into the SwiftUI environment at
+  `ContentView` (`.environment(\.themeTokens, ...)`) and read via `@Environment(\.themeTokens)`
+  wherever a view needs a theme-reactive color instead of a literal `.white`/hex value.
+  Defaults exactly match the fixed pre-theming look, so every app renders identically when no
+  theme is selected.
+- `TeamThemeStore` (`BR2026/Services/TeamThemeStore.swift`) owns the currently selected
+  `TeamThemeOption` (persisted via `TeamThemeSetting`/`UserDefaultsTeamThemeSetting`) and
+  resolves its colors through `MatchService.fetchTeamThemeColorSet(teamID:)`/
+  `cachedTeamThemeColorSet(teamID:)`.
+- `TeamThemeOption` (`BR2026/Models/TeamThemeOption.swift`) is the purchasable-theme catalog —
+  currently 3 Palmeiras kit variants (Home/Away/Third). Its cases are **not** per-target
+  `#if`-gated (a zero-case `enum ...: String` fails to compile); visibility for other
+  championship targets is gated instead in `MoreViewModel.preferencesRows`, via the same
+  `#if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)` pattern
+  `AppIconOption` uses for its per-target cases. `isPurchased` is hardcoded `true` — real
+  StoreKit 2 entitlement checking is a future phase (see the roadmap's IAP team themes item).
 
 ---
 
