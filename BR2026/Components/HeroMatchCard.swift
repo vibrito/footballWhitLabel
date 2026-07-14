@@ -5,6 +5,7 @@ import SwiftUI
 /// side-by-side layout used elsewhere.
 struct HeroMatchCard: View {
     let match: Match
+    @Environment(\.themeTokens) private var themeTokens
 
     var body: some View {
         GlassCard(cornerRadius: 28, style: .transparent) {
@@ -23,6 +24,10 @@ struct HeroMatchCard: View {
             }
             .frame(maxWidth: .infinity)
         }
+        .overlay(
+            RoundedRectangle(cornerRadius: 28, style: .continuous)
+                .strokeBorder(themeTokens.overrideAccentColor ?? .clear, lineWidth: 1.5)
+        )
     }
 
     @ViewBuilder
