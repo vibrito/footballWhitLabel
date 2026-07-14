@@ -12,6 +12,8 @@
 		04B6D54307ABCABB96C45E0F /* MatchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828CC19752FF614A96C2286 /* MatchStatus.swift */; };
 		05623FB127524A90E0297D5C /* MockMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB245877F3BE6246A841B9 /* MockMatchService.swift */; };
 		06066DC029835A2187233B56 /* ChampionshipConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51FB666340CB6033EB7277 /* ChampionshipConfig.swift */; };
+		07F41E524217D53DC9FDD53C /* TeamThemeOptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488E6D224DEAE7CA297007DD /* TeamThemeOptionTests.swift */; };
+		08001FA0EE21E73B579D3F7F /* ThemeTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105A10788BCFFB4D2950B8EF /* ThemeTokens.swift */; };
 		0C21749DC14E676A145EED88 /* AccentPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0A7BD56D54A97E185D54C /* AccentPill.swift */; };
 		0CE6931B96BC76CF8DF839BD /* CrossAppLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A4F30D065FAD4962486232 /* CrossAppLink.swift */; };
 		0CF7CCFCA1CA04DE18EEC032 /* MatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0996F787521F2EF840C43 /* MatchService.swift */; };
@@ -23,6 +25,7 @@
 		1307E3DE65E860962CC46AFD /* CompetitionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4E5DB77DD896FEAF3C9B6 /* CompetitionDTO.swift */; };
 		164A200E52B7510A29A0867A /* TeamCrestCacheStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387160DBDCC7939421B9C3AE /* TeamCrestCacheStore.swift */; };
 		17023105D58971A38864B800 /* TeamCrestCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEB1ACAA1C8C48F9424806E /* TeamCrestCache.swift */; };
+		1813358B77FF3076A24EA10B /* TeamThemeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E710CF947578637722A0CC6A /* TeamThemeSetting.swift */; };
 		1916F6288BA3D05349D072D0 /* MatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0996F787521F2EF840C43 /* MatchService.swift */; };
 		194015D468A77E17C9C7D8D4 /* Standing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB1160665D8A2136DF3C6B /* Standing.swift */; };
 		1A0CE715F834328901A633DD /* FixturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B4F41036B3BF67A1879D29 /* FixturesViewModel.swift */; };
@@ -32,6 +35,7 @@
 		1C8AF1AEF8E1E472A3884429 /* FixturesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47120683E2BA4B90B153AD31 /* FixturesViewModelTests.swift */; };
 		1DAF97FACA8FF0E698F3B9DE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514F93D54D23D318A9A8666 /* ContentView.swift */; };
 		1E9CEE80501FDDE3D6767C05 /* LiveMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5C675322020A4A48668C2 /* LiveMatchService.swift */; };
+		1EDC2704F0F3F64AC11ECFC5 /* ThemeTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105A10788BCFFB4D2950B8EF /* ThemeTokens.swift */; };
 		1FF66C2BD036F243A631DD75 /* StandingDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65CB58B6DA37E6E8C02103 /* StandingDTO.swift */; };
 		2046BCCA92D95F60C13B21B6 /* ChampionshipConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51FB666340CB6033EB7277 /* ChampionshipConfig.swift */; };
 		22512BE9300562A600A031ED /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 60CE4BCCE4350DF3321B3667 /* FirebaseAnalytics */; };
@@ -61,6 +65,7 @@
 		3356F95BB22E16A40F529663 /* CrossAppLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A4F30D065FAD4962486232 /* CrossAppLink.swift */; };
 		338F0B9C0B8E2BCCFBBC9AFF /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C30CEF69E76665DF012094F /* Team.swift */; };
 		34F0DAE6D739362541F6EDF8 /* AppIconPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C4923C4C3A35A6E0D97D /* AppIconPickerViewModel.swift */; };
+		355A153179B83EAC691198FD /* TeamThemeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E710CF947578637722A0CC6A /* TeamThemeSetting.swift */; };
 		35918F91BD82B9B1C0A83620 /* TeamThemeColorCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F59719367BCEB62568456E /* TeamThemeColorCache.swift */; };
 		35AB6C15F199028D687BE27E /* CrossAppLinkResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8B29BA18BFFE20D1E0801 /* CrossAppLinkResolver.swift */; };
 		35D07BE142DA0E67D0574636 /* FixturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0B10181CB912E1D1C2625 /* FixturesView.swift */; };
@@ -70,6 +75,7 @@
 		3759A7CAD306054ADEA8894E /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCD3323E3758CD78F54E1C6 /* Match.swift */; };
 		3940783C59FBAA955353BF2F /* MatchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855292C3DDAE65CCAE220B7F /* MatchDetailView.swift */; };
 		395DEC187D387AA8D6AC2B61 /* ScreenTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404494D46245C078DB19DE9E /* ScreenTracking.swift */; };
+		39F5814A46A443DE22EB3176 /* TeamThemeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E710CF947578637722A0CC6A /* TeamThemeSetting.swift */; };
 		3A4963061B520B3CA1C72593 /* FixtureMatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5323866C610E927C418D01F7 /* FixtureMatchCard.swift */; };
 		3B95EFBE4C88EB14E4F31E90 /* MatchDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD89602CB168BCB0121EAA /* MatchDTO.swift */; };
 		3C791B326F68ACB2847373B5 /* FixtureMatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5323866C610E927C418D01F7 /* FixtureMatchCard.swift */; };
@@ -87,6 +93,7 @@
 		49B30E60D7CDE0DFCFD7F46D /* StandingDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65CB58B6DA37E6E8C02103 /* StandingDTO.swift */; };
 		4A664AEA6B5DCD2F2C0850C6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 7A20B375D7094C6D4E1961B1 /* Localizable.xcstrings */; };
 		4CD1E855D1C656941C28C7BA /* MatchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828CC19752FF614A96C2286 /* MatchStatus.swift */; };
+		516DCEFFEC2A861895812738 /* ThemeTokensTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DF4A284E1FEB1CFD556FE6 /* ThemeTokensTests.swift */; };
 		52111A2B37EC80C751EB0F77 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7CD31B3A17497FD8945EA /* StandingsView.swift */; };
 		52AC218C2E201C2208F0492C /* AppIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A466914FB52022A91A3EFDC /* AppIconPickerView.swift */; };
 		52AC6703D4B7539B1CABB611 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0623F774E7695B36808EDD20 /* GoogleService-Info.plist */; };
@@ -94,6 +101,7 @@
 		5456BE329E2096D14135D784 /* AppIconPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C4923C4C3A35A6E0D97D /* AppIconPickerViewModel.swift */; };
 		54F08B858D2E3E13DAD709E4 /* TeamThemeColorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D9F3F1E0EAD3ECE1FE272D /* TeamThemeColorsTests.swift */; };
 		5585F0B7AC148CE814D13A0B /* MatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0996F787521F2EF840C43 /* MatchService.swift */; };
+		55A17600BF1079AE3CF8BF35 /* TeamThemeOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9849E4F99F5D2DA4D8081 /* TeamThemeOption.swift */; };
 		56DA2E708A2F8AE9CE8B7FF6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E997B71FC9534C0287BE63 /* Foundation.framework */; };
 		57541F9E3D3012CCFA00B1C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2CB89C3BBC773A2685A57 /* AppDelegate.swift */; };
 		57D759FEDBA0F5C166CF91CE /* FixtureMatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5323866C610E927C418D01F7 /* FixtureMatchCard.swift */; };
@@ -119,6 +127,8 @@
 		6687E4423A11B9EE5F1FC2BF /* MatchTimelineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D44350EAD06089AFB83195 /* MatchTimelineRow.swift */; };
 		671728A6588D475383C8BA48 /* AppIconSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBD8CC8C85D68BA0C23F8 /* AppIconSetting.swift */; };
 		67622E12C650627FEC121458 /* Competition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741DC2065FBFD04140A95C /* Competition.swift */; };
+		67A95683D8D12620275AD82D /* TeamThemeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E710CF947578637722A0CC6A /* TeamThemeSetting.swift */; };
+		67CAF846DD6EFDCB91402418 /* TeamThemeOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9849E4F99F5D2DA4D8081 /* TeamThemeOption.swift */; };
 		69729BDF0FF6C62927561AB3 /* MatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B84BA767820581A92592C99 /* MatchTests.swift */; };
 		699313CE0CB43B7D7CFF1CF2 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD0E9B9C297140406B72B2D /* MoreView.swift */; };
 		6AE4640FEC2E5D330A59CD57 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75B0EB02D5F3849779B3F145 /* GoogleService-Info.plist */; };
@@ -155,6 +165,7 @@
 		8A9DAFC0D7423F13C744C218 /* CrossAppLinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2218558E3790F197562D732 /* CrossAppLinkTests.swift */; };
 		8AC49F5B9D3F8C6C1F93A895 /* FixturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0B10181CB912E1D1C2625 /* FixturesView.swift */; };
 		8BC02D02E831C962DA5C6840 /* Standing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB1160665D8A2136DF3C6B /* Standing.swift */; };
+		8BC248FAE0DB30BC91E0E368 /* ThemeTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105A10788BCFFB4D2950B8EF /* ThemeTokens.swift */; };
 		8C73B28BC71F6280E159E76E /* MoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C49CB2060A7D052977CA91 /* MoreViewModel.swift */; };
 		8CDD275F08B6BF24B3631158 /* ScoreRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422EC54CAAA878A2718771BB /* ScoreRow.swift */; };
 		8E3C946421CF6EBD29F2990B /* MatchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4828CC19752FF614A96C2286 /* MatchStatus.swift */; };
@@ -164,6 +175,7 @@
 		909922ED17B4F860C8A7FE49 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C30CEF69E76665DF012094F /* Team.swift */; };
 		90F16B5361A7462A192C423A /* MoreSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D40C5B68AD965EA2F417DC1 /* MoreSection.swift */; };
 		90F8DB51F22EB5E7497DB311 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A550575E6347EE4F9B8C7E8 /* Color+Hex.swift */; };
+		9218A73E2C317C9E3F6C3FD0 /* TeamThemeSettingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C8F6338B1FFDC9717B6A1 /* TeamThemeSettingTests.swift */; };
 		929C1973908CFD3A74A07D19 /* LaunchScreen-Ligue1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DB9E7F8F15157A617B36888 /* LaunchScreen-Ligue1.storyboard */; };
 		93DD1488683E2928F34BA460 /* MatchdayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C00E16086BB9C6ED819462 /* MatchdayViewModelTests.swift */; };
 		93FF44629C97CF33BA9076AF /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD0E9B9C297140406B72B2D /* MoreView.swift */; };
@@ -229,6 +241,7 @@
 		CCEDF03E54B02B4CC8722F9B /* Competition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741DC2065FBFD04140A95C /* Competition.swift */; };
 		CCFFEF8BD9B3A07127D81C83 /* Championship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF94F1B7FFEA78845976994 /* Championship.swift */; };
 		CDC6FBD8A31AA130B2C19370 /* LaunchScreen-PrimeiraLiga.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C8FD2FCAA34ACDFF84F73A8 /* LaunchScreen-PrimeiraLiga.storyboard */; };
+		CDDE44D31B0E7D7C4B86FA05 /* TeamThemeOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9849E4F99F5D2DA4D8081 /* TeamThemeOption.swift */; };
 		CF5AA2693EF50715738DA3D0 /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F0E8AA4BDCF972420F7225 /* StandingsViewModel.swift */; };
 		D03F5E9B5D44D1F54AF29E46 /* MatchDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD89602CB168BCB0121EAA /* MatchDTO.swift */; };
 		D08B2BB6429BEF112FE56DDD /* MatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0996F787521F2EF840C43 /* MatchService.swift */; };
@@ -241,6 +254,7 @@
 		DC540A734CF557516CFD368E /* GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287F723E6555472EAEA55D5E /* GlassCard.swift */; };
 		DC569D7DED6D1BAF3AB8E175 /* AppIconOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7BD7162D81299AB5D44D51 /* AppIconOption.swift */; };
 		DE3F15138FC6258D10F0E345 /* MatchdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750454E4C32D9EEA69417686 /* MatchdayViewModel.swift */; };
+		E0E20A54E332A9FA3DD18D67 /* ThemeTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105A10788BCFFB4D2950B8EF /* ThemeTokens.swift */; };
 		E2262624ABC32658B42DDBF7 /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F0E8AA4BDCF972420F7225 /* StandingsViewModel.swift */; };
 		E535AD91E7B1012DA85F64BE /* MockMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB245877F3BE6246A841B9 /* MockMatchService.swift */; };
 		E621210241C77A2CF5EFBFD8 /* MatchSwiftDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50CB1386053224A356B2C76 /* MatchSwiftDataTests.swift */; };
@@ -268,6 +282,7 @@
 		F8753E7148445780C5008DB5 /* AppIconSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBD8CC8C85D68BA0C23F8 /* AppIconSetting.swift */; };
 		FB714CB75250CF9105A811D7 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FE51A17C184987431DD87C7A /* FirebaseMessaging */; };
 		FCDFE9BEC30AA85EDC5A3EE2 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7CD31B3A17497FD8945EA /* StandingsView.swift */; };
+		FD4AC943B33551CE3444A31A /* TeamThemeOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9849E4F99F5D2DA4D8081 /* TeamThemeOption.swift */; };
 		FDD275A764EAA7CCC95B5311 /* MatchdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB8A210105388EE24ECD77 /* MatchdayView.swift */; };
 /* End PBXBuildFile section */
 
@@ -290,12 +305,14 @@
 
 /* Begin PBXFileReference section */
 		02B4F41036B3BF67A1879D29 /* FixturesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesViewModel.swift; sourceTree = "<group>"; };
+		045C8F6338B1FFDC9717B6A1 /* TeamThemeSettingTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamThemeSettingTests.swift; sourceTree = "<group>"; };
 		05E997B71FC9534C0287BE63 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		0623F774E7695B36808EDD20 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		07C00E16086BB9C6ED819462 /* MatchdayViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchdayViewModelTests.swift; sourceTree = "<group>"; };
 		0B84BA767820581A92592C99 /* MatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTests.swift; sourceTree = "<group>"; };
 		0BF94F1B7FFEA78845976994 /* Championship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Championship.swift; sourceTree = "<group>"; };
 		0FEB1160665D8A2136DF3C6B /* Standing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standing.swift; sourceTree = "<group>"; };
+		105A10788BCFFB4D2950B8EF /* ThemeTokens.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ThemeTokens.swift; sourceTree = "<group>"; };
 		159E2AE600FA152C8E2E8B89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17A71A2EA3718A5D31948205 /* StadiumBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadiumBackground.swift; sourceTree = "<group>"; };
 		1C30CEF69E76665DF012094F /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
@@ -317,6 +334,7 @@
 		45BD698E976EAC4B8C3CF2B7 /* HeroMatchCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroMatchCard.swift; sourceTree = "<group>"; };
 		47120683E2BA4B90B153AD31 /* FixturesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesViewModelTests.swift; sourceTree = "<group>"; };
 		4828CC19752FF614A96C2286 /* MatchStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchStatus.swift; sourceTree = "<group>"; };
+		488E6D224DEAE7CA297007DD /* TeamThemeOptionTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamThemeOptionTests.swift; sourceTree = "<group>"; };
 		4C8FD2FCAA34ACDFF84F73A8 /* LaunchScreen-PrimeiraLiga.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = "LaunchScreen-PrimeiraLiga.storyboard"; sourceTree = "<group>"; };
 		4E5EDFC5DF52B8C490E1782D /* SmokeUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SmokeUITests.swift; sourceTree = "<group>"; };
 		4F8EA6912B1D21368F06E9D0 /* MatchEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEvent.swift; sourceTree = "<group>"; };
@@ -352,6 +370,7 @@
 		9D6DA06CFA4EC9C1C40A3F48 /* PrimeiraLiga2026.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrimeiraLiga2026.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EEB1ACAA1C8C48F9424806E /* TeamCrestCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamCrestCache.swift; sourceTree = "<group>"; };
 		A0FD16E360A6B3F8DCB8362C /* TeamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTests.swift; sourceTree = "<group>"; };
+		A2DF4A284E1FEB1CFD556FE6 /* ThemeTokensTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ThemeTokensTests.swift; sourceTree = "<group>"; };
 		A891A6379A8E24051EBE4113 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AE7BD7162D81299AB5D44D51 /* AppIconOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconOption.swift; sourceTree = "<group>"; };
 		B2F2CB89C3BBC773A2685A57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -376,7 +395,9 @@
 		DEB603739E340853E8DCF6E1 /* BR2026UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BR2026UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F0E8AA4BDCF972420F7225 /* StandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModel.swift; sourceTree = "<group>"; };
 		E7100EA66C41E9266FB5296A /* ChampionshipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionshipTests.swift; sourceTree = "<group>"; };
+		E710CF947578637722A0CC6A /* TeamThemeSetting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamThemeSetting.swift; sourceTree = "<group>"; };
 		E7E434E6CB924EEBF2ED52FF /* TeamCrestBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCrestBadge.swift; sourceTree = "<group>"; };
+		E8D9849E4F99F5D2DA4D8081 /* TeamThemeOption.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamThemeOption.swift; sourceTree = "<group>"; };
 		EA49AD74DF6CAFC576234443 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		EC51FB666340CB6033EB7277 /* ChampionshipConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionshipConfig.swift; sourceTree = "<group>"; };
 		ECF00233B8DDFC621A80FA9E /* TeamThemeColors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamThemeColors.swift; sourceTree = "<group>"; };
@@ -457,6 +478,8 @@
 				9EEB1ACAA1C8C48F9424806E /* TeamCrestCache.swift */,
 				ECF00233B8DDFC621A80FA9E /* TeamThemeColors.swift */,
 				88F59719367BCEB62568456E /* TeamThemeColorCache.swift */,
+				105A10788BCFFB4D2950B8EF /* ThemeTokens.swift */,
+				E8D9849E4F99F5D2DA4D8081 /* TeamThemeOption.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -519,6 +542,8 @@
 				A0FD16E360A6B3F8DCB8362C /* TeamTests.swift */,
 				D2218558E3790F197562D732 /* CrossAppLinkTests.swift */,
 				31D9F3F1E0EAD3ECE1FE272D /* TeamThemeColorsTests.swift */,
+				A2DF4A284E1FEB1CFD556FE6 /* ThemeTokensTests.swift */,
+				488E6D224DEAE7CA297007DD /* TeamThemeOptionTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -689,6 +714,7 @@
 				CF19AF830233C51EF5882C73 /* MockMatchServiceTests.swift */,
 				D4423DE97316CCFFA3D61AAB /* CrossAppLinkResolverTests.swift */,
 				89986C46CD012826E8C1C464 /* TeamCrestCacheStoreTests.swift */,
+				045C8F6338B1FFDC9717B6A1 /* TeamThemeSettingTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -767,6 +793,7 @@
 				58D8B29BA18BFFE20D1E0801 /* CrossAppLinkResolver.swift */,
 				387160DBDCC7939421B9C3AE /* TeamCrestCacheStore.swift */,
 				404494D46245C078DB19DE9E /* ScreenTracking.swift */,
+				E710CF947578637722A0CC6A /* TeamThemeSetting.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1173,6 +1200,9 @@
 				395DEC187D387AA8D6AC2B61 /* ScreenTracking.swift in Sources */,
 				3D43A3D97BB114C6F7134746 /* TeamThemeColors.swift in Sources */,
 				368F0FD1938DC91DD88D3949 /* TeamThemeColorCache.swift in Sources */,
+				E0E20A54E332A9FA3DD18D67 /* ThemeTokens.swift in Sources */,
+				1813358B77FF3076A24EA10B /* TeamThemeSetting.swift in Sources */,
+				67CAF846DD6EFDCB91402418 /* TeamThemeOption.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1233,6 +1263,9 @@
 				12B669F88738808BFF8A5F0C /* ScreenTracking.swift in Sources */,
 				3248E5835A262E36A3AC4EBE /* TeamThemeColors.swift in Sources */,
 				7AB671B21EF10EAB31C93B1D /* TeamThemeColorCache.swift in Sources */,
+				1EDC2704F0F3F64AC11ECFC5 /* ThemeTokens.swift in Sources */,
+				39F5814A46A443DE22EB3176 /* TeamThemeSetting.swift in Sources */,
+				CDDE44D31B0E7D7C4B86FA05 /* TeamThemeOption.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1258,6 +1291,9 @@
 				2E73B64412A38F7593501D13 /* TeamCrestCacheStoreTests.swift in Sources */,
 				54F08B858D2E3E13DAD709E4 /* TeamThemeColorsTests.swift in Sources */,
 				A447BBE2DAB5F9CE74660EB5 /* ColorHexTests.swift in Sources */,
+				516DCEFFEC2A861895812738 /* ThemeTokensTests.swift in Sources */,
+				9218A73E2C317C9E3F6C3FD0 /* TeamThemeSettingTests.swift in Sources */,
+				07F41E524217D53DC9FDD53C /* TeamThemeOptionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1318,6 +1354,9 @@
 				610E3989F74E3B10B719FD83 /* ScreenTracking.swift in Sources */,
 				EF5C52444E16E636D46C4AF2 /* TeamThemeColors.swift in Sources */,
 				35918F91BD82B9B1C0A83620 /* TeamThemeColorCache.swift in Sources */,
+				08001FA0EE21E73B579D3F7F /* ThemeTokens.swift in Sources */,
+				355A153179B83EAC691198FD /* TeamThemeSetting.swift in Sources */,
+				55A17600BF1079AE3CF8BF35 /* TeamThemeOption.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1378,6 +1417,9 @@
 				9C15B057365410DF5C1E6488 /* ScreenTracking.swift in Sources */,
 				C68A6989D994D267CA1DBC3E /* TeamThemeColors.swift in Sources */,
 				D63F900ED3C2DD0CD0329179 /* TeamThemeColorCache.swift in Sources */,
+				8BC248FAE0DB30BC91E0E368 /* ThemeTokens.swift in Sources */,
+				67A95683D8D12620275AD82D /* TeamThemeSetting.swift in Sources */,
+				FD4AC943B33551CE3444A31A /* TeamThemeOption.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
