@@ -567,9 +567,9 @@ struct ThemeTokensTests {
         let tokens = ThemeTokens()
         #expect(tokens.overrideAccentColor == nil)
         #expect(tokens.textColor == .white)
-        #expect(tokens.gradientStops == StadiumBackground.defaultGradientStops)
-        #expect(tokens.blobColors.top == StadiumBackground.defaultBlobColors.top)
-        #expect(tokens.blobColors.bottom == StadiumBackground.defaultBlobColors.bottom)
+        #expect(tokens.gradientStops == ThemeTokens.defaultGradientStops)
+        #expect(tokens.blobColors.top == ThemeTokens.defaultBlobColors.top)
+        #expect(tokens.blobColors.bottom == ThemeTokens.defaultBlobColors.bottom)
     }
 
     @Test("themed(mainColorHex:fontColorHex:) sets a non-nil accent, the given text color, and both blobs to the main color")
@@ -716,8 +716,18 @@ import SwiftUI
 struct ThemeTokens: Equatable {
     var overrideAccentColor: Color?
     var textColor: Color = .white
-    var gradientStops: [Color] = StadiumBackground.defaultGradientStops
-    var blobColors: (top: Color, bottom: Color) = StadiumBackground.defaultBlobColors
+    var gradientStops: [Color] = ThemeTokens.defaultGradientStops
+    var blobColors: (top: Color, bottom: Color) = ThemeTokens.defaultBlobColors
+
+    static let defaultGradientStops = [
+        Color(hex: "#173a68"),
+        Color(hex: "#0b2143"),
+        Color(hex: "#061325")
+    ]
+    static let defaultBlobColors: (top: Color, bottom: Color) = (
+        Color(hex: "#173a68"),
+        Color(red: 45.0 / 255, green: 212.0 / 255, blue: 191.0 / 255)
+    )
 
     static func == (lhs: ThemeTokens, rhs: ThemeTokens) -> Bool {
         lhs.overrideAccentColor == rhs.overrideAccentColor
@@ -1509,7 +1519,7 @@ git commit -m "Add TeamThemePickerView and wire it into MoreView"
 
 **Interfaces:**
 - Consumes: `ThemeTokens`/`EnvironmentValues.themeTokens` (Task 4).
-- Produces: `StadiumBackground.defaultGradientStops`, `StadiumBackground.defaultBlobColors` (static, already referenced by Task 4's `ThemeTokens` default values — this task is where they're actually defined).
+- Consumes: `ThemeTokens.defaultGradientStops`, `ThemeTokens.defaultBlobColors` (Task 4) — these live on `ThemeTokens`, not `StadiumBackground`, specifically so Task 4 doesn't have to forward-reference a type this task hasn't created yet.
 
 No new files — no Xcode project registration needed. Still expected to fail to build stand-alone (same reason as Task 8) until Task 10 fixes `MoreView`'s call site; this task's own changes are independently correct.
 
@@ -1526,16 +1536,6 @@ import SwiftUI
 /// See CLAUDE.md "Design System — Liquid Glass" → "Background".
 struct StadiumBackground: View {
     @Environment(\.themeTokens) private var themeTokens
-
-    static let defaultGradientStops = [
-        Color(hex: "#173a68"),
-        Color(hex: "#0b2143"),
-        Color(hex: "#061325")
-    ]
-    static let defaultBlobColors: (top: Color, bottom: Color) = (
-        Color(hex: "#173a68"),
-        Color(red: 45.0 / 255, green: 212.0 / 255, blue: 191.0 / 255)
-    )
 
     var body: some View {
         ZStack {
