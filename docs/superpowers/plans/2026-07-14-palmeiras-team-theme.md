@@ -1269,7 +1269,12 @@ git commit -m "Add TeamThemePickerViewModel"
 **Interfaces:**
 - Produces: `MoreDestination.teamThemePicker` case, a `"teamTheme"` row in `MoreViewModel`'s `preferences` section — consumed by Task 8's `MoreView`.
 
-No new files — no Xcode project registration needed.
+No new files — no Xcode project registration needed. **This task alone leaves the build red**:
+`MoreView.swift`'s `navigationDestination(for:)` switches exhaustively over `MoreDestination`,
+so adding a case here breaks that switch's exhaustiveness until Task 8 adds the matching
+`.teamThemePicker` branch — the unit test suite (`bundle exec fastlane test`) will fail to build
+after this task, same as the already-documented Task 8→10 gap. Commit anyway and proceed straight
+to Task 8, which restores the build.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -1339,10 +1344,11 @@ to:
             ]
 ```
 
-- [ ] **Step 5: Run the full test suite to confirm it passes**
+- [ ] **Step 5: Confirm the expected (temporary) red state**
 
 Run: `export PATH="$HOME/.rbenv/shims:$PATH" && bundle exec fastlane test`
-Expected: PASS, 99 tests (same as Task 6 — this task changes an existing test's assertions rather than adding one), 0 failures.
+Expected: FAIL — `MoreView.swift`'s exhaustive `switch` over `MoreDestination` doesn't handle
+`.teamThemePicker` yet. Fixed by Task 8; commit this task anyway and proceed immediately.
 
 - [ ] **Step 6: Commit**
 
