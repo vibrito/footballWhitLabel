@@ -31,6 +31,13 @@ final class MoreViewModel {
                     systemImage: "app.badge",
                     destination: .appIconPicker,
                     isEnabled: true
+                ),
+                MoreRow(
+                    id: "teamTheme",
+                    titleKey: "Team Theme",
+                    systemImage: "paintpalette",
+                    destination: .teamThemePicker,
+                    isEnabled: true
                 )
             ]
         )
