@@ -1,15 +1,16 @@
 # Palmeiras Team Theme (IAP Themes Proof of Concept) Design
 
-**Goal:** Let the user recolor the whole app to Palmeiras's real kit colors — background
-gradient, ambient glow blobs, `HeroMatchCard`'s border, the app's accent (tab tint/`LiveChip`/
+**Goal:** Let the user recolor the whole app to one of Palmeiras's three real kit color sets —
+Home, Away, or Third, each independently selectable — applied to the background gradient,
+ambient glow blobs, `HeroMatchCard`'s border, the app's accent (tab tint/`LiveChip`/
 `AccentPill`), and all body text — sourced live from the API's
 `GET /v4/competitions/{code}/teams/{id}/colors` endpoint. This is the first slice of the
 top-priority post-launch roadmap item, **in-app-purchase team themes** (icon/colors/hero-card,
 purchasable per team): this pass builds the *theming mechanism* end-to-end for one hardcoded
-team (Palmeiras, BSA team id `121`), with the purchase gate stubbed as always-unlocked. Custom
-per-team app icons, a purchasable catalog of multiple teams, and real StoreKit 2 purchasing are
-explicitly out of scope — separate follow-ups once this mechanism is proven and icon assets
-exist.
+team (Palmeiras, BSA team id `121`) offered as 3 kit variants, with the purchase gate stubbed as
+always-unlocked. Custom per-team app icons, other teams beyond Palmeiras, and real StoreKit 2
+purchasing are explicitly out of scope — separate follow-ups once this mechanism is proven and
+icon assets exist.
 
 **Wire shape (confirmed live)**, `GET /v4/competitions/BSA/teams/121/colors`:
 ```json
@@ -20,9 +21,11 @@ exist.
   "third": {"fontColor": "2c5434", "mainColor": "ffffff", "secondaryColor": "ffffff", "matchesConsidered": 1}
 }
 ```
-Only `home.mainColor` and `home.fontColor` are used — there is no per-match home/away context in
-this feature (it's a fixed app-wide theme, not a match-specific treatment), and `secondaryColor`/
-`matchesConsidered`/`away`/`third` have no consumer in this pass.
+`mainColor`/`fontColor` are used from all three of `home`/`away`/`third` (one full fetch already
+returns all three; nothing extra to request). `secondaryColor`/`matchesConsidered` still have no
+consumer in this pass. There's still no per-match home/away context here — a user picks one of
+the 3 kit variants as their fixed app-wide theme; it isn't automatically swapped based on which
+team is playing in a given match.
 
 **Architecture:** A new `TeamThemeStore` (`@Observable @MainActor`, created once in
 `ChampionshipApp.swift` next to `config`/`service`) owns whether the Palmeiras theme is selected
@@ -39,45 +42,85 @@ central constraint every default value in this design is built around.
 
 ### Model
 
-`BR2026/Models/TeamThemeColors.swift` (new, plain struct — not SwiftData):
+`BR2026/Models/TeamThemeColors.swift` (new, plain structs — not SwiftData):
 ```swift
+enum TeamKit: String, Codable, CaseIterable {
+    case home, away, third
+}
+
 struct TeamThemeColors: Codable, Equatable {
     let mainColorHex: String
     let fontColorHex: String
 }
 
-struct TeamThemeColorsResponse: Decodable {
-    let home: HomeKitColorsDTO
+struct TeamThemeColorSet: Codable, Equatable {
+    let home: TeamThemeColors
+    let away: TeamThemeColors
+    let third: TeamThemeColors
 
-    struct HomeKitColorsDTO: Decodable {
+    subscript(kit: TeamKit) -> TeamThemeColors {
+        switch kit {
+        case .home: home
+        case .away: away
+        case .third: third
+        }
+    }
+}
+
+struct TeamThemeColorsResponse: Decodable {
+    let home: KitColorsDTO
+    let away: KitColorsDTO
+    let third: KitColorsDTO
+
+    struct KitColorsDTO: Decodable {
         let fontColor: String
         let mainColor: String
     }
 }
 
-extension TeamThemeColors {
+extension TeamThemeColorSet {
     init(response: TeamThemeColorsResponse) {
-        self.init(mainColorHex: response.home.mainColor, fontColorHex: response.home.fontColor)
+        func colors(_ dto: TeamThemeColorsResponse.KitColorsDTO) -> TeamThemeColors {
+            TeamThemeColors(mainColorHex: dto.mainColor, fontColorHex: dto.fontColor)
+        }
+        self.init(home: colors(response.home), away: colors(response.away), third: colors(response.third))
     }
 }
 ```
-`TeamThemeColorsResponse` only declares the keys this feature reads (`Decodable` ignores unknown
-JSON keys, so `away`/`third`/`secondaryColor`/`matchesConsidered`/`team` are simply skipped).
+`TeamThemeColorsResponse` only declares the keys this feature reads per kit (`Decodable` ignores
+unknown JSON keys, so `secondaryColor`/`matchesConsidered`/`team` are simply skipped).
 
-`BR2026/Models/TeamThemeColorCache.swift` (new, SwiftData — mirrors `TeamCrestCache.swift`):
+`BR2026/Models/TeamThemeColorCache.swift` (new, SwiftData — mirrors `TeamCrestCache.swift`, one
+row per team holding all 3 kits since a single fetch already returns all of them together):
 ```swift
 @Model
 final class TeamThemeColorCache {
     @Attribute(.unique) var teamID: Int
-    var mainColorHex: String
-    var fontColorHex: String
+    var homeMainColorHex: String
+    var homeFontColorHex: String
+    var awayMainColorHex: String
+    var awayFontColorHex: String
+    var thirdMainColorHex: String
+    var thirdFontColorHex: String
     var cachedAt: Date
 
-    init(teamID: Int, mainColorHex: String, fontColorHex: String, cachedAt: Date = Date()) {
+    init(teamID: Int, colors: TeamThemeColorSet, cachedAt: Date = Date()) {
         self.teamID = teamID
-        self.mainColorHex = mainColorHex
-        self.fontColorHex = fontColorHex
+        self.homeMainColorHex = colors.home.mainColorHex
+        self.homeFontColorHex = colors.home.fontColorHex
+        self.awayMainColorHex = colors.away.mainColorHex
+        self.awayFontColorHex = colors.away.fontColorHex
+        self.thirdMainColorHex = colors.third.mainColorHex
+        self.thirdFontColorHex = colors.third.fontColorHex
         self.cachedAt = cachedAt
+    }
+
+    var colorSet: TeamThemeColorSet {
+        TeamThemeColorSet(
+            home: TeamThemeColors(mainColorHex: homeMainColorHex, fontColorHex: homeFontColorHex),
+            away: TeamThemeColors(mainColorHex: awayMainColorHex, fontColorHex: awayFontColorHex),
+            third: TeamThemeColors(mainColorHex: thirdMainColorHex, fontColorHex: thirdFontColorHex)
+        )
     }
 }
 ```
@@ -90,33 +133,33 @@ Added to `ChampionshipApp.swift`'s `ModelContainer(for:)` list.
 
 `MatchService` protocol gains:
 ```swift
-func fetchTeamThemeColors(teamID: Int) async throws -> TeamThemeColors
-func cachedTeamThemeColors(teamID: Int) -> TeamThemeColors?
+func fetchTeamThemeColorSet(teamID: Int) async throws -> TeamThemeColorSet
+func cachedTeamThemeColorSet(teamID: Int) -> TeamThemeColorSet?
 ```
 
 `LiveMatchService`:
 ```swift
-func fetchTeamThemeColors(teamID: Int) async throws -> TeamThemeColors {
+func fetchTeamThemeColorSet(teamID: Int) async throws -> TeamThemeColorSet {
     let url = config.apiBaseURL
         .appendingPathComponent("v4/competitions/\(config.competitionCode)/teams/\(teamID)/colors")
     let response: TeamThemeColorsResponse = try await get(url)
-    let colors = TeamThemeColors(response: response)
+    let colors = TeamThemeColorSet(response: response)
     try modelContext.delete(model: TeamThemeColorCache.self, where: #Predicate { $0.teamID == teamID })
-    modelContext.insert(TeamThemeColorCache(teamID: teamID, mainColorHex: colors.mainColorHex, fontColorHex: colors.fontColorHex))
+    modelContext.insert(TeamThemeColorCache(teamID: teamID, colors: colors))
     try modelContext.save()
     return colors
 }
 
-func cachedTeamThemeColors(teamID: Int) -> TeamThemeColors? {
+func cachedTeamThemeColorSet(teamID: Int) -> TeamThemeColorSet? {
     let descriptor = FetchDescriptor<TeamThemeColorCache>(predicate: #Predicate { $0.teamID == teamID })
-    guard let cached = try? modelContext.fetch(descriptor).first else { return nil }
-    return TeamThemeColors(mainColorHex: cached.mainColorHex, fontColorHex: cached.fontColorHex)
+    return (try? modelContext.fetch(descriptor).first)?.colorSet
 }
 ```
 
-`MockMatchService`: returns Palmeiras's real known values with no network/cache —
-`TeamThemeColors(mainColorHex: "225638", fontColorHex: "ffffff")` — for both `fetchTeamThemeColors`
-and `cachedTeamThemeColors`.
+`MockMatchService`: returns Palmeiras's real known values with no network/cache — a
+`TeamThemeColorSet` built from the three confirmed-live kit values (home `225638`/`ffffff`, away
+`ffffff`/`035336`, third `ffffff`/`2c5434`) — for both `fetchTeamThemeColorSet` and
+`cachedTeamThemeColorSet`.
 
 ## Theme State & Tokens
 
@@ -167,8 +210,9 @@ final class TeamThemeStore {
     func loadOnce() async {
         guard !hasLoadedOnce else { return }
         hasLoadedOnce = true
-        guard setting.selectedThemeID == TeamThemeOption.palmeiras.rawValue else { return }
-        await apply(.palmeiras)
+        guard let selectedID = setting.selectedThemeID,
+              let option = TeamThemeOption.allCases.first(where: { $0.rawValue == selectedID }) else { return }
+        await apply(option)
     }
 
     /// Returns `false` (and leaves the current selection/tokens untouched) if resolving colors
@@ -181,20 +225,20 @@ final class TeamThemeStore {
             tokens = ThemeTokens()
             return true
         }
-        guard let colors = await resolveColors(teamID: option.teamID) else { return false }
+        guard let colors = await resolveColors(teamID: option.teamID)?[option.kit] else { return false }
         setting.setSelectedThemeID(option.rawValue)
         tokens = ThemeTokens.themed(mainColorHex: colors.mainColorHex, fontColorHex: colors.fontColorHex)
         return true
     }
 
     private func apply(_ option: TeamThemeOption) async {
-        guard let colors = await resolveColors(teamID: option.teamID) else { return }
+        guard let colors = await resolveColors(teamID: option.teamID)?[option.kit] else { return }
         tokens = ThemeTokens.themed(mainColorHex: colors.mainColorHex, fontColorHex: colors.fontColorHex)
     }
 
-    private func resolveColors(teamID: Int) async -> TeamThemeColors? {
-        if let cached = service.cachedTeamThemeColors(teamID: teamID) { return cached }
-        return try? await service.fetchTeamThemeColors(teamID: teamID)
+    private func resolveColors(teamID: Int) async -> TeamThemeColorSet? {
+        if let cached = service.cachedTeamThemeColorSet(teamID: teamID) { return cached }
+        return try? await service.fetchTeamThemeColorSet(teamID: teamID)
     }
 }
 ```
@@ -217,11 +261,12 @@ the bottom stop — same light-to-dark structure as today's fixed
 toward white/black (no HSB precision needed — this is a stylistic backdrop, not brand-critical
 color matching).
 
-`TeamThemeOption` (new, mirrors `AppIconOption`'s per-target gating exactly):
+`TeamThemeOption` (new, mirrors `AppIconOption`'s per-target gating exactly; 3 cases, one per
+kit, all pointing at the same Palmeiras team id):
 ```swift
 enum TeamThemeOption: String, CaseIterable, Identifiable {
     #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
-    case palmeiras
+    case palmeirasHome, palmeirasAway, palmeirasThird
     #endif
 
     var id: String { rawValue }
@@ -229,7 +274,17 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
     var teamID: Int {
         switch self {
         #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
-        case .palmeiras: 121
+        case .palmeirasHome, .palmeirasAway, .palmeirasThird: 121
+        #endif
+        }
+    }
+
+    var kit: TeamKit {
+        switch self {
+        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
+        case .palmeirasHome: .home
+        case .palmeirasAway: .away
+        case .palmeirasThird: .third
         #endif
         }
     }
@@ -237,13 +292,18 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
     var displayName: LocalizedStringResource {
         switch self {
         #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
-        case .palmeiras: "Palmeiras"
+        case .palmeirasHome: "Palmeiras (Home)"
+        case .palmeirasAway: "Palmeiras (Away)"
+        case .palmeirasThird: "Palmeiras (Third)"
         #endif
         }
     }
 
     /// Stubbed always-true until real StoreKit 2 entitlement checking replaces this — the seam
-    /// a future purchase-flow change plugs into.
+    /// a future purchase-flow change plugs into. All 3 kit variants of a team are expected to
+    /// unlock together as one purchase, not separately — this flag lives per-`TeamThemeOption`
+    /// only because that's where the picker already reads it, not because a future IAP product
+    /// is expected to be scoped to a single kit.
     var isPurchased: Bool { true }
 }
 ```
@@ -412,10 +472,12 @@ final class TeamThemePickerViewModel {
 ```
 
 `BR2026/Views/More/TeamThemePickerView.swift` (new) — a `GlassCard`-wrapped list: a "Default"
-row (no theme) plus one row per `TeamThemeOption.allCases` (just Palmeiras today), each showing
-`option.displayName`, a color swatch, a checkmark on `viewModel.selectedOption`, and a lock icon
-if `!option.isPurchased` (always unlocked for now, so never shown) — tapping calls `await
-viewModel.select(option)`. Mirrors `AppIconPickerView`'s layout/interaction pattern.
+row (no theme) plus one row per `TeamThemeOption.allCases` (Palmeiras Home/Away/Third — 3 rows
+today), each showing `option.displayName`, a color swatch (`Color(hex: ...)` of that kit's
+`mainColorHex`, resolved the same way `select()` does — cached-or-fetched, not decoded twice),
+a checkmark on `viewModel.selectedOption`, and a lock icon if `!option.isPurchased` (always
+unlocked for now, so never shown) — tapping calls `await viewModel.select(option)`. Mirrors
+`AppIconPickerView`'s layout/interaction pattern.
 
 `MoreView`'s `navigationDestination` gains:
 ```swift
@@ -430,17 +492,20 @@ case .teamThemePicker:
 ## Testing
 
 - `TeamThemeStoreTests.swift` (new): `loadOnce()` with no persisted selection leaves `tokens ==
-  ThemeTokens()` (today's defaults); with a persisted `"palmeiras"` selection, resolves tokens
-  from `MockMatchService`'s canned colors; `select(.palmeiras)` then `select(nil)` returns to
-  default tokens; `select` persists via a stub `TeamThemeSetting` only on success; a stub service
-  whose `fetchTeamThemeColors`/`cachedTeamThemeColors` both fail makes `select()` return `false`
-  and leaves `tokens`/the persisted id unchanged.
+  ThemeTokens()` (today's defaults); with a persisted `"palmeirasHome"` selection, resolves
+  tokens from `MockMatchService`'s canned home-kit colors; selecting each of the 3
+  `TeamThemeOption` cases in turn resolves the matching kit's colors (not always `home`); then
+  `select(nil)` returns to default tokens; `select` persists via a stub `TeamThemeSetting` only
+  on success; a stub service whose `fetchTeamThemeColorSet`/`cachedTeamThemeColorSet` both fail
+  makes `select()` return `false` and leaves `tokens`/the persisted id unchanged.
 - `TeamThemePickerViewModelTests.swift` (new): initial `selectedOption` derived correctly from a
-  stubbed `TeamThemeSetting`; `select()` updates both the view model and delegates to
-  `TeamThemeStore`; re-selecting the current option is a no-op; `select()` sets `errorMessage` and
-  leaves `selectedOption` unchanged when `TeamThemeStore.select` returns `false`.
-- `MockMatchServiceTests.swift`: new case asserting `fetchTeamThemeColors`/`cachedTeamThemeColors`
-  both return the canned Palmeiras values.
+  stubbed `TeamThemeSetting` (including each of the 3 rawValues); `select()` updates both the
+  view model and delegates to `TeamThemeStore`; re-selecting the current option is a no-op;
+  `select()` sets `errorMessage` and leaves `selectedOption` unchanged when
+  `TeamThemeStore.select` returns `false`.
+- `MockMatchServiceTests.swift`: new case asserting `fetchTeamThemeColorSet`/
+  `cachedTeamThemeColorSet` both return all 3 kits' canned Palmeiras values (home/away/third),
+  matching the confirmed live response.
 - No snapshot/UI tests for the text-color sweep or gradient derivation — Views aren't unit tested
   per CLAUDE.md; verified manually in Simulator (default look unchanged, Palmeiras theme applies
   correctly) as part of implementation.
@@ -458,10 +523,12 @@ CLAUDE.md updates:
 
 - Real StoreKit 2 purchasing — `TeamThemeOption.isPurchased` is hardcoded `true`.
 - Per-team alternate app icons — needs real icon assets, provided later.
-- Any team other than Palmeiras, or a purchasable catalog UI beyond a single hardcoded option.
-- Home/away-context-dependent coloring (e.g. showing a match's away team in their away kit) —
-  this theme always uses the team's `home` kit colors, regardless of match context.
+- Any team other than Palmeiras, or a purchasable catalog UI beyond 3 hardcoded kit variants of
+  one team.
+- Match-context-dependent coloring (e.g. automatically showing a match's away team in their away
+  kit) — the 3 kit variants are fixed, user-selected app-wide themes, not something that switches
+  based on which team/kit is relevant to what's currently on screen.
 - Standings row backgrounds, match card backgrounds/fills, or any *solid* (non-text, non-border)
   team-colored surface beyond the background gradient/blobs and the hero card's border.
-- `secondaryColor`, `matchesConsidered`, and the `away`/`third` kit payloads — fetched implicitly
-  (they're in the JSON response) but never decoded or used.
+- `secondaryColor` and `matchesConsidered` — present in the JSON response but never decoded or
+  used.
