@@ -79,6 +79,17 @@ final class LiveMatchService: MatchService {
         return competition
     }
 
+    func fetchTeamThemeColorSet(teamID: Int) async throws -> TeamThemeColorSet {
+        let url = config.apiBaseURL
+            .appendingPathComponent("v4/competitions/\(config.competitionCode)/teams/\(teamID)/colors")
+        let response: TeamThemeColorsResponse = try await get(url)
+        let colors = TeamThemeColorSet(response: response)
+        try modelContext.delete(model: TeamThemeColorCache.self, where: #Predicate { $0.teamID == teamID })
+        modelContext.insert(TeamThemeColorCache(teamID: teamID, colors: colors))
+        try modelContext.save()
+        return colors
+    }
+
     func cachedMatches() -> [Match] {
         (try? modelContext.fetch(FetchDescriptor<Match>())) ?? []
     }
@@ -89,6 +100,11 @@ final class LiveMatchService: MatchService {
 
     func cachedCompetition() -> Competition? {
         (try? modelContext.fetch(FetchDescriptor<Competition>()))?.first
+    }
+
+    func cachedTeamThemeColorSet(teamID: Int) -> TeamThemeColorSet? {
+        let descriptor = FetchDescriptor<TeamThemeColorCache>(predicate: #Predicate { $0.teamID == teamID })
+        return (try? modelContext.fetch(descriptor).first)?.colorSet
     }
 
     private func upsert(_ dto: MatchDTO) {

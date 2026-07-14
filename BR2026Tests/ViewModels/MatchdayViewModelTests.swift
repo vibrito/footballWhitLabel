@@ -177,10 +177,14 @@ final class StubMatchService: MatchService {
     var cachedMatchesOverride: [Match]?
     var cachedStandingsOverride: [Standing]?
     var cachedCompetitionOverride: Competition?
+    var teamThemeColorSetOverride: TeamThemeColorSet?
+    var cachedTeamThemeColorSetOverride: TeamThemeColorSet?
     var shouldThrowOnFetch = false
+    var shouldThrowOnTeamThemeFetch = false
     private(set) var fetchMatchesCallCount = 0
     private(set) var fetchStandingsCallCount = 0
     private(set) var fetchCompetitionCallCount = 0
+    private(set) var fetchTeamThemeColorSetCallCount = 0
 
     init(
         matches: [Match],
@@ -217,9 +221,17 @@ final class StubMatchService: MatchService {
         return competition
     }
 
+    func fetchTeamThemeColorSet(teamID: Int) async throws -> TeamThemeColorSet {
+        fetchTeamThemeColorSetCallCount += 1
+        if shouldThrowOnTeamThemeFetch { throw StubServiceError.simulatedFailure }
+        guard let teamThemeColorSetOverride else { throw StubServiceError.simulatedFailure }
+        return teamThemeColorSetOverride
+    }
+
     func cachedMatches() -> [Match] { cachedMatchesOverride ?? matches }
     func cachedStandings() -> [Standing] { cachedStandingsOverride ?? standings }
     func cachedCompetition() -> Competition? { cachedCompetitionOverride }
+    func cachedTeamThemeColorSet(teamID: Int) -> TeamThemeColorSet? { cachedTeamThemeColorSetOverride }
 }
 
 enum StubServiceError: Error {

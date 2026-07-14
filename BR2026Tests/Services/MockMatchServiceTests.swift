@@ -51,4 +51,21 @@ struct MockMatchServiceTests {
         #expect(competition.name == "Campeonato Brasileiro Série A")
         #expect(competition.logoURL == URL(string: "https://media.api-sports.io/football/leagues/71.png"))
     }
+
+    @Test("Returns Palmeiras's known real colors for all 3 kits")
+    func returnsTeamThemeColorSet() async throws {
+        let service = MockMatchService()
+        let colorSet = try await service.fetchTeamThemeColorSet(teamID: 121)
+
+        #expect(colorSet.home == TeamThemeColors(mainColorHex: "225638", fontColorHex: "ffffff"))
+        #expect(colorSet.away == TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "035336"))
+        #expect(colorSet.third == TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "2c5434"))
+    }
+
+    @Test("cachedTeamThemeColorSet returns the same canned values, with no fetch required")
+    func cachedTeamThemeColorSetReturnsSameValues() async throws {
+        let service = MockMatchService()
+        let fetched = try await service.fetchTeamThemeColorSet(teamID: 121)
+        #expect(service.cachedTeamThemeColorSet(teamID: 121) == fetched)
+    }
 }

@@ -7,7 +7,9 @@ protocol MatchService {
     func fetchStandings() async throws -> [Standing]
     func fetchEvents(matchID: Int) async throws -> [MatchEvent]
     func fetchCompetition() async throws -> Competition
+    func fetchTeamThemeColorSet(teamID: Int) async throws -> TeamThemeColorSet
     func cachedMatches() -> [Match]
     func cachedStandings() -> [Standing]
     func cachedCompetition() -> Competition?
+    func cachedTeamThemeColorSet(teamID: Int) -> TeamThemeColorSet?
 }

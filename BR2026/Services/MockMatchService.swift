@@ -13,6 +13,11 @@ final class MockMatchService: MatchService {
     private let standings: [Standing]
     private let events: [MatchEvent]
     private let competition: Competition?
+    private let teamThemeColorSet = TeamThemeColorSet(
+        home: TeamThemeColors(mainColorHex: "225638", fontColorHex: "ffffff"),
+        away: TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "035336"),
+        third: TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "2c5434")
+    )
 
     init() {
         let decoder = JSONDecoder()
@@ -40,7 +45,10 @@ final class MockMatchService: MatchService {
         return competition
     }
 
+    func fetchTeamThemeColorSet(teamID: Int) async throws -> TeamThemeColorSet { teamThemeColorSet }
+
     func cachedMatches() -> [Match] { matches }
     func cachedStandings() -> [Standing] { standings }
     func cachedCompetition() -> Competition? { competition }
+    func cachedTeamThemeColorSet(teamID: Int) -> TeamThemeColorSet? { teamThemeColorSet }
 }
