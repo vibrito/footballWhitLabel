@@ -1,37 +1,30 @@
 import Foundation
 
+/// Always declared for every championship target (unlike `AppIconOption`'s per-target case
+/// gating) — a zero-case `enum ...: String` fails to compile ("an enum with no cases cannot
+/// declare a raw type"), and gating individual cases here would leave the Premier League/
+/// Ligue 1/Liga Portugal targets with none at all. Visibility is gated at the UI layer
+/// instead — see `MoreViewModel`'s `#if` around the "Team Theme" row.
 enum TeamThemeOption: String, CaseIterable, Identifiable {
-    #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
     case palmeirasHome, palmeirasAway, palmeirasThird
-    #endif
 
     var id: String { rawValue }
 
-    var teamID: Int {
-        switch self {
-        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
-        case .palmeirasHome, .palmeirasAway, .palmeirasThird: 121
-        #endif
-        }
-    }
+    var teamID: Int { 121 }
 
     var kit: TeamKit {
         switch self {
-        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
         case .palmeirasHome: .home
         case .palmeirasAway: .away
         case .palmeirasThird: .third
-        #endif
         }
     }
 
     var displayName: LocalizedStringResource {
         switch self {
-        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
         case .palmeirasHome: "Palmeiras (Home)"
         case .palmeirasAway: "Palmeiras (Away)"
         case .palmeirasThird: "Palmeiras (Third)"
-        #endif
         }
     }
 

@@ -24,24 +24,36 @@ final class MoreViewModel {
         MoreSection(
             id: "preferences",
             titleKey: "Preferences",
-            rows: [
-                MoreRow(
-                    id: "appIcon",
-                    titleKey: "App Icon",
-                    systemImage: "app.badge",
-                    destination: .appIconPicker,
-                    isEnabled: true
-                ),
-                MoreRow(
-                    id: "teamTheme",
-                    titleKey: "Team Theme",
-                    systemImage: "paintpalette",
-                    destination: .teamThemePicker,
-                    isEnabled: true
-                )
-            ]
+            rows: MoreViewModel.preferencesRows
         )
     ]
+
+    // Team Theme is Brasileirão-only (Palmeiras) — see `TeamThemeOption`'s own comment for
+    // why the *type* itself isn't per-target #if-gated; this is the actual gate other
+    // championship targets rely on to never show the row.
+    private static var preferencesRows: [MoreRow] {
+        var rows = [
+            MoreRow(
+                id: "appIcon",
+                titleKey: "App Icon",
+                systemImage: "app.badge",
+                destination: .appIconPicker,
+                isEnabled: true
+            )
+        ]
+        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
+        rows.append(
+            MoreRow(
+                id: "teamTheme",
+                titleKey: "Team Theme",
+                systemImage: "paintpalette",
+                destination: .teamThemePicker,
+                isEnabled: true
+            )
+        )
+        #endif
+        return rows
+    }
     private nonisolated(unsafe) let service: MatchService
 
     init(service: MatchService) {

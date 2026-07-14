@@ -14,31 +14,34 @@ struct ChampionshipApp: App {
     let config = ChampionshipConfig.brasileirao
     #endif
     let modelContainer: ModelContainer
+    let service: MatchService
+    let themeStore: TeamThemeStore
 
     init() {
         do {
-            modelContainer = try ModelContainer(for: Match.self, Standing.self, Competition.self, TeamCrestCache.self)
+            modelContainer = try ModelContainer(
+                for: Match.self, Standing.self, Competition.self, TeamCrestCache.self, TeamThemeColorCache.self
+            )
         } catch {
             fatalError("Failed to create SwiftData ModelContainer: \(error)")
         }
-    }
-
-    var body: some Scene {
-        WindowGroup {
-            ContentView(config: config, service: makeService())
-                .preferredColorScheme(.dark)
-        }
-        .modelContainer(modelContainer)
-    }
-
-    private func makeService() -> MatchService {
         // Falls back to mock data if Secrets.xcconfig hasn't been set up yet, so the app
         // still runs in Simulator before a real API key is configured. This also covers
         // fastlane's `screenshots` lane — screenshots are captured against the real API.
         let context = ModelContext(modelContainer)
         if let live = try? LiveMatchService.makeFromBundle(config: config, modelContext: context) {
-            return live
+            service = live
+        } else {
+            service = MockMatchService()
         }
-        return MockMatchService()
+        themeStore = TeamThemeStore(setting: UserDefaultsTeamThemeSetting(), service: service)
+    }
+
+    var body: some Scene {
+        WindowGroup {
+            ContentView(config: config, service: service, themeStore: themeStore)
+                .preferredColorScheme(.dark)
+        }
+        .modelContainer(modelContainer)
     }
 }
