@@ -1,11 +1,12 @@
-Follow Liga Portugal like never before. Live scores, fixtures, and the full standings table — fast, clean, and always up to date.
+Benfica, Porto, Sporting, and every other Primeira Liga club — one app, updated live.
 
-FEATURES
+Liga Portugal 2026 keeps you close to Portuguese top-flight football: who's playing right now, what the table looks like today, and what happens next.
 
-• Matchday — live scores that update as goals go in, with a clean view of everything happening today
-• Fixtures — the full season schedule, match by match
-• Standings — the complete Liga Portugal table, updated after every round
-• Match Details — goals, cards, and substitutions for any match, in order
-• Instant on launch — your last-seen scores and table load immediately, then refresh automatically
+WHAT'S INSIDE
 
-Built for speed and clarity: no clutter, no accounts, no sign-in. Just open the app and see what's happening in Liga Portugal right now.
+• Live Matchday — scores and match state update the moment something happens
+• Season Fixtures — the full round-by-round calendar
+• Official Standings — the current Primeira Liga table, refreshed after every round
+• Match Timeline — goals, cards, and substitutions, in order
+
+Whether you're tracking Os Três Grandes at the top of the table or a relegation fight at the bottom, this app is built for one league only — fast, clean, no accounts, no noise.

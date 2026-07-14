@@ -248,6 +248,14 @@ empirically). The `screenshots` lane hits the real live API — `Secrets.xcconfi
 configured with a real API key before running it (see Backend API section), and captured
 screenshots reflect whatever matches/standings are live or scheduled at capture time.
 
+**App Store metadata must not be templated across apps.** Each app's files under
+`fastlane/metadata/<app>/<locale>/` (`subtitle.txt`, `description.txt`, at minimum) must
+read as written specifically for that app's league — distinct opening lines, distinct
+structure, real league-specific details (rival clubs, competition nicknames) — not the
+same copy with the league name swapped in. Apple rejected Ligue 1 2026 and Liga Portugal
+2026 under Guideline 4.3(a) (Spam) on 2026-07-13 partly because the four apps' listings
+were identical find-and-replace text; this is a recurrence check, not a style preference.
+
 ---
 
 ## Assets

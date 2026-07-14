@@ -1,11 +1,12 @@
-Suivez la Ligue 1 comme jamais auparavant. Scores en direct, calendrier des matchs et classement complet — rapide, épuré et toujours à jour.
+Chaque but, chaque journée, chaque étape de la course au titre — la Ligue 1, en direct.
 
-FONCTIONNALITÉS
+Cette application a un seul objectif : vous donner les scores en direct et le classement de Ligue 1 plus vite que partout ailleurs.
 
-• Journée — des scores en direct qui se mettent à jour à chaque but, avec une vue claire de tout ce qui se passe aujourd'hui
-• Calendrier — le calendrier complet de la saison, match par match
-• Classement — le tableau complet de la Ligue 1, mis à jour après chaque journée
-• Détails du match — buts, cartons et remplacements de n'importe quel match, dans l'ordre
-• Instantané au lancement — vos derniers scores et le classement s'affichent immédiatement, puis se mettent à jour automatiquement
+AU PROGRAMME
 
-Conçu pour la rapidité et la clarté : aucun élément superflu, aucun compte, aucune connexion. Ouvrez simplement l'application pour voir ce qui se passe dans la Ligue 1 en ce moment.
+• Journée en direct — buts et état du match mis à jour en temps réel, sans avoir à actualiser
+• Calendrier complet — toutes les journées de la saison, en un coup d'œil
+• Classement officiel — le tableau de Ligue 1, mis à jour dès la fin des rencontres
+• Fil du match — buts, cartons et remplacements, minute par minute
+
+Du Classique à la course à l'Europe, suivez tous les clubs de l'élite française — PSG, Marseille, Lyon, Monaco et les autres — sans publicité, sans compte, sans superflu. Ouvrez l'application, voyez le score.

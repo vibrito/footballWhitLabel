@@ -1,11 +1,12 @@
-Follow Ligue 1 like never before. Live scores, fixtures, and the full standings table — fast, clean, and always up to date.
+Every goal, every round, every step of the title race — Ligue 1, live.
 
-FEATURES
+This app is built around one thing: getting you Ligue 1's live scores and league table faster than anything else on your home screen.
 
-• Matchday — live scores that update as goals go in, with a clean view of everything happening today
-• Fixtures — the full season schedule, match by match
-• Standings — the complete Ligue 1 table, updated after every round
-• Match Details — goals, cards, and substitutions for any match, in order
-• Instant on launch — your last-seen scores and table load immediately, then refresh automatically
+WHAT'S INSIDE
 
-Built for speed and clarity: no clutter, no accounts, no sign-in. Just open the app and see what's happening in Ligue 1 right now.
+• Live Matchday — goals and match state update in real time, no refreshing
+• Full Season Fixtures — every round of the calendar, at a glance
+• Official Standings — the Ligue 1 table, updated the moment results are final
+• Match Timeline — goals, cards, and substitutions for any match, minute by minute
+
+From Le Classique to the fight for European places, follow every French top-flight club — PSG, Marseille, Lyon, Monaco, and the rest — without ads, accounts, or noise. Open the app, see the score.

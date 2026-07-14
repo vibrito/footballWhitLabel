@@ -1,11 +1,12 @@
-Acompanhe a Ligue 1 como nunca antes. Placares ao vivo, jogos e a tabela completa — rápido, limpo e sempre atualizado.
+Cada gol, cada rodada, cada passo da briga pelo título — a Ligue 1, ao vivo.
 
-RECURSOS
+Este app tem um único foco: te dar os placares ao vivo e a tabela da Ligue 1 mais rápido que qualquer outro lugar.
 
-• Rodada — placares ao vivo que atualizam a cada gol, com uma visão clara de tudo que acontece hoje
-• Jogos — o calendário completo da temporada, partida por partida
-• Classificação — a tabela completa da Ligue 1, atualizada após cada rodada
-• Detalhes da Partida — gols, cartões e substituições de qualquer jogo, em ordem
-• Instantâneo ao abrir — seus últimos placares e a tabela carregam na hora, depois atualizam automaticamente
+O QUE VOCÊ ENCONTRA
 
-Feito para ser rápido e claro: sem poluição visual, sem conta, sem login. Basta abrir o app e ver o que está acontecendo na Ligue 1 agora.
+• Rodada ao vivo — gols e andamento da partida atualizados em tempo real, sem precisar atualizar a tela
+• Calendário completo — todas as rodadas da temporada, de um jeito só
+• Tabela oficial — a classificação da Ligue 1, atualizada assim que os jogos terminam
+• Linha do tempo da partida — gols, cartões e substituições, minuto a minuto
+
+Do Classique à briga por vaga europeia, acompanhe os clubes da elite francesa — PSG, Marselha, Lyon, Mônaco e os demais — sem anúncios, sem conta, sem enrolação. Abriu o app, viu o placar.

@@ -1,11 +1,12 @@
-Acompanhe a Liga Portugal como nunca antes. Placares ao vivo, jogos e a tabela completa — rápido, limpo e sempre atualizado.
+Benfica, Porto, Sporting e todos os outros clubes da Liga Portugal — um app só, atualizado ao vivo.
 
-RECURSOS
+O Liga Portugal 2026 te mantém por dentro do futebol português: quem está jogando agora, como está a tabela hoje e o que vem a seguir.
 
-• Rodada — placares ao vivo que atualizam a cada gol, com uma visão clara de tudo que acontece hoje
-• Jogos — o calendário completo da temporada, partida por partida
-• Classificação — a tabela completa da Liga Portugal, atualizada após cada rodada
-• Detalhes da Partida — gols, cartões e substituições de qualquer jogo, em ordem
-• Instantâneo ao abrir — seus últimos placares e a tabela carregam na hora, depois atualizam automaticamente
+O QUE VOCÊ ENCONTRA
 
-Feito para ser rápido e claro: sem poluição visual, sem conta, sem login. Basta abrir o app e ver o que está acontecendo na Liga Portugal agora.
+• Rodada ao vivo — placares e andamento da partida atualizados assim que algo acontece
+• Calendário da temporada — todas as rodadas, uma a uma
+• Tabela oficial — a classificação atual da Liga Portugal, atualizada após cada rodada
+• Linha do tempo da partida — gols, cartões e substituições, em ordem
+
+Seja acompanhando os Três Grandes — Benfica, Porto e Sporting — na ponta ou a briga contra o rebaixamento lá embaixo, este app foi feito para um campeonato só — rápido, limpo, sem conta, sem enrolação.
