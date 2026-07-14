@@ -42,4 +42,25 @@ struct TeamThemeColorsTests {
         #expect(cache.teamID == 121)
         #expect(cache.colorSet == colorSet)
     }
+
+    @Test("Decodes a response with null away/third (the real shape for some teams, e.g. Flamengo) without throwing")
+    func decodesWithNullAwayAndThird() throws {
+        let flamengoJSON = """
+        {
+          "team": {"id": 127, "name": "Flamengo"},
+          "home": {"fontColor": "ffffff", "mainColor": "ab1b10", "secondaryColor": "ab1b10", "matchesConsidered": 17},
+          "away": null,
+          "third": null
+        }
+        """.data(using: .utf8)!
+        let response = try JSONDecoder().decode(TeamThemeColorsResponse.self, from: flamengoJSON)
+        let colorSet = TeamThemeColorSet(response: response)
+
+        #expect(colorSet.home == TeamThemeColors(mainColorHex: "ab1b10", fontColorHex: "ffffff"))
+        #expect(colorSet.away == nil)
+        #expect(colorSet.third == nil)
+
+        let cache = TeamThemeColorCache(teamID: 127, colors: colorSet)
+        #expect(cache.colorSet == colorSet)
+    }
 }

@@ -52,14 +52,30 @@ struct MockMatchServiceTests {
         #expect(competition.logoURL == URL(string: "https://media.api-sports.io/football/leagues/71.png"))
     }
 
-    @Test("Returns Palmeiras's known real colors for all 3 kits")
-    func returnsTeamThemeColorSet() async throws {
+    @Test("Returns Palmeiras's known real home color")
+    func returnsPalmeirasTeamThemeColorSet() async throws {
         let service = MockMatchService()
         let colorSet = try await service.fetchTeamThemeColorSet(teamID: 121)
 
         #expect(colorSet.home == TeamThemeColors(mainColorHex: "225638", fontColorHex: "ffffff"))
-        #expect(colorSet.away == TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "035336"))
-        #expect(colorSet.third == TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "2c5434"))
+        #expect(colorSet.away == nil)
+        #expect(colorSet.third == nil)
+    }
+
+    @Test("Returns Flamengo's known real home color")
+    func returnsFlamengoTeamThemeColorSet() async throws {
+        let service = MockMatchService()
+        let colorSet = try await service.fetchTeamThemeColorSet(teamID: 127)
+
+        #expect(colorSet.home == TeamThemeColors(mainColorHex: "ab1b10", fontColorHex: "ffffff"))
+    }
+
+    @Test("Throws for a team id with no canned colors")
+    func throwsForUnknownTeam() async throws {
+        let service = MockMatchService()
+        await #expect(throws: (any Error).self) {
+            try await service.fetchTeamThemeColorSet(teamID: 999)
+        }
     }
 
     @Test("cachedTeamThemeColorSet returns the same canned values, with no fetch required")

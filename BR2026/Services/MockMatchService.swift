@@ -13,11 +13,13 @@ final class MockMatchService: MatchService {
     private let standings: [Standing]
     private let events: [MatchEvent]
     private let competition: Competition?
-    private let teamThemeColorSet = TeamThemeColorSet(
-        home: TeamThemeColors(mainColorHex: "225638", fontColorHex: "ffffff"),
-        away: TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "035336"),
-        third: TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "2c5434")
-    )
+    // Keyed by team id (the live API's own identifier) — mirrors the real /colors endpoint's
+    // per-team shape, which only guarantees `home` (away/third are `null` for some teams,
+    // e.g. Flamengo).
+    private static let teamThemeColorSets: [Int: TeamThemeColorSet] = [
+        121: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "225638", fontColorHex: "ffffff")),
+        127: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "ab1b10", fontColorHex: "ffffff"))
+    ]
 
     init() {
         let decoder = JSONDecoder()
@@ -45,10 +47,13 @@ final class MockMatchService: MatchService {
         return competition
     }
 
-    func fetchTeamThemeColorSet(teamID: Int) async throws -> TeamThemeColorSet { teamThemeColorSet }
+    func fetchTeamThemeColorSet(teamID: Int) async throws -> TeamThemeColorSet {
+        guard let colorSet = Self.teamThemeColorSets[teamID] else { throw MatchServiceError.invalidResponse }
+        return colorSet
+    }
 
     func cachedMatches() -> [Match] { matches }
     func cachedStandings() -> [Standing] { standings }
     func cachedCompetition() -> Competition? { competition }
-    func cachedTeamThemeColorSet(teamID: Int) -> TeamThemeColorSet? { teamThemeColorSet }
+    func cachedTeamThemeColorSet(teamID: Int) -> TeamThemeColorSet? { Self.teamThemeColorSets[teamID] }
 }

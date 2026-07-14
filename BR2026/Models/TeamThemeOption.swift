@@ -9,24 +9,41 @@ import Foundation
 /// Only the home kit is offered as a purchasable option right now — Palmeiras' away colors
 /// didn't look good, and the plan going forward is one (home) option per team rather than a
 /// full kit set. `TeamKit`/`TeamThemeColorSet`/`MatchService.fetchTeamThemeColorSet` still
-/// fetch and cache all 3 kits — only this UI-facing catalog was trimmed, so away/third can
-/// come back later without redoing the data layer.
+/// fetch and cache all 3 kits where available — only this UI-facing catalog was trimmed, so
+/// away/third can come back later without redoing the data layer.
 enum TeamThemeOption: String, CaseIterable, Identifiable {
     case palmeirasHome
+    case flamengoHome
 
     var id: String { rawValue }
 
-    var teamID: Int { 121 }
+    var teamID: Int {
+        switch self {
+        case .palmeirasHome: 121
+        case .flamengoHome: 127
+        }
+    }
 
     var kit: TeamKit {
         switch self {
-        case .palmeirasHome: .home
+        case .palmeirasHome, .flamengoHome: .home
         }
     }
 
     var displayName: LocalizedStringResource {
         switch self {
         case .palmeirasHome: "Palmeiras (Home)"
+        case .flamengoHome: "Flamengo (Home)"
+        }
+    }
+
+    /// A known-good hex for the picker row's swatch, so it doesn't need a network round-trip
+    /// just to render — the actual applied theme still comes from the live-fetched/cached
+    /// `TeamThemeColorSet` via `TeamThemeStore`, this is display-only.
+    var previewColorHex: String {
+        switch self {
+        case .palmeirasHome: "225638"
+        case .flamengoHome: "ab1b10"
         }
     }
 

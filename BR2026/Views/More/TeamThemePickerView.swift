@@ -45,7 +45,7 @@ struct TeamThemePickerView: View {
             HStack(spacing: 12) {
                 if let option {
                     Circle()
-                        .fill(Color(hex: option.kit == .home ? "225638" : "ffffff"))
+                        .fill(Color(hex: option.previewColorHex))
                         .frame(width: 28, height: 28)
                         .overlay(Circle().strokeBorder(Color.white.opacity(0.3), lineWidth: 1))
                     Text(option.displayName)
