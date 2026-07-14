@@ -35,19 +35,19 @@ struct TeamThemeStoreTests {
         #expect(store.tokens.textColor == Color(hex: "ffffff"))
     }
 
-    @Test("select() resolves the matching kit's colors, not always home")
-    func selectResolvesMatchingKit() async {
+    @Test("select() resolves the home kit's colors from a cache hit")
+    func selectResolvesFromCache() async {
         let setting = StubTeamThemeSetting()
         let service = StubMatchService(matches: [], standings: [])
         service.cachedTeamThemeColorSetOverride = palmeirasColors
         let store = TeamThemeStore(setting: setting, service: service)
 
-        let succeeded = await store.select(.palmeirasAway)
+        let succeeded = await store.select(.palmeirasHome)
 
         #expect(succeeded == true)
-        #expect(store.tokens.overrideAccentColor == Color(hex: "ffffff"))
-        #expect(store.tokens.textColor == Color(hex: "035336"))
-        #expect(setting.selectedThemeID == TeamThemeOption.palmeirasAway.rawValue)
+        #expect(store.tokens.overrideAccentColor == Color(hex: "225638"))
+        #expect(store.tokens.textColor == Color(hex: "ffffff"))
+        #expect(setting.selectedThemeID == TeamThemeOption.palmeirasHome.rawValue)
     }
 
     @Test("select() falls back to fetching when there's no cached entry, and still succeeds")

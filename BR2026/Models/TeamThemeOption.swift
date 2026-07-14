@@ -5,8 +5,14 @@ import Foundation
 /// declare a raw type"), and gating individual cases here would leave the Premier League/
 /// Ligue 1/Liga Portugal targets with none at all. Visibility is gated at the UI layer
 /// instead — see `MoreViewModel`'s `#if` around the "Team Theme" row.
+///
+/// Only the home kit is offered as a purchasable option right now — Palmeiras' away colors
+/// didn't look good, and the plan going forward is one (home) option per team rather than a
+/// full kit set. `TeamKit`/`TeamThemeColorSet`/`MatchService.fetchTeamThemeColorSet` still
+/// fetch and cache all 3 kits — only this UI-facing catalog was trimmed, so away/third can
+/// come back later without redoing the data layer.
 enum TeamThemeOption: String, CaseIterable, Identifiable {
-    case palmeirasHome, palmeirasAway, palmeirasThird
+    case palmeirasHome
 
     var id: String { rawValue }
 
@@ -15,16 +21,12 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
     var kit: TeamKit {
         switch self {
         case .palmeirasHome: .home
-        case .palmeirasAway: .away
-        case .palmeirasThird: .third
         }
     }
 
     var displayName: LocalizedStringResource {
         switch self {
         case .palmeirasHome: "Palmeiras (Home)"
-        case .palmeirasAway: "Palmeiras (Away)"
-        case .palmeirasThird: "Palmeiras (Third)"
         }
     }
 

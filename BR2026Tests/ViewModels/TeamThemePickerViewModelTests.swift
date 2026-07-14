@@ -21,11 +21,11 @@ struct TeamThemePickerViewModelTests {
 
     @Test("selectedOption is derived from a matching persisted rawValue")
     func derivesFromPersistedValue() {
-        let setting = StubTeamThemeSetting(selectedThemeID: TeamThemeOption.palmeirasThird.rawValue)
+        let setting = StubTeamThemeSetting(selectedThemeID: TeamThemeOption.palmeirasHome.rawValue)
         let store = TeamThemeStore(setting: setting, service: StubMatchService(matches: [], standings: []))
         let viewModel = TeamThemePickerViewModel(themeStore: store, setting: setting)
 
-        #expect(viewModel.selectedOption == .palmeirasThird)
+        #expect(viewModel.selectedOption == .palmeirasHome)
     }
 
     @Test("select() updates selectedOption on success")
