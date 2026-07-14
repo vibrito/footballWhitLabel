@@ -3,6 +3,7 @@ import SwiftUI
 struct AppIconPickerView: View {
     @State private var viewModel: AppIconPickerViewModel
     let selectionColorHex: String
+    @Environment(\.themeTokens) private var themeTokens
 
     init(viewModel: AppIconPickerViewModel, selectionColorHex: String) {
         _viewModel = State(initialValue: viewModel)
@@ -27,7 +28,7 @@ struct AppIconPickerView: View {
                 if let errorMessage = viewModel.errorMessage {
                     Text(errorMessage)
                         .font(.system(size: 13))
-                        .foregroundStyle(.white.opacity(0.55))
+                        .foregroundStyle(themeTokens.textColor.opacity(0.55))
                 }
             }
             .padding(16)
@@ -58,7 +59,7 @@ struct AppIconPickerView: View {
                         .foregroundStyle(Color(hex: selectionColorHex))
                 }
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(themeTokens.textColor)
             .padding(.vertical, 10)
             .contentShape(Rectangle())
         }

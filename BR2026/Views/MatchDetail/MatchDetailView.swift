@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MatchDetailView: View {
     @State private var viewModel: MatchDetailViewModel
+    @Environment(\.themeTokens) private var themeTokens
 
     init(match: Match, service: MatchService) {
         _viewModel = State(initialValue: MatchDetailViewModel(match: match, service: service))
@@ -33,12 +34,12 @@ struct MatchDetailView: View {
             Text("Round \(match.matchday)")
                 .font(.system(size: 12, weight: .bold))
                 .tracking(1.2)
-                .foregroundStyle(.white.opacity(0.5))
+                .foregroundStyle(themeTokens.textColor.opacity(0.5))
                 .textCase(.uppercase)
 
             statusLine
                 .font(.system(size: 13, weight: .semibold))
-                .foregroundStyle(.white.opacity(0.6))
+                .foregroundStyle(themeTokens.textColor.opacity(0.6))
 
             HStack(alignment: .center, spacing: 16) {
                 teamColumn(match.homeTeam, isDimmed: isHomeDimmed)
@@ -50,7 +51,7 @@ struct MatchDetailView: View {
             if let halfTimeText {
                 halfTimeText
                     .font(.system(size: 12, weight: .semibold))
-                    .foregroundStyle(.white.opacity(0.45))
+                    .foregroundStyle(themeTokens.textColor.opacity(0.45))
                     .textCase(.uppercase)
             }
 
@@ -60,7 +61,7 @@ struct MatchDetailView: View {
                     Text(venue)
                 }
                 .font(.system(size: 13))
-                .foregroundStyle(.white.opacity(0.5))
+                .foregroundStyle(themeTokens.textColor.opacity(0.5))
             }
         }
         .padding(.top, 8)
@@ -90,7 +91,7 @@ struct MatchDetailView: View {
             TeamCrestBadge(team: team, size: 80)
             Text(team.displayName)
                 .font(.system(size: 19, weight: .bold))
-                .foregroundStyle(isDimmed ? .white.opacity(0.45) : .white)
+                .foregroundStyle(isDimmed ? themeTokens.textColor.opacity(0.45) : themeTokens.textColor)
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
         }
@@ -103,13 +104,13 @@ struct MatchDetailView: View {
             Text("\(home) – \(away)")
                 .font(.system(size: 48, weight: .heavy))
                 .monospacedDigit()
-                .foregroundStyle(.white)
+                .foregroundStyle(themeTokens.textColor)
                 .lineLimit(1)
                 .minimumScaleFactor(0.6)
         } else {
             Text("VS")
                 .font(.system(size: 32, weight: .heavy))
-                .foregroundStyle(.white.opacity(0.35))
+                .foregroundStyle(themeTokens.textColor.opacity(0.35))
         }
     }
 
@@ -124,7 +125,7 @@ struct MatchDetailView: View {
             Text("Timeline")
                 .font(.system(size: 13, weight: .bold))
                 .tracking(0.8)
-                .foregroundStyle(.white.opacity(0.5))
+                .foregroundStyle(themeTokens.textColor.opacity(0.5))
                 .textCase(.uppercase)
                 .frame(maxWidth: .infinity)
                 .padding(.bottom, 12)
@@ -132,7 +133,7 @@ struct MatchDetailView: View {
             if sortedEvents.isEmpty {
                 Text("No events yet")
                     .font(.system(size: 14))
-                    .foregroundStyle(.white.opacity(0.45))
+                    .foregroundStyle(themeTokens.textColor.opacity(0.45))
                     .padding(.top, 20)
             } else {
                 ForEach(sortedEvents) { event in
