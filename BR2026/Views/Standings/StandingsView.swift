@@ -2,6 +2,7 @@ import SwiftUI
 
 struct StandingsView: View {
     @State private var viewModel: StandingsViewModel
+    @Environment(\.themeTokens) private var themeTokens
 
     init(service: MatchService) {
         _viewModel = State(initialValue: StandingsViewModel(service: service))
@@ -75,7 +76,7 @@ struct StandingsView: View {
             .frame(width: width)
             .font(.system(size: 11, weight: .bold))
             .tracking(0.4)
-            .foregroundStyle(.white.opacity(0.5))
+            .foregroundStyle(themeTokens.textColor.opacity(0.5))
     }
 
     private func row(for standing: Standing) -> some View {
@@ -100,7 +101,7 @@ struct StandingsView: View {
         }
         .font(.system(size: 14, weight: .semibold))
         .monospacedDigit()
-        .foregroundStyle(.white)
+        .foregroundStyle(themeTokens.textColor)
         .padding(.vertical, 8)
     }
 
@@ -109,7 +110,7 @@ struct StandingsView: View {
             .lineLimit(1)
             .frame(width: width)
             .fontWeight(emphasized ? .heavy : .regular)
-            .foregroundStyle(emphasized ? .white : .white.opacity(0.85))
+            .foregroundStyle(emphasized ? themeTokens.textColor : themeTokens.textColor.opacity(0.85))
     }
 
     private func signed(_ value: Int) -> String {

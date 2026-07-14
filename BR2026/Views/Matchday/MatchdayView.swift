@@ -4,6 +4,7 @@ struct MatchdayView: View {
     @State private var viewModel: MatchdayViewModel
     @State private var selectedMatch: Match?
     let service: MatchService
+    @Environment(\.themeTokens) private var themeTokens
 
     init(service: MatchService) {
         _viewModel = State(initialValue: MatchdayViewModel(service: service))
@@ -82,12 +83,12 @@ struct MatchdayView: View {
             eyebrowLabel
                 .font(.system(size: 11, weight: .bold))
                 .tracking(1.4)
-                .foregroundStyle(.white.opacity(0.5))
+                .foregroundStyle(themeTokens.textColor.opacity(0.5))
                 .textCase(.uppercase)
             Text(titleLabel)
                 .font(.system(size: 32, weight: .heavy))
                 .tracking(-0.5)
-                .foregroundStyle(.white)
+                .foregroundStyle(themeTokens.textColor)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -97,7 +98,7 @@ struct MatchdayView: View {
             title
                 .font(.system(size: 13, weight: .bold))
                 .tracking(0.8)
-                .foregroundStyle(.white.opacity(0.5))
+                .foregroundStyle(themeTokens.textColor.opacity(0.5))
                 .textCase(.uppercase)
             ForEach(matches, id: \.id) { match in
                 Button { selectedMatch = match } label: {
@@ -137,10 +138,10 @@ struct MatchdayView: View {
         VStack(spacing: 8) {
             Text("No upcoming matches")
                 .font(.system(size: 16, weight: .semibold))
-                .foregroundStyle(.white.opacity(0.70))
+                .foregroundStyle(themeTokens.textColor.opacity(0.70))
             Text("Check Fixtures for the full schedule")
                 .font(.system(size: 13))
-                .foregroundStyle(.white.opacity(0.45))
+                .foregroundStyle(themeTokens.textColor.opacity(0.45))
         }
         .frame(maxWidth: .infinity)
         .padding(.top, 60)

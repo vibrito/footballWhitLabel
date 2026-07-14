@@ -4,6 +4,7 @@ struct FixturesView: View {
     @State private var viewModel: FixturesViewModel
     @State private var selectedMatch: Match?
     let service: MatchService
+    @Environment(\.themeTokens) private var themeTokens
 
     init(service: MatchService) {
         _viewModel = State(initialValue: FixturesViewModel(service: service))
@@ -90,7 +91,7 @@ struct FixturesView: View {
                     .font(.system(size: 17, weight: .heavy))
                     .monospacedDigit()
             }
-            .foregroundStyle(isSelected ? .white : .white.opacity(0.55))
+            .foregroundStyle(isSelected ? themeTokens.textColor : themeTokens.textColor.opacity(0.55))
             .frame(width: 60, height: 52)
             .background(
                 RoundedRectangle(cornerRadius: 14, style: .continuous)
