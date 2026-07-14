@@ -4,10 +4,12 @@ import UIKit
 struct MoreView: View {
     @State private var viewModel: MoreViewModel
     let tabSelectionColorHex: String
+    let themeStore: TeamThemeStore
 
-    init(service: MatchService, tabSelectionColorHex: String) {
+    init(service: MatchService, tabSelectionColorHex: String, themeStore: TeamThemeStore) {
         _viewModel = State(initialValue: MoreViewModel(service: service))
         self.tabSelectionColorHex = tabSelectionColorHex
+        self.themeStore = themeStore
     }
 
     var body: some View {
@@ -33,6 +35,10 @@ struct MoreView: View {
                     AppIconPickerView(
                         viewModel: AppIconPickerViewModel(iconSetting: UIKitAppIconSetting()),
                         selectionColorHex: tabSelectionColorHex
+                    )
+                case .teamThemePicker:
+                    TeamThemePickerView(
+                        viewModel: TeamThemePickerViewModel(themeStore: themeStore, setting: UserDefaultsTeamThemeSetting())
                     )
                 }
             }
