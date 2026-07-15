@@ -6,13 +6,15 @@ struct MoreView: View {
     let service: MatchService
     let themeStore: TeamThemeStore
     let themePurchaseStore: PurchaseStore<TeamThemeOption>
+    let iconPurchaseStore: PurchaseStore<TeamIconOption>
     @Environment(\.themeTokens) private var themeTokens
 
-    init(service: MatchService, themeStore: TeamThemeStore, themePurchaseStore: PurchaseStore<TeamThemeOption>) {
+    init(service: MatchService, themeStore: TeamThemeStore, themePurchaseStore: PurchaseStore<TeamThemeOption>, iconPurchaseStore: PurchaseStore<TeamIconOption>) {
         _viewModel = State(initialValue: MoreViewModel(service: service))
         self.service = service
         self.themeStore = themeStore
         self.themePurchaseStore = themePurchaseStore
+        self.iconPurchaseStore = iconPurchaseStore
     }
 
     var body: some View {
@@ -36,7 +38,7 @@ struct MoreView: View {
                     TermsOfServiceView()
                 case .appIconPicker:
                     AppIconPickerView(
-                        viewModel: AppIconPickerViewModel(iconSetting: UIKitAppIconSetting())
+                        viewModel: AppIconPickerViewModel(iconSetting: UIKitAppIconSetting(), purchaseStore: iconPurchaseStore, service: service)
                     )
                 case .teamThemePicker:
                     TeamThemePickerView(
