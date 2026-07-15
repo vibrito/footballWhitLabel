@@ -50,6 +50,62 @@ struct TeamThemeStoreTests {
         #expect(setting.selectedThemeID == TeamThemeOption.palmeirasHome.rawValue)
     }
 
+    @Test("select() threads the option's gradientStyle into the resolved tokens")
+    func selectThreadsGradientStyle() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = TeamThemeColorSet(
+            home: TeamThemeColors(mainColorHex: "fcfbee", fontColorHex: "000000")
+        )
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        _ = await store.select(.corinthiansHome)
+
+        #expect(store.tokens.gradientCenter == .center)
+        #expect(store.tokens.gradientEndRadius == 320)
+    }
+
+    @Test("select() uses the option's curated accentOverrideHex instead of the near-white mainColorHex")
+    func selectUsesAccentOverride() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = TeamThemeColorSet(
+            home: TeamThemeColors(mainColorHex: "fcfbee", fontColorHex: "000000")
+        )
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        _ = await store.select(.corinthiansHome)
+
+        #expect(store.tokens.overrideAccentColor == Color(hex: TeamThemeOption.corinthiansHome.accentOverrideHex!))
+        #expect(store.tokens.overrideAccentColor != Color(hex: "fcfbee"))
+        // The background gradient still reflects the actual (near-white) mainColorHex.
+        #expect(store.tokens.gradientStops[0] == Color(hex: "fcfbee"))
+    }
+
+    @Test("select() falls back to the fetched mainColorHex as accent when accentOverrideHex is nil")
+    func selectFallsBackToMainColorAsAccent() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = palmeirasColors
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        _ = await store.select(.palmeirasHome)
+
+        #expect(store.tokens.overrideAccentColor == Color(hex: "225638"))
+    }
+
+    @Test("select() defaults to a top-anchored gradient for options that don't request centering")
+    func selectDefaultsToTopAnchoredGradient() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = palmeirasColors
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        _ = await store.select(.palmeirasHome)
+
+        #expect(store.tokens.gradientCenter == .top)
+    }
+
     @Test("select() falls back to fetching when there's no cached entry, and still succeeds")
     func selectFetchesWhenCacheMisses() async {
         let setting = StubTeamThemeSetting()

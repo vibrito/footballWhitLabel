@@ -19,7 +19,8 @@ final class MockMatchService: MatchService {
     private static let teamThemeColorSets: [Int: TeamThemeColorSet] = [
         121: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "225638", fontColorHex: "ffffff")),
         127: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "ab1b10", fontColorHex: "ffffff")),
-        131: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "fcfbee", fontColorHex: "000000"))
+        131: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "fcfbee", fontColorHex: "000000")),
+        126: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "000000"))
     ]
 
     init() {

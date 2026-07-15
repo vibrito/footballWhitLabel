@@ -12,9 +12,9 @@ struct StadiumBackground: View {
         ZStack {
             RadialGradient(
                 colors: themeTokens.gradientStops,
-                center: .top,
+                center: themeTokens.gradientCenter,
                 startRadius: 0,
-                endRadius: 700
+                endRadius: themeTokens.gradientEndRadius
             )
 
             Circle()

@@ -78,6 +78,14 @@ struct MockMatchServiceTests {
         #expect(colorSet.home == TeamThemeColors(mainColorHex: "fcfbee", fontColorHex: "000000"))
     }
 
+    @Test("Returns São Paulo's known real home color")
+    func returnsSaoPauloTeamThemeColorSet() async throws {
+        let service = MockMatchService()
+        let colorSet = try await service.fetchTeamThemeColorSet(teamID: 126)
+
+        #expect(colorSet.home == TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "000000"))
+    }
+
     @Test("Throws for a team id with no canned colors")
     func throwsForUnknownTeam() async throws {
         let service = MockMatchService()
