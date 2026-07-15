@@ -23,6 +23,15 @@ struct TeamThemePickerView: View {
                         }
                     }
                 }
+                Button {
+                    Task { await viewModel.restorePurchases() }
+                } label: {
+                    Text("Restore Purchases")
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundStyle(themeTokens.textColor.opacity(0.55))
+                        .frame(maxWidth: .infinity, alignment: .center)
+                }
+                .buttonStyle(.plain)
                 if let errorMessage = viewModel.errorMessage {
                     Text(errorMessage)
                         .font(.system(size: 13))
@@ -57,11 +66,7 @@ struct TeamThemePickerView: View {
                     Text("Default")
                 }
                 Spacer()
-                if viewModel.selectedOption == option {
-                    Image(systemName: "checkmark")
-                        .font(.system(size: 15, weight: .semibold))
-                        .foregroundStyle(themeTokens.textColor)
-                }
+                trailingSlot(option)
             }
             .font(.system(size: 16, weight: .semibold))
             .foregroundStyle(themeTokens.textColor)
@@ -69,5 +74,24 @@ struct TeamThemePickerView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+    }
+
+    @ViewBuilder
+    private func trailingSlot(_ option: TeamThemeOption?) -> some View {
+        if let option, !viewModel.isPurchased(option) {
+            HStack(spacing: 4) {
+                Image(systemName: "lock.fill")
+                    .font(.system(size: 12, weight: .semibold))
+                if let price = viewModel.price(for: option) {
+                    Text(price)
+                        .font(.system(size: 13, weight: .semibold))
+                }
+            }
+            .foregroundStyle(themeTokens.textColor.opacity(0.55))
+        } else if viewModel.selectedOption == option {
+            Image(systemName: "checkmark")
+                .font(.system(size: 15, weight: .semibold))
+                .foregroundStyle(themeTokens.textColor)
+        }
     }
 }
