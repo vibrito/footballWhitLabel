@@ -24,6 +24,7 @@
 		0DA4761CA3613C120DDBFC6B /* AppIconPickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433CAF5081983FCB3F4E3601 /* AppIconPickerViewModelTests.swift */; };
 		0DD89A55A83B7442558808AC /* LiveChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286FB1656839DC4F8940242C /* LiveChip.swift */; };
 		1067F3CFAC923A62A05BB51B /* CompetitionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4E5DB77DD896FEAF3C9B6 /* CompetitionDTO.swift */; };
+		1170D072B3C930BBFC4682C9 /* TeamIconOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6677F3D0E470A6CB971B47D4 /* TeamIconOption.swift */; };
 		12793CC5D5317C40BDCAC01B /* TeamThemePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1954F52A8493517B231F2 /* TeamThemePickerView.swift */; };
 		12B669F88738808BFF8A5F0C /* ScreenTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404494D46245C078DB19DE9E /* ScreenTracking.swift */; };
 		1307E3DE65E860962CC46AFD /* CompetitionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4E5DB77DD896FEAF3C9B6 /* CompetitionDTO.swift */; };
@@ -107,6 +108,7 @@
 		516DCEFFEC2A861895812738 /* ThemeTokensTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DF4A284E1FEB1CFD556FE6 /* ThemeTokensTests.swift */; };
 		518BA36F8FA83BD5DBBEABB2 /* MockPurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8B3CF0A783D9F8DA80AF9 /* MockPurchaseService.swift */; };
 		52111A2B37EC80C751EB0F77 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7CD31B3A17497FD8945EA /* StandingsView.swift */; };
+		523EF9B8EF214C6DF9351452 /* TeamIconOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6677F3D0E470A6CB971B47D4 /* TeamIconOption.swift */; };
 		52AC218C2E201C2208F0492C /* AppIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A466914FB52022A91A3EFDC /* AppIconPickerView.swift */; };
 		52AC6703D4B7539B1CABB611 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0623F774E7695B36808EDD20 /* GoogleService-Info.plist */; };
 		52DCD0214130CC8C5772997C /* TeamThemeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DA98E9D76EDBA19465271D /* TeamThemeStore.swift */; };
@@ -181,6 +183,7 @@
 		8A32EA18735863FADD5FB978 /* AppIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A466914FB52022A91A3EFDC /* AppIconPickerView.swift */; };
 		8A9DAFC0D7423F13C744C218 /* CrossAppLinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2218558E3790F197562D732 /* CrossAppLinkTests.swift */; };
 		8AC49F5B9D3F8C6C1F93A895 /* FixturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0B10181CB912E1D1C2625 /* FixturesView.swift */; };
+		8B8A0D40C106556309985BEE /* TeamIconOptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA17CB79990E311A53067156 /* TeamIconOptionTests.swift */; };
 		8BB37D2B789041A8DF10D688 /* TeamThemePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D809CFAC5AD024BF5FB199D0 /* TeamThemePickerViewModel.swift */; };
 		8BC02D02E831C962DA5C6840 /* Standing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEB1160665D8A2136DF3C6B /* Standing.swift */; };
 		8BC248FAE0DB30BC91E0E368 /* ThemeTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105A10788BCFFB4D2950B8EF /* ThemeTokens.swift */; };
@@ -259,6 +262,7 @@
 		C5CD5BC1DF03FA93E7175767 /* StandingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C275BFBA9A3D380BE80231BA /* StandingsViewModelTests.swift */; };
 		C66E875A29EAA1AD7FBEBA62 /* AppIconPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C4923C4C3A35A6E0D97D /* AppIconPickerViewModel.swift */; };
 		C68A6989D994D267CA1DBC3E /* TeamThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF00233B8DDFC621A80FA9E /* TeamThemeColors.swift */; };
+		C6D0C037F4828E52616F9DA4 /* TeamIconOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6677F3D0E470A6CB971B47D4 /* TeamIconOption.swift */; };
 		C6DA7F9B948F39DD58B61C34 /* MatchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED24EAB2931D750D08DD21 /* MatchDetailViewModel.swift */; };
 		C9EF467DD9142BDA3B3BF483 /* HeroMatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD698E976EAC4B8C3CF2B7 /* HeroMatchCard.swift */; };
 		CB9EEE216AE845D22D321EB0 /* MatchEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8EA6912B1D21368F06E9D0 /* MatchEvent.swift */; };
@@ -293,6 +297,7 @@
 		EA287A6CAFE19BF88695D490 /* AppIconPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C4923C4C3A35A6E0D97D /* AppIconPickerViewModel.swift */; };
 		EB015048A971E5E4D04E965C /* PurchaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = WK6S4MCUE0CQB84197N3WTPO /* PurchaseStore.swift */; };
 		EB7E50C1DAF29E91A0592380 /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322CAB2B4DE8D3A9DEA34EE0 /* MockDataProvider.swift */; };
+		EB8C30D654731FE23F1866B1 /* TeamIconOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6677F3D0E470A6CB971B47D4 /* TeamIconOption.swift */; };
 		EC5A593E224B594925407E82 /* MoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C49CB2060A7D052977CA91 /* MoreViewModel.swift */; };
 		ECF957A5B1ABC90B57AAFD6E /* MatchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855292C3DDAE65CCAE220B7F /* MatchDetailView.swift */; };
 		EE7CB912D6E8D810CB257DB9 /* PurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBC990E2E582CAD6E45318C /* PurchaseService.swift */; };
@@ -386,6 +391,7 @@
 		60EB245877F3BE6246A841B9 /* MockMatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMatchService.swift; sourceTree = "<group>"; };
 		64C49CB2060A7D052977CA91 /* MoreViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreViewModel.swift; sourceTree = "<group>"; };
 		65807B78425B289771974EE6 /* MatchDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailViewModelTests.swift; sourceTree = "<group>"; };
+		6677F3D0E470A6CB971B47D4 /* TeamIconOption.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamIconOption.swift; sourceTree = "<group>"; };
 		74F1954F52A8493517B231F2 /* TeamThemePickerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamThemePickerView.swift; sourceTree = "<group>"; };
 		750454E4C32D9EEA69417686 /* MatchdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchdayViewModel.swift; sourceTree = "<group>"; };
 		75B0EB02D5F3849779B3F145 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -440,6 +446,7 @@
 		E710CF947578637722A0CC6A /* TeamThemeSetting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamThemeSetting.swift; sourceTree = "<group>"; };
 		E7E434E6CB924EEBF2ED52FF /* TeamCrestBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCrestBadge.swift; sourceTree = "<group>"; };
 		E8D9849E4F99F5D2DA4D8081 /* TeamThemeOption.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamThemeOption.swift; sourceTree = "<group>"; };
+		EA17CB79990E311A53067156 /* TeamIconOptionTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamIconOptionTests.swift; sourceTree = "<group>"; };
 		EA49AD74DF6CAFC576234443 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		EC51FB666340CB6033EB7277 /* ChampionshipConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionshipConfig.swift; sourceTree = "<group>"; };
 		ECF00233B8DDFC621A80FA9E /* TeamThemeColors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamThemeColors.swift; sourceTree = "<group>"; };
@@ -525,6 +532,7 @@
 				105A10788BCFFB4D2950B8EF /* ThemeTokens.swift */,
 				E8D9849E4F99F5D2DA4D8081 /* TeamThemeOption.swift */,
 				UA91XX0HK8J3C9YKZ5ZLT2HC /* PurchasableCatalogOption.swift */,
+				6677F3D0E470A6CB971B47D4 /* TeamIconOption.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -591,6 +599,7 @@
 				31D9F3F1E0EAD3ECE1FE272D /* TeamThemeColorsTests.swift */,
 				A2DF4A284E1FEB1CFD556FE6 /* ThemeTokensTests.swift */,
 				488E6D224DEAE7CA297007DD /* TeamThemeOptionTests.swift */,
+				EA17CB79990E311A53067156 /* TeamIconOptionTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1265,6 +1274,7 @@
 				E7B26339D8960B500FD0B557 /* LivePurchaseService.swift in Sources */,
 				EB015048A971E5E4D04E965C /* PurchaseStore.swift in Sources */,
 				1DA9B66AFE41B25D823F4D7D /* PurchasableCatalogOption.swift in Sources */,
+				523EF9B8EF214C6DF9351452 /* TeamIconOption.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1336,6 +1346,7 @@
 				4425A3C6E8C9E52E229006FB /* LivePurchaseService.swift in Sources */,
 				5617A4D92980D6561E3861F4 /* PurchaseStore.swift in Sources */,
 				684CF1C9F3A0CCB7F1E0662E /* PurchasableCatalogOption.swift in Sources */,
+				1170D072B3C930BBFC4682C9 /* TeamIconOption.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1367,6 +1378,7 @@
 				C2C2A9550B1BC700D285BE32 /* TeamThemeStoreTests.swift in Sources */,
 				9EB0855E8E87E642A1825772 /* TeamThemePickerViewModelTests.swift in Sources */,
 				2D4A1D96E216B9DD08547469 /* PurchaseStoreTests.swift in Sources */,
+				8B8A0D40C106556309985BEE /* TeamIconOptionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1437,6 +1449,7 @@
 				B69349D422067AFCE281E8C7 /* LivePurchaseService.swift in Sources */,
 				F88BDC080A4AD6976C441233 /* PurchaseStore.swift in Sources */,
 				D84EB2BF219D4E197C9CE1CA /* PurchasableCatalogOption.swift in Sources */,
+				C6D0C037F4828E52616F9DA4 /* TeamIconOption.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1507,6 +1520,7 @@
 				2190347E4D8089548DB5A551 /* LivePurchaseService.swift in Sources */,
 				09AB2DF1621E5DB0017B85D0 /* PurchaseStore.swift in Sources */,
 				B696FBE55BD87D06EFF39CC4 /* PurchasableCatalogOption.swift in Sources */,
+				EB8C30D654731FE23F1866B1 /* TeamIconOption.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
