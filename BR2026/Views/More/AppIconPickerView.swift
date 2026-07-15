@@ -13,15 +13,21 @@ struct AppIconPickerView: View {
             VStack(alignment: .leading, spacing: 12) {
                 GlassCard(cornerRadius: 18, style: .transparent) {
                     VStack(spacing: 10) {
-                        // Every free row gets a trailing divider unconditionally — the
-                        // purchasable team list below always has at least one row (20 fixed
-                        // cases, never empty), so a free row is never the last row overall.
-                        ForEach(AppIconOption.allCases) { option in
+                        ForEach(Array(AppIconOption.allCases.enumerated()), id: \.element.id) { index, option in
                             freeRowView(option)
-                            Rectangle()
-                                .fill(Color.white.opacity(0.16))
-                                .frame(height: 0.5)
+                            if index < AppIconOption.allCases.count - 1 {
+                                Rectangle()
+                                    .fill(Color.white.opacity(0.16))
+                                    .frame(height: 0.5)
+                            }
                         }
+                        // Team icons are Brasileirão-specific purchasable content — gated the
+                        // same way Team Theme's row is gated in MoreViewModel, so the other
+                        // championship targets show only the free Default/Stadium rows above.
+                        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
+                        Rectangle()
+                            .fill(Color.white.opacity(0.16))
+                            .frame(height: 0.5)
                         ForEach(Array(viewModel.sortedTeamOptions.enumerated()), id: \.element.id) { index, option in
                             teamRowView(option)
                             if index < viewModel.sortedTeamOptions.count - 1 {
@@ -30,8 +36,10 @@ struct AppIconPickerView: View {
                                     .frame(height: 0.5)
                             }
                         }
+                        #endif
                     }
                 }
+                #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
                 Button {
                     Task { await viewModel.restorePurchases() }
                 } label: {
@@ -41,6 +49,7 @@ struct AppIconPickerView: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
                 .buttonStyle(.plain)
+                #endif
                 if let errorMessage = viewModel.errorMessage {
                     Text(errorMessage)
                         .font(.system(size: 13))
@@ -54,7 +63,9 @@ struct AppIconPickerView: View {
         .navigationTitle("App Icon")
         .navigationBarTitleDisplayMode(.inline)
         .trackScreen("AppIconPicker")
+        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
         .task { await viewModel.loadOnce() }
+        #endif
     }
 
     private func freeRowView(_ option: AppIconOption) -> some View {
