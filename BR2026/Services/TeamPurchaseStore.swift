@@ -11,7 +11,7 @@ import Observation
 final class TeamPurchaseStore {
     private(set) var purchasedTeamIDs: Set<String> = []
     private var products: [String: Product] = [:]
-    nonisolated(unsafe) private let service: PurchaseService
+    private let service: PurchaseService
     private var hasLoadedOnce = false
 
     init(service: PurchaseService) {
