@@ -5,14 +5,14 @@ struct MoreView: View {
     @State private var viewModel: MoreViewModel
     let service: MatchService
     let themeStore: TeamThemeStore
-    let purchaseStore: TeamPurchaseStore
+    let themePurchaseStore: PurchaseStore<TeamThemeOption>
     @Environment(\.themeTokens) private var themeTokens
 
-    init(service: MatchService, themeStore: TeamThemeStore, purchaseStore: TeamPurchaseStore) {
+    init(service: MatchService, themeStore: TeamThemeStore, themePurchaseStore: PurchaseStore<TeamThemeOption>) {
         _viewModel = State(initialValue: MoreViewModel(service: service))
         self.service = service
         self.themeStore = themeStore
-        self.purchaseStore = purchaseStore
+        self.themePurchaseStore = themePurchaseStore
     }
 
     var body: some View {
@@ -40,7 +40,7 @@ struct MoreView: View {
                     )
                 case .teamThemePicker:
                     TeamThemePickerView(
-                        viewModel: TeamThemePickerViewModel(themeStore: themeStore, purchaseStore: purchaseStore, setting: UserDefaultsTeamThemeSetting(), service: service)
+                        viewModel: TeamThemePickerViewModel(themeStore: themeStore, purchaseStore: themePurchaseStore, setting: UserDefaultsTeamThemeSetting(), service: service)
                     )
                 }
             }

@@ -8,12 +8,12 @@ final class TeamThemePickerViewModel {
     private(set) var errorMessage: String?
     private(set) var standings: [Standing]
     private let themeStore: TeamThemeStore
-    private let purchaseStore: TeamPurchaseStore
+    private let purchaseStore: PurchaseStore<TeamThemeOption>
     private let setting: TeamThemeSetting
     private let service: MatchService
     private var hasLoadedStandingsOnce = false
 
-    init(themeStore: TeamThemeStore, purchaseStore: TeamPurchaseStore, setting: TeamThemeSetting, service: MatchService) {
+    init(themeStore: TeamThemeStore, purchaseStore: PurchaseStore<TeamThemeOption>, setting: TeamThemeSetting, service: MatchService) {
         self.themeStore = themeStore
         self.purchaseStore = purchaseStore
         self.setting = setting

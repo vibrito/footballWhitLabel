@@ -4,7 +4,7 @@ struct ContentView: View {
     let config: ChampionshipConfig
     let service: MatchService
     let themeStore: TeamThemeStore
-    let purchaseStore: TeamPurchaseStore
+    let themePurchaseStore: PurchaseStore<TeamThemeOption>
 
     var body: some View {
         TabView {
@@ -17,7 +17,7 @@ struct ContentView: View {
             StandingsView(service: service)
                 .tabItem { Label("Standings", systemImage: "chart.bar") }
                 .tint(themeStore.tokens.overrideAccentColor ?? Color(hex: config.accentColorHex))
-            MoreView(service: service, themeStore: themeStore, purchaseStore: purchaseStore)
+            MoreView(service: service, themeStore: themeStore, themePurchaseStore: themePurchaseStore)
                 .tabItem { Label("More", systemImage: "ellipsis.circle") }
                 .tint(themeStore.tokens.overrideAccentColor ?? Color(hex: config.accentColorHex))
         }
@@ -27,6 +27,6 @@ struct ContentView: View {
         .background(StadiumBackground())
         .environment(\.themeTokens, themeStore.tokens)
         .task { await themeStore.loadOnce() }
-        .task { await purchaseStore.loadOnce() }
+        .task { await themePurchaseStore.loadOnce() }
     }
 }

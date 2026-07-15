@@ -1,11 +1,11 @@
 import StoreKit
 
-/// Abstracts StoreKit 2's `Product`/`Transaction` APIs so `TeamPurchaseStore` can be tested
+/// Abstracts StoreKit 2's `Product`/`Transaction` APIs so `PurchaseStore` can be tested
 /// without making real StoreKit calls — mirrors `MatchService`'s role for match/standings
 /// data: one live implementation (`LivePurchaseService`) talks to the real store, one mock
 /// (`MockPurchaseService`) is used in all automated tests.
 ///
-/// Main-actor isolated for the same reason as `MatchService`: `TeamPurchaseStore` (the sole
+/// Main-actor isolated for the same reason as `MatchService`: `PurchaseStore` (the sole
 /// consumer) is `@MainActor`, so every conformance stays on the main actor for the whole call
 /// rather than requiring a `nonisolated(unsafe)` workaround at the call site.
 @MainActor

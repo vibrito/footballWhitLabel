@@ -11,7 +11,7 @@ import Foundation
 /// full kit set. `TeamKit`/`TeamThemeColorSet`/`MatchService.fetchTeamThemeColorSet` still
 /// fetch and cache all 3 kits where available — only this UI-facing catalog was trimmed, so
 /// away/third can come back later without redoing the data layer.
-enum TeamThemeOption: String, CaseIterable, Identifiable {
+enum TeamThemeOption: String, CaseIterable, Identifiable, PurchasableCatalogOption {
     case palmeirasHome
     case flamengoHome
     case fluminenseHome
@@ -298,8 +298,8 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
     }
 
     /// The inverse of `productID` — maps a StoreKit product ID back to a `TeamThemeOption`
-    /// `rawValue`, used by `TeamPurchaseStore` to translate a purchased-product-ID set into
-    /// purchased-team state. Returns `nil` for anything not matching this app's product ID
+    /// `rawValue`, used by `PurchaseStore` to translate a purchased-product-ID set into
+    /// purchased-option state. Returns `nil` for anything not matching this app's product ID
     /// scheme (e.g. a foreign/malformed ID).
     static func rawValue(fromProductID productID: String) -> String? {
         let prefix = "com.vibrito.br2026.theme."
