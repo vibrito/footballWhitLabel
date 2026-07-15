@@ -49,6 +49,16 @@ struct ThemeTokensTests {
         #expect(tokens.overrideTabSelectionColor != tokens.overridePillFillColor)
     }
 
+    @Test("gradientDarkAmount defaults to -0.75 but can be overridden to lighten the bottom gradient stop")
+    func gradientDarkAmountIsConfigurable() {
+        let defaultTokens = ThemeTokens.themed(mainColorHex: "2F529E", fontColorHex: "ffffff")
+        let lightenedTokens = ThemeTokens.themed(mainColorHex: "2F529E", fontColorHex: "ffffff", gradientDarkAmount: -0.5)
+
+        #expect(defaultTokens.gradientStops[2] == Color.shaded(hex: "2F529E", towardWhite: -0.75))
+        #expect(lightenedTokens.gradientStops[2] == Color.shaded(hex: "2F529E", towardWhite: -0.5))
+        #expect(defaultTokens.gradientStops[2] != lightenedTokens.gradientStops[2])
+    }
+
     @Test("The environment default value is today's fixed ThemeTokens")
     func environmentDefaultValue() {
         #expect(EnvironmentValues().themeTokens == ThemeTokens())

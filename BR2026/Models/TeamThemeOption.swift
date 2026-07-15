@@ -22,6 +22,11 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
     case saoPauloHome
     case atleticoMineiroHome
     case corinthiansHome
+    case cruzeiroHome
+    case internacionalHome
+    case remoHome
+    case botafogoHome
+    case vitoriaHome
 
     var id: String { rawValue }
 
@@ -37,13 +42,19 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
         case .saoPauloHome: 126
         case .atleticoMineiroHome: 1062
         case .corinthiansHome: 131
+        case .cruzeiroHome: 135
+        case .internacionalHome: 119
+        case .remoHome: 1198
+        case .botafogoHome: 120
+        case .vitoriaHome: 136
         }
     }
 
     var kit: TeamKit {
         switch self {
         case .palmeirasHome, .flamengoHome, .fluminenseHome, .athleticoParanaenseHome, .bahiaHome,
-             .redBullBragantinoHome, .coritibaHome, .saoPauloHome, .atleticoMineiroHome, .corinthiansHome:
+             .redBullBragantinoHome, .coritibaHome, .saoPauloHome, .atleticoMineiroHome, .corinthiansHome,
+             .cruzeiroHome, .internacionalHome, .remoHome, .botafogoHome, .vitoriaHome:
             .home
         }
     }
@@ -60,6 +71,11 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
         case .saoPauloHome: "São Paulo (Home)"
         case .atleticoMineiroHome: "Atlético Mineiro (Home)"
         case .corinthiansHome: "Corinthians (Home)"
+        case .cruzeiroHome: "Cruzeiro (Home)"
+        case .internacionalHome: "Internacional (Home)"
+        case .remoHome: "Remo (Home)"
+        case .botafogoHome: "Botafogo (Home)"
+        case .vitoriaHome: "Vitória (Home)"
         }
     }
 
@@ -83,6 +99,11 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
         case .saoPauloHome: "ffffff"
         case .atleticoMineiroHome: "000000"
         case .corinthiansHome: "fcfbee"
+        case .cruzeiroHome: "0455a3"
+        case .internacionalHome: "e00618"
+        case .remoHome: "000000"
+        case .botafogoHome: "f7f7f7"
+        case .vitoriaHome: "ff0000"
         }
     }
 
@@ -110,7 +131,26 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
     /// mid-dark gray rather than a light one: a light gray was tried in earlier (reverted)
     /// attempts and reliably blew out the gradient's top-anchored light source, so this stays on
     /// the darker, already-proven-safe side of neutral rather than truly mirroring Atlético's
-    /// exact brightness.
+    /// exact brightness. Cruzeiro's API blue (`0455a3`) already worked fine — this is a curated
+    /// club-brand blue given directly by the user, the same "good enough API color, truer brand
+    /// color requested anyway" case as Palmeiras/Flamengo. Internacional's API red (`e00618`)
+    /// likewise already worked fine — same case, curated to `E5050F`. Remo's brand color was
+    /// given as CMYK (90/78/48/68), which converts to `#08122A` — a very dark navy nearly as
+    /// dark as the app's own background gradient, the same "too dark to work as an accent"
+    /// problem Atlético Mineiro had, independently confirmed by the API's own home-kit sampling
+    /// also landing on literal black. First attempt lightened it the same way as Atlético's
+    /// charcoal — blending toward white — but that desaturates a color that actually has real
+    /// hue (unlike Atlético's true black/gray), and the result (`#777D8A`) read as neutral gray,
+    /// not navy. Fixed by scaling the RGB values up instead (preserving the original hue/
+    /// saturation ratio rather than diluting it toward white) to `#2048A8` — a properly
+    /// saturated, clearly blue navy. Botafogo's API home sample landed near-white (`f7f7f7`,
+    /// from its black/white striped shirt), but the club's actual signature color is black —
+    /// same underlying case as Atlético Mineiro, using the same technique per the user's
+    /// direction ("similar approach to Atlético Mineiro is fine") — but a distinctly darker
+    /// charcoal (`#1E1E20` vs Atlético's `#2B2B2E`) per later feedback, so the two black/white
+    /// clubs don't look identical in the picker. Vitória's API red (`ff0000`) is a clean,
+    /// already-usable saturated red with no near-white/black problem, so it's used as-is —
+    /// `nil`, same as Palmeiras/Flamengo at launch.
     var mainColorOverrideHex: String? {
         switch self {
         case .palmeirasHome: "006437"
@@ -123,6 +163,11 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
         case .saoPauloHome: "FE0000"
         case .atleticoMineiroHome: "2B2B2E"
         case .corinthiansHome: "6E6E6C"
+        case .cruzeiroHome: "2F529E"
+        case .internacionalHome: "E5050F"
+        case .remoHome: "2048A8"
+        case .botafogoHome: "1E1E20"
+        case .vitoriaHome: nil
         }
     }
 
@@ -144,12 +189,14 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
     /// without touching the charcoal used for the background/blobs/hero border.
     var tabSelectionColorOverrideHex: String? {
         switch self {
-        case .palmeirasHome, .flamengoHome, .athleticoParanaenseHome, .coritibaHome, .corinthiansHome: nil
+        case .palmeirasHome, .flamengoHome, .athleticoParanaenseHome, .coritibaHome, .corinthiansHome, .cruzeiroHome,
+             .internacionalHome, .remoHome, .vitoriaHome:
+            nil
         case .fluminenseHome: "00613C"
         case .bahiaHome: "ED3237"
         case .redBullBragantinoHome: "D2003C"
         case .saoPauloHome: "000000"
-        case .atleticoMineiroHome: "FFFFFF"
+        case .atleticoMineiroHome, .botafogoHome: "FFFFFF"
         }
     }
 
@@ -165,9 +212,11 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
     var pillFillColorOverrideHex: String? {
         switch self {
         case .palmeirasHome, .flamengoHome, .fluminenseHome, .athleticoParanaenseHome, .bahiaHome,
-             .redBullBragantinoHome, .coritibaHome, .saoPauloHome:
+             .redBullBragantinoHome, .coritibaHome, .saoPauloHome, .cruzeiroHome, .internacionalHome,
+             .remoHome, .vitoriaHome:
             nil
         case .atleticoMineiroHome: "2B2B2E"
+        case .botafogoHome: "1E1E20"
         case .corinthiansHome: "000000"
         }
     }
@@ -187,9 +236,26 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
     /// off-white teams.
     var fontColorOverrideHex: String? {
         switch self {
-        case .palmeirasHome, .flamengoHome, .fluminenseHome, .atleticoMineiroHome: nil
+        case .palmeirasHome, .flamengoHome, .fluminenseHome, .atleticoMineiroHome, .cruzeiroHome, .internacionalHome,
+             .remoHome, .botafogoHome, .vitoriaHome:
+            nil
         case .athleticoParanaenseHome, .bahiaHome, .coritibaHome, .corinthiansHome: "F2F2F2"
         case .redBullBragantinoHome, .saoPauloHome: "FFFFFF"
+        }
+    }
+
+    /// How far the gradient's bottom stop is shaded toward black (see
+    /// `ThemeTokens.themed(gradientDarkAmount:)`) — `nil` means the default `-0.75`. Cruzeiro's
+    /// blue looked too dark/heavy at the bottom of the screen with the default amount, so this
+    /// lightens it to `-0.5`, keeping more of the actual main color visible instead of fading
+    /// most of the way to black.
+    var gradientDarkAmountOverride: Double? {
+        switch self {
+        case .palmeirasHome, .flamengoHome, .fluminenseHome, .athleticoParanaenseHome, .bahiaHome,
+             .redBullBragantinoHome, .coritibaHome, .saoPauloHome, .atleticoMineiroHome, .corinthiansHome,
+             .internacionalHome, .remoHome, .botafogoHome, .vitoriaHome:
+            nil
+        case .cruzeiroHome: -0.5
         }
     }
 

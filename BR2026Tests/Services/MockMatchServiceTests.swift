@@ -126,6 +126,46 @@ struct MockMatchServiceTests {
         #expect(colorSet.home == TeamThemeColors(mainColorHex: "fcfbee", fontColorHex: "000000"))
     }
 
+    @Test("Returns Cruzeiro's known real home color")
+    func returnsCruzeiroTeamThemeColorSet() async throws {
+        let service = MockMatchService()
+        let colorSet = try await service.fetchTeamThemeColorSet(teamID: 135)
+
+        #expect(colorSet.home == TeamThemeColors(mainColorHex: "0455a3", fontColorHex: "ffffff"))
+    }
+
+    @Test("Returns Internacional's known real home color")
+    func returnsInternacionalTeamThemeColorSet() async throws {
+        let service = MockMatchService()
+        let colorSet = try await service.fetchTeamThemeColorSet(teamID: 119)
+
+        #expect(colorSet.home == TeamThemeColors(mainColorHex: "e00618", fontColorHex: "ffffff"))
+    }
+
+    @Test("Returns Remo's known real home color")
+    func returnsRemoTeamThemeColorSet() async throws {
+        let service = MockMatchService()
+        let colorSet = try await service.fetchTeamThemeColorSet(teamID: 1198)
+
+        #expect(colorSet.home == TeamThemeColors(mainColorHex: "000000", fontColorHex: "ffffff"))
+    }
+
+    @Test("Returns Botafogo's known real home color")
+    func returnsBotafogoTeamThemeColorSet() async throws {
+        let service = MockMatchService()
+        let colorSet = try await service.fetchTeamThemeColorSet(teamID: 120)
+
+        #expect(colorSet.home == TeamThemeColors(mainColorHex: "f7f7f7", fontColorHex: "ffffff"))
+    }
+
+    @Test("Returns Vitória's known real home color")
+    func returnsVitoriaTeamThemeColorSet() async throws {
+        let service = MockMatchService()
+        let colorSet = try await service.fetchTeamThemeColorSet(teamID: 136)
+
+        #expect(colorSet.home == TeamThemeColors(mainColorHex: "ff0000", fontColorHex: "ffffff"))
+    }
+
     @Test("Throws for a team id with no canned colors")
     func throwsForUnknownTeam() async throws {
         let service = MockMatchService()

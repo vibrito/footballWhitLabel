@@ -15,6 +15,11 @@ struct TeamThemeOptionTests {
         #expect(TeamThemeOption.saoPauloHome.teamID == 126)
         #expect(TeamThemeOption.atleticoMineiroHome.teamID == 1062)
         #expect(TeamThemeOption.corinthiansHome.teamID == 131)
+        #expect(TeamThemeOption.cruzeiroHome.teamID == 135)
+        #expect(TeamThemeOption.internacionalHome.teamID == 119)
+        #expect(TeamThemeOption.remoHome.teamID == 1198)
+        #expect(TeamThemeOption.botafogoHome.teamID == 120)
+        #expect(TeamThemeOption.vitoriaHome.teamID == 136)
     }
 
     @Test("Every case maps to the home TeamKit")
@@ -31,7 +36,7 @@ struct TeamThemeOptionTests {
         }
     }
 
-    @Test("Every team has a curated main color override")
+    @Test("Every team but Vitória has a curated main color override")
     func colorOverrides() {
         #expect(TeamThemeOption.palmeirasHome.mainColorOverrideHex == "006437")
         #expect(TeamThemeOption.flamengoHome.mainColorOverrideHex == "C52613")
@@ -43,6 +48,11 @@ struct TeamThemeOptionTests {
         #expect(TeamThemeOption.saoPauloHome.mainColorOverrideHex == "FE0000")
         #expect(TeamThemeOption.atleticoMineiroHome.mainColorOverrideHex == "2B2B2E")
         #expect(TeamThemeOption.corinthiansHome.mainColorOverrideHex == "6E6E6C")
+        #expect(TeamThemeOption.cruzeiroHome.mainColorOverrideHex == "2F529E")
+        #expect(TeamThemeOption.internacionalHome.mainColorOverrideHex == "E5050F")
+        #expect(TeamThemeOption.remoHome.mainColorOverrideHex == "2048A8")
+        #expect(TeamThemeOption.botafogoHome.mainColorOverrideHex == "1E1E20")
+        #expect(TeamThemeOption.vitoriaHome.mainColorOverrideHex == nil)
     }
 
     @Test("Only Fluminense/Bahia/Red Bull Bragantino/São Paulo/Atlético Mineiro have a curated tab-selection color override")
@@ -57,9 +67,14 @@ struct TeamThemeOptionTests {
         #expect(TeamThemeOption.saoPauloHome.tabSelectionColorOverrideHex == "000000")
         #expect(TeamThemeOption.atleticoMineiroHome.tabSelectionColorOverrideHex == "FFFFFF")
         #expect(TeamThemeOption.corinthiansHome.tabSelectionColorOverrideHex == nil)
+        #expect(TeamThemeOption.cruzeiroHome.tabSelectionColorOverrideHex == nil)
+        #expect(TeamThemeOption.internacionalHome.tabSelectionColorOverrideHex == nil)
+        #expect(TeamThemeOption.remoHome.tabSelectionColorOverrideHex == nil)
+        #expect(TeamThemeOption.botafogoHome.tabSelectionColorOverrideHex == "FFFFFF")
+        #expect(TeamThemeOption.vitoriaHome.tabSelectionColorOverrideHex == nil)
     }
 
-    @Test("Only Atlético Mineiro/Corinthians have a curated pill-fill color override, distinct from their tab-selection color")
+    @Test("Only Atlético Mineiro/Corinthians/Botafogo have a curated pill-fill color override, distinct from their tab-selection color")
     func pillFillColorOverrides() {
         #expect(TeamThemeOption.palmeirasHome.pillFillColorOverrideHex == nil)
         #expect(TeamThemeOption.flamengoHome.pillFillColorOverrideHex == nil)
@@ -71,6 +86,11 @@ struct TeamThemeOptionTests {
         #expect(TeamThemeOption.saoPauloHome.pillFillColorOverrideHex == nil)
         #expect(TeamThemeOption.atleticoMineiroHome.pillFillColorOverrideHex == "2B2B2E")
         #expect(TeamThemeOption.corinthiansHome.pillFillColorOverrideHex == "000000")
+        #expect(TeamThemeOption.cruzeiroHome.pillFillColorOverrideHex == nil)
+        #expect(TeamThemeOption.internacionalHome.pillFillColorOverrideHex == nil)
+        #expect(TeamThemeOption.remoHome.pillFillColorOverrideHex == nil)
+        #expect(TeamThemeOption.botafogoHome.pillFillColorOverrideHex == "1E1E20")
+        #expect(TeamThemeOption.vitoriaHome.pillFillColorOverrideHex == nil)
     }
 
     @Test("previewColorHex uses the main color override where one exists, falling back to the API-style main color otherwise")
@@ -85,9 +105,14 @@ struct TeamThemeOptionTests {
         #expect(TeamThemeOption.saoPauloHome.previewColorHex == "FE0000")
         #expect(TeamThemeOption.atleticoMineiroHome.previewColorHex == "2B2B2E")
         #expect(TeamThemeOption.corinthiansHome.previewColorHex == "6E6E6C")
+        #expect(TeamThemeOption.cruzeiroHome.previewColorHex == "2F529E")
+        #expect(TeamThemeOption.internacionalHome.previewColorHex == "E5050F")
+        #expect(TeamThemeOption.remoHome.previewColorHex == "2048A8")
+        #expect(TeamThemeOption.botafogoHome.previewColorHex == "1E1E20")
+        #expect(TeamThemeOption.vitoriaHome.previewColorHex == "ff0000")
     }
 
-    @Test("Only Palmeiras/Flamengo/Fluminense/Atlético Mineiro have no curated font color override")
+    @Test("Only Palmeiras/Flamengo/Fluminense/Atlético Mineiro/Cruzeiro/Internacional/Remo/Botafogo/Vitória have no curated font color override")
     func fontColorOverrides() {
         #expect(TeamThemeOption.palmeirasHome.fontColorOverrideHex == nil)
         #expect(TeamThemeOption.flamengoHome.fontColorOverrideHex == nil)
@@ -99,5 +124,29 @@ struct TeamThemeOptionTests {
         #expect(TeamThemeOption.saoPauloHome.fontColorOverrideHex == "FFFFFF")
         #expect(TeamThemeOption.atleticoMineiroHome.fontColorOverrideHex == nil)
         #expect(TeamThemeOption.corinthiansHome.fontColorOverrideHex == "F2F2F2")
+        #expect(TeamThemeOption.cruzeiroHome.fontColorOverrideHex == nil)
+        #expect(TeamThemeOption.internacionalHome.fontColorOverrideHex == nil)
+        #expect(TeamThemeOption.remoHome.fontColorOverrideHex == nil)
+        #expect(TeamThemeOption.botafogoHome.fontColorOverrideHex == nil)
+        #expect(TeamThemeOption.vitoriaHome.fontColorOverrideHex == nil)
+    }
+
+    @Test("Only Cruzeiro has a curated gradient dark-amount override")
+    func gradientDarkAmountOverrides() {
+        #expect(TeamThemeOption.palmeirasHome.gradientDarkAmountOverride == nil)
+        #expect(TeamThemeOption.flamengoHome.gradientDarkAmountOverride == nil)
+        #expect(TeamThemeOption.fluminenseHome.gradientDarkAmountOverride == nil)
+        #expect(TeamThemeOption.athleticoParanaenseHome.gradientDarkAmountOverride == nil)
+        #expect(TeamThemeOption.bahiaHome.gradientDarkAmountOverride == nil)
+        #expect(TeamThemeOption.redBullBragantinoHome.gradientDarkAmountOverride == nil)
+        #expect(TeamThemeOption.coritibaHome.gradientDarkAmountOverride == nil)
+        #expect(TeamThemeOption.saoPauloHome.gradientDarkAmountOverride == nil)
+        #expect(TeamThemeOption.atleticoMineiroHome.gradientDarkAmountOverride == nil)
+        #expect(TeamThemeOption.corinthiansHome.gradientDarkAmountOverride == nil)
+        #expect(TeamThemeOption.cruzeiroHome.gradientDarkAmountOverride == -0.5)
+        #expect(TeamThemeOption.internacionalHome.gradientDarkAmountOverride == nil)
+        #expect(TeamThemeOption.remoHome.gradientDarkAmountOverride == nil)
+        #expect(TeamThemeOption.botafogoHome.gradientDarkAmountOverride == nil)
+        #expect(TeamThemeOption.vitoriaHome.gradientDarkAmountOverride == nil)
     }
 }

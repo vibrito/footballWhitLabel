@@ -221,6 +221,96 @@ struct TeamThemeStoreTests {
         #expect(store.tokens.textColor != Color(hex: "000000"))
     }
 
+    @Test("select() uses Cruzeiro's curated main color override instead of the API's mainColorHex")
+    func selectUsesCruzeiroColorOverrides() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = TeamThemeColorSet(
+            home: TeamThemeColors(mainColorHex: "0455a3", fontColorHex: "ffffff")
+        )
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        _ = await store.select(.cruzeiroHome)
+
+        #expect(store.tokens.overrideAccentColor == Color(hex: "2F529E"))
+        #expect(store.tokens.overrideAccentColor != Color(hex: "0455a3"))
+        #expect(store.tokens.overrideTabSelectionColor == nil)
+        #expect(store.tokens.textColor == Color(hex: "ffffff"))
+        #expect(store.tokens.gradientStops[2] == Color.shaded(hex: "2F529E", towardWhite: -0.5))
+        #expect(store.tokens.gradientStops[2] != Color.shaded(hex: "2F529E", towardWhite: -0.75))
+    }
+
+    @Test("select() uses Internacional's curated main color override instead of the API's mainColorHex")
+    func selectUsesInternacionalColorOverrides() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = TeamThemeColorSet(
+            home: TeamThemeColors(mainColorHex: "e00618", fontColorHex: "ffffff")
+        )
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        _ = await store.select(.internacionalHome)
+
+        #expect(store.tokens.overrideAccentColor == Color(hex: "E5050F"))
+        #expect(store.tokens.overrideAccentColor != Color(hex: "e00618"))
+        #expect(store.tokens.overrideTabSelectionColor == nil)
+        #expect(store.tokens.textColor == Color(hex: "ffffff"))
+        #expect(store.tokens.gradientStops[2] == Color.shaded(hex: "E5050F", towardWhite: -0.75))
+    }
+
+    @Test("select() uses Remo's curated main color override — a lightened navy — instead of the API's literal black")
+    func selectUsesRemoColorOverrides() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = TeamThemeColorSet(
+            home: TeamThemeColors(mainColorHex: "000000", fontColorHex: "ffffff")
+        )
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        _ = await store.select(.remoHome)
+
+        #expect(store.tokens.overrideAccentColor == Color(hex: "2048A8"))
+        #expect(store.tokens.overrideAccentColor != Color(hex: "000000"))
+        #expect(store.tokens.overrideTabSelectionColor == nil)
+        #expect(store.tokens.textColor == Color(hex: "ffffff"))
+    }
+
+    @Test("select() uses Botafogo's curated charcoal/white overrides, same recipe as Atlético Mineiro but darker, instead of the API's near-white main color")
+    func selectUsesBotafogoColorOverrides() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = TeamThemeColorSet(
+            home: TeamThemeColors(mainColorHex: "f7f7f7", fontColorHex: "ffffff")
+        )
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        _ = await store.select(.botafogoHome)
+
+        #expect(store.tokens.overrideAccentColor == Color(hex: "1E1E20"))
+        #expect(store.tokens.overrideAccentColor != Color(hex: "f7f7f7"))
+        #expect(store.tokens.overrideAccentColor != Color(hex: "2B2B2E"))
+        #expect(store.tokens.overrideTabSelectionColor == Color(hex: "FFFFFF"))
+        #expect(store.tokens.overridePillFillColor == Color(hex: "1E1E20"))
+        #expect(store.tokens.textColor == Color(hex: "ffffff"))
+    }
+
+    @Test("select() uses Vitória's API red as-is, with no curated overrides needed")
+    func selectUsesVitoriaColorsAsIs() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = TeamThemeColorSet(
+            home: TeamThemeColors(mainColorHex: "ff0000", fontColorHex: "ffffff")
+        )
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        _ = await store.select(.vitoriaHome)
+
+        #expect(store.tokens.overrideAccentColor == Color(hex: "ff0000"))
+        #expect(store.tokens.overrideTabSelectionColor == nil)
+        #expect(store.tokens.overridePillFillColor == nil)
+        #expect(store.tokens.textColor == Color(hex: "ffffff"))
+    }
+
     @Test("select() falls back to fetching when there's no cached entry, and still succeeds")
     func selectFetchesWhenCacheMisses() async {
         let setting = StubTeamThemeSetting()

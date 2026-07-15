@@ -46,7 +46,8 @@ struct ThemeTokens: Equatable {
         mainColorHex: String,
         fontColorHex: String,
         tabSelectionColorHex: String? = nil,
-        pillFillColorHex: String? = nil
+        pillFillColorHex: String? = nil,
+        gradientDarkAmount: Double = -0.75
     ) -> ThemeTokens {
         let accent = Color(hex: mainColorHex)
         return ThemeTokens(
@@ -57,7 +58,7 @@ struct ThemeTokens: Equatable {
             gradientStops: [
                 Color.shaded(hex: mainColorHex, towardWhite: 0.35),
                 accent,
-                Color.shaded(hex: mainColorHex, towardWhite: -0.75)
+                Color.shaded(hex: mainColorHex, towardWhite: gradientDarkAmount)
             ],
             blobColors: (top: accent, bottom: accent)
         )

@@ -38,7 +38,8 @@ final class TeamThemeStore {
             mainColorHex: option.mainColorOverrideHex ?? colors.mainColorHex,
             fontColorHex: option.fontColorOverrideHex ?? colors.fontColorHex,
             tabSelectionColorHex: option.tabSelectionColorOverrideHex,
-            pillFillColorHex: option.pillFillColorOverrideHex
+            pillFillColorHex: option.pillFillColorOverrideHex,
+            gradientDarkAmount: option.gradientDarkAmountOverride ?? -0.75
         )
         return true
     }
@@ -49,7 +50,8 @@ final class TeamThemeStore {
             mainColorHex: option.mainColorOverrideHex ?? colors.mainColorHex,
             fontColorHex: option.fontColorOverrideHex ?? colors.fontColorHex,
             tabSelectionColorHex: option.tabSelectionColorOverrideHex,
-            pillFillColorHex: option.pillFillColorOverrideHex
+            pillFillColorHex: option.pillFillColorOverrideHex,
+            gradientDarkAmount: option.gradientDarkAmountOverride ?? -0.75
         )
     }
 
