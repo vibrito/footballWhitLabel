@@ -9,7 +9,7 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
-            MatchdayView(service: service)
+            MatchdayView(service: service, themeStore: themeStore)
                 .tabItem { Label("Matchday", systemImage: "soccerball") }
                 .tint(themeStore.tokens.overrideAccentColor ?? Color(hex: config.accentColorHex))
             FixturesView(service: service)

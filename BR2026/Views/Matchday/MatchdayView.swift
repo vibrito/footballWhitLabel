@@ -4,11 +4,13 @@ struct MatchdayView: View {
     @State private var viewModel: MatchdayViewModel
     @State private var selectedMatch: Match?
     let service: MatchService
+    let themeStore: TeamThemeStore
     @Environment(\.themeTokens) private var themeTokens
 
-    init(service: MatchService) {
-        _viewModel = State(initialValue: MatchdayViewModel(service: service))
+    init(service: MatchService, themeStore: TeamThemeStore) {
+        _viewModel = State(initialValue: MatchdayViewModel(service: service, themeStore: themeStore))
         self.service = service
+        self.themeStore = themeStore
     }
 
     var body: some View {

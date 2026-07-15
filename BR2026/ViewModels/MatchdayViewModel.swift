@@ -8,16 +8,28 @@ final class MatchdayViewModel {
     private(set) var isRefreshing = false
     private var hasLoadedOnce = false
     private nonisolated(unsafe) let service: MatchService
+    private let themeStore: TeamThemeStore
 
-    init(service: MatchService) {
+    init(service: MatchService, themeStore: TeamThemeStore) {
         self.service = service
+        self.themeStore = themeStore
     }
 
-    // The featured match is the earliest one still to be decided — a match already
-    // live sorts before any future kickoff, so it naturally wins over a later
-    // scheduled match without special-casing status.
+    // The featured match is the selected Team Theme's own next match, if one exists —
+    // this is a personalized "your team" card, so a match live elsewhere never displaces
+    // it, and how far out it is doesn't matter as long as the season has one left. With
+    // no team selected (or that team has no live/scheduled match), this falls back to the
+    // league-wide earliest one still to be decided — a match already live sorts before any
+    // future kickoff there too, so it naturally wins over a later scheduled match without
+    // special-casing status.
     var nextMatch: Match? {
-        matches
+        if let teamID = themeStore.selectedOption?.teamID {
+            let teamMatch = matches
+                .filter { ($0.homeTeam.id == teamID || $0.awayTeam.id == teamID) && ($0.status == .live || $0.status == .scheduled) }
+                .min { $0.utcDate < $1.utcDate }
+            if let teamMatch { return teamMatch }
+        }
+        return matches
             .filter { $0.status == .live || $0.status == .scheduled }
             .min { $0.utcDate < $1.utcDate }
     }
