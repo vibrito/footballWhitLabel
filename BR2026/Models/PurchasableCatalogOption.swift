@@ -6,7 +6,7 @@ import Foundation
 /// `RawRepresentable where RawValue == String` already provides `rawValue` on both
 /// conforming enums, so their conformance is just `productID`/`rawValue(fromProductID:)`,
 /// which both already have (or will have, for `TeamIconOption` — see Task 2).
-protocol PurchasableCatalogOption: CaseIterable, Hashable {
+protocol PurchasableCatalogOption: CaseIterable, Hashable, Sendable {
     var rawValue: String { get }
     var productID: String { get }
     static func rawValue(fromProductID productID: String) -> String?
