@@ -34,23 +34,13 @@ final class TeamThemeStore {
         }
         guard let colors = await resolveColors(teamID: option.teamID)?[option.kit] else { return false }
         setting.setSelectedThemeID(option.rawValue)
-        tokens = ThemeTokens.themed(
-            backgroundColorHex: colors.mainColorHex,
-            accentColorHex: option.accentOverrideHex ?? colors.mainColorHex,
-            fontColorHex: colors.fontColorHex,
-            gradientStyle: option.gradientStyle
-        )
+        tokens = ThemeTokens.themed(mainColorHex: colors.mainColorHex, fontColorHex: colors.fontColorHex)
         return true
     }
 
     private func apply(_ option: TeamThemeOption) async {
         guard let colors = await resolveColors(teamID: option.teamID)?[option.kit] else { return }
-        tokens = ThemeTokens.themed(
-            backgroundColorHex: colors.mainColorHex,
-            accentColorHex: option.accentOverrideHex ?? colors.mainColorHex,
-            fontColorHex: colors.fontColorHex,
-            gradientStyle: option.gradientStyle
-        )
+        tokens = ThemeTokens.themed(mainColorHex: colors.mainColorHex, fontColorHex: colors.fontColorHex)
     }
 
     private func resolveColors(teamID: Int) async -> TeamThemeColorSet? {
