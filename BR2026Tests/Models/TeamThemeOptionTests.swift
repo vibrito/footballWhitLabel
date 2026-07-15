@@ -7,6 +7,7 @@ struct TeamThemeOptionTests {
     func teamIDs() {
         #expect(TeamThemeOption.palmeirasHome.teamID == 121)
         #expect(TeamThemeOption.flamengoHome.teamID == 127)
+        #expect(TeamThemeOption.corinthiansHome.teamID == 131)
     }
 
     @Test("Every case maps to the home TeamKit")
