@@ -45,6 +45,7 @@ struct TeamThemePickerView: View {
         .navigationTitle("Team Theme")
         .navigationBarTitleDisplayMode(.inline)
         .trackScreen("TeamThemePicker")
+        .task { await viewModel.loadOnce() }
     }
 
     private func rowView(_ option: TeamThemeOption?) -> some View {
@@ -53,16 +54,8 @@ struct TeamThemePickerView: View {
         } label: {
             HStack(spacing: 12) {
                 if let option {
-                    Circle()
-                        .fill(Color(hex: option.previewColorHex))
-                        .frame(width: 28, height: 28)
-                        .overlay(Circle().strokeBorder(Color.white.opacity(0.3), lineWidth: 1))
                     Text(option.displayName)
                 } else {
-                    Circle()
-                        .fill(Color.white.opacity(0.07))
-                        .frame(width: 28, height: 28)
-                        .overlay(Circle().strokeBorder(Color.white.opacity(0.3), lineWidth: 1))
                     Text("Default")
                 }
                 Spacer()

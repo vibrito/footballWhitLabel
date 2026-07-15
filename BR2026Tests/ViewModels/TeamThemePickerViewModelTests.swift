@@ -225,4 +225,41 @@ struct TeamThemePickerViewModelTests {
 
         #expect(sorted.firstIndex(of: .flamengoHome)! < sorted.firstIndex(of: .palmeirasHome)!)
     }
+
+    @Test("loadOnce() fetches standings when the cache is empty, updating sortedOptions once fetched")
+    func loadOnceFetchesStandingsWhenCacheEmpty() async {
+        let setting = StubTeamThemeSetting()
+        let flamengo = Standing(
+            position: 1,
+            team: Team(id: TeamThemeOption.flamengoHome.teamID, name: "Flamengo", shortName: "FLA", crestURL: nil),
+            playedGames: 10, won: 8, draw: 1, lost: 1, goalsFor: 20, goalsAgainst: 8, goalDifference: 12, points: 25
+        )
+        let service = StubMatchService(matches: [], standings: [flamengo])
+        // Simulates a user reaching More → Team Theme without ever visiting Standings —
+        // fetchStandings() (what the API would return) has data, but the cache is still empty.
+        service.cachedStandingsOverride = []
+        let store = TeamThemeStore(setting: setting, service: service)
+        let purchaseStore = TeamPurchaseStore(service: MockPurchaseService())
+        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting, service: service)
+        #expect(viewModel.standings.isEmpty)
+
+        await viewModel.loadOnce()
+
+        #expect(viewModel.standings.map(\.teamID) == [flamengo.teamID])
+        #expect(viewModel.sortedOptions.firstIndex(of: .flamengoHome)! < viewModel.sortedOptions.firstIndex(of: .palmeirasHome)!)
+    }
+
+    @Test("loadOnce() called twice only fetches standings once")
+    func loadOnceFetchesStandingsOnlyOnce() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        let store = TeamThemeStore(setting: setting, service: service)
+        let purchaseStore = TeamPurchaseStore(service: MockPurchaseService())
+        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting, service: service)
+
+        await viewModel.loadOnce()
+        await viewModel.loadOnce()
+
+        #expect(service.fetchStandingsCallCount == 1)
+    }
 }

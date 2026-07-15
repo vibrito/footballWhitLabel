@@ -98,39 +98,6 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
         }
     }
 
-    /// A known-good hex for the picker row's swatch, so it doesn't need a network round-trip
-    /// just to render — the actual applied theme still comes from the live-fetched/cached
-    /// `TeamThemeColorSet` via `TeamThemeStore`, this is display-only. Matches
-    /// `mainColorOverrideHex` where one exists.
-    var previewColorHex: String {
-        mainColorOverrideHex ?? apiMainColorFallbackHex
-    }
-
-    private var apiMainColorFallbackHex: String {
-        switch self {
-        case .palmeirasHome: "225638"
-        case .flamengoHome: "ab1b10"
-        case .fluminenseHome: "6e202e"
-        case .athleticoParanaenseHome: "cc0000"
-        case .bahiaHome: "ffffff"
-        case .redBullBragantinoHome: "fcfcfc"
-        case .coritibaHome: "ffffff"
-        case .saoPauloHome: "ffffff"
-        case .atleticoMineiroHome: "000000"
-        case .corinthiansHome: "fcfbee"
-        case .cruzeiroHome: "0455a3"
-        case .internacionalHome: "e00618"
-        case .remoHome: "000000"
-        case .botafogoHome: "f7f7f7"
-        case .vitoriaHome: "ff0000"
-        case .mirassolHome: "ffff00"
-        case .chapecoenseHome: "f9fbfa"
-        case .santosHome: "ffffff"
-        case .gremioHome: "b8edff"
-        case .vascoDaGamaHome: "000000"
-        }
-    }
-
     /// A curated main color, used instead of the API's `home.mainColor` — `nil` means the
     /// API's color already works fine. Palmeiras' and Flamengo's API colors (`225638`/`ab1b10`)
     /// were fine to launch with, but the user later asked for truer club-brand greens/reds

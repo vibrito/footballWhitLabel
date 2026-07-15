@@ -1330,6 +1330,17 @@
           }
         }
       }
+    },
+    "Team Theme" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temas de Times"
+          }
+        }
+      }
     }
   },
   "version" : "1.1"

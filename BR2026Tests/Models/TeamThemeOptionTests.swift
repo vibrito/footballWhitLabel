@@ -121,30 +121,6 @@ struct TeamThemeOptionTests {
         #expect(TeamThemeOption.vascoDaGamaHome.pillFillColorOverrideHex == "242426")
     }
 
-    @Test("previewColorHex uses the main color override where one exists, falling back to the API-style main color otherwise")
-    func previewColorHex() {
-        #expect(TeamThemeOption.palmeirasHome.previewColorHex == "006437")
-        #expect(TeamThemeOption.flamengoHome.previewColorHex == "C52613")
-        #expect(TeamThemeOption.fluminenseHome.previewColorHex == "870A28")
-        #expect(TeamThemeOption.athleticoParanaenseHome.previewColorHex == "CE181E")
-        #expect(TeamThemeOption.bahiaHome.previewColorHex == "006CB5")
-        #expect(TeamThemeOption.redBullBragantinoHome.previewColorHex == "001D46")
-        #expect(TeamThemeOption.coritibaHome.previewColorHex == "00544D")
-        #expect(TeamThemeOption.saoPauloHome.previewColorHex == "FE0000")
-        #expect(TeamThemeOption.atleticoMineiroHome.previewColorHex == "2B2B2E")
-        #expect(TeamThemeOption.corinthiansHome.previewColorHex == "6E6E6C")
-        #expect(TeamThemeOption.cruzeiroHome.previewColorHex == "2F529E")
-        #expect(TeamThemeOption.internacionalHome.previewColorHex == "E5050F")
-        #expect(TeamThemeOption.remoHome.previewColorHex == "2048A8")
-        #expect(TeamThemeOption.botafogoHome.previewColorHex == "1E1E20")
-        #expect(TeamThemeOption.vitoriaHome.previewColorHex == "ff0000")
-        #expect(TeamThemeOption.mirassolHome.previewColorHex == "9E9906")
-        #expect(TeamThemeOption.chapecoenseHome.previewColorHex == "1B552A")
-        #expect(TeamThemeOption.santosHome.previewColorHex == "82827F")
-        #expect(TeamThemeOption.gremioHome.previewColorHex == "0D80BF")
-        #expect(TeamThemeOption.vascoDaGamaHome.previewColorHex == "242426")
-    }
-
     @Test("Only Palmeiras/Flamengo/Fluminense/Atlético Mineiro/Cruzeiro/Internacional/Remo/Botafogo/Vitória/Chapecoense/Grêmio/Vasco da Gama have no curated font color override")
     func fontColorOverrides() {
         #expect(TeamThemeOption.palmeirasHome.fontColorOverrideHex == nil)

@@ -93,13 +93,13 @@ enum MockDataProvider {
             },
             {
                 "position": 5,
-                "team": { "id": 201, "tla": null, "name": "São Paulo", "crest": "https://media.api-sports.io/football/teams/201.png", "shortName": "São Paulo" },
+                "team": { "id": 126, "tla": null, "name": "São Paulo", "crest": "https://media.api-sports.io/football/teams/126.png", "shortName": "São Paulo" },
                 "playedGames": 15, "won": 8, "draw": 3, "lost": 4,
                 "goalsFor": 22, "goalsAgainst": 17, "goalDifference": 5, "points": 27
             },
             {
                 "position": 6,
-                "team": { "id": 202, "tla": null, "name": "Corinthians", "crest": "https://media.api-sports.io/football/teams/202.png", "shortName": "Corinthians" },
+                "team": { "id": 131, "tla": null, "name": "Corinthians", "crest": "https://media.api-sports.io/football/teams/131.png", "shortName": "Corinthians" },
                 "playedGames": 15, "won": 7, "draw": 5, "lost": 3,
                 "goalsFor": 21, "goalsAgainst": 16, "goalDifference": 5, "points": 26
             },
@@ -111,7 +111,7 @@ enum MockDataProvider {
             },
             {
                 "position": 8,
-                "team": { "id": 203, "tla": null, "name": "Atlético-MG", "crest": "https://media.api-sports.io/football/teams/203.png", "shortName": "Atlético-MG" },
+                "team": { "id": 1062, "tla": null, "name": "Atlético-MG", "crest": "https://media.api-sports.io/football/teams/1062.png", "shortName": "Atlético-MG" },
                 "playedGames": 15, "won": 7, "draw": 3, "lost": 5,
                 "goalsFor": 19, "goalsAgainst": 18, "goalDifference": 1, "points": 24
             },
@@ -123,19 +123,19 @@ enum MockDataProvider {
             },
             {
                 "position": 10,
-                "team": { "id": 204, "tla": null, "name": "Fluminense", "crest": "https://media.api-sports.io/football/teams/204.png", "shortName": "Fluminense" },
+                "team": { "id": 124, "tla": null, "name": "Fluminense", "crest": "https://media.api-sports.io/football/teams/124.png", "shortName": "Fluminense" },
                 "playedGames": 15, "won": 6, "draw": 4, "lost": 5,
                 "goalsFor": 17, "goalsAgainst": 18, "goalDifference": -1, "points": 22
             },
             {
                 "position": 11,
-                "team": { "id": 205, "tla": null, "name": "Grêmio", "crest": "https://media.api-sports.io/football/teams/205.png", "shortName": "Grêmio" },
+                "team": { "id": 130, "tla": null, "name": "Grêmio", "crest": "https://media.api-sports.io/football/teams/130.png", "shortName": "Grêmio" },
                 "playedGames": 15, "won": 6, "draw": 3, "lost": 6,
                 "goalsFor": 16, "goalsAgainst": 18, "goalDifference": -2, "points": 21
             },
             {
                 "position": 12,
-                "team": { "id": 206, "tla": null, "name": "Vasco da Gama", "crest": "https://media.api-sports.io/football/teams/206.png", "shortName": "Vasco da Gama" },
+                "team": { "id": 133, "tla": null, "name": "Vasco da Gama", "crest": "https://media.api-sports.io/football/teams/133.png", "shortName": "Vasco da Gama" },
                 "playedGames": 15, "won": 5, "draw": 5, "lost": 5,
                 "goalsFor": 16, "goalsAgainst": 19, "goalDifference": -3, "points": 20
             },
@@ -147,13 +147,13 @@ enum MockDataProvider {
             },
             {
                 "position": 14,
-                "team": { "id": 208, "tla": null, "name": "Bragantino", "crest": "https://media.api-sports.io/football/teams/208.png", "shortName": "Bragantino" },
+                "team": { "id": 794, "tla": null, "name": "Bragantino", "crest": "https://media.api-sports.io/football/teams/794.png", "shortName": "Bragantino" },
                 "playedGames": 15, "won": 5, "draw": 3, "lost": 7,
                 "goalsFor": 14, "goalsAgainst": 20, "goalDifference": -6, "points": 18
             },
             {
                 "position": 15,
-                "team": { "id": 209, "tla": null, "name": "Athletico-PR", "crest": "https://media.api-sports.io/football/teams/209.png", "shortName": "Athletico-PR" },
+                "team": { "id": 134, "tla": null, "name": "Athletico-PR", "crest": "https://media.api-sports.io/football/teams/134.png", "shortName": "Athletico-PR" },
                 "playedGames": 15, "won": 4, "draw": 5, "lost": 6,
                 "goalsFor": 13, "goalsAgainst": 19, "goalDifference": -6, "points": 17
             },
@@ -171,7 +171,7 @@ enum MockDataProvider {
             },
             {
                 "position": 18,
-                "team": { "id": 212, "tla": null, "name": "Vitória", "crest": "https://media.api-sports.io/football/teams/212.png", "shortName": "Vitória" },
+                "team": { "id": 136, "tla": null, "name": "Vitória", "crest": "https://media.api-sports.io/football/teams/136.png", "shortName": "Vitória" },
                 "playedGames": 15, "won": 3, "draw": 4, "lost": 8,
                 "goalsFor": 11, "goalsAgainst": 23, "goalDifference": -12, "points": 13
             },
