@@ -135,4 +135,28 @@ struct TeamThemePickerViewModelTests {
 
         #expect(viewModel.isPurchased(.bahiaHome) == true)
     }
+
+    @Test("select() clears stale errorMessage from prior failure when attempting different team with failed purchase")
+    func selectClearsStaleErrorMessageOnFailedPurchase() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.shouldThrowOnTeamThemeFetch = true
+        let store = TeamThemeStore(setting: setting, service: service)
+        let purchaseService = MockPurchaseService()
+        let purchaseStore = TeamPurchaseStore(service: purchaseService)
+        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting)
+
+        // First, trigger a theme-application failure to set errorMessage
+        await viewModel.select(.palmeirasHome)
+        #expect(viewModel.errorMessage != nil)
+        #expect(viewModel.selectedOption == nil)
+
+        // Then attempt to select a different team where purchase fails
+        purchaseService.shouldFailNextPurchase = true
+        await viewModel.select(.flamengoHome)
+
+        // After failed purchase of different team, stale errorMessage must be cleared
+        #expect(viewModel.errorMessage == nil)
+        #expect(viewModel.selectedOption == nil)
+    }
 }

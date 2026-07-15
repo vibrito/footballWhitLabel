@@ -27,6 +27,7 @@ final class TeamThemePickerViewModel {
 
     func select(_ option: TeamThemeOption?) async {
         guard option != selectedOption else { return }
+        errorMessage = nil
         if let option, !purchaseStore.isPurchased(option) {
             guard await purchaseStore.purchase(option) else { return }
         }
