@@ -16,6 +16,7 @@ struct ChampionshipApp: App {
     let modelContainer: ModelContainer
     let service: MatchService
     let themeStore: TeamThemeStore
+    let purchaseStore: TeamPurchaseStore
 
     init() {
         do {
@@ -35,11 +36,12 @@ struct ChampionshipApp: App {
             service = MockMatchService()
         }
         themeStore = TeamThemeStore(setting: UserDefaultsTeamThemeSetting(), service: service)
+        purchaseStore = TeamPurchaseStore(service: LivePurchaseService())
     }
 
     var body: some Scene {
         WindowGroup {
-            ContentView(config: config, service: service, themeStore: themeStore)
+            ContentView(config: config, service: service, themeStore: themeStore, purchaseStore: purchaseStore)
                 .preferredColorScheme(.dark)
         }
         .modelContainer(modelContainer)

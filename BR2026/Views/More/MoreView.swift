@@ -5,12 +5,14 @@ struct MoreView: View {
     @State private var viewModel: MoreViewModel
     let tabSelectionColorHex: String
     let themeStore: TeamThemeStore
+    let purchaseStore: TeamPurchaseStore
     @Environment(\.themeTokens) private var themeTokens
 
-    init(service: MatchService, tabSelectionColorHex: String, themeStore: TeamThemeStore) {
+    init(service: MatchService, tabSelectionColorHex: String, themeStore: TeamThemeStore, purchaseStore: TeamPurchaseStore) {
         _viewModel = State(initialValue: MoreViewModel(service: service))
         self.tabSelectionColorHex = tabSelectionColorHex
         self.themeStore = themeStore
+        self.purchaseStore = purchaseStore
     }
 
     var body: some View {
@@ -39,7 +41,7 @@ struct MoreView: View {
                     )
                 case .teamThemePicker:
                     TeamThemePickerView(
-                        viewModel: TeamThemePickerViewModel(themeStore: themeStore, setting: UserDefaultsTeamThemeSetting())
+                        viewModel: TeamThemePickerViewModel(themeStore: themeStore, purchaseStore: purchaseStore, setting: UserDefaultsTeamThemeSetting())
                     )
                 }
             }
