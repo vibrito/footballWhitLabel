@@ -113,13 +113,13 @@
       "internalID": "BE7B4DD1-1397-401E-9A88-0FAD02D6E169",
       "localizations": [
         {
-          "description": "Recolor the app with São Paulo (Home)'s team colors.",
-          "displayName": "São Paulo (Home) Theme",
+          "description": "Recolor the app with S\u00e3o Paulo (Home)'s team colors.",
+          "displayName": "S\u00e3o Paulo (Home) Theme",
           "locale": "en_US"
         }
       ],
       "productID": "com.vibrito.br2026.theme.saoPauloHome",
-      "referenceName": "São Paulo (Home) Theme",
+      "referenceName": "S\u00e3o Paulo (Home) Theme",
       "type": "NonConsumable"
     },
     {
@@ -128,13 +128,13 @@
       "internalID": "154FD321-8C18-4C71-B2E8-75921142A7F3",
       "localizations": [
         {
-          "description": "Recolor the app with Atlético Mineiro (Home)'s team colors.",
-          "displayName": "Atlético Mineiro (Home) Theme",
+          "description": "Recolor the app with Atl\u00e9tico Mineiro (Home)'s team colors.",
+          "displayName": "Atl\u00e9tico Mineiro (Home) Theme",
           "locale": "en_US"
         }
       ],
       "productID": "com.vibrito.br2026.theme.atleticoMineiroHome",
-      "referenceName": "Atlético Mineiro (Home) Theme",
+      "referenceName": "Atl\u00e9tico Mineiro (Home) Theme",
       "type": "NonConsumable"
     },
     {
@@ -218,13 +218,13 @@
       "internalID": "E770B828-910E-4C29-88B3-3A52F7C6CD12",
       "localizations": [
         {
-          "description": "Recolor the app with Vitória (Home)'s team colors.",
-          "displayName": "Vitória (Home) Theme",
+          "description": "Recolor the app with Vit\u00f3ria (Home)'s team colors.",
+          "displayName": "Vit\u00f3ria (Home) Theme",
           "locale": "en_US"
         }
       ],
       "productID": "com.vibrito.br2026.theme.vitoriaHome",
-      "referenceName": "Vitória (Home) Theme",
+      "referenceName": "Vit\u00f3ria (Home) Theme",
       "type": "NonConsumable"
     },
     {
@@ -278,13 +278,13 @@
       "internalID": "2554E730-0627-4D58-B237-43B6D1AE0E76",
       "localizations": [
         {
-          "description": "Recolor the app with Grêmio (Home)'s team colors.",
-          "displayName": "Grêmio (Home) Theme",
+          "description": "Recolor the app with Gr\u00eamio (Home)'s team colors.",
+          "displayName": "Gr\u00eamio (Home) Theme",
           "locale": "en_US"
         }
       ],
       "productID": "com.vibrito.br2026.theme.gremioHome",
-      "referenceName": "Grêmio (Home) Theme",
+      "referenceName": "Gr\u00eamio (Home) Theme",
       "type": "NonConsumable"
     },
     {
@@ -300,6 +300,306 @@
       ],
       "productID": "com.vibrito.br2026.theme.vascoDaGamaHome",
       "referenceName": "Vasco da Gama (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "AF26D4F7-1BE8-46C0-87BE-68D92ABA4FEA",
+      "localizations": [
+        {
+          "description": "Unlock the Palmeiras app icon.",
+          "displayName": "Palmeiras Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.palmeiras",
+      "referenceName": "Palmeiras Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "F40B73DE-7D7F-46F3-AB34-4EF725A5D54C",
+      "localizations": [
+        {
+          "description": "Unlock the Flamengo app icon.",
+          "displayName": "Flamengo Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.flamengo",
+      "referenceName": "Flamengo Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "B0BB68CF-793D-4891-8ECC-75F08C3EB3CF",
+      "localizations": [
+        {
+          "description": "Unlock the Fluminense app icon.",
+          "displayName": "Fluminense Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.fluminense",
+      "referenceName": "Fluminense Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "431CF0FD-0A7D-4921-B4D8-AB823E40132E",
+      "localizations": [
+        {
+          "description": "Unlock the Athletico Paranaense app icon.",
+          "displayName": "Athletico Paranaense Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.athleticoParanaense",
+      "referenceName": "Athletico Paranaense Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "5C428E8F-1458-402C-B1CF-DB03769BA9AC",
+      "localizations": [
+        {
+          "description": "Unlock the Bahia app icon.",
+          "displayName": "Bahia Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.bahia",
+      "referenceName": "Bahia Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "C81B9EB8-47BE-4751-A205-BD14E7036587",
+      "localizations": [
+        {
+          "description": "Unlock the Red Bull Bragantino app icon.",
+          "displayName": "Red Bull Bragantino Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.redBullBragantino",
+      "referenceName": "Red Bull Bragantino Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "4D042D96-D329-4A3F-84D2-18D8C2E26E84",
+      "localizations": [
+        {
+          "description": "Unlock the Coritiba app icon.",
+          "displayName": "Coritiba Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.coritiba",
+      "referenceName": "Coritiba Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "EFE40D49-0BD8-46FA-B3BE-33FFBD3126B0",
+      "localizations": [
+        {
+          "description": "Unlock the S\u00e3o Paulo app icon.",
+          "displayName": "S\u00e3o Paulo Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.saoPaulo",
+      "referenceName": "S\u00e3o Paulo Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "4BD9189D-3E4E-4B24-AE1C-9E8AB86E9238",
+      "localizations": [
+        {
+          "description": "Unlock the Atl\u00e9tico Mineiro app icon.",
+          "displayName": "Atl\u00e9tico Mineiro Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.atleticoMineiro",
+      "referenceName": "Atl\u00e9tico Mineiro Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "1F09315C-F4D1-4794-8011-A01CDA7C25AD",
+      "localizations": [
+        {
+          "description": "Unlock the Corinthians app icon.",
+          "displayName": "Corinthians Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.corinthians",
+      "referenceName": "Corinthians Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "7DF8FB2A-9248-4F53-BAB1-643CB8DD03E1",
+      "localizations": [
+        {
+          "description": "Unlock the Cruzeiro app icon.",
+          "displayName": "Cruzeiro Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.cruzeiro",
+      "referenceName": "Cruzeiro Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "CB82D482-FF25-427F-A0C4-645F7A010094",
+      "localizations": [
+        {
+          "description": "Unlock the Internacional app icon.",
+          "displayName": "Internacional Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.internacional",
+      "referenceName": "Internacional Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "5E5D1DF3-8722-47D9-A957-AE97A69CBAAE",
+      "localizations": [
+        {
+          "description": "Unlock the Remo app icon.",
+          "displayName": "Remo Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.remo",
+      "referenceName": "Remo Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "BA34F9B7-A643-4ED6-85BE-8EA3FBC4C1E6",
+      "localizations": [
+        {
+          "description": "Unlock the Botafogo app icon.",
+          "displayName": "Botafogo Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.botafogo",
+      "referenceName": "Botafogo Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "D00D64D3-A0B4-42D3-BE39-25A305A50FCE",
+      "localizations": [
+        {
+          "description": "Unlock the Vit\u00f3ria app icon.",
+          "displayName": "Vit\u00f3ria Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.vitoria",
+      "referenceName": "Vit\u00f3ria Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "51E707E4-5575-49A3-967D-89FCB222E5A3",
+      "localizations": [
+        {
+          "description": "Unlock the Mirassol app icon.",
+          "displayName": "Mirassol Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.mirassol",
+      "referenceName": "Mirassol Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "16A724B7-A763-496A-80AF-5F71EEB9433A",
+      "localizations": [
+        {
+          "description": "Unlock the Chapecoense app icon.",
+          "displayName": "Chapecoense Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.chapecoense",
+      "referenceName": "Chapecoense Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "1292269F-0651-40AF-9E4B-C1C0DCBB3D38",
+      "localizations": [
+        {
+          "description": "Unlock the Santos app icon.",
+          "displayName": "Santos Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.santos",
+      "referenceName": "Santos Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "FF4A9DD8-02FB-4BC7-AEA0-49BEBE5A4B44",
+      "localizations": [
+        {
+          "description": "Unlock the Gr\u00eamio app icon.",
+          "displayName": "Gr\u00eamio Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.gremio",
+      "referenceName": "Gr\u00eamio Icon",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "EE73A01A-2186-401A-8A4A-236014B153D2",
+      "localizations": [
+        {
+          "description": "Unlock the Vasco da Gama app icon.",
+          "displayName": "Vasco da Gama Icon",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.icon.vascoDaGama",
+      "referenceName": "Vasco da Gama Icon",
       "type": "NonConsumable"
     }
   ],

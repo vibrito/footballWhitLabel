@@ -1916,7 +1916,7 @@
 		F6F6E6CD20B27A638E0554A9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Stadium";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Stadium AppIcon-Palmeiras AppIcon-Flamengo AppIcon-Fluminense AppIcon-AthleticoParanaense AppIcon-Bahia AppIcon-RedBullBragantino AppIcon-Coritiba AppIcon-SaoPaulo AppIcon-AtleticoMineiro AppIcon-Corinthians AppIcon-Cruzeiro AppIcon-Internacional AppIcon-Remo AppIcon-Botafogo AppIcon-Vitoria AppIcon-Mirassol AppIcon-Chapecoense AppIcon-Santos AppIcon-Gremio AppIcon-VascoDaGama";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BR2026/BR2026.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1943,7 +1943,7 @@
 		FAAFDCAF83355F998AFEEFE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Stadium";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Stadium AppIcon-Palmeiras AppIcon-Flamengo AppIcon-Fluminense AppIcon-AthleticoParanaense AppIcon-Bahia AppIcon-RedBullBragantino AppIcon-Coritiba AppIcon-SaoPaulo AppIcon-AtleticoMineiro AppIcon-Corinthians AppIcon-Cruzeiro AppIcon-Internacional AppIcon-Remo AppIcon-Botafogo AppIcon-Vitoria AppIcon-Mirassol AppIcon-Chapecoense AppIcon-Santos AppIcon-Gremio AppIcon-VascoDaGama";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BR2026/BR2026.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
