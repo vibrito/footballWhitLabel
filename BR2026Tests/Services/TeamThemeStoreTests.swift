@@ -311,6 +311,110 @@ struct TeamThemeStoreTests {
         #expect(store.tokens.textColor == Color(hex: "ffffff"))
     }
 
+    @Test("select() uses Mirassol's curated yellow/green/white overrides instead of the API's blown-out yellow and illegible dark-green font")
+    func selectUsesMirassolColorOverrides() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = TeamThemeColorSet(
+            home: TeamThemeColors(mainColorHex: "ffff00", fontColorHex: "076450")
+        )
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        _ = await store.select(.mirassolHome)
+
+        #expect(store.tokens.overrideAccentColor == Color(hex: "9E9906"))
+        #expect(store.tokens.overrideAccentColor != Color(hex: "ffff00"))
+        #expect(store.tokens.overrideTabSelectionColor == Color(hex: "126F3D"))
+        #expect(store.tokens.textColor == Color(hex: "FFFFFF"))
+        #expect(store.tokens.textColor != Color(hex: "076450"))
+    }
+
+    @Test("select() uses Chapecoense's curated main color override instead of the API's near-white mainColorHex")
+    func selectUsesChapecoenseColorOverrides() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = TeamThemeColorSet(
+            home: TeamThemeColors(mainColorHex: "f9fbfa", fontColorHex: "ffffff")
+        )
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        _ = await store.select(.chapecoenseHome)
+
+        #expect(store.tokens.overrideAccentColor == Color(hex: "1B552A"))
+        #expect(store.tokens.overrideAccentColor != Color(hex: "f9fbfa"))
+        #expect(store.tokens.overrideTabSelectionColor == nil)
+        #expect(store.tokens.overridePillFillColor == nil)
+        #expect(store.tokens.textColor == Color(hex: "ffffff"))
+    }
+
+    @Test("select() uses Santos's curated main/pill-fill/font color overrides — a lighter gray than Corinthians — instead of the API's near-white main color")
+    func selectUsesSantosColorOverrides() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = TeamThemeColorSet(
+            home: TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "000000")
+        )
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        _ = await store.select(.santosHome)
+
+        #expect(store.tokens.overrideAccentColor == Color(hex: "82827F"))
+        #expect(store.tokens.overrideAccentColor != Color(hex: "ffffff"))
+        #expect(store.tokens.overrideAccentColor != Color(hex: "6E6E6C"))
+        #expect(store.tokens.overrideTabSelectionColor == nil)
+        #expect(store.tokens.overridePillFillColor == Color(hex: "000000"))
+        #expect(store.tokens.textColor == Color(hex: "F2F2F2"))
+        #expect(store.tokens.textColor != Color(hex: "000000"))
+    }
+
+    @Test("select() uses Grêmio's curated main color override instead of the API's pale sampled blue")
+    func selectUsesGremioColorOverrides() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = TeamThemeColorSet(
+            home: TeamThemeColors(mainColorHex: "b8edff", fontColorHex: "ffffff")
+        )
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        _ = await store.select(.gremioHome)
+
+        #expect(store.tokens.overrideAccentColor == Color(hex: "0D80BF"))
+        #expect(store.tokens.overrideAccentColor != Color(hex: "b8edff"))
+        #expect(store.tokens.overrideTabSelectionColor == nil)
+        #expect(store.tokens.overridePillFillColor == nil)
+        #expect(store.tokens.textColor == Color(hex: "ffffff"))
+    }
+
+    @Test("select() uses Vasco da Gama's curated charcoal overrides and switches on the diagonal sash background")
+    func selectUsesVascoDaGamaColorOverrides() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = TeamThemeColorSet(
+            home: TeamThemeColors(mainColorHex: "000000", fontColorHex: "ffffff")
+        )
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        _ = await store.select(.vascoDaGamaHome)
+
+        #expect(store.tokens.overrideAccentColor == Color(hex: "242426"))
+        #expect(store.tokens.overrideTabSelectionColor == Color(hex: "FFFFFF"))
+        #expect(store.tokens.overridePillFillColor == Color(hex: "242426"))
+        #expect(store.tokens.textColor == Color(hex: "ffffff"))
+        #expect(store.tokens.usesDiagonalSashBackground == true)
+    }
+
+    @Test("select() leaves usesDiagonalSashBackground false for teams other than Vasco da Gama")
+    func selectLeavesDiagonalSashBackgroundFalseByDefault() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = palmeirasColors
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        _ = await store.select(.palmeirasHome)
+
+        #expect(store.tokens.usesDiagonalSashBackground == false)
+    }
+
     @Test("select() falls back to fetching when there's no cached entry, and still succeeds")
     func selectFetchesWhenCacheMisses() async {
         let setting = StubTeamThemeSetting()

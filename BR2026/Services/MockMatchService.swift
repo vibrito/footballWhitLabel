@@ -31,7 +31,12 @@ final class MockMatchService: MatchService {
         119: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "e00618", fontColorHex: "ffffff")),
         1198: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "000000", fontColorHex: "ffffff")),
         120: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "f7f7f7", fontColorHex: "ffffff")),
-        136: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "ff0000", fontColorHex: "ffffff"))
+        136: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "ff0000", fontColorHex: "ffffff")),
+        7848: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "ffff00", fontColorHex: "076450")),
+        132: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "f9fbfa", fontColorHex: "ffffff")),
+        128: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "000000")),
+        130: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "b8edff", fontColorHex: "ffffff")),
+        133: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "000000", fontColorHex: "ffffff"))
     ]
 
     init() {

@@ -10,6 +10,7 @@ struct ThemeTokensTests {
         #expect(tokens.overrideAccentColor == nil)
         #expect(tokens.overrideTabSelectionColor == nil)
         #expect(tokens.overridePillFillColor == nil)
+        #expect(tokens.usesDiagonalSashBackground == false)
         #expect(tokens.textColor == .white)
         #expect(tokens.gradientStops == ThemeTokens.defaultGradientStops)
         #expect(tokens.blobColors.top == ThemeTokens.defaultBlobColors.top)
@@ -57,6 +58,15 @@ struct ThemeTokensTests {
         #expect(defaultTokens.gradientStops[2] == Color.shaded(hex: "2F529E", towardWhite: -0.75))
         #expect(lightenedTokens.gradientStops[2] == Color.shaded(hex: "2F529E", towardWhite: -0.5))
         #expect(defaultTokens.gradientStops[2] != lightenedTokens.gradientStops[2])
+    }
+
+    @Test("usesDiagonalSashBackground defaults to false but can be set true")
+    func usesDiagonalSashBackgroundIsConfigurable() {
+        let defaultTokens = ThemeTokens.themed(mainColorHex: "242426", fontColorHex: "ffffff")
+        let sashTokens = ThemeTokens.themed(mainColorHex: "242426", fontColorHex: "ffffff", usesDiagonalSashBackground: true)
+
+        #expect(defaultTokens.usesDiagonalSashBackground == false)
+        #expect(sashTokens.usesDiagonalSashBackground == true)
     }
 
     @Test("The environment default value is today's fixed ThemeTokens")

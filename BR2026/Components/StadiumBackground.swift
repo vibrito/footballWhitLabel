@@ -9,6 +9,27 @@ struct StadiumBackground: View {
     @Environment(\.themeTokens) private var themeTokens
 
     var body: some View {
+        Group {
+            if themeTokens.usesDiagonalSashBackground {
+                diagonalSashBackground
+            } else {
+                stadiumNightBackground
+            }
+        }
+        .ignoresSafeArea()
+    }
+
+    /// Vasco da Gama's crest is a diagonal black/white/black sash — no single accent color
+    /// represents it, so this replaces the radial gradient + blobs entirely for that one team.
+    private var diagonalSashBackground: some View {
+        LinearGradient(
+            colors: [.black, Color(white: 0.667), .black],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
+    }
+
+    private var stadiumNightBackground: some View {
         ZStack {
             RadialGradient(
                 colors: themeTokens.gradientStops,
@@ -29,6 +50,5 @@ struct StadiumBackground: View {
                 .blur(radius: 120)
                 .offset(x: 160, y: 320)
         }
-        .ignoresSafeArea()
     }
 }

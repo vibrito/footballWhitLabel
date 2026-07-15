@@ -27,6 +27,11 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
     case remoHome
     case botafogoHome
     case vitoriaHome
+    case mirassolHome
+    case chapecoenseHome
+    case santosHome
+    case gremioHome
+    case vascoDaGamaHome
 
     var id: String { rawValue }
 
@@ -47,6 +52,11 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
         case .remoHome: 1198
         case .botafogoHome: 120
         case .vitoriaHome: 136
+        case .mirassolHome: 7848
+        case .chapecoenseHome: 132
+        case .santosHome: 128
+        case .gremioHome: 130
+        case .vascoDaGamaHome: 133
         }
     }
 
@@ -54,7 +64,8 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
         switch self {
         case .palmeirasHome, .flamengoHome, .fluminenseHome, .athleticoParanaenseHome, .bahiaHome,
              .redBullBragantinoHome, .coritibaHome, .saoPauloHome, .atleticoMineiroHome, .corinthiansHome,
-             .cruzeiroHome, .internacionalHome, .remoHome, .botafogoHome, .vitoriaHome:
+             .cruzeiroHome, .internacionalHome, .remoHome, .botafogoHome, .vitoriaHome, .mirassolHome,
+             .chapecoenseHome, .santosHome, .gremioHome, .vascoDaGamaHome:
             .home
         }
     }
@@ -76,6 +87,11 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
         case .remoHome: "Remo (Home)"
         case .botafogoHome: "Botafogo (Home)"
         case .vitoriaHome: "Vitória (Home)"
+        case .mirassolHome: "Mirassol (Home)"
+        case .chapecoenseHome: "Chapecoense (Home)"
+        case .santosHome: "Santos (Home)"
+        case .gremioHome: "Grêmio (Home)"
+        case .vascoDaGamaHome: "Vasco da Gama (Home)"
         }
     }
 
@@ -104,6 +120,11 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
         case .remoHome: "000000"
         case .botafogoHome: "f7f7f7"
         case .vitoriaHome: "ff0000"
+        case .mirassolHome: "ffff00"
+        case .chapecoenseHome: "f9fbfa"
+        case .santosHome: "ffffff"
+        case .gremioHome: "b8edff"
+        case .vascoDaGamaHome: "000000"
         }
     }
 
@@ -150,7 +171,29 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
     /// charcoal (`#1E1E20` vs Atlético's `#2B2B2E`) per later feedback, so the two black/white
     /// clubs don't look identical in the picker. Vitória's API red (`ff0000`) is a clean,
     /// already-usable saturated red with no near-white/black problem, so it's used as-is —
-    /// `nil`, same as Palmeiras/Flamengo at launch.
+    /// `nil`, same as Palmeiras/Flamengo at launch. Mirassol's API `mainColor` is pure yellow
+    /// (`ffff00`, ~93% luminance) — bright enough to risk washing out the gradient's top-anchored
+    /// light source, the same problem light main colors caused for the deferred Corinthians
+    /// attempts. User first gave `F3EC0A` (barely deepened, still ~87% luminance), then asked
+    /// for it darker still — scaled down (preserving hue, same technique as Remo's lightening
+    /// but in reverse) to `9E9906`, a richer dark gold/olive that reads as "yellow" without the
+    /// wash-out risk. `126F3D` (green) is used as `tabSelectionColorOverrideHex`, and white as
+    /// `fontColorOverrideHex`. Chapecoense's API
+    /// `mainColor` is near-white (`f9fbfa`), same near-invisible-accent problem as the other
+    /// near-white teams — the club's actual green fixes it, given directly by the user
+    /// ("approach pretty similar to Palmeiras" — just a main color override, no tab-selection/
+    /// pill-fill/font overrides needed, since the API's font is already a clean white). Santos
+    /// is genuinely white/black-only (no hidden color, same profile as Corinthians), so it gets
+    /// the same "push toward moderate gray" technique — deliberately a touch lighter than
+    /// Corinthians' `6E6E6C` (`82827F`) per user request, so the two gray teams aren't
+    /// identical. Grêmio's API `mainColor` (`b8edff`) is a very pale blue sampled from a light
+    /// section of the kit, not the club's real tricolor blue — user gave the real brand hex
+    /// (`0D80BF`) directly. Vasco da Gama's API `mainColor` is literal black (`000000`), same
+    /// profile as Atlético Mineiro/Botafogo — charcoal fixes the hero-border/tab-tint role,
+    /// using yet another distinct shade (`242426`) so all three black clubs read as visually
+    /// different. Vasco's actual background rendering bypasses this main color entirely though —
+    /// see `ThemeTokens.usesDiagonalSashBackground` — since its crest is a diagonal sash, not a
+    /// solid color.
     var mainColorOverrideHex: String? {
         switch self {
         case .palmeirasHome: "006437"
@@ -168,6 +211,11 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
         case .remoHome: "2048A8"
         case .botafogoHome: "1E1E20"
         case .vitoriaHome: nil
+        case .mirassolHome: "9E9906"
+        case .chapecoenseHome: "1B552A"
+        case .santosHome: "82827F"
+        case .gremioHome: "0D80BF"
+        case .vascoDaGamaHome: "242426"
         }
     }
 
@@ -190,13 +238,14 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
     var tabSelectionColorOverrideHex: String? {
         switch self {
         case .palmeirasHome, .flamengoHome, .athleticoParanaenseHome, .coritibaHome, .corinthiansHome, .cruzeiroHome,
-             .internacionalHome, .remoHome, .vitoriaHome:
+             .internacionalHome, .remoHome, .vitoriaHome, .chapecoenseHome, .santosHome, .gremioHome:
             nil
         case .fluminenseHome: "00613C"
         case .bahiaHome: "ED3237"
         case .redBullBragantinoHome: "D2003C"
         case .saoPauloHome: "000000"
-        case .atleticoMineiroHome, .botafogoHome: "FFFFFF"
+        case .atleticoMineiroHome, .botafogoHome, .vascoDaGamaHome: "FFFFFF"
+        case .mirassolHome: "126F3D"
         }
     }
 
@@ -213,11 +262,12 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
         switch self {
         case .palmeirasHome, .flamengoHome, .fluminenseHome, .athleticoParanaenseHome, .bahiaHome,
              .redBullBragantinoHome, .coritibaHome, .saoPauloHome, .cruzeiroHome, .internacionalHome,
-             .remoHome, .vitoriaHome:
+             .remoHome, .vitoriaHome, .mirassolHome, .chapecoenseHome, .gremioHome:
             nil
         case .atleticoMineiroHome: "2B2B2E"
         case .botafogoHome: "1E1E20"
-        case .corinthiansHome: "000000"
+        case .vascoDaGamaHome: "242426"
+        case .corinthiansHome, .santosHome: "000000"
         }
     }
 
@@ -233,14 +283,16 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
     /// turned out not to be legible in practice either — overridden to plain white. São Paulo
     /// started with the same off-white as Athletico/Bahia/Coritiba/Corinthians, but the user
     /// asked for full white instead — grouped with Red Bull Bragantino rather than with the
-    /// off-white teams.
+    /// off-white teams. Mirassol's API font (`076450`, dark green) has the same dark-on-dark
+    /// legibility problem as Bahia/Coritiba's — plain white fixes it. (Briefly tried the team's
+    /// own green here instead, matching `tabSelectionColorOverrideHex` — reverted, "not good.")
     var fontColorOverrideHex: String? {
         switch self {
         case .palmeirasHome, .flamengoHome, .fluminenseHome, .atleticoMineiroHome, .cruzeiroHome, .internacionalHome,
-             .remoHome, .botafogoHome, .vitoriaHome:
+             .remoHome, .botafogoHome, .vitoriaHome, .chapecoenseHome, .gremioHome, .vascoDaGamaHome:
             nil
-        case .athleticoParanaenseHome, .bahiaHome, .coritibaHome, .corinthiansHome: "F2F2F2"
-        case .redBullBragantinoHome, .saoPauloHome: "FFFFFF"
+        case .athleticoParanaenseHome, .bahiaHome, .coritibaHome, .corinthiansHome, .santosHome: "F2F2F2"
+        case .redBullBragantinoHome, .saoPauloHome, .mirassolHome: "FFFFFF"
         }
     }
 
@@ -253,10 +305,19 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
         switch self {
         case .palmeirasHome, .flamengoHome, .fluminenseHome, .athleticoParanaenseHome, .bahiaHome,
              .redBullBragantinoHome, .coritibaHome, .saoPauloHome, .atleticoMineiroHome, .corinthiansHome,
-             .internacionalHome, .remoHome, .botafogoHome, .vitoriaHome:
+             .internacionalHome, .remoHome, .botafogoHome, .vitoriaHome, .mirassolHome, .chapecoenseHome,
+             .santosHome, .gremioHome, .vascoDaGamaHome:
             nil
         case .cruzeiroHome: -0.5
         }
+    }
+
+    /// Vasco da Gama's crest is a diagonal black/white/black sash rather than a solid brand
+    /// color — no curated hex represents that, so this opts the whole background into
+    /// `StadiumBackground`'s diagonal `LinearGradient` instead of the usual radial
+    /// gradient + blobs. `false` for every other team.
+    var usesDiagonalSashBackground: Bool {
+        self == .vascoDaGamaHome
     }
 
     /// Stubbed always-true until real StoreKit 2 entitlement checking replaces this.

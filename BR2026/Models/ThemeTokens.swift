@@ -18,6 +18,12 @@ struct ThemeTokens: Equatable {
     /// `textColor`). `nil` falls back to `overrideTabSelectionColor ?? overrideAccentColor`, so
     /// every other team's pill fill is unaffected.
     var overridePillFillColor: Color?
+    /// Vasco da Gama's crest is a diagonal black/white/black sash rather than a solid color —
+    /// no single accent hex represents it, so this bypasses the normal radial gradient + blob
+    /// background entirely in favor of a diagonal `LinearGradient` (see `StadiumBackground`).
+    /// `false` for every other team — this doesn't touch `gradientStops`/`blobColors`, which
+    /// keep driving the hero card border and tab bar tint as usual even when this is `true`.
+    var usesDiagonalSashBackground: Bool = false
     var textColor: Color = .white
     var gradientStops: [Color] = ThemeTokens.defaultGradientStops
     var blobColors: (top: Color, bottom: Color) = ThemeTokens.defaultBlobColors
@@ -36,6 +42,7 @@ struct ThemeTokens: Equatable {
         lhs.overrideAccentColor == rhs.overrideAccentColor
             && lhs.overrideTabSelectionColor == rhs.overrideTabSelectionColor
             && lhs.overridePillFillColor == rhs.overridePillFillColor
+            && lhs.usesDiagonalSashBackground == rhs.usesDiagonalSashBackground
             && lhs.textColor == rhs.textColor
             && lhs.gradientStops == rhs.gradientStops
             && lhs.blobColors.top == rhs.blobColors.top
@@ -47,13 +54,15 @@ struct ThemeTokens: Equatable {
         fontColorHex: String,
         tabSelectionColorHex: String? = nil,
         pillFillColorHex: String? = nil,
-        gradientDarkAmount: Double = -0.75
+        gradientDarkAmount: Double = -0.75,
+        usesDiagonalSashBackground: Bool = false
     ) -> ThemeTokens {
         let accent = Color(hex: mainColorHex)
         return ThemeTokens(
             overrideAccentColor: accent,
             overrideTabSelectionColor: tabSelectionColorHex.map { Color(hex: $0) },
             overridePillFillColor: pillFillColorHex.map { Color(hex: $0) },
+            usesDiagonalSashBackground: usesDiagonalSashBackground,
             textColor: Color(hex: fontColorHex),
             gradientStops: [
                 Color.shaded(hex: mainColorHex, towardWhite: 0.35),
