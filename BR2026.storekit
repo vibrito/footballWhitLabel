@@ -1,0 +1,368 @@
+{
+  "identifier": "9C6C4F55-6C63-4B7C-9C79-9D6B9F6F0D4C",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "35590C27-D1EB-492C-93E1-DAC621C9F7C5",
+      "localizations": [
+        {
+          "description": "Recolor the app with Palmeiras (Home)'s team colors.",
+          "displayName": "Palmeiras (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.palmeirasHome",
+      "referenceName": "Palmeiras (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "C7B6D6F9-5507-4EF0-B1D3-D009F0E56F3C",
+      "localizations": [
+        {
+          "description": "Recolor the app with Flamengo (Home)'s team colors.",
+          "displayName": "Flamengo (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.flamengoHome",
+      "referenceName": "Flamengo (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "653FEE07-53E2-4404-AE37-B34B0C923F12",
+      "localizations": [
+        {
+          "description": "Recolor the app with Fluminense (Home)'s team colors.",
+          "displayName": "Fluminense (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.fluminenseHome",
+      "referenceName": "Fluminense (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "B979F586-54ED-4DAE-985E-1A1C015133CE",
+      "localizations": [
+        {
+          "description": "Recolor the app with Athletico Paranaense (Home)'s team colors.",
+          "displayName": "Athletico Paranaense (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.athleticoParanaenseHome",
+      "referenceName": "Athletico Paranaense (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "131AA9BA-F86A-4344-A1BD-85E8C8C957CA",
+      "localizations": [
+        {
+          "description": "Recolor the app with Bahia (Home)'s team colors.",
+          "displayName": "Bahia (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.bahiaHome",
+      "referenceName": "Bahia (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "D0346482-026E-4E31-9262-7B3EAB268C4E",
+      "localizations": [
+        {
+          "description": "Recolor the app with Red Bull Bragantino (Home)'s team colors.",
+          "displayName": "Red Bull Bragantino (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.redBullBragantinoHome",
+      "referenceName": "Red Bull Bragantino (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "49867DA7-9E0B-45E0-8F7E-1C2795EA91E6",
+      "localizations": [
+        {
+          "description": "Recolor the app with Coritiba (Home)'s team colors.",
+          "displayName": "Coritiba (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.coritibaHome",
+      "referenceName": "Coritiba (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "BE7B4DD1-1397-401E-9A88-0FAD02D6E169",
+      "localizations": [
+        {
+          "description": "Recolor the app with São Paulo (Home)'s team colors.",
+          "displayName": "São Paulo (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.saoPauloHome",
+      "referenceName": "São Paulo (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "154FD321-8C18-4C71-B2E8-75921142A7F3",
+      "localizations": [
+        {
+          "description": "Recolor the app with Atlético Mineiro (Home)'s team colors.",
+          "displayName": "Atlético Mineiro (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.atleticoMineiroHome",
+      "referenceName": "Atlético Mineiro (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "EAF8AF5A-0143-4371-9E4B-B0E1BD7C0138",
+      "localizations": [
+        {
+          "description": "Recolor the app with Corinthians (Home)'s team colors.",
+          "displayName": "Corinthians (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.corinthiansHome",
+      "referenceName": "Corinthians (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "0B124483-BC8C-424C-AF6F-2103A4A55045",
+      "localizations": [
+        {
+          "description": "Recolor the app with Cruzeiro (Home)'s team colors.",
+          "displayName": "Cruzeiro (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.cruzeiroHome",
+      "referenceName": "Cruzeiro (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "BD786EB6-F494-4F0C-B245-33410A1E1074",
+      "localizations": [
+        {
+          "description": "Recolor the app with Internacional (Home)'s team colors.",
+          "displayName": "Internacional (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.internacionalHome",
+      "referenceName": "Internacional (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "435E92D0-9D38-4B51-B8E4-3F7523411CDF",
+      "localizations": [
+        {
+          "description": "Recolor the app with Remo (Home)'s team colors.",
+          "displayName": "Remo (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.remoHome",
+      "referenceName": "Remo (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "1C0DC8FB-C0A7-4142-829D-A38932E95F9A",
+      "localizations": [
+        {
+          "description": "Recolor the app with Botafogo (Home)'s team colors.",
+          "displayName": "Botafogo (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.botafogoHome",
+      "referenceName": "Botafogo (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "E770B828-910E-4C29-88B3-3A52F7C6CD12",
+      "localizations": [
+        {
+          "description": "Recolor the app with Vitória (Home)'s team colors.",
+          "displayName": "Vitória (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.vitoriaHome",
+      "referenceName": "Vitória (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "323CE37F-2DA3-4F1A-857D-AA240F627B90",
+      "localizations": [
+        {
+          "description": "Recolor the app with Mirassol (Home)'s team colors.",
+          "displayName": "Mirassol (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.mirassolHome",
+      "referenceName": "Mirassol (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "62242422-C330-4CAA-85DF-2068D9811DEF",
+      "localizations": [
+        {
+          "description": "Recolor the app with Chapecoense (Home)'s team colors.",
+          "displayName": "Chapecoense (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.chapecoenseHome",
+      "referenceName": "Chapecoense (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "19CA6CD3-9A18-47F6-B3BE-F173D4B0B269",
+      "localizations": [
+        {
+          "description": "Recolor the app with Santos (Home)'s team colors.",
+          "displayName": "Santos (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.santosHome",
+      "referenceName": "Santos (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "2554E730-0627-4D58-B237-43B6D1AE0E76",
+      "localizations": [
+        {
+          "description": "Recolor the app with Grêmio (Home)'s team colors.",
+          "displayName": "Grêmio (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.gremioHome",
+      "referenceName": "Grêmio (Home) Theme",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "F695CD2B-6ED0-481D-923C-C7CE05995EA6",
+      "localizations": [
+        {
+          "description": "Recolor the app with Vasco da Gama (Home)'s team colors.",
+          "displayName": "Vasco da Gama (Home) Theme",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "com.vibrito.br2026.theme.vascoDaGamaHome",
+      "referenceName": "Vasco da Gama (Home) Theme",
+      "type": "NonConsumable"
+    }
+  ],
+  "settings": {
+    "_applicationInternalID": "0",
+    "_developerTeamID": "0",
+    "_failTransactionsEnabled": false,
+    "_lastSynchronizedDate": 0,
+    "_locale": "en_US",
+    "_storefront": "USA",
+    "_storeKitErrors": [
+      {
+        "current": null,
+        "emptyOnError": false,
+        "enabled": false,
+        "name": "Load Products"
+      },
+      {
+        "current": null,
+        "emptyOnError": false,
+        "enabled": false,
+        "name": "Purchase"
+      },
+      {
+        "current": null,
+        "enabled": false,
+        "name": "Verification"
+      },
+      {
+        "current": null,
+        "enabled": false,
+        "name": "App Store Sync"
+      },
+      {
+        "current": null,
+        "enabled": false,
+        "name": "Subscription Status"
+      },
+      {
+        "current": null,
+        "enabled": false,
+        "name": "App Transaction"
+      },
+      {
+        "current": null,
+        "enabled": false,
+        "name": "Manage Subscriptions Sheet"
+      },
+      {
+        "current": null,
+        "enabled": false,
+        "name": "Refund Request Sheet"
+      },
+      {
+        "current": null,
+        "enabled": false,
+        "name": "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups": [],
+  "version": {
+    "major": 3,
+    "minor": 0
+  }
+}
