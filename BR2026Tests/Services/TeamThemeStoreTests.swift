@@ -521,6 +521,25 @@ struct TeamThemeStoreTests {
         #expect(succeeded == false)
         #expect(store.selectedOption == nil)
     }
+
+    @Test("select() preserves a prior successful selection when a later select() call fails")
+    func selectPreservesPriorSelectionOnLaterFailure() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = palmeirasColors
+        let store = TeamThemeStore(setting: setting, service: service)
+        let firstSucceeded = await store.select(.palmeirasHome)
+        #expect(firstSucceeded == true)
+        #expect(store.selectedOption == .palmeirasHome)
+
+        // Remove the cache hit so the next select() falls through to fetch, which throws
+        // since no fetch override is configured — simulating a later failed attempt.
+        service.cachedTeamThemeColorSetOverride = nil
+        let secondSucceeded = await store.select(.flamengoHome)
+
+        #expect(secondSucceeded == false)
+        #expect(store.selectedOption == .palmeirasHome)
+    }
 }
 
 final class StubTeamThemeSetting: TeamThemeSetting {
