@@ -14,7 +14,6 @@ import Foundation
 enum TeamThemeOption: String, CaseIterable, Identifiable {
     case palmeirasHome
     case flamengoHome
-    case corinthiansHome
 
     var id: String { rawValue }
 
@@ -22,13 +21,12 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
         switch self {
         case .palmeirasHome: 121
         case .flamengoHome: 127
-        case .corinthiansHome: 131
         }
     }
 
     var kit: TeamKit {
         switch self {
-        case .palmeirasHome, .flamengoHome, .corinthiansHome: .home
+        case .palmeirasHome, .flamengoHome: .home
         }
     }
 
@@ -36,7 +34,6 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
         switch self {
         case .palmeirasHome: "Palmeiras (Home)"
         case .flamengoHome: "Flamengo (Home)"
-        case .corinthiansHome: "Corinthians (Home)"
         }
     }
 
@@ -47,7 +44,6 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
         switch self {
         case .palmeirasHome: "225638"
         case .flamengoHome: "ab1b10"
-        case .corinthiansHome: "fcfbee"
         }
     }
 
