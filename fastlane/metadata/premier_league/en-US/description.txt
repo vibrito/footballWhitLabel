@@ -1,11 +1,12 @@
-Follow the Premier League like never before. Live scores, fixtures, and the full standings table — fast, clean, and always up to date.
+Saturday 3pm kick-offs. Stoppage-time drama at Anfield, the Emirates, or the Etihad — the Premier League never slows down, and neither does this app.
 
-FEATURES
+One app, one purpose: the fastest, cleanest way to follow every Premier League match, live.
 
-• Matchday — live scores that update as goals go in, with a clean view of everything happening today
-• Fixtures — the full season schedule, match by match
-• Standings — the complete Premier League table, updated after every round
-• Match Details — goals, cards, and substitutions for any match, in order
-• Instant on launch — your last-seen scores and table load immediately, then refresh automatically
+WHAT'S INSIDE
 
-Built for speed and clarity: no clutter, no accounts, no sign-in. Just open the app and see what's happening in the Premier League right now.
+• Matchday, Live — goals, cards, and match state the second they happen
+• Full Fixture List — the whole season, round by round, always at hand
+• The Real Table — official Premier League standings, updated the moment matches finish
+• Match Breakdown — every goal, card, and substitution, in order
+
+From the title race between Manchester City, Arsenal, and Liverpool to a relegation fight that goes to the final Sunday, follow every Premier League club without ads, accounts, or clutter. Open the app, see the score.

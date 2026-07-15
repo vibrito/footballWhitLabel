@@ -1,11 +1,12 @@
-Acompanhe a Premier League como nunca. Resultados ao vivo, jogos e a tabela classificativa completa — rápido, limpo e sempre atualizado.
+Pontapé de saída ao sábado às 15h. Sufoco nos descontos em Anfield, no Emirates ou no Etihad — a Premier League nunca para, e esta aplicação também não.
 
-FUNCIONALIDADES
+Um único propósito: a forma mais rápida e simples de seguir cada jogo da Premier League, ao vivo.
 
-• Jornada — resultados ao vivo que se atualizam a cada golo, com uma visão clara de tudo o que acontece hoje
-• Calendário — o calendário completo da época, jogo a jogo
-• Classificação — a tabela completa da Premier League, atualizada após cada jornada
-• Detalhes do Jogo — golos, cartões e substituições de qualquer partida, por ordem
-• Instantâneo ao abrir — os últimos resultados e a tabela carregam de imediato, depois atualizam automaticamente
+O QUE ENCONTRA
 
-Feito para ser rápido e claro: sem elementos a mais, sem conta, sem início de sessão. Basta abrir a aplicação e ver o que se passa na Premier League agora.
+• Jornada ao vivo — golos, cartões e estado do jogo assim que acontecem
+• Calendário completo — a época inteira, jornada a jornada, sempre à mão
+• A classificação a sério — a tabela oficial da Premier League, atualizada assim que os jogos terminam
+• Resumo do jogo — cada golo, cartão e substituição, por ordem
+
+Da luta pelo título entre Manchester City, Arsenal e Liverpool à luta pela permanência que se decide no último domingo, siga todos os clubes da Premier League sem publicidade, sem conta, sem distrações. Abra a aplicação, veja o resultado.
