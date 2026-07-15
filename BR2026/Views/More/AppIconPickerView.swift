@@ -12,7 +12,7 @@ struct AppIconPickerView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 12) {
                 GlassCard(cornerRadius: 18, style: .transparent) {
-                    VStack(spacing: 0) {
+                    VStack(spacing: 10) {
                         ForEach(Array(AppIconOption.allCases.enumerated()), id: \.element.id) { index, option in
                             rowView(option)
                             if index < AppIconOption.allCases.count - 1 {

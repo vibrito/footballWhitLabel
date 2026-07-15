@@ -95,7 +95,7 @@ struct MoreView: View {
                 .foregroundStyle(themeTokens.textColor.opacity(0.5))
                 .textCase(.uppercase)
             GlassCard(cornerRadius: 18, style: .transparent) {
-                VStack(spacing: 0) {
+                VStack(spacing: 10) {
                     ForEach(Array(section.rows.enumerated()), id: \.element.id) { index, row in
                         rowView(row)
                         if index < section.rows.count - 1 {

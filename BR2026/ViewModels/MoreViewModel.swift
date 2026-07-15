@@ -9,6 +9,11 @@ final class MoreViewModel {
     private(set) var competitionLogoData: Data?
     let sections: [MoreSection] = [
         MoreSection(
+            id: "preferences",
+            titleKey: "Preferences",
+            rows: MoreViewModel.preferencesRows
+        ),
+        MoreSection(
             id: "legal",
             titleKey: "Legal",
             rows: [
@@ -20,15 +25,10 @@ final class MoreViewModel {
                     isEnabled: true
                 )
             ]
-        ),
-        MoreSection(
-            id: "preferences",
-            titleKey: "Preferences",
-            rows: MoreViewModel.preferencesRows
         )
     ]
 
-    // Team Theme is Brasileirão-only (Palmeiras) — see `TeamThemeOption`'s own comment for
+    // Team Theme is Brasileirão-only - see `TeamThemeOption`'s own comment for
     // why the *type* itself isn't per-target #if-gated; this is the actual gate other
     // championship targets rely on to never show the row.
     private static var preferencesRows: [MoreRow] {
