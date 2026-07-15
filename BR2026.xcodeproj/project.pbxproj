@@ -347,6 +347,7 @@
 		159E2AE600FA152C8E2E8B89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17A71A2EA3718A5D31948205 /* StadiumBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StadiumBackground.swift; sourceTree = "<group>"; };
 		1C30CEF69E76665DF012094F /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		221D17053007E7EC0078327D /* BR2026.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = BR2026.storekit; sourceTree = "<group>"; };
 		22E0F7E3C04C2C9DF6BFAB4A /* TeamPurchaseStoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamPurchaseStoreTests.swift; sourceTree = "<group>"; };
 		24C3C30AA72B99689DA60F15 /* BR2026.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BR2026.entitlements; sourceTree = "<group>"; };
 		286FB1656839DC4F8940242C /* LiveChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveChip.swift; sourceTree = "<group>"; };
@@ -708,7 +709,6 @@
 			children = (
 				86008BEECC1A587434098BF9 /* ColorHexTests.swift */,
 			);
-			name = Components;
 			path = Components;
 			sourceTree = "<group>";
 		};
@@ -806,6 +806,7 @@
 		B5D14F5BF4913051785181F7 = {
 			isa = PBXGroup;
 			children = (
+				221D17053007E7EC0078327D /* BR2026.storekit */,
 				7057C6184FF2D44AA95632AD /* BR2026 */,
 				A5D9E527A988965EF78E317A /* BR2026Tests */,
 				A6912845E3940B2E9F5A562F /* footballWhiteLabel */,
