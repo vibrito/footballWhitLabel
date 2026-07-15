@@ -25,10 +25,10 @@ struct AppIconPickerViewModelTests {
         let setting = StubAppIconSetting(currentIconName: nil)
         let viewModel = AppIconPickerViewModel(iconSetting: setting)
 
-        await viewModel.select(.brasil)
+        await viewModel.select(.stadium)
 
-        #expect(viewModel.selectedIcon == .brasil)
-        #expect(setting.setIconNameCalls == ["AppIcon-Brasil"])
+        #expect(viewModel.selectedIcon == .stadium)
+        #expect(setting.setIconNameCalls == ["AppIcon-Stadium"])
         #expect(viewModel.errorMessage == nil)
     }
 
@@ -38,7 +38,7 @@ struct AppIconPickerViewModelTests {
         setting.shouldThrow = true
         let viewModel = AppIconPickerViewModel(iconSetting: setting)
 
-        await viewModel.select(.brasil)
+        await viewModel.select(.stadium)
 
         #expect(viewModel.selectedIcon == .light)
         #expect(viewModel.errorMessage != nil)

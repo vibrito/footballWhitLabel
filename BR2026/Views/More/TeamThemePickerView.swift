@@ -12,7 +12,7 @@ struct TeamThemePickerView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 12) {
                 GlassCard(cornerRadius: 18, style: .transparent) {
-                    VStack(spacing: 0) {
+                    VStack(spacing: 10) {
                         rowView(nil)
                         Rectangle().fill(Color.white.opacity(0.16)).frame(height: 0.5)
                         ForEach(Array(viewModel.sortedOptions.enumerated()), id: \.element.id) { index, option in

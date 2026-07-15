@@ -2,11 +2,10 @@ import Foundation
 
 enum AppIconOption: String, CaseIterable, Identifiable {
     case light
-    // Brasil/Stadium are Brasileirão-specific alternate icons. Other championship
-    // targets share this file but must not offer them — see `ChampionshipConfig`'s
+    // Stadium is a Brasileirão-specific alternate icon. Other championship
+    // targets share this file but must not offer it — see `ChampionshipConfig`'s
     // per-target #if selection in `Championship.swift` for the same pattern.
     #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
-    case brasil
     case stadium
     #endif
 
@@ -16,7 +15,6 @@ enum AppIconOption: String, CaseIterable, Identifiable {
         switch self {
         case .light: "Default"
         #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
-        case .brasil: "Brasil"
         case .stadium: "Stadium"
         #endif
         }
@@ -28,7 +26,6 @@ enum AppIconOption: String, CaseIterable, Identifiable {
         switch self {
         case .light: nil
         #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
-        case .brasil: "AppIcon-Brasil"
         case .stadium: "AppIcon-Stadium"
         #endif
         }
@@ -50,7 +47,6 @@ enum AppIconOption: String, CaseIterable, Identifiable {
             "AppIconPreview-Light"
             #endif
         #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
-        case .brasil: "AppIconPreview-Brasil"
         case .stadium: "AppIconPreview-Stadium"
         #endif
         }
