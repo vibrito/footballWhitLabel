@@ -26,4 +26,13 @@ final class MockPurchaseService: PurchaseService {
     func restorePurchases() async throws {}
 
     func currentPurchasedProductIDs() async -> Set<String> { purchased }
+
+    /// Test-only helper simulating an entitlement that exists on the App Store but wasn't
+    /// granted through this instance's own `purchase(productID:)` — e.g. a purchase made on
+    /// another device, only visible here after `restorePurchases()`. Named distinctly from
+    /// the `purchased` stored property to avoid any ambiguity between a same-named property
+    /// and method.
+    func simulateExternalPurchase(_ productID: String) {
+        purchased.insert(productID)
+    }
 }
