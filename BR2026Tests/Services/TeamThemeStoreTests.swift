@@ -457,6 +457,70 @@ struct TeamThemeStoreTests {
         #expect(store.tokens == ThemeTokens())
         #expect(setting.selectedThemeID == nil)
     }
+
+    @Test("loadOnce() with a persisted selection populates selectedOption")
+    func loadOnceSetsSelectedOption() async {
+        let setting = StubTeamThemeSetting(selectedThemeID: TeamThemeOption.palmeirasHome.rawValue)
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = palmeirasColors
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        await store.loadOnce()
+
+        #expect(store.selectedOption == .palmeirasHome)
+    }
+
+    @Test("loadOnce() with no persisted selection leaves selectedOption nil")
+    func loadOnceWithNoSelectionLeavesSelectedOptionNil() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        await store.loadOnce()
+
+        #expect(store.selectedOption == nil)
+    }
+
+    @Test("select() updates selectedOption to the newly selected option")
+    func selectUpdatesSelectedOption() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = palmeirasColors
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        await store.select(.palmeirasHome)
+
+        #expect(store.selectedOption == .palmeirasHome)
+    }
+
+    @Test("select(nil) clears selectedOption back to nil")
+    func selectNilClearsSelectedOption() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = palmeirasColors
+        let store = TeamThemeStore(setting: setting, service: service)
+        await store.select(.palmeirasHome)
+        #expect(store.selectedOption == .palmeirasHome)
+
+        await store.select(nil)
+
+        #expect(store.selectedOption == nil)
+    }
+
+    @Test("select() leaves selectedOption unchanged when color resolution fails")
+    func selectLeavesSelectedOptionUnchangedOnFailure() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        // No cachedTeamThemeColorSetOverride set, and fetchTeamThemeColorSet's default
+        // StubMatchService behavior throws unless an override is provided — matches the
+        // existing "both cache and fetch fail" test's setup.
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        let succeeded = await store.select(.palmeirasHome)
+
+        #expect(succeeded == false)
+        #expect(store.selectedOption == nil)
+    }
 }
 
 final class StubTeamThemeSetting: TeamThemeSetting {

@@ -5,6 +5,7 @@ import Observation
 @MainActor
 final class TeamThemeStore {
     private(set) var tokens = ThemeTokens()
+    private(set) var selectedOption: TeamThemeOption?
     private let setting: TeamThemeSetting
     private let service: MatchService
     private var hasLoadedOnce = false
@@ -19,6 +20,7 @@ final class TeamThemeStore {
         hasLoadedOnce = true
         guard let selectedID = setting.selectedThemeID,
               let option = TeamThemeOption.allCases.first(where: { $0.rawValue == selectedID }) else { return }
+        selectedOption = option
         await apply(option)
     }
 
@@ -29,11 +31,13 @@ final class TeamThemeStore {
     func select(_ option: TeamThemeOption?) async -> Bool {
         guard let option else {
             setting.setSelectedThemeID(nil)
+            selectedOption = nil
             tokens = ThemeTokens()
             return true
         }
         guard let colors = await resolveColors(teamID: option.teamID)?[option.kit] else { return false }
         setting.setSelectedThemeID(option.rawValue)
+        selectedOption = option
         tokens = ThemeTokens.themed(
             mainColorHex: option.mainColorOverrideHex ?? colors.mainColorHex,
             fontColorHex: option.fontColorOverrideHex ?? colors.fontColorHex,
