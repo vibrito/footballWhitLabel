@@ -320,6 +320,20 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
         self == .vascoDaGamaHome
     }
 
-    /// Stubbed always-true until real StoreKit 2 entitlement checking replaces this.
-    var isPurchased: Bool { true }
+    /// The StoreKit product identifier this team's theme purchase uses — one non-consumable
+    /// per team, scheme `"com.vibrito.br2026.theme.<rawValue>"`. Derivable directly from the
+    /// case with no separate mapping table to keep in sync as teams are added.
+    var productID: String {
+        "com.vibrito.br2026.theme.\(rawValue)"
+    }
+
+    /// The inverse of `productID` — maps a StoreKit product ID back to a `TeamThemeOption`
+    /// `rawValue`, used by `TeamPurchaseStore` to translate a purchased-product-ID set into
+    /// purchased-team state. Returns `nil` for anything not matching this app's product ID
+    /// scheme (e.g. a foreign/malformed ID).
+    static func rawValue(fromProductID productID: String) -> String? {
+        let prefix = "com.vibrito.br2026.theme."
+        guard productID.hasPrefix(prefix) else { return nil }
+        return String(productID.dropFirst(prefix.count))
+    }
 }

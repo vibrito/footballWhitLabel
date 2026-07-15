@@ -34,11 +34,19 @@ struct TeamThemeOptionTests {
         }
     }
 
-    @Test("All cases are stubbed as purchased")
-    func allPurchased() {
+    @Test("productID follows the com.vibrito.br2026.theme.<rawValue> scheme for every case")
+    func productIDs() {
         for option in TeamThemeOption.allCases {
-            #expect(option.isPurchased == true)
+            #expect(option.productID == "com.vibrito.br2026.theme.\(option.rawValue)")
         }
+    }
+
+    @Test("rawValue(fromProductID:) round-trips every case's productID and returns nil for a foreign ID")
+    func rawValueFromProductID() {
+        for option in TeamThemeOption.allCases {
+            #expect(TeamThemeOption.rawValue(fromProductID: option.productID) == option.rawValue)
+        }
+        #expect(TeamThemeOption.rawValue(fromProductID: "com.example.other.product") == nil)
     }
 
     @Test("Every team but Vitória has a curated main color override")

@@ -219,12 +219,15 @@ BR2026/
   resolves its colors through `MatchService.fetchTeamThemeColorSet(teamID:)`/
   `cachedTeamThemeColorSet(teamID:)`.
 - `TeamThemeOption` (`BR2026/Models/TeamThemeOption.swift`) is the purchasable-theme catalog —
-  currently 3 Palmeiras kit variants (Home/Away/Third). Its cases are **not** per-target
+  20 teams (one home-kit variant each) as of this writing. Its cases are **not** per-target
   `#if`-gated (a zero-case `enum ...: String` fails to compile); visibility for other
   championship targets is gated instead in `MoreViewModel.preferencesRows`, via the same
   `#if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)` pattern
-  `AppIconOption` uses for its per-target cases. `isPurchased` is hardcoded `true` — real
-  StoreKit 2 entitlement checking is a future phase (see the roadmap's IAP team themes item).
+  `AppIconOption` uses for its per-target cases. Each case maps to its own StoreKit
+  non-consumable via `productID` (`"com.vibrito.br2026.theme.<rawValue>"`); `TeamPurchaseStore`
+  (`BR2026/Services/TeamPurchaseStore.swift`) owns purchased-team state via `PurchaseService`
+  (`LivePurchaseService`/`MockPurchaseService`) — see
+  `docs/superpowers/specs/2026-07-15-team-theme-iap-design.md` for the full design.
 
 ---
 
