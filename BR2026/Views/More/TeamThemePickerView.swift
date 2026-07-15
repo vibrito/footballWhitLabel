@@ -60,7 +60,7 @@ struct TeamThemePickerView: View {
                 if viewModel.selectedOption == option {
                     Image(systemName: "checkmark")
                         .font(.system(size: 15, weight: .semibold))
-                        .foregroundStyle(themeTokens.overrideAccentColor ?? Color.accentColor)
+                        .foregroundStyle(themeTokens.textColor)
                 }
             }
             .font(.system(size: 16, weight: .semibold))

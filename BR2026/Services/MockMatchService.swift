@@ -18,7 +18,15 @@ final class MockMatchService: MatchService {
     // e.g. Flamengo).
     private static let teamThemeColorSets: [Int: TeamThemeColorSet] = [
         121: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "225638", fontColorHex: "ffffff")),
-        127: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "ab1b10", fontColorHex: "ffffff"))
+        127: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "ab1b10", fontColorHex: "ffffff")),
+        124: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "6e202e", fontColorHex: "ffffff")),
+        134: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "cc0000", fontColorHex: "6c6360")),
+        118: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "043a73")),
+        794: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "fcfcfc", fontColorHex: "f50000")),
+        147: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "000000")),
+        126: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "000000")),
+        1062: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "000000", fontColorHex: "ffffff")),
+        131: TeamThemeColorSet(home: TeamThemeColors(mainColorHex: "fcfbee", fontColorHex: "000000"))
     ]
 
     init() {

@@ -22,7 +22,7 @@ struct ContentView: View {
         }
         // Governs only the tab bar's own selected-item chrome; each tab's content above
         // re-applies the true brand accent so LiveChip/AccentPill etc. stay brand-colored.
-        .tint(themeStore.tokens.overrideAccentColor ?? Color(hex: config.tabSelectionColorHex))
+        .tint(themeStore.tokens.overrideTabSelectionColor ?? themeStore.tokens.overrideAccentColor ?? Color(hex: config.tabSelectionColorHex))
         .background(StadiumBackground())
         .environment(\.themeTokens, themeStore.tokens)
         .task { await themeStore.loadOnce() }

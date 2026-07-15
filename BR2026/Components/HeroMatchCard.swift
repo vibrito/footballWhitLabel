@@ -26,7 +26,7 @@ struct HeroMatchCard: View {
         }
         .overlay(
             RoundedRectangle(cornerRadius: 28, style: .continuous)
-                .strokeBorder(themeTokens.overrideAccentColor ?? .clear, lineWidth: 1.5)
+                .strokeBorder(themeTokens.overrideTabSelectionColor ?? themeTokens.overrideAccentColor ?? .clear, lineWidth: 1.5)
         )
     }
 

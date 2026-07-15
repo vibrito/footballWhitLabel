@@ -95,7 +95,7 @@ struct FixturesView: View {
             .frame(width: 60, height: 52)
             .background(
                 RoundedRectangle(cornerRadius: 14, style: .continuous)
-                    .fill(isSelected ? Color.accentColor : Color.white.opacity(0.08))
+                    .fill(isSelected ? (themeTokens.overridePillFillColor ?? themeTokens.overrideTabSelectionColor ?? Color.accentColor) : Color.white.opacity(0.08))
             )
         }
         .buttonStyle(.plain)
