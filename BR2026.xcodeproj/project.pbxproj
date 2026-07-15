@@ -16,6 +16,7 @@
 		067C95F6FD79A0961D5AC208 /* TeamThemeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DA98E9D76EDBA19465271D /* TeamThemeStore.swift */; };
 		07F41E524217D53DC9FDD53C /* TeamThemeOptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488E6D224DEAE7CA297007DD /* TeamThemeOptionTests.swift */; };
 		08001FA0EE21E73B579D3F7F /* ThemeTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105A10788BCFFB4D2950B8EF /* ThemeTokens.swift */; };
+		09AB2DF1621E5DB0017B85D0 /* PurchaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = WK6S4MCUE0CQB84197N3WTPO /* PurchaseStore.swift */; };
 		0C21749DC14E676A145EED88 /* AccentPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0A7BD56D54A97E185D54C /* AccentPill.swift */; };
 		0CE6931B96BC76CF8DF839BD /* CrossAppLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A4F30D065FAD4962486232 /* CrossAppLink.swift */; };
 		0CF7CCFCA1CA04DE18EEC032 /* MatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0996F787521F2EF840C43 /* MatchService.swift */; };
@@ -36,6 +37,7 @@
 		1BA11FE370ACD9B85151D8F0 /* MoreRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F82B99CAA89D84274D4532B /* MoreRow.swift */; };
 		1C1526E3AEE33CE4BAFAB7DD /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322CAB2B4DE8D3A9DEA34EE0 /* MockDataProvider.swift */; };
 		1C8AF1AEF8E1E472A3884429 /* FixturesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47120683E2BA4B90B153AD31 /* FixturesViewModelTests.swift */; };
+		1DA9B66AFE41B25D823F4D7D /* PurchasableCatalogOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = UA91XX0HK8J3C9YKZ5ZLT2HC /* PurchasableCatalogOption.swift */; };
 		1DAF97FACA8FF0E698F3B9DE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514F93D54D23D318A9A8666 /* ContentView.swift */; };
 		1E9CEE80501FDDE3D6767C05 /* LiveMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5C675322020A4A48668C2 /* LiveMatchService.swift */; };
 		1EDC2704F0F3F64AC11ECFC5 /* ThemeTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105A10788BCFFB4D2950B8EF /* ThemeTokens.swift */; };
@@ -237,6 +239,7 @@
 		B62013EF7A954AE86EFD70EA /* CompetitionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4E5DB77DD896FEAF3C9B6 /* CompetitionDTO.swift */; };
 		B67B57687FFF48EB0DCB2B23 /* RefreshPulseDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E56E6E7A24AE0A0C87B950 /* RefreshPulseDot.swift */; };
 		B69349D422067AFCE281E8C7 /* LivePurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DBA7ACEEDA813D7E313C7C /* LivePurchaseService.swift */; };
+		B696FBE55BD87D06EFF39CC4 /* PurchasableCatalogOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = UA91XX0HK8J3C9YKZ5ZLT2HC /* PurchasableCatalogOption.swift */; };
 		B704D55D61C78DBB6C4D04B6 /* StandingDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65CB58B6DA37E6E8C02103 /* StandingDTO.swift */; };
 		B7B6A15AFD8BB7AC451C826D /* StadiumBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A71A2EA3718A5D31948205 /* StadiumBackground.swift */; };
 		B7FB0E168F33B9BB035EF935 /* MatchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED24EAB2931D750D08DD21 /* MatchDetailViewModel.swift */; };
@@ -274,6 +277,7 @@
 		D3EB56EA259806145FF42FD6 /* TeamThemePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D809CFAC5AD024BF5FB199D0 /* TeamThemePickerViewModel.swift */; };
 		D63F900ED3C2DD0CD0329179 /* TeamThemeColorCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F59719367BCEB62568456E /* TeamThemeColorCache.swift */; };
 		D839CC408F36F49B48BC1510 /* TeamThemePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1954F52A8493517B231F2 /* TeamThemePickerView.swift */; };
+		D84EB2BF219D4E197C9CE1CA /* PurchasableCatalogOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = UA91XX0HK8J3C9YKZ5ZLT2HC /* PurchasableCatalogOption.swift */; };
 		DA1F1C68819F4844D66DB70C /* MoreViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D9AD201506F2944831655 /* MoreViewModelTests.swift */; };
 		DC540A734CF557516CFD368E /* GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287F723E6555472EAEA55D5E /* GlassCard.swift */; };
 		DC569D7DED6D1BAF3AB8E175 /* AppIconOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7BD7162D81299AB5D44D51 /* AppIconOption.swift */; };
@@ -287,6 +291,7 @@
 		E89B0406F1D37EFC15F2E56D /* StadiumBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A71A2EA3718A5D31948205 /* StadiumBackground.swift */; };
 		E966C0E3021F7E1DD363EF9F /* RefreshPulseDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E56E6E7A24AE0A0C87B950 /* RefreshPulseDot.swift */; };
 		EA287A6CAFE19BF88695D490 /* AppIconPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D952C4923C4C3A35A6E0D97D /* AppIconPickerViewModel.swift */; };
+		EB015048A971E5E4D04E965C /* PurchaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = WK6S4MCUE0CQB84197N3WTPO /* PurchaseStore.swift */; };
 		EB7E50C1DAF29E91A0592380 /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322CAB2B4DE8D3A9DEA34EE0 /* MockDataProvider.swift */; };
 		EC5A593E224B594925407E82 /* MoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C49CB2060A7D052977CA91 /* MoreViewModel.swift */; };
 		ECF957A5B1ABC90B57AAFD6E /* MatchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855292C3DDAE65CCAE220B7F /* MatchDetailView.swift */; };
@@ -306,6 +311,7 @@
 		F6B32E7E91551A7FE8AAFE47 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD0E9B9C297140406B72B2D /* MoreView.swift */; };
 		F73B51C7980BB214B1A8A273 /* FixturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B4F41036B3BF67A1879D29 /* FixturesViewModel.swift */; };
 		F8753E7148445780C5008DB5 /* AppIconSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBD8CC8C85D68BA0C23F8 /* AppIconSetting.swift */; };
+		F88BDC080A4AD6976C441233 /* PurchaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = WK6S4MCUE0CQB84197N3WTPO /* PurchaseStore.swift */; };
 		FB714CB75250CF9105A811D7 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FE51A17C184987431DD87C7A /* FirebaseMessaging */; };
 		FCDFE9BEC30AA85EDC5A3EE2 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7CD31B3A17497FD8945EA /* StandingsView.swift */; };
 		FD4AC943B33551CE3444A31A /* TeamThemeOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9849E4F99F5D2DA4D8081 /* TeamThemeOption.swift */; };
@@ -1257,6 +1263,8 @@
 				D839CC408F36F49B48BC1510 /* TeamThemePickerView.swift in Sources */,
 				82B84CAFD4034DF17E325FE6 /* PurchaseService.swift in Sources */,
 				E7B26339D8960B500FD0B557 /* LivePurchaseService.swift in Sources */,
+				EB015048A971E5E4D04E965C /* PurchaseStore.swift in Sources */,
+				1DA9B66AFE41B25D823F4D7D /* PurchasableCatalogOption.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1427,6 +1435,8 @@
 				7E728A214B049DBDA6210E2C /* TeamThemePickerView.swift in Sources */,
 				2533EE966930AF6463E4534F /* PurchaseService.swift in Sources */,
 				B69349D422067AFCE281E8C7 /* LivePurchaseService.swift in Sources */,
+				F88BDC080A4AD6976C441233 /* PurchaseStore.swift in Sources */,
+				D84EB2BF219D4E197C9CE1CA /* PurchasableCatalogOption.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1495,6 +1505,8 @@
 				12793CC5D5317C40BDCAC01B /* TeamThemePickerView.swift in Sources */,
 				06175554CA50AE4013959048 /* PurchaseService.swift in Sources */,
 				2190347E4D8089548DB5A551 /* LivePurchaseService.swift in Sources */,
+				09AB2DF1621E5DB0017B85D0 /* PurchaseStore.swift in Sources */,
+				B696FBE55BD87D06EFF39CC4 /* PurchasableCatalogOption.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
