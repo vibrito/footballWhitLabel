@@ -87,7 +87,10 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
     }
 
     /// A curated main color, used instead of the API's `home.mainColor` — `nil` means the
-    /// API's color already works fine. Fluminense's tricolor crest is grenat/burgundy + green
+    /// API's color already works fine. Palmeiras' and Flamengo's API colors (`225638`/`ab1b10`)
+    /// were fine to launch with, but the user later asked for truer club-brand greens/reds
+    /// (`006437`/`C52613`) once more teams' curated colors made the difference visible side by
+    /// side. Fluminense's tricolor crest is grenat/burgundy + green
     /// + white; the API's own sampled `mainColor` (`6e202e`) is a reasonable burgundy but not
     /// the club's actual grenat, so this overrides it with the real value. Athletico
     /// Paranaense's API red (`cc0000`) is close but not the club's actual red. Bahia's, Red
@@ -110,7 +113,8 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
     /// exact brightness.
     var mainColorOverrideHex: String? {
         switch self {
-        case .palmeirasHome, .flamengoHome: nil
+        case .palmeirasHome: "006437"
+        case .flamengoHome: "C52613"
         case .fluminenseHome: "870A28"
         case .athleticoParanaenseHome: "CE181E"
         case .bahiaHome: "006CB5"
@@ -173,16 +177,19 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
     /// muted grayish-brown rather than a clean white/black, which reads poorly at the low
     /// opacities most body text uses — an off-white (not pure white, so it still reads as
     /// slightly "tinted"/branded rather than identical to the untheemed default) fixes it.
-    /// Bahia's API font color (`043a73`, a dark navy), Coritiba's, São Paulo's, and Corinthians'
-    /// (all `000000`, plain black) have the same problem for the opposite reason — a dark color
+    /// Bahia's API font color (`043a73`, a dark navy), Coritiba's, and Corinthians' (both
+    /// `000000`, plain black) have the same problem for the opposite reason — a dark color
     /// is nearly invisible as body text against this app's dark background — so they get the
     /// same off-white treatment. Red Bull Bragantino's API font color (`f50000`, a bright red)
-    /// turned out not to be legible in practice either — overridden to plain white.
+    /// turned out not to be legible in practice either — overridden to plain white. São Paulo
+    /// started with the same off-white as Athletico/Bahia/Coritiba/Corinthians, but the user
+    /// asked for full white instead — grouped with Red Bull Bragantino rather than with the
+    /// off-white teams.
     var fontColorOverrideHex: String? {
         switch self {
         case .palmeirasHome, .flamengoHome, .fluminenseHome, .atleticoMineiroHome: nil
-        case .athleticoParanaenseHome, .bahiaHome, .coritibaHome, .saoPauloHome, .corinthiansHome: "F2F2F2"
-        case .redBullBragantinoHome: "FFFFFF"
+        case .athleticoParanaenseHome, .bahiaHome, .coritibaHome, .corinthiansHome: "F2F2F2"
+        case .redBullBragantinoHome, .saoPauloHome: "FFFFFF"
         }
     }
 

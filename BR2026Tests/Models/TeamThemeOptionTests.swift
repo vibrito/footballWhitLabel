@@ -31,10 +31,10 @@ struct TeamThemeOptionTests {
         }
     }
 
-    @Test("Only Palmeiras/Flamengo have no curated main color override")
+    @Test("Every team has a curated main color override")
     func colorOverrides() {
-        #expect(TeamThemeOption.palmeirasHome.mainColorOverrideHex == nil)
-        #expect(TeamThemeOption.flamengoHome.mainColorOverrideHex == nil)
+        #expect(TeamThemeOption.palmeirasHome.mainColorOverrideHex == "006437")
+        #expect(TeamThemeOption.flamengoHome.mainColorOverrideHex == "C52613")
         #expect(TeamThemeOption.fluminenseHome.mainColorOverrideHex == "870A28")
         #expect(TeamThemeOption.athleticoParanaenseHome.mainColorOverrideHex == "CE181E")
         #expect(TeamThemeOption.bahiaHome.mainColorOverrideHex == "006CB5")
@@ -75,8 +75,8 @@ struct TeamThemeOptionTests {
 
     @Test("previewColorHex uses the main color override where one exists, falling back to the API-style main color otherwise")
     func previewColorHex() {
-        #expect(TeamThemeOption.palmeirasHome.previewColorHex == "225638")
-        #expect(TeamThemeOption.flamengoHome.previewColorHex == "ab1b10")
+        #expect(TeamThemeOption.palmeirasHome.previewColorHex == "006437")
+        #expect(TeamThemeOption.flamengoHome.previewColorHex == "C52613")
         #expect(TeamThemeOption.fluminenseHome.previewColorHex == "870A28")
         #expect(TeamThemeOption.athleticoParanaenseHome.previewColorHex == "CE181E")
         #expect(TeamThemeOption.bahiaHome.previewColorHex == "006CB5")
@@ -96,7 +96,7 @@ struct TeamThemeOptionTests {
         #expect(TeamThemeOption.bahiaHome.fontColorOverrideHex == "F2F2F2")
         #expect(TeamThemeOption.redBullBragantinoHome.fontColorOverrideHex == "FFFFFF")
         #expect(TeamThemeOption.coritibaHome.fontColorOverrideHex == "F2F2F2")
-        #expect(TeamThemeOption.saoPauloHome.fontColorOverrideHex == "F2F2F2")
+        #expect(TeamThemeOption.saoPauloHome.fontColorOverrideHex == "FFFFFF")
         #expect(TeamThemeOption.atleticoMineiroHome.fontColorOverrideHex == nil)
         #expect(TeamThemeOption.corinthiansHome.fontColorOverrideHex == "F2F2F2")
     }

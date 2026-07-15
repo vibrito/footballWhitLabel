@@ -22,7 +22,7 @@ struct TeamThemeStoreTests {
         #expect(store.tokens == ThemeTokens())
     }
 
-    @Test("loadOnce() with a persisted palmeirasHome selection resolves that kit's tokens")
+    @Test("loadOnce() with a persisted palmeirasHome selection resolves that kit's tokens, using the curated override over the API's mainColorHex")
     func loadOnceWithPersistedSelectionResolvesTokens() async {
         let setting = StubTeamThemeSetting(selectedThemeID: TeamThemeOption.palmeirasHome.rawValue)
         let service = StubMatchService(matches: [], standings: [])
@@ -31,11 +31,12 @@ struct TeamThemeStoreTests {
 
         await store.loadOnce()
 
-        #expect(store.tokens.overrideAccentColor == Color(hex: "225638"))
+        #expect(store.tokens.overrideAccentColor == Color(hex: "006437"))
+        #expect(store.tokens.overrideAccentColor != Color(hex: "225638"))
         #expect(store.tokens.textColor == Color(hex: "ffffff"))
     }
 
-    @Test("select() resolves the home kit's colors from a cache hit")
+    @Test("select() resolves the home kit's colors from a cache hit, using the curated override over the API's mainColorHex")
     func selectResolvesFromCache() async {
         let setting = StubTeamThemeSetting()
         let service = StubMatchService(matches: [], standings: [])
@@ -45,9 +46,25 @@ struct TeamThemeStoreTests {
         let succeeded = await store.select(.palmeirasHome)
 
         #expect(succeeded == true)
-        #expect(store.tokens.overrideAccentColor == Color(hex: "225638"))
+        #expect(store.tokens.overrideAccentColor == Color(hex: "006437"))
+        #expect(store.tokens.overrideAccentColor != Color(hex: "225638"))
         #expect(store.tokens.textColor == Color(hex: "ffffff"))
         #expect(setting.selectedThemeID == TeamThemeOption.palmeirasHome.rawValue)
+    }
+
+    @Test("select() uses Flamengo's curated main color override instead of the API's mainColorHex")
+    func selectUsesFlamengoColorOverrides() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = TeamThemeColorSet(
+            home: TeamThemeColors(mainColorHex: "ab1b10", fontColorHex: "ffffff")
+        )
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        _ = await store.select(.flamengoHome)
+
+        #expect(store.tokens.overrideAccentColor == Color(hex: "C52613"))
+        #expect(store.tokens.overrideAccentColor != Color(hex: "ab1b10"))
     }
 
     @Test("select() uses Fluminense's curated main/tab-selection color overrides instead of the API's mainColorHex")
@@ -163,7 +180,7 @@ struct TeamThemeStoreTests {
         #expect(store.tokens.overrideAccentColor == Color(hex: "FE0000"))
         #expect(store.tokens.overrideAccentColor != Color(hex: "ffffff"))
         #expect(store.tokens.overrideTabSelectionColor == Color(hex: "000000"))
-        #expect(store.tokens.textColor == Color(hex: "F2F2F2"))
+        #expect(store.tokens.textColor == Color(hex: "FFFFFF"))
         #expect(store.tokens.textColor != Color(hex: "000000"))
     }
 
@@ -215,7 +232,7 @@ struct TeamThemeStoreTests {
 
         #expect(succeeded == true)
         #expect(service.fetchTeamThemeColorSetCallCount == 1)
-        #expect(store.tokens.overrideAccentColor == Color(hex: "225638"))
+        #expect(store.tokens.overrideAccentColor == Color(hex: "006437"))
     }
 
     @Test("select(nil) returns tokens to today's defaults and clears the persisted selection")
