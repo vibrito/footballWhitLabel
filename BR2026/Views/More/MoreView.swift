@@ -3,14 +3,14 @@ import UIKit
 
 struct MoreView: View {
     @State private var viewModel: MoreViewModel
-    let tabSelectionColorHex: String
+    let service: MatchService
     let themeStore: TeamThemeStore
     let purchaseStore: TeamPurchaseStore
     @Environment(\.themeTokens) private var themeTokens
 
-    init(service: MatchService, tabSelectionColorHex: String, themeStore: TeamThemeStore, purchaseStore: TeamPurchaseStore) {
+    init(service: MatchService, themeStore: TeamThemeStore, purchaseStore: TeamPurchaseStore) {
         _viewModel = State(initialValue: MoreViewModel(service: service))
-        self.tabSelectionColorHex = tabSelectionColorHex
+        self.service = service
         self.themeStore = themeStore
         self.purchaseStore = purchaseStore
     }
@@ -36,12 +36,11 @@ struct MoreView: View {
                     TermsOfServiceView()
                 case .appIconPicker:
                     AppIconPickerView(
-                        viewModel: AppIconPickerViewModel(iconSetting: UIKitAppIconSetting()),
-                        selectionColorHex: tabSelectionColorHex
+                        viewModel: AppIconPickerViewModel(iconSetting: UIKitAppIconSetting())
                     )
                 case .teamThemePicker:
                     TeamThemePickerView(
-                        viewModel: TeamThemePickerViewModel(themeStore: themeStore, purchaseStore: purchaseStore, setting: UserDefaultsTeamThemeSetting())
+                        viewModel: TeamThemePickerViewModel(themeStore: themeStore, purchaseStore: purchaseStore, setting: UserDefaultsTeamThemeSetting(), service: service)
                     )
                 }
             }

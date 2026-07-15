@@ -13,9 +13,10 @@ struct TeamThemePickerViewModelTests {
     @Test("selectedOption is nil when nothing is persisted")
     func nilByDefault() {
         let setting = StubTeamThemeSetting()
-        let store = TeamThemeStore(setting: setting, service: StubMatchService(matches: [], standings: []))
+        let service = StubMatchService(matches: [], standings: [])
+        let store = TeamThemeStore(setting: setting, service: service)
         let purchaseStore = TeamPurchaseStore(service: MockPurchaseService())
-        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting)
+        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting, service: service)
 
         #expect(viewModel.selectedOption == nil)
     }
@@ -23,9 +24,10 @@ struct TeamThemePickerViewModelTests {
     @Test("selectedOption is derived from a matching persisted rawValue")
     func derivesFromPersistedValue() {
         let setting = StubTeamThemeSetting(selectedThemeID: TeamThemeOption.palmeirasHome.rawValue)
-        let store = TeamThemeStore(setting: setting, service: StubMatchService(matches: [], standings: []))
+        let service = StubMatchService(matches: [], standings: [])
+        let store = TeamThemeStore(setting: setting, service: service)
         let purchaseStore = TeamPurchaseStore(service: MockPurchaseService())
-        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting)
+        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting, service: service)
 
         #expect(viewModel.selectedOption == .palmeirasHome)
     }
@@ -37,7 +39,7 @@ struct TeamThemePickerViewModelTests {
         service.cachedTeamThemeColorSetOverride = palmeirasColors
         let store = TeamThemeStore(setting: setting, service: service)
         let purchaseStore = TeamPurchaseStore(service: MockPurchaseService())
-        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting)
+        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting, service: service)
 
         await viewModel.select(.palmeirasHome)
 
@@ -55,7 +57,7 @@ struct TeamThemePickerViewModelTests {
         let purchaseService = MockPurchaseService(purchasedProductIDs: [TeamThemeOption.palmeirasHome.productID])
         let purchaseStore = TeamPurchaseStore(service: purchaseService)
         await purchaseStore.loadOnce()
-        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting)
+        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting, service: service)
 
         await viewModel.select(.palmeirasHome)
 
@@ -71,7 +73,7 @@ struct TeamThemePickerViewModelTests {
         let purchaseService = MockPurchaseService()
         purchaseService.shouldFailNextPurchase = true
         let purchaseStore = TeamPurchaseStore(service: purchaseService)
-        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting)
+        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting, service: service)
 
         await viewModel.select(.palmeirasHome)
 
@@ -86,7 +88,7 @@ struct TeamThemePickerViewModelTests {
         service.shouldThrowOnTeamThemeFetch = true
         let store = TeamThemeStore(setting: setting, service: service)
         let purchaseStore = TeamPurchaseStore(service: MockPurchaseService())
-        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting)
+        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting, service: service)
 
         await viewModel.select(.palmeirasHome)
 
@@ -101,7 +103,7 @@ struct TeamThemePickerViewModelTests {
         service.cachedTeamThemeColorSetOverride = palmeirasColors
         let store = TeamThemeStore(setting: setting, service: service)
         let purchaseStore = TeamPurchaseStore(service: MockPurchaseService())
-        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting)
+        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting, service: service)
         await viewModel.select(.palmeirasHome)
         let callCountAfterFirstSelect = service.fetchTeamThemeColorSetCallCount
 
@@ -113,11 +115,12 @@ struct TeamThemePickerViewModelTests {
     @Test("isPurchased(_:) and price(for:) pass through to the purchase store")
     func isPurchasedAndPricePassThrough() async {
         let setting = StubTeamThemeSetting()
-        let store = TeamThemeStore(setting: setting, service: StubMatchService(matches: [], standings: []))
+        let service = StubMatchService(matches: [], standings: [])
+        let store = TeamThemeStore(setting: setting, service: service)
         let purchaseService = MockPurchaseService(purchasedProductIDs: [TeamThemeOption.flamengoHome.productID])
         let purchaseStore = TeamPurchaseStore(service: purchaseService)
         await purchaseStore.loadOnce()
-        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting)
+        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting, service: service)
 
         #expect(viewModel.isPurchased(.flamengoHome) == true)
         #expect(viewModel.isPurchased(.palmeirasHome) == false)
@@ -126,10 +129,11 @@ struct TeamThemePickerViewModelTests {
     @Test("restorePurchases() delegates to the purchase store")
     func restorePurchasesDelegates() async {
         let setting = StubTeamThemeSetting()
-        let store = TeamThemeStore(setting: setting, service: StubMatchService(matches: [], standings: []))
+        let service = StubMatchService(matches: [], standings: [])
+        let store = TeamThemeStore(setting: setting, service: service)
         let purchaseService = MockPurchaseService(purchasedProductIDs: [TeamThemeOption.bahiaHome.productID])
         let purchaseStore = TeamPurchaseStore(service: purchaseService)
-        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting)
+        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting, service: service)
 
         await viewModel.restorePurchases()
 
@@ -144,7 +148,7 @@ struct TeamThemePickerViewModelTests {
         let store = TeamThemeStore(setting: setting, service: service)
         let purchaseService = MockPurchaseService()
         let purchaseStore = TeamPurchaseStore(service: purchaseService)
-        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting)
+        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting, service: service)
 
         // First, trigger a theme-application failure to set errorMessage
         await viewModel.select(.palmeirasHome)
@@ -158,5 +162,67 @@ struct TeamThemePickerViewModelTests {
         // After failed purchase of different team, stale errorMessage must be cleared
         #expect(viewModel.errorMessage == nil)
         #expect(viewModel.selectedOption == nil)
+    }
+
+    @Test("sortedOptions orders purchased teams before unpurchased teams")
+    func sortedOptionsPutsPurchasedTeamsFirst() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        let store = TeamThemeStore(setting: setting, service: service)
+        // Corinthians is purchased despite being the lowest-position team given below,
+        // Palmeiras/Flamengo are unpurchased despite outranking it — purchase status must
+        // win the sort over standings position.
+        let purchaseService = MockPurchaseService(purchasedProductIDs: [TeamThemeOption.corinthiansHome.productID])
+        let purchaseStore = TeamPurchaseStore(service: purchaseService)
+        await purchaseStore.loadOnce()
+        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting, service: service)
+
+        let sorted = viewModel.sortedOptions
+
+        #expect(sorted.first == .corinthiansHome)
+        #expect(sorted.firstIndex(of: .corinthiansHome)! < sorted.firstIndex(of: .palmeirasHome)!)
+        #expect(sorted.firstIndex(of: .corinthiansHome)! < sorted.firstIndex(of: .flamengoHome)!)
+    }
+
+    @Test("sortedOptions orders teams within the same purchase group by standings position")
+    func sortedOptionsOrdersByStandingsPosition() {
+        let setting = StubTeamThemeSetting()
+        let flamengo = Standing(
+            position: 1,
+            team: Team(id: TeamThemeOption.flamengoHome.teamID, name: "Flamengo", shortName: "FLA", crestURL: nil),
+            playedGames: 10, won: 8, draw: 1, lost: 1, goalsFor: 20, goalsAgainst: 8, goalDifference: 12, points: 25
+        )
+        let palmeiras = Standing(
+            position: 2,
+            team: Team(id: TeamThemeOption.palmeirasHome.teamID, name: "Palmeiras", shortName: "PAL", crestURL: nil),
+            playedGames: 10, won: 7, draw: 2, lost: 1, goalsFor: 18, goalsAgainst: 9, goalDifference: 9, points: 23
+        )
+        let service = StubMatchService(matches: [], standings: [palmeiras, flamengo])
+        let store = TeamThemeStore(setting: setting, service: service)
+        let purchaseStore = TeamPurchaseStore(service: MockPurchaseService())
+        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting, service: service)
+
+        let sorted = viewModel.sortedOptions
+
+        #expect(sorted.firstIndex(of: .flamengoHome)! < sorted.firstIndex(of: .palmeirasHome)!)
+    }
+
+    @Test("sortedOptions sorts a team with no cached standings row to the end of its purchase group")
+    func sortedOptionsPutsUnrankedTeamsLast() {
+        let setting = StubTeamThemeSetting()
+        let flamengo = Standing(
+            position: 1,
+            team: Team(id: TeamThemeOption.flamengoHome.teamID, name: "Flamengo", shortName: "FLA", crestURL: nil),
+            playedGames: 10, won: 8, draw: 1, lost: 1, goalsFor: 20, goalsAgainst: 8, goalDifference: 12, points: 25
+        )
+        // Only Flamengo has a standings row — every other team (including Palmeiras) is unranked.
+        let service = StubMatchService(matches: [], standings: [flamengo])
+        let store = TeamThemeStore(setting: setting, service: service)
+        let purchaseStore = TeamPurchaseStore(service: MockPurchaseService())
+        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting, service: service)
+
+        let sorted = viewModel.sortedOptions
+
+        #expect(sorted.firstIndex(of: .flamengoHome)! < sorted.firstIndex(of: .palmeirasHome)!)
     }
 }

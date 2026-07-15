@@ -2,12 +2,10 @@ import SwiftUI
 
 struct AppIconPickerView: View {
     @State private var viewModel: AppIconPickerViewModel
-    let selectionColorHex: String
     @Environment(\.themeTokens) private var themeTokens
 
-    init(viewModel: AppIconPickerViewModel, selectionColorHex: String) {
+    init(viewModel: AppIconPickerViewModel) {
         _viewModel = State(initialValue: viewModel)
-        self.selectionColorHex = selectionColorHex
     }
 
     var body: some View {
@@ -56,7 +54,7 @@ struct AppIconPickerView: View {
                 if viewModel.selectedIcon == option {
                     Image(systemName: "checkmark")
                         .font(.system(size: 15, weight: .semibold))
-                        .foregroundStyle(Color(hex: selectionColorHex))
+                        .foregroundStyle(.white)
                 }
             }
             .foregroundStyle(themeTokens.textColor)

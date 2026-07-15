@@ -15,9 +15,9 @@ struct TeamThemePickerView: View {
                     VStack(spacing: 0) {
                         rowView(nil)
                         Rectangle().fill(Color.white.opacity(0.16)).frame(height: 0.5)
-                        ForEach(Array(TeamThemeOption.allCases.enumerated()), id: \.element.id) { index, option in
+                        ForEach(Array(viewModel.sortedOptions.enumerated()), id: \.element.id) { index, option in
                             rowView(option)
-                            if index < TeamThemeOption.allCases.count - 1 {
+                            if index < viewModel.sortedOptions.count - 1 {
                                 Rectangle().fill(Color.white.opacity(0.16)).frame(height: 0.5)
                             }
                         }

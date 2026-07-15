@@ -70,28 +70,31 @@ enum TeamThemeOption: String, CaseIterable, Identifiable {
         }
     }
 
+    /// No "(Home)" suffix for now — every option is a home kit today, so it read as noise;
+    /// revisit if away/third variants are ever reintroduced (see this enum's own top-level
+    /// doc comment on why only home kits are offered).
     var displayName: LocalizedStringResource {
         switch self {
-        case .palmeirasHome: "Palmeiras (Home)"
-        case .flamengoHome: "Flamengo (Home)"
-        case .fluminenseHome: "Fluminense (Home)"
-        case .athleticoParanaenseHome: "Athletico Paranaense (Home)"
-        case .bahiaHome: "Bahia (Home)"
-        case .redBullBragantinoHome: "Red Bull Bragantino (Home)"
-        case .coritibaHome: "Coritiba (Home)"
-        case .saoPauloHome: "São Paulo (Home)"
-        case .atleticoMineiroHome: "Atlético Mineiro (Home)"
-        case .corinthiansHome: "Corinthians (Home)"
-        case .cruzeiroHome: "Cruzeiro (Home)"
-        case .internacionalHome: "Internacional (Home)"
-        case .remoHome: "Remo (Home)"
-        case .botafogoHome: "Botafogo (Home)"
-        case .vitoriaHome: "Vitória (Home)"
-        case .mirassolHome: "Mirassol (Home)"
-        case .chapecoenseHome: "Chapecoense (Home)"
-        case .santosHome: "Santos (Home)"
-        case .gremioHome: "Grêmio (Home)"
-        case .vascoDaGamaHome: "Vasco da Gama (Home)"
+        case .palmeirasHome: "Palmeiras"
+        case .flamengoHome: "Flamengo"
+        case .fluminenseHome: "Fluminense"
+        case .athleticoParanaenseHome: "Athletico Paranaense"
+        case .bahiaHome: "Bahia"
+        case .redBullBragantinoHome: "Red Bull Bragantino"
+        case .coritibaHome: "Coritiba"
+        case .saoPauloHome: "São Paulo"
+        case .atleticoMineiroHome: "Atlético Mineiro"
+        case .corinthiansHome: "Corinthians"
+        case .cruzeiroHome: "Cruzeiro"
+        case .internacionalHome: "Internacional"
+        case .remoHome: "Remo"
+        case .botafogoHome: "Botafogo"
+        case .vitoriaHome: "Vitória"
+        case .mirassolHome: "Mirassol"
+        case .chapecoenseHome: "Chapecoense"
+        case .santosHome: "Santos"
+        case .gremioHome: "Grêmio"
+        case .vascoDaGamaHome: "Vasco da Gama"
         }
     }
 
