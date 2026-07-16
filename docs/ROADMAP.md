@@ -14,6 +14,16 @@ team featured in the Matchday hero card, always where possible.
 Add Scottish Premiership and La Liga, on top of the four already shipped (Brasileirão,
 Premier League, Ligue 1, Liga Portugal).
 
+- ✅ **Scottish Premiership — shipped 2026-07-16.** 5th Xcode target
+  (`ScottishPremiership2026`), mirrors the existing 4-target pattern exactly, no new
+  locale needed. Real app icon/launch artwork wired in. Still needs (external, manual):
+  a real `GoogleService-Info.plist` (currently shares `BR2026`'s Firebase project),
+  bundle ID/App Store Connect registration.
+- **La Liga — not started.** Backend competition record (`PD`) currently has zero
+  matches/standings populated, unlike Scottish Premiership's fully-populated data — this
+  needs to resolve (or the backend needs time to sync) before this sub-project's design
+  begins.
+
 La Liga brings Spain into the supported-locale set, so **Spanish localization is needed
 app-wide** as a direct consequence of this item — not a separate, optional task.
 
