@@ -11,8 +11,12 @@ enum MatchStatus: String, Codable {
         // The live backend actually sends "IN_PLAY" for a live match (a football-data.org
         // convention), never the literal "LIVE" this enum's rawValue expects — confirmed
         // against the real API 2026-07-16. Without this, every live match silently decoded
-        // as .scheduled.
-        if raw == "IN_PLAY" {
+        // as .scheduled. The same backend also sends "PAUSED" during halftime — every match
+        // passes through a ~15-minute halftime window using this status. Both "IN_PLAY" and
+        // "PAUSED" are backend-sent live-family statuses that must count as .live for this
+        // app's purposes (live-detection, polling, live-chip display) — otherwise halftime
+        // would stop live-polling and show the match as upcoming with its original kickoff time.
+        if raw == "IN_PLAY" || raw == "PAUSED" {
             self = .live
             return
         }

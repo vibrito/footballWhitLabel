@@ -8,6 +8,7 @@ struct MatchStatusTests {
         ("SCHEDULED", MatchStatus.scheduled),
         ("LIVE", MatchStatus.live),
         ("IN_PLAY", MatchStatus.live),
+        ("PAUSED", MatchStatus.live),
         ("FINISHED", MatchStatus.finished),
         ("POSTPONED", MatchStatus.postponed)
     ])
