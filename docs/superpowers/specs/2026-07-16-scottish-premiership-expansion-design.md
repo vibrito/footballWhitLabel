@@ -100,25 +100,23 @@ already shared and already fully translated; no new translation work for this su
 
 ## App Icon and Launch Screen
 
-Following the exact same per-target pattern already used for `PremierLeague2026`/
-`Ligue12026`/`PrimeiraLiga2026` (not `BR2026`'s newer full-bleed splash design, which is
-`BR2026`-specific):
+Real artwork is already provided (`design/AppIcon-SPL-1024.png`, 1024×1024, and
+`design/BR2026/Splash-SPL-1290x2796.png`, 1290×2796) — unlike the prior 3-target expansion,
+no programmatic placeholder generation is needed for this sub-project. Both follow the
+per-target asset-catalog pattern already used for `PremierLeague2026`/`Ligue12026`/
+`PrimeiraLiga2026` (not `BR2026`'s newer full-bleed splash design, which is
+`BR2026`-specific — this new target mirrors the *other 3* targets' launch pattern):
 
-- **App icon:** a new `AppIcon-ScottishPremiership.appiconset` (1024×1024) — placeholder
-  artwork generated programmatically, same technique as the prior 3 targets: the
-  `soccerball` SF Symbol rendered in white, centered on a solid `#005EB8` background.
-  `ScottishPremiership2026`'s own Build Settings set
-  `ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-ScottishPremiership"` (its *primary* icon,
-  not an alternate — same as how the other 3 targets each point at their own named
-  App Icon Set rather than the shared `AppIcon.appiconset` `BR2026` uses).
+- **App icon:** a new `AppIcon-ScottishPremiership.appiconset` (1024×1024), populated
+  directly from `design/AppIcon-SPL-1024.png`. `ScottishPremiership2026`'s own Build
+  Settings set `ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-ScottishPremiership"` (its
+  *primary* icon, not an alternate — same as how the other 3 targets each point at their
+  own named App Icon Set rather than the shared `AppIcon.appiconset` `BR2026` uses).
 - **Launch screen:** a new `LaunchScreen-ScottishPremiership.storyboard`, structurally
   identical to `LaunchScreen-PremierLeague.storyboard` — a single full-bleed `imageView`
-  referencing a new `LaunchLogo-ScottishPremiership` Image Set (the same rasterized
-  `soccerball`-on-solid-color artwork as the app icon, reused for the launch screen) over a
-  solid background color matching `#005EB8` (`red 0.0, green 0.369, blue 0.722`).
-
-Real icon/launch artwork can replace these placeholders later with no code changes — a
-pure asset swap, same as the standing precedent from the prior expansion.
+  referencing a new `LaunchLogo-ScottishPremiership` Image Set populated directly from
+  `design/BR2026/Splash-SPL-1290x2796.png`, over a solid background color matching
+  `#005EB8` (`red 0.0, green 0.369, blue 0.722`) as a fallback behind the image.
 
 ## `CrossAppLink` Registry
 
