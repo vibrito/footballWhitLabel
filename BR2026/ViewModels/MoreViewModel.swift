@@ -41,7 +41,7 @@ final class MoreViewModel {
                 isEnabled: true
             )
         ]
-        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
+        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA || TARGET_SCOTTISH_PREMIERSHIP)
         rows.append(
             MoreRow(
                 id: "teamTheme",

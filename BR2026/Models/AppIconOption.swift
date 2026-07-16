@@ -5,7 +5,7 @@ enum AppIconOption: String, CaseIterable, Identifiable {
     // Stadium is a Brasileirão-specific alternate icon. Other championship
     // targets share this file but must not offer it — see `ChampionshipConfig`'s
     // per-target #if selection in `Championship.swift` for the same pattern.
-    #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
+    #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA || TARGET_SCOTTISH_PREMIERSHIP)
     case stadium
     #endif
 
@@ -14,7 +14,7 @@ enum AppIconOption: String, CaseIterable, Identifiable {
     var displayName: LocalizedStringResource {
         switch self {
         case .light: "Default"
-        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
+        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA || TARGET_SCOTTISH_PREMIERSHIP)
         case .stadium: "Stadium"
         #endif
         }
@@ -25,7 +25,7 @@ enum AppIconOption: String, CaseIterable, Identifiable {
     var iconAssetName: String? {
         switch self {
         case .light: nil
-        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
+        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA || TARGET_SCOTTISH_PREMIERSHIP)
         case .stadium: "AppIcon-Stadium"
         #endif
         }
@@ -43,10 +43,12 @@ enum AppIconOption: String, CaseIterable, Identifiable {
             "AppIconPreview-Ligue1"
             #elseif TARGET_PRIMEIRA_LIGA
             "AppIconPreview-PrimeiraLiga"
+            #elseif TARGET_SCOTTISH_PREMIERSHIP
+            "AppIconPreview-ScottishPremiership"
             #else
             "AppIconPreview-Light"
             #endif
-        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA)
+        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA || TARGET_SCOTTISH_PREMIERSHIP)
         case .stadium: "AppIconPreview-Stadium"
         #endif
         }
