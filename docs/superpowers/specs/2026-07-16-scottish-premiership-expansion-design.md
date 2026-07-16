@@ -134,10 +134,15 @@ static let scottishPremiership = CrossAppLink(
 ```
 
 Added to the `all` array. Per the existing, unchanged deferral: this stays **not wired into
-any View** — no "Our Other Apps" UI ships from this sub-project either. `Info.plist`'s
-`CFBundleURLTypes` (`scottishpremiership2026://`) and `LSApplicationQueriesSchemes`
-(declaring the other 4 apps' schemes) are still set up per-target, matching the existing
-pattern, even though the UI that would use them isn't wired in yet.
+any View** — no "Our Other Apps" UI ships from this sub-project either. Checked directly
+against the actual codebase (not just the prior spec's stated intent): none of the 4
+existing targets' Info.plists actually declare `CFBundleURLTypes`/
+`LSApplicationQueriesSchemes` — only the `CrossAppLink` Swift model/data was ever built, the
+Info.plist URL-scheme wiring was never implemented for any target despite being described
+in the original expansion's spec. This sub-project matches that actual precedent: no
+`CFBundleURLTypes`/`LSApplicationQueriesSchemes` for `ScottishPremiership2026` either — that
+wiring is deferred together with the UI, for all 5 apps at once, whenever cross-app linking
+actually ships.
 
 ## Testing
 
