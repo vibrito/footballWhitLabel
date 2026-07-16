@@ -24,6 +24,18 @@ APPS = {
     bundle_id: "com.vibrito.primeiraliga2026",
     metadata_path: "fastlane/metadata/primeira_liga",
     screenshots_path: "fastlane/screenshots/primeira_liga"
+  },
+  "scottish_premiership" => {
+    scheme: "ScottishPremiership2026",
+    bundle_id: "com.vibrito.scottishpremiership2026",
+    metadata_path: "fastlane/metadata/scottish_premiership",
+    screenshots_path: "fastlane/screenshots/scottish_premiership"
+  },
+  "la_liga" => {
+    scheme: "LaLiga2026",
+    bundle_id: "com.vibrito.laliga2026",
+    metadata_path: "fastlane/metadata/la_liga",
+    screenshots_path: "fastlane/screenshots/la_liga"
   }
 }.freeze
 
