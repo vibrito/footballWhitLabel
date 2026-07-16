@@ -44,6 +44,13 @@ Copa Libertadores qualification, and (where applicable) Copa Sudamericana/other 
 slots — the way most football standings tables do (colored row accents or a side marker
 per zone). Not strictly sequenced, same as the where-to-watch page; can be fit in anytime.
 
+## 6c. Standings table redesign/polish
+
+A general visual/UX pass on the Standings screen itself (layout, columns, readability) —
+distinct from the zone-marker item above, which is about marking qualification/relegation
+ranges rather than the table's overall design. Not yet scoped beyond "general polish." Not
+strictly sequenced; can be fit in anytime.
+
 ## 7. Cross-app linking
 
 Link between all the family's apps so users can discover sibling apps. The `CrossAppLink`
