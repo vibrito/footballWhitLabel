@@ -54,6 +54,22 @@ final class FixturesViewModel {
         }
     }
 
+    var hasLiveMatch: Bool {
+        matches.contains { $0.status == .live }
+    }
+
+    func refreshIfNeeded() async {
+        if hasLoadedOnce {
+            await load()
+        } else {
+            await loadOnce()
+        }
+    }
+
+    func pollWhileLive() async {
+        await LivePoller.run(interval: .seconds(30), shouldContinue: { hasLiveMatch }, action: { await load() })
+    }
+
     // The "current" round is not the earliest round with an unplayed match: real
     // fixture lists have makeup games, so an early round can carry a couple of
     // matches rescheduled months later, long after later rounds have been played.
