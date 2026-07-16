@@ -261,7 +261,6 @@
 		A447BBE2DAB5F9CE74660EB5 /* ColorHexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86008BEECC1A587434098BF9 /* ColorHexTests.swift */; };
 		A4A8DC6A1BF16906502817F2 /* MatchEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8EA6912B1D21368F06E9D0 /* MatchEvent.swift */; };
 		A5D2FEBAF673006A14F7731B /* HeroMatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD698E976EAC4B8C3CF2B7 /* HeroMatchCard.swift */; };
-		A6A0BC6C587948739BCF871D /* LaunchScreen-BR2026.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88EC8470376301D3F8715B43 /* LaunchScreen-BR2026.storyboard */; };
 		A72AD3DA9F1BC36DE1541799 /* TeamCrestBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E434E6CB924EEBF2ED52FF /* TeamCrestBadge.swift */; };
 		A77ADF8B246ACE049BFD3353 /* MoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C49CB2060A7D052977CA91 /* MoreViewModel.swift */; };
 		A92DB8B05CC4F5AB48F31474 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A550575E6347EE4F9B8C7E8 /* Color+Hex.swift */; };
@@ -291,6 +290,7 @@
 		B69349D422067AFCE281E8C7 /* LivePurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DBA7ACEEDA813D7E313C7C /* LivePurchaseService.swift */; };
 		B696FBE55BD87D06EFF39CC4 /* PurchasableCatalogOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = UA91XX0HK8J3C9YKZ5ZLT2HC /* PurchasableCatalogOption.swift */; };
 		B704D55D61C78DBB6C4D04B6 /* StandingDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65CB58B6DA37E6E8C02103 /* StandingDTO.swift */; };
+		B73BA547C2A3817EEEB4AB32 /* LaunchScreen-ScottishPremiership.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35B294B4E2A828A42427D250 /* LaunchScreen-ScottishPremiership.storyboard */; };
 		B7B6A15AFD8BB7AC451C826D /* StadiumBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A71A2EA3718A5D31948205 /* StadiumBackground.swift */; };
 		B7F365BCABC06F04863E5750 /* MatchTimelineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D44350EAD06089AFB83195 /* MatchTimelineRow.swift */; };
 		B7FB0E168F33B9BB035EF935 /* MatchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED24EAB2931D750D08DD21 /* MatchDetailViewModel.swift */; };
@@ -433,6 +433,7 @@
 		30741DC2065FBFD04140A95C /* Competition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Competition.swift; sourceTree = "<group>"; };
 		31D9F3F1E0EAD3ECE1FE272D /* TeamThemeColorsTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamThemeColorsTests.swift; sourceTree = "<group>"; };
 		322CAB2B4DE8D3A9DEA34EE0 /* MockDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataProvider.swift; sourceTree = "<group>"; };
+		35B294B4E2A828A42427D250 /* LaunchScreen-ScottishPremiership.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = "LaunchScreen-ScottishPremiership.storyboard"; sourceTree = "<group>"; };
 		387160DBDCC7939421B9C3AE /* TeamCrestCacheStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamCrestCacheStore.swift; sourceTree = "<group>"; };
 		3D40C5B68AD965EA2F417DC1 /* MoreSection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreSection.swift; sourceTree = "<group>"; };
 		3F82B99CAA89D84274D4532B /* MoreRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreRow.swift; sourceTree = "<group>"; };
@@ -786,6 +787,7 @@
 				5DB9E7F8F15157A617B36888 /* LaunchScreen-Ligue1.storyboard */,
 				4C8FD2FCAA34ACDFF84F73A8 /* LaunchScreen-PrimeiraLiga.storyboard */,
 				88EC8470376301D3F8715B43 /* LaunchScreen-BR2026.storyboard */,
+				35B294B4E2A828A42427D250 /* LaunchScreen-ScottishPremiership.storyboard */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1240,7 +1242,7 @@
 				A971E80994986CD571CB87DD /* Assets.xcassets in Resources */,
 				E12C954DE715E98D3B020AD7 /* Localizable.xcstrings in Resources */,
 				471E9522A7A235598E115624 /* GoogleService-Info.plist in Resources */,
-				A6A0BC6C587948739BCF871D /* LaunchScreen-BR2026.storyboard in Resources */,
+				B73BA547C2A3817EEEB4AB32 /* LaunchScreen-ScottishPremiership.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1932,7 +1934,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				INFOPLIST_FILE = "Generated/BR2026-Info.plist";
+				INFOPLIST_FILE = "Generated/ScottishPremiership-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Scottish Premiership 2026";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2036,7 +2038,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				INFOPLIST_FILE = "Generated/BR2026-Info.plist";
+				INFOPLIST_FILE = "Generated/ScottishPremiership-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Scottish Premiership 2026";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				LD_RUNPATH_SEARCH_PATHS = (
