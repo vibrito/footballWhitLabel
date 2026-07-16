@@ -1,8 +1,10 @@
 # Roadmap
 
 Status as of 2026-07-16: Premier League 2026, Ligue 1 2026, and Liga Portugal 2026 are
-submitted to App Store review (alongside the already-live Brasileirão/BR2026). Items #1
-and #2 below have shipped. The agreed next steps are, in order:
+submitted to App Store review (alongside the already-live Brasileirão/BR2026). Scottish
+Premiership and La Liga are not yet submitted for review but all 6 apps are on TestFlight
+(version 1.1, build 8). Items #1 and #2 below have shipped. The agreed next steps are, in
+order:
 
 ## 1. In-app-purchase team themes ✅ Shipped 2026-07-16
 
@@ -16,16 +18,20 @@ Premier League, Ligue 1, Liga Portugal).
 
 - ✅ **Scottish Premiership — shipped 2026-07-16.** 5th Xcode target
   (`ScottishPremiership2026`), mirrors the existing 4-target pattern exactly, no new
-  locale needed. Real app icon/launch artwork wired in. Still needs (external, manual):
-  a real `GoogleService-Info.plist` (currently shares `BR2026`'s Firebase project),
-  bundle ID/App Store Connect registration.
+  locale needed. Real app icon/launch artwork wired in. Bundle ID
+  (`com.vibrito.scottishpremiership2026`) registered, its own App Store Connect app record
+  created, and its own dedicated Firebase project (`scottish-premiership-2026`) set up —
+  no longer shares `BR2026`'s.
 - ✅ **La Liga — shipped 2026-07-16.** 6th Xcode target (`LaLiga2026`), mirrors the
   existing target pattern. Real app icon and launch screen wired in, `CrossAppLink.laLiga`
   added, and Terms of Service's hardcoded Brasileirão reference fixed for all targets.
   Spanish (`es`) localization added for all 39 shared UI strings, satisfying the
-  app-wide localization requirement below. Still needs (external, manual): a real
-  `GoogleService-Info.plist` (currently shares `BR2026`'s Firebase project), bundle
-  ID/App Store Connect registration.
+  app-wide localization requirement below. Bundle ID (`com.vibrito.laliga2026`) registered,
+  its own App Store Connect app record created, and its own dedicated Firebase project
+  (`la-liga-2026`) set up — no longer shares `BR2026`'s.
+- All 6 apps (Brasileirão, Premier League, Ligue 1, Liga Portugal, Scottish Premiership,
+  La Liga) are on TestFlight as of 2026-07-16 at version 1.1, build 8 — same build number
+  across all apps.
 
 La Liga brought Spain into the supported-locale set, so **Spanish localization was needed
 app-wide** as a direct consequence of this item — not a separate, optional task.
