@@ -7,6 +7,7 @@ struct MatchStatusTests {
     @Test("Decodes known statuses", arguments: [
         ("SCHEDULED", MatchStatus.scheduled),
         ("LIVE", MatchStatus.live),
+        ("IN_PLAY", MatchStatus.live),
         ("FINISHED", MatchStatus.finished),
         ("POSTPONED", MatchStatus.postponed)
     ])
