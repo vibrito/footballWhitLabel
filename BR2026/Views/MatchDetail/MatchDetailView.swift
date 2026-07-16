@@ -3,6 +3,7 @@ import SwiftUI
 struct MatchDetailView: View {
     @State private var viewModel: MatchDetailViewModel
     @Environment(\.themeTokens) private var themeTokens
+    @Environment(\.scenePhase) private var scenePhase
 
     init(match: Match, service: MatchService) {
         _viewModel = State(initialValue: MatchDetailViewModel(match: match, service: service))
@@ -25,7 +26,11 @@ struct MatchDetailView: View {
         .scrollContentBackground(.hidden)
         .background(StadiumBackground())
         .presentationDragIndicator(.visible)
-        .task { await viewModel.load() }
+        .task(id: scenePhase) {
+            guard scenePhase == .active else { return }
+            await viewModel.load()
+            await viewModel.pollWhileLive()
+        }
         .trackScreen("MatchDetail")
     }
 
