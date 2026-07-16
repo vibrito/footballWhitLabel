@@ -380,7 +380,10 @@ final class StubMatchService: MatchService {
         return standings
     }
 
-    func fetchEvents(matchID: Int) async throws -> [MatchEvent] { events }
+    func fetchEvents(matchID: Int) async throws -> [MatchEvent] {
+        if shouldThrowOnFetch { throw StubServiceError.simulatedFailure }
+        return events
+    }
 
     func fetchCompetition() async throws -> Competition {
         fetchCompetitionCallCount += 1

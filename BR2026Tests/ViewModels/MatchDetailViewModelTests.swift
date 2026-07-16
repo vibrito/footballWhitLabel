@@ -26,6 +26,28 @@ struct MatchDetailViewModelTests {
         #expect(viewModel.isLoading == false)
     }
 
+    @Test("load() keeps already-loaded events if a later fetch fails")
+    func loadKeepsEventsWhenLaterFetchFails() async {
+        let match = Match(
+            id: 42, utcDate: Date(), status: .live, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: 1, awayScore: 0, winner: nil, venue: nil, minute: 30
+        )
+        let goal = MatchEvent(
+            team: .home, type: .goal, assist: nil, detail: "Normal Goal", minute: 10,
+            player: "C. Ronaldo", playerOut: nil, extraMinute: nil
+        )
+        let service = StubMatchService(matches: [match], standings: [], events: [goal])
+        let viewModel = MatchDetailViewModel(match: match, service: service)
+
+        await viewModel.load()
+        #expect(viewModel.events.map(\.player) == ["C. Ronaldo"])
+
+        service.shouldThrowOnFetch = true
+        await viewModel.load()
+
+        #expect(viewModel.events.map(\.player) == ["C. Ronaldo"])
+    }
+
     @Test("events are empty before load() runs")
     func eventsEmptyBeforeLoad() {
         let match = Match(

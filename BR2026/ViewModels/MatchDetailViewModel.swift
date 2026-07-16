@@ -17,7 +17,9 @@ final class MatchDetailViewModel {
     func load() async {
         isLoading = true
         defer { isLoading = false }
-        events = (try? await service.fetchEvents(matchID: match.id)) ?? []
+        if let fresh = try? await service.fetchEvents(matchID: match.id) {
+            events = fresh
+        }
     }
 
     var isLive: Bool {
