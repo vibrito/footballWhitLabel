@@ -12,6 +12,8 @@ struct ChampionshipApp: App {
     let config = ChampionshipConfig.primeiraLiga
     #elseif TARGET_SCOTTISH_PREMIERSHIP
     let config = ChampionshipConfig.scottishPremiership
+    #elseif TARGET_LA_LIGA
+    let config = ChampionshipConfig.laLiga
     #else
     let config = ChampionshipConfig.brasileirao
     #endif
