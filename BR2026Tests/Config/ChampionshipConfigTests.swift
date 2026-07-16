@@ -46,4 +46,15 @@ struct ChampionshipConfigTests {
         #expect(config.tabSelectionColorHex == "#19FF91")
         #expect(config.apiBaseURL.absoluteString == "https://football-api-production-16d9.up.railway.app")
     }
+
+    @Test("Scottish Premiership config has expected values")
+    func scottishPremiershipDefaults() {
+        let config = ChampionshipConfig.scottishPremiership
+        #expect(config.id == "scottish-premiership")
+        #expect(config.competitionCode == "SPL")
+        #expect(config.displayName == "Scottish Premiership")
+        #expect(config.accentColorHex == "#005EB8")
+        #expect(config.tabSelectionColorHex == "#005EB8")
+        #expect(config.apiBaseURL.absoluteString == "https://football-api-production-16d9.up.railway.app")
+    }
 }

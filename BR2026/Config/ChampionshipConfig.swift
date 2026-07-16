@@ -58,4 +58,13 @@ extension ChampionshipConfig {
         tabSelectionColorHex: "#19FF91",
         apiBaseURL: sharedAPIBaseURL
     )
+
+    static let scottishPremiership = ChampionshipConfig(
+        id: "scottish-premiership",
+        displayName: "Scottish Premiership",
+        competitionCode: "SPL",
+        accentColorHex: "#005EB8",
+        tabSelectionColorHex: "#005EB8",
+        apiBaseURL: sharedAPIBaseURL
+    )
 }
