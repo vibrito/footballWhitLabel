@@ -72,4 +72,23 @@ final class MatchdayViewModel {
             matches = fresh
         }
     }
+
+    var hasLiveMatch: Bool {
+        matches.contains { $0.status == .live }
+    }
+
+    // Distinguishes "first activation" (cache-then-refresh-once, matching loadOnce()'s
+    // existing semantics) from "returning from background" (always refetch) — see the
+    // design doc for why this can't just be two independent .task modifiers.
+    func refreshIfNeeded() async {
+        if hasLoadedOnce {
+            await load()
+        } else {
+            await loadOnce()
+        }
+    }
+
+    func pollWhileLive() async {
+        await LivePoller.run(interval: .seconds(30), shouldContinue: { hasLiveMatch }, action: { await load() })
+    }
 }

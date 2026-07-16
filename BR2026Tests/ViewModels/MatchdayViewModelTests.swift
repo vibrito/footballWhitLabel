@@ -272,6 +272,68 @@ struct MatchdayViewModelTests {
 
         #expect(viewModel.nextMatch?.id == 1)
     }
+
+    @Test("hasLiveMatch is true when any match is live")
+    func hasLiveMatchTrueWhenLive() async {
+        let live = Match(
+            id: 1, utcDate: date(day: 10, hour: 15), status: .live, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: 1, awayScore: 0, winner: nil, venue: nil, minute: 30
+        )
+        let service = StubMatchService(matches: [live], standings: [])
+        let themeStore = TeamThemeStore(setting: StubTeamThemeSetting(), service: service)
+        let viewModel = MatchdayViewModel(service: service, themeStore: themeStore)
+
+        await viewModel.load()
+
+        #expect(viewModel.hasLiveMatch == true)
+    }
+
+    @Test("hasLiveMatch is false when no match is live")
+    func hasLiveMatchFalseWhenNoneLive() async {
+        let scheduled = Match(
+            id: 1, utcDate: date(day: 10, hour: 15), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let service = StubMatchService(matches: [scheduled], standings: [])
+        let themeStore = TeamThemeStore(setting: StubTeamThemeSetting(), service: service)
+        let viewModel = MatchdayViewModel(service: service, themeStore: themeStore)
+
+        await viewModel.load()
+
+        #expect(viewModel.hasLiveMatch == false)
+    }
+
+    @Test("refreshIfNeeded does the one-time cache-then-refresh on its first call")
+    func refreshIfNeededFirstCallLoadsOnce() async {
+        let scheduled = Match(
+            id: 1, utcDate: date(day: 10, hour: 15), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let service = StubMatchService(matches: [scheduled], standings: [])
+        let themeStore = TeamThemeStore(setting: StubTeamThemeSetting(), service: service)
+        let viewModel = MatchdayViewModel(service: service, themeStore: themeStore)
+
+        await viewModel.refreshIfNeeded()
+
+        #expect(service.fetchMatchesCallCount == 1)
+    }
+
+    @Test("refreshIfNeeded refetches on every subsequent call")
+    func refreshIfNeededSubsequentCallsAlwaysRefetch() async {
+        let scheduled = Match(
+            id: 1, utcDate: date(day: 10, hour: 15), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let service = StubMatchService(matches: [scheduled], standings: [])
+        let themeStore = TeamThemeStore(setting: StubTeamThemeSetting(), service: service)
+        let viewModel = MatchdayViewModel(service: service, themeStore: themeStore)
+
+        await viewModel.refreshIfNeeded()
+        await viewModel.refreshIfNeeded()
+        await viewModel.refreshIfNeeded()
+
+        #expect(service.fetchMatchesCallCount == 3)
+    }
 }
 
 final class StubMatchService: MatchService {
