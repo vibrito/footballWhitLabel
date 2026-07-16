@@ -3,14 +3,16 @@ import UIKit
 
 struct MoreView: View {
     @State private var viewModel: MoreViewModel
+    let config: ChampionshipConfig
     let service: MatchService
     let themeStore: TeamThemeStore
     let themePurchaseStore: PurchaseStore<TeamThemeOption>
     let iconPurchaseStore: PurchaseStore<TeamIconOption>
     @Environment(\.themeTokens) private var themeTokens
 
-    init(service: MatchService, themeStore: TeamThemeStore, themePurchaseStore: PurchaseStore<TeamThemeOption>, iconPurchaseStore: PurchaseStore<TeamIconOption>) {
+    init(config: ChampionshipConfig, service: MatchService, themeStore: TeamThemeStore, themePurchaseStore: PurchaseStore<TeamThemeOption>, iconPurchaseStore: PurchaseStore<TeamIconOption>) {
         _viewModel = State(initialValue: MoreViewModel(service: service))
+        self.config = config
         self.service = service
         self.themeStore = themeStore
         self.themePurchaseStore = themePurchaseStore
@@ -35,7 +37,7 @@ struct MoreView: View {
             .navigationDestination(for: MoreDestination.self) { destination in
                 switch destination {
                 case .termsOfService:
-                    TermsOfServiceView()
+                    TermsOfServiceView(config: config)
                 case .appIconPicker:
                     AppIconPickerView(
                         viewModel: AppIconPickerViewModel(iconSetting: UIKitAppIconSetting(), purchaseStore: iconPurchaseStore, service: service)

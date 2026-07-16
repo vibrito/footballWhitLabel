@@ -18,7 +18,7 @@ struct ContentView: View {
             StandingsView(service: service)
                 .tabItem { Label("Standings", systemImage: "chart.bar") }
                 .tint(themeStore.tokens.overrideAccentColor ?? Color(hex: config.accentColorHex))
-            MoreView(service: service, themeStore: themeStore, themePurchaseStore: themePurchaseStore, iconPurchaseStore: iconPurchaseStore)
+            MoreView(config: config, service: service, themeStore: themeStore, themePurchaseStore: themePurchaseStore, iconPurchaseStore: iconPurchaseStore)
                 .tabItem { Label("More", systemImage: "ellipsis.circle") }
                 .tint(themeStore.tokens.overrideAccentColor ?? Color(hex: config.accentColorHex))
         }
