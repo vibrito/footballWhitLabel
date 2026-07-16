@@ -2,7 +2,18 @@ import SwiftUI
 
 struct LiveChip: View {
     var minute: Int? = nil
+    var isHalftime: Bool = false
     @State private var pulse = false
+
+    private var chipText: String {
+        if isHalftime {
+            return String(localized: "HT", comment: "Abbreviation shown in the live-match chip during halftime.")
+        }
+        if let minute {
+            return "\(minute)'"
+        }
+        return String(localized: "LIVE", comment: "Text shown in the live-match chip when no minute is available yet.")
+    }
 
     var body: some View {
         HStack(spacing: 4) {
@@ -11,7 +22,7 @@ struct LiveChip: View {
                 .frame(width: 6, height: 6)
                 .opacity(pulse ? 0.35 : 1)
                 .scaleEffect(pulse ? 0.8 : 1)
-            Text(minute.map { "\($0)'" } ?? "LIVE")
+            Text(chipText)
                 .font(.system(size: 11, weight: .heavy))
                 .tracking(0.5)
                 .monospacedDigit()

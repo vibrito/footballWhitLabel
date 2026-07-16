@@ -25,12 +25,12 @@ final class MatchdayViewModel {
     var nextMatch: Match? {
         if let teamID = themeStore.selectedOption?.teamID {
             let teamMatch = matches
-                .filter { ($0.homeTeam.id == teamID || $0.awayTeam.id == teamID) && ($0.status == .live || $0.status == .scheduled) }
+                .filter { ($0.homeTeam.id == teamID || $0.awayTeam.id == teamID) && ($0.status.isLiveOrHalftime || $0.status == .scheduled) }
                 .min { $0.utcDate < $1.utcDate }
             if let teamMatch { return teamMatch }
         }
         return matches
-            .filter { $0.status == .live || $0.status == .scheduled }
+            .filter { $0.status.isLiveOrHalftime || $0.status == .scheduled }
             .min { $0.utcDate < $1.utcDate }
     }
 
@@ -74,7 +74,7 @@ final class MatchdayViewModel {
     }
 
     var hasLiveMatch: Bool {
-        matches.contains { $0.status == .live }
+        matches.contains { $0.status.isLiveOrHalftime }
     }
 
     // Distinguishes "first activation" (cache-then-refresh-once, matching loadOnce()'s

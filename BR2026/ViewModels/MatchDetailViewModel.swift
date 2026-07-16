@@ -23,7 +23,7 @@ final class MatchDetailViewModel {
     }
 
     var isLive: Bool {
-        match.status == .live
+        match.status.isLiveOrHalftime
     }
 
     func pollWhileLive() async {

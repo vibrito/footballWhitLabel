@@ -8,7 +8,7 @@ struct MatchStatusTests {
         ("SCHEDULED", MatchStatus.scheduled),
         ("LIVE", MatchStatus.live),
         ("IN_PLAY", MatchStatus.live),
-        ("PAUSED", MatchStatus.live),
+        ("PAUSED", MatchStatus.halftime),
         ("FINISHED", MatchStatus.finished),
         ("POSTPONED", MatchStatus.postponed)
     ])
@@ -23,6 +23,17 @@ struct MatchStatusTests {
         let json = Data("\"SUSPENDED\"".utf8)
         let status = try JSONDecoder().decode(MatchStatus.self, from: json)
         #expect(status == .scheduled)
+    }
+
+    @Test("isLiveOrHalftime is true for live and halftime, false otherwise", arguments: [
+        (MatchStatus.scheduled, false),
+        (MatchStatus.live, true),
+        (MatchStatus.halftime, true),
+        (MatchStatus.finished, false),
+        (MatchStatus.postponed, false)
+    ])
+    func isLiveOrHalftime(status: MatchStatus, expected: Bool) throws {
+        #expect(status.isLiveOrHalftime == expected)
     }
 }
 

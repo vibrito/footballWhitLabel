@@ -81,6 +81,8 @@ struct MatchDetailView: View {
             Text("FT")
         case .live:
             LiveChip(minute: match.minute)
+        case .halftime:
+            LiveChip(isHalftime: true)
         case .postponed:
             Text("PPD")
         case .scheduled:
@@ -120,7 +122,7 @@ struct MatchDetailView: View {
     }
 
     private var halfTimeText: Text? {
-        guard match.status == .finished || match.status == .live else { return nil }
+        guard match.status == .finished || match.status.isLiveOrHalftime else { return nil }
         guard let home = match.halfTimeHomeScore, let away = match.halfTimeAwayScore else { return nil }
         return Text("Half-time \(home)–\(away)")
     }

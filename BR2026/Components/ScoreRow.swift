@@ -11,6 +11,8 @@ struct ScoreRow: View {
             VStack(spacing: 4) {
                 if match.status == .live {
                     LiveChip(minute: match.minute)
+                } else if match.status == .halftime {
+                    LiveChip(isHalftime: true)
                 }
                 scoreText
             }

@@ -32,9 +32,12 @@ struct HeroMatchCard: View {
 
     @ViewBuilder
     private var topInfo: some View {
-        if match.status == .live {
+        switch match.status {
+        case .live:
             LiveChip(minute: match.minute)
-        } else {
+        case .halftime:
+            LiveChip(isHalftime: true)
+        default:
             Text(match.utcDate, style: .time)
                 .font(.system(size: 15, weight: .bold))
                 .tracking(0.6)

@@ -1,6 +1,10 @@
 enum MatchStatus: String, Codable {
     case scheduled = "SCHEDULED"
     case live = "LIVE"
+    // Synthetic raw value — never actually sent by the API. The decoder below maps the
+    // real backend's "PAUSED" to this case; the raw value only exists to satisfy
+    // RawRepresentable and is never round-tripped.
+    case halftime = "HALFTIME"
     case finished = "FINISHED"
     case postponed = "POSTPONED"
 
@@ -12,14 +16,25 @@ enum MatchStatus: String, Codable {
         // convention), never the literal "LIVE" this enum's rawValue expects — confirmed
         // against the real API 2026-07-16. Without this, every live match silently decoded
         // as .scheduled. The same backend also sends "PAUSED" during halftime — every match
-        // passes through a ~15-minute halftime window using this status. Both "IN_PLAY" and
-        // "PAUSED" are backend-sent live-family statuses that must count as .live for this
-        // app's purposes (live-detection, polling, live-chip display) — otherwise halftime
-        // would stop live-polling and show the match as upcoming with its original kickoff time.
-        if raw == "IN_PLAY" || raw == "PAUSED" {
+        // passes through a ~15-minute halftime window using this status, kept as its own
+        // case (rather than collapsed into .live) so the UI can show "HT" distinctly instead
+        // of a live minute counter that's actually stuck. Both .live and .halftime must
+        // still count as "live" for detection/polling purposes — see isLiveOrHalftime.
+        if raw == "IN_PLAY" {
             self = .live
             return
         }
+        if raw == "PAUSED" {
+            self = .halftime
+            return
+        }
         self = MatchStatus(rawValue: raw) ?? .scheduled
+    }
+
+    /// True for both `.live` and `.halftime` — the two statuses where a match is currently
+    /// in progress and should count as "live" for detection/polling purposes, even though
+    /// the UI displays them differently (a live minute counter vs. an "HT" indicator).
+    var isLiveOrHalftime: Bool {
+        self == .live || self == .halftime
     }
 }

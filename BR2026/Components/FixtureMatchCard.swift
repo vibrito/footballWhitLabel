@@ -43,6 +43,8 @@ struct FixtureMatchCard: View {
             Text("\(dateLabel) · FT")
         case .live:
             LiveChip(minute: match.minute)
+        case .halftime:
+            LiveChip(isHalftime: true)
         case .postponed:
             // A postponed match's stored date may just be a stale placeholder from
             // before the postponement, so it isn't shown alongside the status.

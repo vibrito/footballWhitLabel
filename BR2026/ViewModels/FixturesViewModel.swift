@@ -55,7 +55,7 @@ final class FixturesViewModel {
     }
 
     var hasLiveMatch: Bool {
-        matches.contains { $0.status == .live }
+        matches.contains { $0.status.isLiveOrHalftime }
     }
 
     func refreshIfNeeded() async {
@@ -82,7 +82,7 @@ final class FixturesViewModel {
         let byRound = matchesByRound
         guard !byRound.isEmpty else { return nil }
 
-        if let liveRound = byRound.first(where: { round in round.matches.contains { $0.status == .live } }) {
+        if let liveRound = byRound.first(where: { round in round.matches.contains { $0.status.isLiveOrHalftime } }) {
             return liveRound.round
         }
 
