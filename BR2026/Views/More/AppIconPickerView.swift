@@ -24,7 +24,7 @@ struct AppIconPickerView: View {
                         // Team icons are Brasileirão-specific purchasable content — gated the
                         // same way Team Theme's row is gated in MoreViewModel, so the other
                         // championship targets show only the free Default/Stadium rows above.
-                        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA || TARGET_SCOTTISH_PREMIERSHIP)
+                        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA || TARGET_SCOTTISH_PREMIERSHIP || TARGET_LA_LIGA)
                         Rectangle()
                             .fill(Color.white.opacity(0.16))
                             .frame(height: 0.5)
@@ -39,7 +39,7 @@ struct AppIconPickerView: View {
                         #endif
                     }
                 }
-                #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA || TARGET_SCOTTISH_PREMIERSHIP)
+                #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA || TARGET_SCOTTISH_PREMIERSHIP || TARGET_LA_LIGA)
                 Button {
                     Task { await viewModel.restorePurchases() }
                 } label: {
@@ -63,7 +63,7 @@ struct AppIconPickerView: View {
         .navigationTitle("App Icon")
         .navigationBarTitleDisplayMode(.inline)
         .trackScreen("AppIconPicker")
-        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA || TARGET_SCOTTISH_PREMIERSHIP)
+        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA || TARGET_SCOTTISH_PREMIERSHIP || TARGET_LA_LIGA)
         .task { await viewModel.loadOnce() }
         #endif
     }
