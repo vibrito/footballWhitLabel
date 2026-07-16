@@ -53,7 +53,15 @@ extension CrossAppLink {
         appStoreID: "0000000000"
     )
 
-    static let all: [CrossAppLink] = [brasileirao, premierLeague, ligue1, primeiraLiga]
+    static let scottishPremiership = CrossAppLink(
+        id: "scottish-premiership",
+        displayName: "Scottish Premiership",
+        accentColorHex: "#005EB8",
+        urlScheme: "scottishpremiership2026",
+        appStoreID: "0000000000"
+    )
+
+    static let all: [CrossAppLink] = [brasileirao, premierLeague, ligue1, primeiraLiga, scottishPremiership]
 
     /// All sibling apps except the one currently running, matched by `ChampionshipConfig.id`.
     static func siblings(excluding currentID: String) -> [CrossAppLink] {
