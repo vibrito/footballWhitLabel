@@ -2013,7 +2013,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.ligue12026;
 				PRODUCT_NAME = Ligue12026;
 				SDKROOT = iphoneos;
@@ -2058,7 +2058,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.premierleague2026;
 				PRODUCT_NAME = PremierLeague2026;
 				SDKROOT = iphoneos;
@@ -2086,7 +2086,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.ligue12026;
 				PRODUCT_NAME = Ligue12026;
 				SDKROOT = iphoneos;
@@ -2175,7 +2175,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.scottishpremiership2026;
 				PRODUCT_NAME = ScottishPremiership2026;
 				SDKROOT = iphoneos;
@@ -2203,7 +2203,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.laliga2026;
 				PRODUCT_NAME = LaLiga2026;
 				SDKROOT = iphoneos;
@@ -2246,7 +2246,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.primeiraliga2026;
 				PRODUCT_NAME = PrimeiraLiga2026;
 				SDKROOT = iphoneos;
@@ -2274,7 +2274,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.laliga2026;
 				PRODUCT_NAME = LaLiga2026;
 				SDKROOT = iphoneos;
@@ -2335,7 +2335,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.scottishpremiership2026;
 				PRODUCT_NAME = ScottishPremiership2026;
 				SDKROOT = iphoneos;
@@ -2431,7 +2431,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.premierleague2026;
 				PRODUCT_NAME = PremierLeague2026;
 				SDKROOT = iphoneos;
@@ -2459,7 +2459,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.primeiraliga2026;
 				PRODUCT_NAME = PrimeiraLiga2026;
 				SDKROOT = iphoneos;
@@ -2488,7 +2488,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.br2026;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2515,7 +2515,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vibrito.br2026;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

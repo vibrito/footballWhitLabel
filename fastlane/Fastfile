@@ -118,9 +118,18 @@ platform :ios do
   lane :beta do |options|
     app = resolve_app(options)
     api_key = asc_api_key
-    build_number = (latest_testflight_build_number(api_key: api_key, app_identifier: app[:bundle_id]) + 1).to_s
+    build_number = options[:build] ? options[:build].to_s : (latest_testflight_build_number(api_key: api_key, app_identifier: app[:bundle_id]) + 1).to_s
 
     build_and_upload_to_testflight(app: app, api_key: api_key, build_number: build_number)
+  end
+
+  desc "Print each app's latest TestFlight build number (diagnostic, no build/upload)"
+  lane :latest_builds do
+    api_key = asc_api_key
+    APPS.each do |key, app|
+      n = latest_testflight_build_number(api_key: api_key, app_identifier: app[:bundle_id])
+      UI.message("#{key} (#{app[:bundle_id]}): latest build #{n}")
+    end
   end
 
   desc "Build a fresh binary, attach it to the App Store version, and push metadata + screenshots — does NOT submit for review"

@@ -47,6 +47,14 @@ Push release notes (What's New) to App Store Connect
 
 Build and upload a TestFlight beta
 
+### ios latest_builds
+
+```sh
+[bundle exec] fastlane ios latest_builds
+```
+
+Print each app's latest TestFlight build number (diagnostic, no build/upload)
+
 ### ios prepare_release
 
 ```sh
