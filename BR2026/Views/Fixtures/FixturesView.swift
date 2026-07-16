@@ -5,6 +5,7 @@ struct FixturesView: View {
     @State private var selectedMatch: Match?
     let service: MatchService
     @Environment(\.themeTokens) private var themeTokens
+    @Environment(\.scenePhase) private var scenePhase
 
     init(service: MatchService) {
         _viewModel = State(initialValue: FixturesViewModel(service: service))
@@ -50,7 +51,11 @@ struct FixturesView: View {
                     }
                 }
             }
-            .task { await viewModel.loadOnce() }
+            .task(id: scenePhase) {
+                guard scenePhase == .active else { return }
+                await viewModel.refreshIfNeeded()
+                await viewModel.pollWhileLive()
+            }
             .sheet(item: $selectedMatch) { match in
                 MatchDetailView(match: match, service: service)
             }
