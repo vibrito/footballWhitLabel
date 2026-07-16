@@ -1,15 +1,15 @@
 # Roadmap
 
 Status as of 2026-07-16: Premier League 2026, Ligue 1 2026, and Liga Portugal 2026 are
-submitted to App Store review (alongside the already-live Brasileirão/BR2026). Item #1
-below has shipped. The agreed next steps are, in order:
+submitted to App Store review (alongside the already-live Brasileirão/BR2026). Items #1
+and #2 below have shipped. The agreed next steps are, in order:
 
 ## 1. In-app-purchase team themes ✅ Shipped 2026-07-16
 
 Purchasable per-team customization: alternate app icon, accent colors, and the purchased
 team featured in the Matchday hero card, always where possible.
 
-## 2. More championships
+## 2. More championships ✅ Shipped 2026-07-16
 
 Add Scottish Premiership and La Liga, on top of the four already shipped (Brasileirão,
 Premier League, Ligue 1, Liga Portugal).
@@ -19,12 +19,15 @@ Premier League, Ligue 1, Liga Portugal).
   locale needed. Real app icon/launch artwork wired in. Still needs (external, manual):
   a real `GoogleService-Info.plist` (currently shares `BR2026`'s Firebase project),
   bundle ID/App Store Connect registration.
-- **La Liga — not started.** Backend competition record (`PD`) currently has zero
-  matches/standings populated, unlike Scottish Premiership's fully-populated data — this
-  needs to resolve (or the backend needs time to sync) before this sub-project's design
-  begins.
+- ✅ **La Liga — shipped 2026-07-16.** 6th Xcode target (`LaLiga2026`), mirrors the
+  existing target pattern. Real app icon and launch screen wired in, `CrossAppLink.laLiga`
+  added, and Terms of Service's hardcoded Brasileirão reference fixed for all targets.
+  Spanish (`es`) localization added for all 39 shared UI strings, satisfying the
+  app-wide localization requirement below. Still needs (external, manual): a real
+  `GoogleService-Info.plist` (currently shares `BR2026`'s Firebase project), bundle
+  ID/App Store Connect registration.
 
-La Liga brings Spain into the supported-locale set, so **Spanish localization is needed
+La Liga brought Spain into the supported-locale set, so **Spanish localization was needed
 app-wide** as a direct consequence of this item — not a separate, optional task.
 
 ## 3. Accessibility
