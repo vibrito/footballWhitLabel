@@ -9,6 +9,12 @@
             "value" : ""
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22,12 +28,6 @@
           }
         },
         "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        },
-        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : ""
@@ -45,6 +45,12 @@
             "value" : "%@"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -58,12 +64,6 @@
           }
         },
         "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@"
-          }
-        },
-        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@"
@@ -87,6 +87,12 @@
             "value" : "%1$@ – %2$@"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ – %2$@"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -100,12 +106,6 @@
           }
         },
         "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ – %2$@"
-          }
-        },
-        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ – %2$@"
@@ -129,6 +129,12 @@
             "value" : "%1$@ · %2$@"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -142,12 +148,6 @@
           }
         },
         "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ · %2$@"
-          }
-        },
-        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ · %2$@"
@@ -171,6 +171,12 @@
             "value" : "%1$@ · FT"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · FT"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -187,12 +193,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ · FIM"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ · FT"
           }
         }
       }
@@ -213,6 +213,12 @@
             "value" : "Also %1$@"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "También %1$@"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -229,12 +235,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Também %1$@"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "También %1$@"
           }
         }
       }
@@ -254,6 +254,12 @@
             "value" : "Also Today"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "También hoy"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -270,12 +276,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Também hoje"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "También hoy"
           }
         }
       }
@@ -295,6 +295,12 @@
             "value" : "App Icon"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Icono de la aplicación"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -311,12 +317,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ícone da Aplicação"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Icono de la aplicación"
           }
         }
       }
@@ -336,6 +336,12 @@
             "value" : "Check Fixtures for the full schedule"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consulta Calendario para ver el horario completo"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -352,12 +358,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Consulte o Calendário para todos os jogos da época"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Consulta Calendario para ver el horario completo"
           }
         }
       }
@@ -377,6 +377,12 @@
             "value" : "Couldn't change the app icon. Try again."
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo cambiar el icono de la aplicación. Inténtalo de nuevo."
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -394,11 +400,47 @@
             "state" : "translated",
             "value" : "Não foi possível alterar o ícone da aplicação. Tente novamente."
           }
+        }
+      }
+    },
+    "D" : {
+      "comment" : "Standings table column header: abbreviation for \"Drawn\" (games drawn). Keep as short as the other column headers in this table.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D"
+          }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo cambiar el icono de la aplicación. Inténtalo de nuevo."
+            "value" : "E"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "N"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E"
           }
         }
       }
@@ -418,6 +460,12 @@
             "value" : "Default"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Predeterminado"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -434,12 +482,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Padrão"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Predeterminado"
           }
         }
       }
@@ -459,6 +501,12 @@
             "value" : "Finished"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finalizado"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -475,12 +523,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Encerrado"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Finalizado"
           }
         }
       }
@@ -500,6 +542,12 @@
             "value" : "Fixtures"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calendario"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -516,12 +564,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Calendário"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Calendario"
           }
         }
       }
@@ -542,6 +584,12 @@
             "value" : "For %1$@"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para %1$@"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -559,12 +607,6 @@
             "state" : "translated",
             "value" : "Por %1$@"
           }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Para %1$@"
-          }
         }
       }
     },
@@ -578,6 +620,12 @@
           }
         },
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FT"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "FT"
@@ -600,53 +648,131 @@
             "state" : "translated",
             "value" : "FIM"
           }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "FT"
-          }
         }
       }
     },
-    "Half-time %@–%@" : {
-      "comment" : "The half-time score shown on the match detail screen, e.g. 'Half-time 0–0'. The arguments are the home and away half-time scores.",
-      "isCommentAutoGenerated" : true,
+    "GD" : {
+      "comment" : "Standings table column header: abbreviation for \"Goal Difference\". Keep as short as the other column headers in this table.",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Half-time %1$@–%2$@"
+            "state" : "translated",
+            "value" : "GD"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Half-time %1$@–%2$@"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mi-temps %1$@–%2$@"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Intervalo %1$@–%2$@"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Intervalo %1$@–%2$@"
+            "value" : "GD"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Descanso %1$@–%2$@"
+            "value" : "DG"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DB"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SG"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SG"
+          }
+        }
+      }
+    },
+    "Half-time %lld–%lld" : {
+      "comment" : "The half-time score shown on the match detail screen, e.g. 'Half-time 0–0'. The arguments are the home and away half-time scores.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Half-time %1$lld–%2$lld"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Half-time %1$lld–%2$lld"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descanso %1$lld–%2$lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mi-temps %1$lld–%2$lld"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intervalo %1$lld–%2$lld"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intervalo %1$lld–%2$lld"
+          }
+        }
+      }
+    },
+    "L" : {
+      "comment" : "Standings table column header: abbreviation for \"Lost\" (games lost). Keep as short as the other column headers in this table.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "P"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "P"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D"
           }
         }
       }
@@ -661,6 +787,12 @@
           }
         },
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legal"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Legal"
@@ -683,12 +815,6 @@
             "state" : "translated",
             "value" : "Legal"
           }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Legal"
-          }
         }
       }
     },
@@ -705,6 +831,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "LIVE"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EN VIVO"
           }
         },
         "fr" : {
@@ -724,12 +856,6 @@
             "state" : "translated",
             "value" : "AO VIVO"
           }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "EN VIVO"
-          }
         }
       }
     },
@@ -748,6 +874,12 @@
             "value" : "Matchday"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jornada"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -761,12 +893,6 @@
           }
         },
         "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jornada"
-          }
-        },
-        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jornada"
@@ -789,6 +915,12 @@
             "value" : "More"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -805,12 +937,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mais"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Más"
           }
         }
       }
@@ -830,6 +956,12 @@
             "value" : "More settings coming soon"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más ajustes próximamente"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -846,12 +978,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mais definições brevemente"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Más ajustes próximamente"
           }
         }
       }
@@ -871,6 +997,12 @@
             "value" : "No events yet"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aún no hay eventos"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -887,12 +1019,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ainda sem eventos"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aún no hay eventos"
           }
         }
       }
@@ -912,6 +1038,12 @@
             "value" : "No upcoming matches"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay próximos partidos"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -928,12 +1060,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sem jogos agendados"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No hay próximos partidos"
           }
         }
       }
@@ -953,6 +1079,12 @@
             "value" : "Own Goal"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autogol"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -970,11 +1102,47 @@
             "state" : "translated",
             "value" : "Golo Contra"
           }
+        }
+      }
+    },
+    "P" : {
+      "comment" : "Standings table column header: abbreviation for \"Played\" (games played). Keep as short as the other column headers in this table.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "P"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "P"
+          }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Autogol"
+            "value" : "J"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "J"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "J"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "J"
           }
         }
       }
@@ -994,6 +1162,12 @@
             "value" : "Penalty"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penalti"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1011,12 +1185,6 @@
             "state" : "translated",
             "value" : "Penálti"
           }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Penalti"
-          }
         }
       }
     },
@@ -1030,6 +1198,12 @@
           }
         },
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PPD"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "PPD"
@@ -1052,12 +1226,6 @@
             "state" : "translated",
             "value" : "ADIADO"
           }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PPD"
-          }
         }
       }
     },
@@ -1074,6 +1242,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Preferences"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preferencias"
           }
         },
         "fr" : {
@@ -1093,11 +1267,47 @@
             "state" : "translated",
             "value" : "Preferências"
           }
+        }
+      }
+    },
+    "Pts" : {
+      "comment" : "Standings table column header: abbreviation for \"Points\". Keep as short as the other column headers in this table.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pts"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pts"
+          }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Preferencias"
+            "value" : "Pts"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pts"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "P"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "P"
           }
         }
       }
@@ -1129,6 +1339,12 @@
             "value" : "Round"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ronda"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1146,53 +1362,47 @@
             "state" : "translated",
             "value" : "Jornada"
           }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ronda"
-          }
         }
       }
     },
-    "Round %@" : {
+    "Round %lld" : {
       "comment" : "The round-number eyebrow shown on the match detail screen, e.g. 'Round 18'. The argument is the round number.",
       "isCommentAutoGenerated" : true,
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Round %1$@"
+            "state" : "translated",
+            "value" : "Round %1$lld"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Round %1$@"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Journée %1$@"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rodada %1$@"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jornada %1$@"
+            "value" : "Round %1$lld"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ronda %1$@"
+            "value" : "Ronda %1$lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Journée %1$lld"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rodada %1$lld"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jornada %1$lld"
           }
         }
       }
@@ -1212,6 +1422,12 @@
             "value" : "Stadium"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estadio"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1228,12 +1444,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Estádio"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Estadio"
           }
         }
       }
@@ -1253,6 +1463,12 @@
             "value" : "Standings"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clasificación"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1270,11 +1486,22 @@
             "state" : "translated",
             "value" : "Classificação"
           }
-        },
+        }
+      }
+    },
+    "Team Theme" : {
+      "extractionState" : "manual",
+      "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Clasificación"
+            "value" : "Temas de Equipos"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temas de Times"
           }
         }
       }
@@ -1294,6 +1521,12 @@
             "value" : "Terms of Service"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Términos de servicio"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1310,12 +1543,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Termos de Serviço"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Términos de servicio"
           }
         }
       }
@@ -1336,6 +1563,12 @@
             "value" : "By using this app, you agree to the following terms.\n\n1. About This App\nThis app provides live scores, fixtures, and standings for the %@ championship. Match, team, and competition data is provided by a third-party sports data API and is displayed as received; we do not guarantee its accuracy or timeliness.\n\n2. Acceptable Use\nYou agree to use this app only for lawful purposes and not to attempt to disrupt, reverse-engineer, or gain unauthorised access to its underlying services.\n\n3. No Warranty\nThis app is provided \"as is,\" without warranties of any kind. We are not liable for any inaccuracies in match data, missed updates, or interruptions in service.\n\n4. Changes to These Terms\nWe may update these terms from time to time. Continued use of the app after changes constitutes acceptance of the updated terms.\n\n5. Contact\nQuestions about these terms can be directed to the app's support contact listed on the app's App Store page."
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Al utilizar esta aplicación, aceptas los siguientes términos.\n\n1. Sobre esta aplicación\nEsta aplicación ofrece resultados en directo, calendario y clasificación del campeonato %@. Los datos de partidos, equipos y competición son proporcionados por una API deportiva de terceros y se muestran tal como se reciben; no garantizamos su precisión ni su actualización puntual.\n\n2. Uso aceptable\nAceptas utilizar esta aplicación únicamente con fines lícitos y no intentar interrumpir, aplicar ingeniería inversa ni acceder sin autorización a sus servicios subyacentes.\n\n3. Sin garantía\nEsta aplicación se ofrece \"tal cual\", sin garantías de ningún tipo. No nos hacemos responsables de posibles inexactitudes en los datos de los partidos, actualizaciones no realizadas o interrupciones del servicio.\n\n4. Cambios en estos términos\nPodemos actualizar estos términos ocasionalmente. El uso continuado de la aplicación tras dichos cambios constituye la aceptación de los términos actualizados.\n\n5. Contacto\nLas preguntas sobre estos términos pueden dirigirse al contacto de soporte de la aplicación que figura en su página de la App Store."
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1352,12 +1585,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ao utilizar esta aplicação, concorda com os seguintes termos.\n\n1. Sobre esta aplicação\nEsta aplicação fornece resultados ao vivo, jogos e classificação do campeonato %@. Os dados de jogos, equipas e competição são fornecidos por uma API desportiva de terceiros e apresentados tal como recebidos; não garantimos a sua exatidão ou atualização em tempo real.\n\n2. Utilização aceitável\nCompromete-se a utilizar esta aplicação apenas para fins lícitos e a não tentar interromper, efetuar engenharia inversa ou obter acesso não autorizado aos seus serviços subjacentes.\n\n3. Sem garantias\nEsta aplicação é fornecida \"tal como está\", sem garantias de qualquer tipo. Não nos responsabilizamos por imprecisões nos dados dos jogos, atualizações em falta ou interrupções no serviço.\n\n4. Alterações a estes termos\nPodemos atualizar estes termos periodicamente. A utilização continuada da aplicação após alterações constitui aceitação dos novos termos.\n\n5. Contacto\nQuestões sobre estes termos podem ser enviadas para o contacto de suporte indicado na página da aplicação na App Store."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Al utilizar esta aplicación, aceptas los siguientes términos.\n\n1. Sobre esta aplicación\nEsta aplicación ofrece resultados en directo, calendario y clasificación del campeonato %@. Los datos de partidos, equipos y competición son proporcionados por una API deportiva de terceros y se muestran tal como se reciben; no garantizamos su precisión ni su actualización puntual.\n\n2. Uso aceptable\nAceptas utilizar esta aplicación únicamente con fines lícitos y no intentar interrumpir, aplicar ingeniería inversa ni acceder sin autorización a sus servicios subyacentes.\n\n3. Sin garantía\nEsta aplicación se ofrece \"tal cual\", sin garantías de ningún tipo. No nos hacemos responsables de posibles inexactitudes en los datos de los partidos, actualizaciones no realizadas o interrupciones del servicio.\n\n4. Cambios en estos términos\nPodemos actualizar estos términos ocasionalmente. El uso continuado de la aplicación tras dichos cambios constituye la aceptación de los términos actualizados.\n\n5. Contacto\nLas preguntas sobre estos términos pueden dirigirse al contacto de soporte de la aplicación que figura en su página de la App Store."
           }
         }
       }
@@ -1377,6 +1604,12 @@
             "value" : "Timeline"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cronología"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1393,12 +1626,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cronologia"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cronología"
           }
         }
       }
@@ -1418,6 +1645,12 @@
             "value" : "Today"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoy"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1434,12 +1667,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hoje"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hoy"
           }
         }
       }
@@ -1459,6 +1686,12 @@
             "value" : "Venue TBD"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sede por confirmar"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1475,12 +1708,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Local a definir"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sede por confirmar"
           }
         }
       }
@@ -1500,6 +1727,12 @@
             "value" : "VS"
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VS"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1517,28 +1750,47 @@
             "state" : "translated",
             "value" : "X"
           }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "VS"
-          }
         }
       }
     },
-    "Team Theme" : {
+    "W" : {
+      "comment" : "Standings table column header: abbreviation for \"Won\" (games won). Keep as short as the other column headers in this table.",
       "extractionState" : "manual",
       "localizations" : {
-        "pt-BR" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Temas de Times"
+            "value" : "W"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "W"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Temas de Equipos"
+            "value" : "G"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "G"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "V"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "V"
           }
         }
       }

@@ -60,12 +60,12 @@ struct StandingsView: View {
         HStack(spacing: 0) {
             Color.clear.frame(width: Self.leadingWidth)
             Color.clear.frame(maxWidth: .infinity)
-            columnHeader("P")
-            columnHeader("W")
-            columnHeader("D")
-            columnHeader("L")
-            columnHeader("GD", width: Self.goalDifferenceWidth)
-            columnHeader("Pts")
+            columnHeader(String(localized: "P", comment: "Standings table column header: abbreviation for \"Played\" (games played). Keep as short as the other column headers in this table."))
+            columnHeader(String(localized: "W", comment: "Standings table column header: abbreviation for \"Won\" (games won). Keep as short as the other column headers in this table."))
+            columnHeader(String(localized: "D", comment: "Standings table column header: abbreviation for \"Drawn\" (games drawn). Keep as short as the other column headers in this table."))
+            columnHeader(String(localized: "L", comment: "Standings table column header: abbreviation for \"Lost\" (games lost). Keep as short as the other column headers in this table."))
+            columnHeader(String(localized: "GD", comment: "Standings table column header: abbreviation for \"Goal Difference\". Keep as short as the other column headers in this table."), width: Self.goalDifferenceWidth)
+            columnHeader(String(localized: "Pts", comment: "Standings table column header: abbreviation for \"Points\". Keep as short as the other column headers in this table."))
         }
         .padding(.bottom, 8)
     }
