@@ -6,6 +6,7 @@ struct MatchdayView: View {
     let service: MatchService
     let themeStore: TeamThemeStore
     @Environment(\.themeTokens) private var themeTokens
+    @Environment(\.scenePhase) private var scenePhase
 
     init(service: MatchService, themeStore: TeamThemeStore) {
         _viewModel = State(initialValue: MatchdayViewModel(service: service, themeStore: themeStore))
@@ -69,7 +70,11 @@ struct MatchdayView: View {
                     await viewModel.load()
                     proxy.scrollTo(Self.topAnchor, anchor: .top)
                 }
-                .task { await viewModel.loadOnce() }
+                .task(id: scenePhase) {
+                    guard scenePhase == .active else { return }
+                    await viewModel.refreshIfNeeded()
+                    await viewModel.pollWhileLive()
+                }
                 .sheet(item: $selectedMatch) { match in
                     MatchDetailView(match: match, service: service)
                 }
