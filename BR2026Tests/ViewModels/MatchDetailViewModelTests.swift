@@ -37,4 +37,28 @@ struct MatchDetailViewModelTests {
 
         #expect(viewModel.events.isEmpty)
     }
+
+    @Test("isLive is true when the match status is live")
+    func isLiveTrueWhenLive() {
+        let match = Match(
+            id: 42, utcDate: Date(), status: .live, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: 1, awayScore: 0, winner: nil, venue: nil, minute: 30
+        )
+        let service = StubMatchService(matches: [match], standings: [])
+        let viewModel = MatchDetailViewModel(match: match, service: service)
+
+        #expect(viewModel.isLive == true)
+    }
+
+    @Test("isLive is false when the match status is not live")
+    func isLiveFalseWhenNotLive() {
+        let match = Match(
+            id: 42, utcDate: Date(), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let service = StubMatchService(matches: [match], standings: [])
+        let viewModel = MatchDetailViewModel(match: match, service: service)
+
+        #expect(viewModel.isLive == false)
+    }
 }

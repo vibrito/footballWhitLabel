@@ -19,4 +19,12 @@ final class MatchDetailViewModel {
         defer { isLoading = false }
         events = (try? await service.fetchEvents(matchID: match.id)) ?? []
     }
+
+    var isLive: Bool {
+        match.status == .live
+    }
+
+    func pollWhileLive() async {
+        await LivePoller.run(interval: .seconds(30), shouldContinue: { isLive }, action: { await load() })
+    }
 }
