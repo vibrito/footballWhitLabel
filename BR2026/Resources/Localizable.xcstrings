@@ -26,6 +26,12 @@
             "state" : "translated",
             "value" : ""
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
         }
       }
     },
@@ -52,6 +58,12 @@
           }
         },
         "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@"
@@ -92,6 +104,12 @@
             "state" : "translated",
             "value" : "%1$@ – %2$@"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ – %2$@"
+          }
         }
       }
     },
@@ -124,6 +142,12 @@
           }
         },
         "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ · %2$@"
@@ -164,6 +188,12 @@
             "state" : "translated",
             "value" : "%1$@ · FIM"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · FT"
+          }
         }
       }
     },
@@ -200,6 +230,12 @@
             "state" : "translated",
             "value" : "Também %1$@"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "También %1$@"
+          }
         }
       }
     },
@@ -234,6 +270,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Também hoje"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "También hoy"
           }
         }
       }
@@ -270,6 +312,12 @@
             "state" : "translated",
             "value" : "Ícone da Aplicação"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Icono de la aplicación"
+          }
         }
       }
     },
@@ -304,6 +352,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Consulte o Calendário para todos os jogos da época"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consulta Calendario para ver el horario completo"
           }
         }
       }
@@ -340,6 +394,12 @@
             "state" : "translated",
             "value" : "Não foi possível alterar o ícone da aplicação. Tente novamente."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo cambiar el icono de la aplicación. Inténtalo de nuevo."
+          }
         }
       }
     },
@@ -374,6 +434,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Padrão"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Predeterminado"
           }
         }
       }
@@ -410,6 +476,12 @@
             "state" : "translated",
             "value" : "Encerrado"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finalizado"
+          }
         }
       }
     },
@@ -444,6 +516,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Calendário"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calendario"
           }
         }
       }
@@ -481,6 +559,12 @@
             "state" : "translated",
             "value" : "Por %1$@"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para %1$@"
+          }
         }
       }
     },
@@ -515,6 +599,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "FIM"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FT"
           }
         }
       }
@@ -552,6 +642,12 @@
             "state" : "translated",
             "value" : "Intervalo %1$@–%2$@"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descanso %1$@–%2$@"
+          }
         }
       }
     },
@@ -583,6 +679,12 @@
           }
         },
         "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legal"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Legal"
@@ -622,6 +724,12 @@
             "state" : "translated",
             "value" : "AO VIVO"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "EN VIVO"
+          }
         }
       }
     },
@@ -653,6 +761,12 @@
           }
         },
         "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jornada"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jornada"
@@ -692,6 +806,12 @@
             "state" : "translated",
             "value" : "Mais"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más"
+          }
         }
       }
     },
@@ -726,6 +846,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mais definições brevemente"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más ajustes próximamente"
           }
         }
       }
@@ -762,6 +888,12 @@
             "state" : "translated",
             "value" : "Ainda sem eventos"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aún no hay eventos"
+          }
         }
       }
     },
@@ -796,6 +928,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sem jogos agendados"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay próximos partidos"
           }
         }
       }
@@ -832,6 +970,12 @@
             "state" : "translated",
             "value" : "Golo Contra"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autogol"
+          }
         }
       }
     },
@@ -866,6 +1010,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Penálti"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penalti"
           }
         }
       }
@@ -902,6 +1052,12 @@
             "state" : "translated",
             "value" : "ADIADO"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PPD"
+          }
         }
       }
     },
@@ -937,12 +1093,26 @@
             "state" : "translated",
             "value" : "Preferências"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preferencias"
+          }
         }
       }
     },
     "Restore Purchases" : {
       "comment" : "A button that restores purchases.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurar compras"
+          }
+        }
+      }
     },
     "Round" : {
       "extractionState" : "manual",
@@ -975,6 +1145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jornada"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ronda"
           }
         }
       }
@@ -1012,6 +1188,12 @@
             "state" : "translated",
             "value" : "Jornada %1$@"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ronda %1$@"
+          }
         }
       }
     },
@@ -1046,6 +1228,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Estádio"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estadio"
           }
         }
       }
@@ -1082,6 +1270,12 @@
             "state" : "translated",
             "value" : "Classificação"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clasificación"
+          }
         }
       }
     },
@@ -1116,6 +1310,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Termos de Serviço"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Términos de servicio"
           }
         }
       }
@@ -1153,6 +1353,12 @@
             "state" : "translated",
             "value" : "Ao utilizar esta aplicação, concorda com os seguintes termos.\n\n1. Sobre esta aplicação\nEsta aplicação fornece resultados ao vivo, jogos e classificação do Campeonato Brasileiro. Os dados de jogos, equipas e competição são fornecidos por uma API desportiva de terceiros e apresentados tal como recebidos; não garantimos a sua exatidão ou atualização em tempo real.\n\n2. Utilização aceitável\nCompromete-se a utilizar esta aplicação apenas para fins lícitos e a não tentar interromper, efetuar engenharia inversa ou obter acesso não autorizado aos seus serviços subjacentes.\n\n3. Sem garantias\nEsta aplicação é fornecida \"tal como está\", sem garantias de qualquer tipo. Não nos responsabilizamos por imprecisões nos dados dos jogos, atualizações em falta ou interrupções no serviço.\n\n4. Alterações a estes termos\nPodemos atualizar estes termos periodicamente. A utilização continuada da aplicação após alterações constitui aceitação dos novos termos.\n\n5. Contacto\nQuestões sobre estes termos podem ser enviadas para o contacto de suporte indicado na página da aplicação na App Store."
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Al utilizar esta aplicación, aceptas los siguientes términos.\n\n1. Sobre esta aplicación\nEsta aplicación ofrece resultados en directo, calendario y clasificación del campeonato %@. Los datos de partidos, equipos y competición son proporcionados por una API deportiva de terceros y se muestran tal como se reciben; no garantizamos su precisión ni su actualización puntual.\n\n2. Uso aceptable\nAceptas utilizar esta aplicación únicamente con fines lícitos y no intentar interrumpir, aplicar ingeniería inversa ni acceder sin autorización a sus servicios subyacentes.\n\n3. Sin garantía\nEsta aplicación se ofrece \"tal cual\", sin garantías de ningún tipo. No nos hacemos responsables de posibles inexactitudes en los datos de los partidos, actualizaciones no realizadas o interrupciones del servicio.\n\n4. Cambios en estos términos\nPodemos actualizar estos términos ocasionalmente. El uso continuado de la aplicación tras dichos cambios constituye la aceptación de los términos actualizados.\n\n5. Contacto\nLas preguntas sobre estos términos pueden dirigirse al contacto de soporte de la aplicación que figura en su página de la App Store."
+          }
         }
       }
     },
@@ -1187,6 +1393,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cronologia"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cronología"
           }
         }
       }
@@ -1223,6 +1435,12 @@
             "state" : "translated",
             "value" : "Hoje"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoy"
+          }
         }
       }
     },
@@ -1257,6 +1475,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Local a definir"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sede por confirmar"
           }
         }
       }
@@ -1293,6 +1517,12 @@
             "state" : "translated",
             "value" : "X"
           }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VS"
+          }
         }
       }
     },
@@ -1303,6 +1533,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Temas de Times"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temas de Equipos"
           }
         }
       }
