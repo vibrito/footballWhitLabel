@@ -1,10 +1,10 @@
 # Roadmap
 
-Status as of 2026-07-13: Premier League 2026, Ligue 1 2026, and Liga Portugal 2026 are
-submitted to App Store review (alongside the already-live Brasileirão/BR2026). Once these
-clear review, the agreed next steps are, in order:
+Status as of 2026-07-16: Premier League 2026, Ligue 1 2026, and Liga Portugal 2026 are
+submitted to App Store review (alongside the already-live Brasileirão/BR2026). Item #1
+below has shipped. The agreed next steps are, in order:
 
-## 1. In-app-purchase team themes
+## 1. In-app-purchase team themes ✅ Shipped 2026-07-16
 
 Purchasable per-team customization: alternate app icon, accent colors, and the purchased
 team featured in the Matchday hero card, always where possible.
@@ -36,6 +36,13 @@ Companion experiences across the platform.
 Location-based broadcast channel listings per match — show which channels are airing a
 given match based on the user's location. Not strictly sequenced; can be fit in anytime
 relative to the other items.
+
+## 6b. Relegation and Libertadores zones in Standings
+
+Visually mark the relevant position ranges in the Standings table — relegation zone,
+Copa Libertadores qualification, and (where applicable) Copa Sudamericana/other continental
+slots — the way most football standings tables do (colored row accents or a side marker
+per zone). Not strictly sequenced, same as the where-to-watch page; can be fit in anytime.
 
 ## 7. Cross-app linking
 
