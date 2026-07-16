@@ -57,4 +57,15 @@ struct ChampionshipConfigTests {
         #expect(config.tabSelectionColorHex == "#005EB8")
         #expect(config.apiBaseURL.absoluteString == "https://football-api-production-16d9.up.railway.app")
     }
+
+    @Test("La Liga config has expected values")
+    func laLigaDefaults() {
+        let config = ChampionshipConfig.laLiga
+        #expect(config.id == "la-liga")
+        #expect(config.competitionCode == "PD")
+        #expect(config.displayName == "La Liga")
+        #expect(config.accentColorHex == "#AA151B")
+        #expect(config.tabSelectionColorHex == "#F1BF00")
+        #expect(config.apiBaseURL.absoluteString == "https://football-api-production-16d9.up.railway.app")
+    }
 }

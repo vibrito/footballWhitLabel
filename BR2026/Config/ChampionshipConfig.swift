@@ -67,4 +67,13 @@ extension ChampionshipConfig {
         tabSelectionColorHex: "#005EB8",
         apiBaseURL: sharedAPIBaseURL
     )
+
+    static let laLiga = ChampionshipConfig(
+        id: "la-liga",
+        displayName: "La Liga",
+        competitionCode: "PD",
+        accentColorHex: "#AA151B",
+        tabSelectionColorHex: "#F1BF00",
+        apiBaseURL: sharedAPIBaseURL
+    )
 }
