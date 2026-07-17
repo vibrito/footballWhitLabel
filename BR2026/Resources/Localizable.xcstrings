@@ -1837,7 +1837,7 @@
         }
       }
     },
-    "%1$@ versus %2$@, kicks off at %3$@": {
+    "%@ versus %@, kicks off at %@": {
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1878,7 +1878,7 @@
         }
       }
     },
-    "%1$@ versus %2$@, postponed": {
+    "%@ versus %@, postponed": {
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1919,7 +1919,7 @@
         }
       }
     },
-    "%1$@ versus %2$@, live": {
+    "%@ versus %@, live": {
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1960,7 +1960,7 @@
         }
       }
     },
-    "%1$@ %2$@, %3$@ %4$@, live, %5$@ minute": {
+    "%@ %@, %@ %@, live, %@ minute": {
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2001,7 +2001,7 @@
         }
       }
     },
-    "%1$@ versus %2$@, final score": {
+    "%@ versus %@, final score": {
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2042,7 +2042,7 @@
         }
       }
     },
-    "%1$@ %2$@, %3$@ %4$@, final score": {
+    "%@ %@, %@ %@, final score": {
       "extractionState": "manual",
       "localizations": {
         "en": {
