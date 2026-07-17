@@ -6,6 +6,7 @@ struct LiveChip: View {
     @Environment(\.themeTokens) private var themeTokens
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var pulse = false
+    @ScaledMetric private var fontSize: CGFloat = 11
 
     private var chipText: String {
         if isHalftime {
@@ -36,7 +37,7 @@ struct LiveChip: View {
                 .opacity(pulse ? 0.35 : 1)
                 .scaleEffect(pulse ? 0.8 : 1)
             Text(chipText)
-                .font(.system(size: 11, weight: .heavy))
+                .font(.system(size: fontSize, weight: .heavy))
                 .tracking(0.5)
                 .monospacedDigit()
         }

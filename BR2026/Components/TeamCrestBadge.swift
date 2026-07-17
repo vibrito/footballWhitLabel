@@ -9,6 +9,16 @@ struct TeamCrestBadge: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.themeTokens) private var themeTokens
     @State private var imageData: Data?
+    // Seeded (not a static default) since it's derived from the caller-supplied `size`
+    // parameter, not a fixed literal — still responsive to Dynamic Type via the normal
+    // @ScaledMetric mechanism, just initialized proportionally instead of with a constant.
+    @ScaledMetric private var initialsFontSize: CGFloat
+
+    init(team: Team, size: CGFloat = 32) {
+        self.team = team
+        self.size = size
+        self._initialsFontSize = ScaledMetric(wrappedValue: size * 0.4)
+    }
 
     var body: some View {
         Group {
@@ -47,7 +57,7 @@ struct TeamCrestBadge: View {
             .fill(.white.opacity(0.07))
             .overlay(
                 Text(initials)
-                    .font(.system(size: size * 0.4, weight: .bold))
+                    .font(.system(size: initialsFontSize, weight: .bold))
                     .foregroundStyle(themeTokens.textColor.opacity(0.55))
             )
     }

@@ -3,6 +3,8 @@ import SwiftUI
 struct ScoreRow: View {
     let match: Match
     @Environment(\.themeTokens) private var themeTokens
+    @ScaledMetric private var teamNameFontSize: CGFloat = 16
+    @ScaledMetric private var scoreFontSize: CGFloat = 19
 
     var body: some View {
         HStack {
@@ -25,7 +27,7 @@ struct ScoreRow: View {
         HStack(spacing: 8) {
             TeamCrestBadge(team: team)
             Text(team.displayName)
-                .font(.system(size: 16, weight: .semibold))
+                .font(.system(size: teamNameFontSize, weight: .semibold))
                 .foregroundStyle(themeTokens.textColor)
         }
     }
@@ -38,7 +40,7 @@ struct ScoreRow: View {
                 Text(match.utcDate, style: .time)
             }
         }
-        .font(.system(size: 19, weight: .heavy))
+        .font(.system(size: scoreFontSize, weight: .heavy))
         .monospacedDigit()
         .foregroundStyle(themeTokens.textColor)
     }

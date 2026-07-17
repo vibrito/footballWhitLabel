@@ -3,9 +3,11 @@ import SwiftUI
 struct AccentPill: View {
     let text: String
 
+    @ScaledMetric private var fontSize: CGFloat = 11
+
     var body: some View {
         Text(text)
-            .font(.system(size: 11, weight: .bold))
+            .font(.system(size: fontSize, weight: .bold))
             .tracking(0.3)
             .padding(.horizontal, 10)
             .padding(.vertical, 5)
