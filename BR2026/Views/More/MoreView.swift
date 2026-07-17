@@ -73,6 +73,7 @@ struct MoreView: View {
             Image(uiImage: uiImage)
                 .resizable()
                 .scaledToFit()
+                .accessibilityHidden(true)
         } else {
             AsyncImage(url: viewModel.competitionLogoURL) { phase in
                 switch phase {
@@ -88,6 +89,7 @@ struct MoreView: View {
                         )
                 }
             }
+            .accessibilityHidden(true)
         }
     }
 
@@ -148,5 +150,7 @@ struct MoreView: View {
         // `Spacer()` in between has nothing to hit-test against, so tapping the empty
         // middle of the row does nothing.
         .contentShape(Rectangle())
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(String(localized: row.titleKey))
     }
 }
