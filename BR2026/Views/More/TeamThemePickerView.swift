@@ -60,6 +60,7 @@ struct TeamThemePickerView: View {
                 }
                 Spacer()
                 trailingSlot(option)
+                    .accessibilityHidden(true)
             }
             .font(.system(size: 16, weight: .semibold))
             .foregroundStyle(themeTokens.textColor)
@@ -67,6 +68,26 @@ struct TeamThemePickerView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(rowAccessibilityLabel(option))
+    }
+
+    private func rowAccessibilityLabel(_ option: TeamThemeOption?) -> String {
+        let name = option.map { String(localized: $0.displayName) } ?? String(localized: "Default", comment: "VoiceOver label for the Team Theme picker's non-team default row.")
+        if let option, !viewModel.isPurchased(option) {
+            let price = viewModel.price(for: option) ?? ""
+            return String(
+                localized: "\(name), locked, \(price)",
+                comment: "VoiceOver label for a locked, purchasable team theme option. Arguments: the option's display name, its price."
+            )
+        }
+        if viewModel.selectedOption == option {
+            return String(
+                localized: "\(name), selected",
+                comment: "VoiceOver label for the currently-selected team theme option (or Default). Argument: the option's display name."
+            )
+        }
+        return name
     }
 
     @ViewBuilder

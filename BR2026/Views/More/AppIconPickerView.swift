@@ -69,7 +69,8 @@ struct AppIconPickerView: View {
     }
 
     private func freeRowView(_ option: AppIconOption) -> some View {
-        Button {
+        let isSelected = viewModel.isSelected(option)
+        return Button {
             Task { await viewModel.select(option) }
         } label: {
             HStack(spacing: 12) {
@@ -78,13 +79,15 @@ struct AppIconPickerView: View {
                     .scaledToFit()
                     .frame(width: 44, height: 44)
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    .accessibilityHidden(true)
                 Text(option.displayName)
                     .font(.system(size: 16, weight: .semibold))
                 Spacer()
-                if viewModel.isSelected(option) {
+                if isSelected {
                     Image(systemName: "checkmark")
                         .font(.system(size: 15, weight: .semibold))
                         .foregroundStyle(.white)
+                        .accessibilityHidden(true)
                 }
             }
             .foregroundStyle(themeTokens.textColor)
@@ -92,6 +95,8 @@ struct AppIconPickerView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(isSelected ? String(localized: "\(option.displayName), selected", comment: "VoiceOver label for the currently-selected app icon option. Argument: the icon's display name.") : String(localized: option.displayName))
     }
 
     private func teamRowView(_ option: TeamIconOption) -> some View {
@@ -104,16 +109,37 @@ struct AppIconPickerView: View {
                     .scaledToFit()
                     .frame(width: 44, height: 44)
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    .accessibilityHidden(true)
                 Text(option.displayName)
                     .font(.system(size: 16, weight: .semibold))
                 Spacer()
                 teamTrailingSlot(option)
+                    .accessibilityHidden(true)
             }
             .foregroundStyle(themeTokens.textColor)
             .padding(.vertical, 10)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(teamRowAccessibilityLabel(option))
+    }
+
+    private func teamRowAccessibilityLabel(_ option: TeamIconOption) -> String {
+        if !viewModel.isPurchased(option) {
+            let price = viewModel.price(for: option) ?? ""
+            return String(
+                localized: "\(option.displayName), locked, \(price)",
+                comment: "VoiceOver label for a locked, purchasable team icon option. Arguments: the option's display name, its price."
+            )
+        }
+        if viewModel.isSelected(option) {
+            return String(
+                localized: "\(option.displayName), selected",
+                comment: "VoiceOver label for the currently-selected team icon option. Argument: the option's display name."
+            )
+        }
+        return String(localized: option.displayName)
     }
 
     @ViewBuilder
