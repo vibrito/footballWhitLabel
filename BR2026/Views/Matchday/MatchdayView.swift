@@ -7,6 +7,11 @@ struct MatchdayView: View {
     let themeStore: TeamThemeStore
     @Environment(\.themeTokens) private var themeTokens
     @Environment(\.scenePhase) private var scenePhase
+    @ScaledMetric private var eyebrowFontSize: CGFloat = 11
+    @ScaledMetric private var titleFontSize: CGFloat = 32
+    @ScaledMetric private var sectionHeaderFontSize: CGFloat = 13
+    @ScaledMetric private var emptyStateTitleFontSize: CGFloat = 16
+    @ScaledMetric private var emptyStateSubtitleFontSize: CGFloat = 13
 
     init(service: MatchService, themeStore: TeamThemeStore) {
         _viewModel = State(initialValue: MatchdayViewModel(service: service, themeStore: themeStore))
@@ -88,12 +93,12 @@ struct MatchdayView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 4) {
             eyebrowLabel
-                .font(.system(size: 11, weight: .bold))
+                .font(.system(size: eyebrowFontSize, weight: .bold))
                 .tracking(1.4)
                 .foregroundStyle(themeTokens.textColor.opacity(0.5))
                 .textCase(.uppercase)
             Text(titleLabel)
-                .font(.system(size: 32, weight: .heavy))
+                .font(.system(size: titleFontSize, weight: .heavy))
                 .tracking(-0.5)
                 .foregroundStyle(themeTokens.textColor)
         }
@@ -103,7 +108,7 @@ struct MatchdayView: View {
     private func matchSection(title: Text, matches: [Match]) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             title
-                .font(.system(size: 13, weight: .bold))
+                .font(.system(size: sectionHeaderFontSize, weight: .bold))
                 .tracking(0.8)
                 .foregroundStyle(themeTokens.textColor.opacity(0.5))
                 .textCase(.uppercase)
@@ -145,10 +150,10 @@ struct MatchdayView: View {
     private var emptyState: some View {
         VStack(spacing: 8) {
             Text("No upcoming matches")
-                .font(.system(size: 16, weight: .semibold))
+                .font(.system(size: emptyStateTitleFontSize, weight: .semibold))
                 .foregroundStyle(themeTokens.textColor.opacity(0.70))
             Text("Check Fixtures for the full schedule")
-                .font(.system(size: 13))
+                .font(.system(size: emptyStateSubtitleFontSize))
                 .foregroundStyle(themeTokens.textColor.opacity(0.45))
         }
         .frame(maxWidth: .infinity)

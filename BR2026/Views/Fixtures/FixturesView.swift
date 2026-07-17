@@ -7,6 +7,8 @@ struct FixturesView: View {
     @Environment(\.themeTokens) private var themeTokens
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @ScaledMetric private var roundLabelFontSize: CGFloat = 10
+    @ScaledMetric private var roundNumberFontSize: CGFloat = 17
 
     init(service: MatchService) {
         _viewModel = State(initialValue: FixturesViewModel(service: service))
@@ -95,10 +97,10 @@ struct FixturesView: View {
         } label: {
             VStack(spacing: 2) {
                 Text("Round")
-                    .font(.system(size: 10, weight: .bold))
+                    .font(.system(size: roundLabelFontSize, weight: .bold))
                     .tracking(0.4)
                 Text("\(round)")
-                    .font(.system(size: 17, weight: .heavy))
+                    .font(.system(size: roundNumberFontSize, weight: .heavy))
                     .monospacedDigit()
             }
             .foregroundStyle(isSelected ? themeTokens.textColor : themeTokens.textColor.opacity(0.55))
