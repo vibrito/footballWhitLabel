@@ -117,6 +117,20 @@ These labels appear in two places:
 - Any change to how standings are fetched/refreshed/persisted beyond adding the one new
   field — the existing delete-and-reinsert refresh strategy is unaffected.
 
+### Known limitation: Scottish Premiership's split-season format
+
+Confirmed a known, accepted quirk rather than a bug: SPL's API returns `"Premiership
+(Relegation Group)"` for the entire bottom-six split and `"Promotion - Premiership
+(Championship Group)"` for the entire top-six split, once the league's mid-season split
+happens — not a literal per-team relegation/qualification boundary the way BSA/PL/PD/FL1/PPL
+use the field. Under this plan's keyword classification, all 6 teams in each split get the
+same marker, even though only a subset of each group actually relegates/qualifies for
+Europe. This is inherent to how the upstream data labels Scottish football's specific format,
+not something this plan's classification logic gets wrong — the "simple 2-tier, no
+per-competition tuning" design explicitly accepts this trade-off (see "Visual treatment"
+above). If this proves confusing in practice, revisit with SPL-specific handling as a
+follow-up, not by changing the shared classification rule.
+
 ## Testing
 
 `StandingZone` classification is pure-function, plain-Swift logic (no SwiftUI dependency,
