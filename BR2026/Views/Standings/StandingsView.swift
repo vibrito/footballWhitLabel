@@ -68,7 +68,21 @@ struct StandingsView: View {
             columnHeader(String(localized: "Pts", comment: "Standings table column header: abbreviation for \"Points\". Keep as short as the other column headers in this table."))
         }
         .padding(.bottom, 8)
-        .accessibilityHidden(true)
+        // Fully hiding this row (as opposed to giving it a meaningful combined label) left
+        // visually-rendered column-header text with zero VoiceOver representation at all —
+        // caught by AccessibilityAuditUITests' `.elementDetection` audit as "Potentially
+        // inaccessible text". Each row's own accessibilityLabel (see Standing.swift) already
+        // speaks every stat in full words, so the abbreviated header is redundant for VoiceOver
+        // users rather than essential, but it still needs *some* accessible representation
+        // instead of none — this exposes it as a single header-trait swipe stop.
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isHeader)
+        .accessibilityLabel(
+            String(
+                localized: "Table columns: Played, Won, Drawn, Lost, Goal Difference, Points",
+                comment: "VoiceOver label for the Standings table's column header row (spoken as one swipe stop) — summarizes what the abbreviated column headers (localized short forms like \"P W D L GD Pts\") mean, since the abbreviations themselves aren't announced. Each row separately speaks these same stats in full words."
+            )
+        )
     }
 
     private func columnHeader(_ text: String, width: CGFloat = columnWidth) -> some View {

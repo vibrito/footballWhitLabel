@@ -2861,6 +2861,47 @@
           }
         }
       }
+    },
+    "Table columns: Played, Won, Drawn, Lost, Goal Difference, Points": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Table columns: Played, Won, Drawn, Lost, Goal Difference, Points"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Table columns: Played, Won, Drawn, Lost, Goal Difference, Points"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colonnes du tableau : Joués, Gagnés, Nuls, Perdus, Différence de buts, Points"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colunas da tabela: Jogos, Vitórias, Empates, Derrotas, Saldo de gols, Pontos"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colunas da tabela: Jogos, Vitórias, Empates, Derrotas, Saldo de golos, Pontos"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Columnas de la tabla: Jugados, Ganados, Empatados, Perdidos, Diferencia de goles, Puntos"
+          }
+        }
+      }
     }
   },
   "version": "1.1"
