@@ -11,6 +11,15 @@ struct MatchdayViewModelTests {
         Calendar.current.date(from: DateComponents(year: 2026, month: 3, day: day, hour: hour))!
     }
 
+    private func today(hour: Int) -> Date {
+        Calendar.current.date(bySettingHour: hour, minute: 0, second: 0, of: Date())!
+    }
+
+    private func daysFromNow(_ days: Int, hour: Int) -> Date {
+        let future = Calendar.current.date(byAdding: .day, value: days, to: Date())!
+        return Calendar.current.date(bySettingHour: hour, minute: 0, second: 0, of: future)!
+    }
+
     @Test("nextMatch is the earliest live-or-scheduled match, ignoring finished ones")
     func nextMatchIsEarliestUpcoming() async {
         let finishedYesterday = Match(
@@ -176,19 +185,19 @@ struct MatchdayViewModelTests {
         #expect(viewModel.matches.map(\.id) == [1])
     }
 
-    @Test("nextMatch features the selected team's own match over an earlier league-wide match")
-    func nextMatchFeaturesSelectedTeam() async {
+    @Test("nextMatch features the selected team's own match when it's today, even over an earlier league-wide match")
+    func nextMatchFeaturesSelectedTeamWhenTodayMatch() async {
         let selectedTeam = Team(id: TeamThemeOption.palmeirasHome.teamID, name: "Palmeiras", shortName: "PAL", crestURL: nil)
         let otherTeam = Team(id: 999, name: "Other FC", shortName: "OFC", crestURL: nil)
         let earlierLeagueWideMatch = Match(
             id: 1, utcDate: date(day: 10, hour: 12), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
             homeTeam: otherTeam, awayTeam: otherTeam, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
         )
-        let selectedTeamsLaterMatch = Match(
-            id: 2, utcDate: date(day: 11, hour: 12), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+        let selectedTeamsTodayMatch = Match(
+            id: 2, utcDate: today(hour: 20), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
             homeTeam: selectedTeam, awayTeam: otherTeam, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
         )
-        let service = StubMatchService(matches: [earlierLeagueWideMatch, selectedTeamsLaterMatch], standings: [])
+        let service = StubMatchService(matches: [earlierLeagueWideMatch, selectedTeamsTodayMatch], standings: [])
         service.cachedTeamThemeColorSetOverride = TeamThemeColorSet(
             home: TeamThemeColors(mainColorHex: "006437", fontColorHex: "ffffff"),
             away: TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "035336"),
@@ -203,19 +212,19 @@ struct MatchdayViewModelTests {
         #expect(viewModel.nextMatch?.id == 2)
     }
 
-    @Test("nextMatch features the selected team's own match even when a different match is live right now")
+    @Test("nextMatch features the selected team's own today match even when a different match is live right now")
     func nextMatchFeaturesSelectedTeamOverLiveMatchElsewhere() async {
         let selectedTeam = Team(id: TeamThemeOption.palmeirasHome.teamID, name: "Palmeiras", shortName: "PAL", crestURL: nil)
         let otherTeam = Team(id: 999, name: "Other FC", shortName: "OFC", crestURL: nil)
         let liveElsewhere = Match(
-            id: 1, utcDate: date(day: 10, hour: 12), status: .live, matchday: 1, stage: "REGULAR_SEASON",
+            id: 1, utcDate: today(hour: 10), status: .live, matchday: 1, stage: "REGULAR_SEASON",
             homeTeam: otherTeam, awayTeam: otherTeam, homeScore: 1, awayScore: 0, winner: nil, venue: nil, minute: 40
         )
-        let selectedTeamsMatch = Match(
-            id: 2, utcDate: date(day: 12, hour: 12), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+        let selectedTeamsTodayMatch = Match(
+            id: 2, utcDate: today(hour: 20), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
             homeTeam: selectedTeam, awayTeam: otherTeam, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
         )
-        let service = StubMatchService(matches: [liveElsewhere, selectedTeamsMatch], standings: [])
+        let service = StubMatchService(matches: [liveElsewhere, selectedTeamsTodayMatch], standings: [])
         service.cachedTeamThemeColorSetOverride = TeamThemeColorSet(
             home: TeamThemeColors(mainColorHex: "006437", fontColorHex: "ffffff"),
             away: TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "035336"),
@@ -228,6 +237,33 @@ struct MatchdayViewModelTests {
         await viewModel.load()
 
         #expect(viewModel.nextMatch?.id == 2)
+    }
+
+    @Test("nextMatch falls back to the league-wide earliest match when the selected team's own match isn't today")
+    func nextMatchFallsBackWhenSelectedTeamMatchIsNotToday() async {
+        let selectedTeam = Team(id: TeamThemeOption.palmeirasHome.teamID, name: "Palmeiras", shortName: "PAL", crestURL: nil)
+        let otherTeam = Team(id: 999, name: "Other FC", shortName: "OFC", crestURL: nil)
+        let liveElsewhereToday = Match(
+            id: 1, utcDate: today(hour: 10), status: .live, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: otherTeam, awayTeam: otherTeam, homeScore: 1, awayScore: 0, winner: nil, venue: nil, minute: 40
+        )
+        let selectedTeamsFutureMatch = Match(
+            id: 2, utcDate: daysFromNow(10, hour: 12), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: selectedTeam, awayTeam: otherTeam, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let service = StubMatchService(matches: [liveElsewhereToday, selectedTeamsFutureMatch], standings: [])
+        service.cachedTeamThemeColorSetOverride = TeamThemeColorSet(
+            home: TeamThemeColors(mainColorHex: "006437", fontColorHex: "ffffff"),
+            away: TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "035336"),
+            third: TeamThemeColors(mainColorHex: "ffffff", fontColorHex: "2c5434")
+        )
+        let themeStore = TeamThemeStore(setting: StubTeamThemeSetting(), service: service)
+        await themeStore.select(.palmeirasHome)
+        let viewModel = MatchdayViewModel(service: service, themeStore: themeStore)
+
+        await viewModel.load()
+
+        #expect(viewModel.nextMatch?.id == 1)
     }
 
     @Test("nextMatch falls back to the league-wide earliest match when the selected team has none live/scheduled")

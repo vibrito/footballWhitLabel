@@ -15,19 +15,22 @@ final class MatchdayViewModel {
         self.themeStore = themeStore
     }
 
-    // The featured match is the selected Team Theme's own next match, if one exists —
-    // this is a personalized "your team" card, so a match live elsewhere never displaces
-    // it, and how far out it is doesn't matter as long as the season has one left. With
-    // no team selected (or that team has no live/scheduled match), this falls back to the
-    // league-wide earliest one still to be decided — a match already live sorts before any
-    // future kickoff there too, so it naturally wins over a later scheduled match without
+    // The featured match is the selected Team Theme's own next match, but only when it's
+    // happening today — the personalization is only worth surfacing when it's actually
+    // relevant to what the user would see on screen right now, not a match weeks away
+    // displacing something happening today for other teams. With no team selected (or
+    // that team has no live/scheduled match today), this falls back to the league-wide
+    // earliest one still to be decided — a match already live sorts before any future
+    // kickoff there too, so it naturally wins over a later scheduled match without
     // special-casing status.
     var nextMatch: Match? {
         if let teamID = themeStore.selectedOption?.teamID {
             let teamMatch = matches
                 .filter { ($0.homeTeam.id == teamID || $0.awayTeam.id == teamID) && ($0.status.isLiveOrHalftime || $0.status == .scheduled) }
                 .min { $0.utcDate < $1.utcDate }
-            if let teamMatch { return teamMatch }
+            if let teamMatch, Calendar.current.isDateInToday(teamMatch.utcDate) {
+                return teamMatch
+            }
         }
         return matches
             .filter { $0.status.isLiveOrHalftime || $0.status == .scheduled }
