@@ -28,6 +28,9 @@ struct HeroMatchCard: View {
             RoundedRectangle(cornerRadius: 28, style: .continuous)
                 .strokeBorder(themeTokens.overrideTabSelectionColor ?? themeTokens.overrideAccentColor ?? .clear, lineWidth: 1.5)
         )
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(match.accessibilityLabel)
+        .accessibilityHint(Text("Double tap to view match details", comment: "VoiceOver hint on a match card button."))
     }
 
     @ViewBuilder

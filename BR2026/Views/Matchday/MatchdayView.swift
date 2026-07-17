@@ -107,6 +107,7 @@ struct MatchdayView: View {
                 .tracking(0.8)
                 .foregroundStyle(themeTokens.textColor.opacity(0.5))
                 .textCase(.uppercase)
+                .accessibilityAddTraits(.isHeader)
             ForEach(matches, id: \.id) { match in
                 Button { selectedMatch = match } label: {
                     FixtureMatchCard(match: match)

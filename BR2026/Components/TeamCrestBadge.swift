@@ -24,6 +24,7 @@ struct TeamCrestBadge: View {
         .task(id: team.crestURL) {
             await loadCrest()
         }
+        .accessibilityHidden(true)
     }
 
     private func loadCrest() async {

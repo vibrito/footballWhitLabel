@@ -14,5 +14,6 @@ struct RefreshPulseDot: View {
                     pulse = true
                 }
             }
+            .accessibilityHidden(true)
     }
 }

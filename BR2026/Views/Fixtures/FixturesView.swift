@@ -105,6 +105,9 @@ struct FixturesView: View {
         }
         .buttonStyle(.plain)
         .id(round)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(String(localized: "Round \(round)", comment: "VoiceOver label for a round-picker pill. Argument: the round number."))
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 
     private static let topAnchor = "fixturesTop"

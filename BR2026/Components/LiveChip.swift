@@ -49,5 +49,6 @@ struct LiveChip: View {
                 pulse = true
             }
         }
+        .accessibilityHidden(true)
     }
 }

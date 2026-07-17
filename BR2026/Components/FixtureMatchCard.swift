@@ -18,6 +18,9 @@ struct FixtureMatchCard: View {
                 }
             }
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(match.accessibilityLabel)
+        .accessibilityHint(Text("Double tap to view match details", comment: "VoiceOver hint on a match card button."))
     }
 
     private var header: some View {
