@@ -30,5 +30,9 @@ struct ContentView: View {
         .task { await themeStore.loadOnce() }
         .task { await themePurchaseStore.loadOnce() }
         .task { await iconPurchaseStore.loadOnce() }
+        // Allows the full standard Dynamic Type range plus the first accessibility tier;
+        // caps before accessibility2-5, which can be 2-3x+ base size and are most likely to
+        // break tightly-constrained layouts like the hero score or table cells.
+        .dynamicTypeSize(...DynamicTypeSize.accessibility1)
     }
 }
