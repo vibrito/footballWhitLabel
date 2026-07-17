@@ -68,6 +68,7 @@ struct StandingsView: View {
             columnHeader(String(localized: "Pts", comment: "Standings table column header: abbreviation for \"Points\". Keep as short as the other column headers in this table."))
         }
         .padding(.bottom, 8)
+        .accessibilityHidden(true)
     }
 
     private func columnHeader(_ text: String, width: CGFloat = columnWidth) -> some View {
@@ -103,6 +104,8 @@ struct StandingsView: View {
         .monospacedDigit()
         .foregroundStyle(themeTokens.textColor)
         .padding(.vertical, 8)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(standing.accessibilityLabel)
     }
 
     private func statCell(_ text: String, width: CGFloat = columnWidth, emphasized: Bool = false) -> some View {
