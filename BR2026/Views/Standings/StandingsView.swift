@@ -5,6 +5,7 @@ struct StandingsView: View {
     @Environment(\.themeTokens) private var themeTokens
     @ScaledMetric private var columnHeaderFontSize: CGFloat = 11
     @ScaledMetric private var rowFontSize: CGFloat = 14
+    @ScaledMetric private var legendFontSize: CGFloat = 11
 
     init(service: MatchService) {
         _viewModel = State(initialValue: StandingsViewModel(service: service))
@@ -29,13 +30,18 @@ struct StandingsView: View {
         NavigationStack {
             ScrollViewReader { proxy in
                 ScrollView {
-                    GlassCard(cornerRadius: 24, style: .transparent) {
-                        VStack(spacing: 0) {
-                            Color.clear.frame(height: 0).id(Self.topAnchor)
-                            header
-                            ForEach(viewModel.standings, id: \.id) { standing in
-                                row(for: standing)
+                    VStack(spacing: 12) {
+                        GlassCard(cornerRadius: 24, style: .transparent) {
+                            VStack(spacing: 0) {
+                                Color.clear.frame(height: 0).id(Self.topAnchor)
+                                header
+                                ForEach(viewModel.standings, id: \.id) { standing in
+                                    row(for: standing)
+                                }
                             }
+                        }
+                        if viewModel.standings.contains(where: { $0.zone != .none }) {
+                            legend
                         }
                     }
                     .padding(16)
@@ -139,8 +145,44 @@ struct StandingsView: View {
         .monospacedDigit()
         .foregroundStyle(themeTokens.textColor)
         .padding(.vertical, 8)
+        .overlay(alignment: .leading) {
+            if let barColor = zoneBarColor(for: standing.zone) {
+                Rectangle()
+                    .fill(barColor)
+                    .frame(width: 3)
+                    .accessibilityHidden(true)
+            }
+        }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(standing.accessibilityLabel)
+    }
+
+    private func zoneBarColor(for zone: StandingZone) -> Color? {
+        switch zone {
+        case .qualification: return Color(hex: "2dd4bf")
+        case .relegation: return Color(hex: "ef4444")
+        case .none: return nil
+        }
+    }
+
+    private var legend: some View {
+        HStack(spacing: 16) {
+            legendItem(color: Color(hex: "2dd4bf"), label: String(localized: "Continental qualification", comment: "VoiceOver/legend label for a standings row in a continental-competition qualification position (Champions League, Copa Libertadores, Copa Sudamericana, etc., regardless of which specific competition or stage)."))
+            legendItem(color: Color(hex: "ef4444"), label: String(localized: "Relegation zone", comment: "VoiceOver/legend label for a standings row in a relegation position."))
+            Spacer()
+        }
+    }
+
+    private func legendItem(color: Color, label: String) -> some View {
+        HStack(spacing: 6) {
+            Circle()
+                .fill(color)
+                .frame(width: 8, height: 8)
+            Text(label)
+                .font(.system(size: legendFontSize, weight: .semibold))
+                .foregroundStyle(themeTokens.textColor.opacity(0.7))
+        }
+        .accessibilityElement(children: .combine)
     }
 
     private func statCell(_ text: String, width: CGFloat? = nil, emphasized: Bool = false) -> some View {

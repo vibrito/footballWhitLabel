@@ -103,6 +103,7 @@ white, white@0.85, white@0.70, white@0.55, white@0.45, white@0.40
 // Status
 advance: #2dd4bf   // teal
 playoff: #fbbf24   // amber
+relegation: #ef4444   // red
 ```
 
 ---
