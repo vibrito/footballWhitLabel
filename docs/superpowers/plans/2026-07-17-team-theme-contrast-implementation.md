@@ -20,11 +20,19 @@ for resolving `textColor`. No View/Component changes — every one of the 12 fil
   size/weight).
 - The two reference backgrounds a candidate font color hex must pass against: the app's
   fixed darkest gradient stop (`061325`, matching `ThemeTokens.defaultGradientStops[2]`) and
-  the team's own `mainColorHex`.
+  the round pill's *actual resolved* fill color — `pillFillColorHex ?? tabSelectionColorHex
+  ?? mainColorHex`, the same fallback chain `FixturesView`'s round pill already uses. **Not**
+  raw `mainColorHex` unconditionally — that was the original design and was corrected after
+  implementation revealed it produces false positives: Corinthians and Santos both override
+  the pill's fill via `pillFillColorOverrideHex` (to `000000`), so their `fontColorHex`
+  never actually renders against raw `mainColorHex` at all. Checking the wrong surface
+  flagged Santos's real, working colors (`F2F2F2` on pill fill `000000` = 18.76:1, safe) as
+  failing (`F2F2F2` on raw `mainColorHex` `82827F` = 3.44:1) — a false positive from
+  validating a color combination that never renders on screen.
 - On failure of either check, fall back to whichever of pure white (`FFFFFF`) or pure black
   (`000000`) scores higher on the *minimum* of its two contrast ratios (against the fixed
-  background and against `mainColorHex`) — not the *average*; the minimum is what determines
-  whether a candidate is safe against the worse of the two surfaces.
+  background and against the resolved pill-fill color) — not the *average*; the minimum is
+  what determines whether a candidate is safe against the worse of the two surfaces.
 - This validation applies unconditionally inside `ThemeTokens.themed(...)` — to curated
   `fontColorOverrideHex` values and raw API `fontColorHex` values alike. No bypass, no
   exceptions.
@@ -210,11 +218,13 @@ git commit -m "Add WCAGContrast utility for WCAG AA contrast-ratio math"
 
 **Interfaces:**
 - Consumes: `WCAGContrast.contrastRatio(_:_:)` from Task 1.
-- Produces: `ThemeTokens.accessibleFontColorHex(candidateHex: String, mainColorHex: String)
-  -> String` — a `static` function on `ThemeTokens`, directly unit-testable, and used
-  internally by `themed(...)`. No other public signature changes — `themed(...)`'s existing
-  parameter list and return type are unchanged; this task only changes what `textColor`
-  resolves to internally.
+- Produces: `ThemeTokens.accessibleFontColorHex(candidateHex: String, secondaryBackgroundHex:
+  String) -> String` — a `static` function on `ThemeTokens`, directly unit-testable, and used
+  internally by `themed(...)`, which resolves `secondaryBackgroundHex` to `pillFillColorHex
+  ?? tabSelectionColorHex ?? mainColorHex` before calling it (the same fallback chain the
+  round pill's fill already uses). No other public signature changes — `themed(...)`'s
+  existing parameter list and return type are unchanged; this task only changes what
+  `textColor` resolves to internally.
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -224,44 +234,61 @@ ThemeTokensTests`, after the existing tests:
 ```swift
     @Test("accessibleFontColorHex returns the candidate unchanged when it passes both contrast checks")
     func accessibleFontColorHexPassesThrough() {
-        // F2F2F2 (off-white) against a dark charcoal main color and the fixed dark
-        // background both pass WCAG AA comfortably.
-        let result = ThemeTokens.accessibleFontColorHex(candidateHex: "F2F2F2", mainColorHex: "2B2B2E")
+        // F2F2F2 (off-white) against a dark charcoal secondary background and the fixed
+        // dark background both pass WCAG AA comfortably.
+        let result = ThemeTokens.accessibleFontColorHex(candidateHex: "F2F2F2", secondaryBackgroundHex: "2B2B2E")
         #expect(result == "F2F2F2")
     }
 
     @Test("accessibleFontColorHex replaces a candidate that fails against the fixed dark background — the exact bug Corinthians' original API font color (000000) would have shipped with")
     func accessibleFontColorHexCatchesFixedBackgroundFailure() {
         // 000000 (pure black) fails against 061325 (the fixed dark background) and also
-        // fails against a realistic dark main color like 2B2B2E (Atlético Mineiro's
-        // charcoal) — this regresses the historical bug. (A near-white mainColorHex here
-        // would be a pathological edge case — see the plan's note on this — so this test
-        // deliberately uses a realistic dark team color instead.)
-        let result = ThemeTokens.accessibleFontColorHex(candidateHex: "000000", mainColorHex: "2B2B2E")
+        // fails against a realistic dark secondary background like 2B2B2E (Atlético
+        // Mineiro's charcoal) — this regresses the historical bug. (A near-white secondary
+        // background here would be a pathological edge case — see the plan's note on this
+        // — so this test deliberately uses a realistic dark team color instead.)
+        let result = ThemeTokens.accessibleFontColorHex(candidateHex: "000000", secondaryBackgroundHex: "2B2B2E")
         #expect(result != "000000")
         #expect(result == "FFFFFF")
     }
 
-    @Test("accessibleFontColorHex replaces a candidate that fails against the team's own main color — the exact bug LiveChip's contrast fix addressed")
-    func accessibleFontColorHexCatchesMainColorFailure() {
-        // A candidate identical to the main color always fails that check (1:1 ratio),
-        // regardless of how well it does against the fixed background.
-        let result = ThemeTokens.accessibleFontColorHex(candidateHex: "2B2B2E", mainColorHex: "2B2B2E")
+    @Test("accessibleFontColorHex replaces a candidate that fails against its own secondary background — the exact bug LiveChip's contrast fix addressed")
+    func accessibleFontColorHexCatchesSecondaryBackgroundFailure() {
+        // A candidate identical to the secondary background always fails that check (1:1
+        // ratio), regardless of how well it does against the fixed background.
+        let result = ThemeTokens.accessibleFontColorHex(candidateHex: "2B2B2E", secondaryBackgroundHex: "2B2B2E")
         #expect(result != "2B2B2E")
     }
 
-    @Test("accessibleFontColorHex's fallback is always at least white or black, never a color that still fails")
+    @Test("accessibleFontColorHex's fallback is always white or black, never a color that still fails")
     func accessibleFontColorHexFallbackIsAlwaysWhiteOrBlack() {
-        let result = ThemeTokens.accessibleFontColorHex(candidateHex: "808080", mainColorHex: "707070")
+        let result = ThemeTokens.accessibleFontColorHex(candidateHex: "808080", secondaryBackgroundHex: "707070")
         #expect(result == "FFFFFF" || result == "000000")
     }
 
-    @Test("themed(mainColorHex:fontColorHex:) applies the same validation, replacing an unsafe font color automatically")
-    func themedFactoryValidatesFontColor() {
-        // 000000 against the fixed dark background (061325) fails, so themed(...) must not
-        // pass it through as textColor even though it's the literal fontColorHex argument.
-        let tokens = ThemeTokens.themed(mainColorHex: "F2F2F2", fontColorHex: "000000")
-        #expect(tokens.textColor != Color(hex: "000000"))
+    @Test("themed(...) resolves the secondary background via pillFillColorHex when present, not raw mainColorHex — this is the exact false positive that broke Santos's real, working colors when the check first used raw mainColorHex unconditionally")
+    func themedFactoryResolvesSecondaryBackgroundViaPillFillOverride() {
+        // Santos's real curated values: mainColorOverrideHex 82827F, fontColorOverrideHex
+        // F2F2F2, pillFillColorOverrideHex 000000. F2F2F2 only scores 3.44:1 against raw
+        // 82827F (would incorrectly fail), but the pill's fill never actually renders as
+        // raw mainColorHex when pillFillColorHex is set — it renders as 000000, against
+        // which F2F2F2 scores a very safe 18.76:1. themed(...) must check the surface that
+        // actually renders, so F2F2F2 must pass through unchanged here.
+        let tokens = ThemeTokens.themed(
+            mainColorHex: "82827F",
+            fontColorHex: "F2F2F2",
+            pillFillColorHex: "000000"
+        )
+        #expect(tokens.textColor == Color(hex: "F2F2F2"))
+    }
+
+    @Test("themed(...) falls back to raw mainColorHex for the secondary-background check when no pillFillColorHex/tabSelectionColorHex override exists, and still replaces an unsafe font color in that case")
+    func themedFactoryFallsBackToMainColorWhenNoOverride() {
+        // Same fontColorHex/mainColorHex pair as Santos, but with no pillFillColorHex this
+        // time — the secondary-background check has nothing but raw mainColorHex (82827F)
+        // to fall back to, F2F2F2 fails that (3.44:1 < 4.5), so it must be replaced.
+        let tokens = ThemeTokens.themed(mainColorHex: "82827F", fontColorHex: "F2F2F2")
+        #expect(tokens.textColor != Color(hex: "F2F2F2"))
     }
 
     @Test("themed(mainColorHex:fontColorHex:) leaves an already-safe font color unchanged")
@@ -321,7 +348,14 @@ Replace with:
         usesDiagonalSashBackground: Bool = false
     ) -> ThemeTokens {
         let accent = Color(hex: mainColorHex)
-        let resolvedFontColorHex = accessibleFontColorHex(candidateHex: fontColorHex, mainColorHex: mainColorHex)
+        // The same fallback chain the round pill's fill already resolves to (see
+        // `FixturesView.roundPill`'s `overridePillFillColor ?? overrideTabSelectionColor ??
+        // Color.accentColor`) — checking raw mainColorHex unconditionally here would
+        // validate a surface that never actually renders whenever a team overrides the
+        // pill fill away from its main color (e.g. Corinthians/Santos both override it to
+        // black), producing false positives.
+        let secondaryBackgroundHex = pillFillColorHex ?? tabSelectionColorHex ?? mainColorHex
+        let resolvedFontColorHex = accessibleFontColorHex(candidateHex: fontColorHex, secondaryBackgroundHex: secondaryBackgroundHex)
         return ThemeTokens(
             overrideAccentColor: accent,
             overrideTabSelectionColor: tabSelectionColorHex.map { Color(hex: $0) },
@@ -344,25 +378,26 @@ Replace with:
     /// WCAG AA's minimum contrast ratio for normal text.
     private static let minimumContrastRatio = 4.5
 
-    /// Validates `candidateHex` against both the app's fixed dark background and the
-    /// team's own main color — the two failure patterns behind every contrast bug found in
-    /// this app so far (see `TeamThemeOption`'s doc-comment history: Atlético Mineiro's tab
-    /// bar legibility, LiveChip's self-referential chip contrast). If either check fails,
+    /// Validates `candidateHex` against both the app's fixed dark background and a second
+    /// surface it's actually drawn on top of elsewhere (the round pill's fill, LiveChip's
+    /// capsule) — the two failure patterns behind every contrast bug found in this app so
+    /// far (see `TeamThemeOption`'s doc-comment history: Atlético Mineiro's tab bar
+    /// legibility, LiveChip's self-referential chip contrast). If either check fails,
     /// returns whichever of pure white or pure black scores higher on the *minimum* of its
     /// two contrast ratios — the candidate that's least-bad against both surfaces at once.
     /// Otherwise returns `candidateHex` unchanged. Applied unconditionally: curated
     /// overrides and raw API values are validated identically, with no bypass.
-    static func accessibleFontColorHex(candidateHex: String, mainColorHex: String) -> String {
+    static func accessibleFontColorHex(candidateHex: String, secondaryBackgroundHex: String) -> String {
         let passesBackground = WCAGContrast.contrastRatio(candidateHex, fixedDarkBackgroundHex) >= minimumContrastRatio
-        let passesMainColor = WCAGContrast.contrastRatio(candidateHex, mainColorHex) >= minimumContrastRatio
-        guard passesBackground, passesMainColor else {
+        let passesSecondary = WCAGContrast.contrastRatio(candidateHex, secondaryBackgroundHex) >= minimumContrastRatio
+        guard passesBackground, passesSecondary else {
             let whiteMinRatio = min(
                 WCAGContrast.contrastRatio("FFFFFF", fixedDarkBackgroundHex),
-                WCAGContrast.contrastRatio("FFFFFF", mainColorHex)
+                WCAGContrast.contrastRatio("FFFFFF", secondaryBackgroundHex)
             )
             let blackMinRatio = min(
                 WCAGContrast.contrastRatio("000000", fixedDarkBackgroundHex),
-                WCAGContrast.contrastRatio("000000", mainColorHex)
+                WCAGContrast.contrastRatio("000000", secondaryBackgroundHex)
             )
             return whiteMinRatio >= blackMinRatio ? "FFFFFF" : "000000"
         }
@@ -378,10 +413,20 @@ members — the struct's own closing `}` stays where it was, now after
 - [ ] **Step 4: Run the tests to verify they pass**
 
 Run: `rm -rf ~/Library/Developer/Xcode/DerivedData/BR2026-* && eval "$(rbenv init -)" && bundle exec fastlane test app:br2026`
-Expected: all tests pass, including the 6 new ones and all pre-existing `ThemeTokensTests`
+Expected: all tests pass, including the 7 new ones and all pre-existing `ThemeTokensTests`
 (none of the existing tests' `fontColorHex` inputs are affected — they all use `"ffffff"`
 against sufficiently dark `mainColorHex` values, which passes both checks unchanged; verify
-this is actually true in the output rather than assuming it).
+this is actually true in the output rather than assuming it). Also confirm
+`BR2026Tests/Services/TeamThemeStoreTests.swift`'s `selectUsesSantosColorOverrides` test
+(unmodified by this task, not in this task's file list) still passes — it asserts
+`store.tokens.textColor == Color(hex: "F2F2F2")` for Santos's real curated values
+(`mainColorOverrideHex: "82827F"`, `fontColorOverrideHex: "F2F2F2"`,
+`pillFillColorOverrideHex: "000000"`), and `TeamThemeStore.select(_:)` already passes
+`pillFillColorHex: option.pillFillColorOverrideHex` through to `themed(...)` — so with the
+secondary-background chain resolving to `"000000"` (not raw `mainColorHex` `"82827F"`),
+`F2F2F2` should pass through unchanged and this pre-existing test should pass without any
+modification. If it doesn't, that's a signal something in this task's implementation
+diverged from the plan — stop and report rather than editing that test to match.
 
 - [ ] **Step 5: Commit**
 

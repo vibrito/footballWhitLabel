@@ -72,10 +72,17 @@ included, not just raw API values:
 1. Compute `contrastRatio(fontColorHex, "061325")` — against the app's fixed darkest
    background stop (CLAUDE.md's gradient: `#173a68 → #0b2143 → #061325`). Catches the
    Atlético Mineiro-style "color nearly invisible against fixed dark chrome" pattern.
-2. Compute `contrastRatio(fontColorHex, mainColorHex)` — against the team's own accent color,
-   since `textColor` is also drawn directly on team-colored surfaces in several places
-   (`FixturesView`'s round pill, `LiveChip`'s capsule). Catches the LiveChip/round-pill-style
-   "theme color drawn on itself" pattern.
+2. Compute `contrastRatio(fontColorHex, pillFillColorHex ?? tabSelectionColorHex ?? mainColorHex)`
+   — against whichever color the round pill's fill *actually* resolves to for this team,
+   matching the exact fallback chain `ThemeTokens`/`FixturesView` already use for that fill.
+   `textColor` is drawn directly on top of that surface (`FixturesView`'s round pill,
+   `LiveChip`'s capsule). Catches the LiveChip/round-pill-style "theme color drawn on
+   itself" pattern — checking against raw `mainColorHex` unconditionally was tried first
+   and rejected: several teams (Corinthians, Santos) override the pill's fill away from
+   `mainColorHex` via `pillFillColorOverrideHex`, so validating against the un-overridden
+   main color checks a surface that never actually renders, producing false positives
+   (Santos: `F2F2F2` scores only 3.44:1 against raw `mainColorHex` `82827F`, but 18.76:1
+   against the pill's real, overridden fill `000000`).
 3. If **either** check is below 4.5:1, `fontColorHex` is rejected. Pick whichever of pure
    white (`FFFFFF`) or pure black (`000000`) scores the higher *minimum* of the two contrast
    ratios (i.e., the candidate that's safest against both backgrounds at once), and use that
