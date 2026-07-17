@@ -132,7 +132,25 @@ final class AccessibilityAuditUITests: XCTestCase {
         sleep(2)
         let heroCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.3))
         heroCoordinate.tap()
-        sleep(2)
+        // MatchDetailView's body is unconditionally wrapped in its own `ScrollView`
+        // (never behind an if/let on match data like venue or events — see
+        // MatchDetailView.swift), presented as a `.sheet(item:)` over Matchday.
+        // Confirmed live via `app.debugDescription` dumped immediately before and
+        // after this tap on a real simulator: SwiftUI keeps the covered Matchday
+        // scene's own ScrollView in the accessibility tree even while the sheet
+        // sits on top of it, so a *second* ScrollView reliably appears in the tree
+        // once — and only once — the sheet has actually opened. This is a
+        // structural signal, not text: unlike a label/string lookup it can't break
+        // on this project's pt-BR test-simulator locale (see
+        // testAppIconPickerAudit's comment for that exact prior failure). If the
+        // hero coordinate tap misses (no hero card that day, or a layout shift),
+        // only Matchday's single ScrollView exists and this assertion fails
+        // loudly instead of silently re-auditing Matchday.
+        let matchDetailScrollView = app.scrollViews.element(boundBy: 1)
+        XCTAssertTrue(
+            matchDetailScrollView.waitForExistence(timeout: 5),
+            "Match Detail sheet did not open after tapping the hero card coordinate — hero card may be absent or the tap missed its target"
+        )
         try app.performAccessibilityAudit(for: Self.auditTypes) { issue in
             isDynamicTypeCapFalsePositive(issue)
         }
