@@ -11,6 +11,16 @@ struct MatchDetailView: View {
 
     private var match: Match { viewModel.match }
 
+    @ScaledMetric private var roundEyebrowFontSize: CGFloat = 12
+    @ScaledMetric private var statusLineFontSize: CGFloat = 13
+    @ScaledMetric private var halfTimeFontSize: CGFloat = 12
+    @ScaledMetric private var venueFontSize: CGFloat = 13
+    @ScaledMetric private var teamNameFontSize: CGFloat = 19
+    @ScaledMetric private var scoreFontSize: CGFloat = 48
+    @ScaledMetric private var vsFontSize: CGFloat = 32
+    @ScaledMetric private var timelineHeaderFontSize: CGFloat = 13
+    @ScaledMetric private var emptyEventsFontSize: CGFloat = 14
+
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
@@ -37,13 +47,13 @@ struct MatchDetailView: View {
     private var header: some View {
         VStack(spacing: 12) {
             Text("Round \(match.matchday)")
-                .font(.system(size: 12, weight: .bold))
+                .font(.system(size: roundEyebrowFontSize, weight: .bold))
                 .tracking(1.2)
                 .foregroundStyle(themeTokens.textColor.opacity(0.5))
                 .textCase(.uppercase)
 
             statusLine
-                .font(.system(size: 13, weight: .semibold))
+                .font(.system(size: statusLineFontSize, weight: .semibold))
                 .foregroundStyle(themeTokens.textColor.opacity(0.6))
 
             HStack(alignment: .center, spacing: 16) {
@@ -57,7 +67,7 @@ struct MatchDetailView: View {
 
             if let halfTimeText {
                 halfTimeText
-                    .font(.system(size: 12, weight: .semibold))
+                    .font(.system(size: halfTimeFontSize, weight: .semibold))
                     .foregroundStyle(themeTokens.textColor.opacity(0.45))
                     .textCase(.uppercase)
             }
@@ -67,7 +77,7 @@ struct MatchDetailView: View {
                     Image(systemName: "info.circle")
                     Text(venue)
                 }
-                .font(.system(size: 13))
+                .font(.system(size: venueFontSize))
                 .foregroundStyle(themeTokens.textColor.opacity(0.5))
                 .accessibilityElement(children: .combine)
                 .accessibilityLabel(String(localized: "Venue: \(venue)", comment: "VoiceOver label for the match detail venue row. Argument: the venue name."))
@@ -101,7 +111,7 @@ struct MatchDetailView: View {
         VStack(spacing: 12) {
             TeamCrestBadge(team: team, size: 80)
             Text(team.displayName)
-                .font(.system(size: 19, weight: .bold))
+                .font(.system(size: teamNameFontSize, weight: .bold))
                 .foregroundStyle(isDimmed ? themeTokens.textColor.opacity(0.45) : themeTokens.textColor)
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
@@ -113,14 +123,14 @@ struct MatchDetailView: View {
     private var centerScore: some View {
         if let home = match.homeScore, let away = match.awayScore {
             Text("\(home) – \(away)")
-                .font(.system(size: 48, weight: .heavy))
+                .font(.system(size: scoreFontSize, weight: .heavy))
                 .monospacedDigit()
                 .foregroundStyle(themeTokens.textColor)
                 .lineLimit(1)
                 .minimumScaleFactor(0.6)
         } else {
             Text("VS")
-                .font(.system(size: 32, weight: .heavy))
+                .font(.system(size: vsFontSize, weight: .heavy))
                 .foregroundStyle(themeTokens.textColor.opacity(0.35))
         }
     }
@@ -134,7 +144,7 @@ struct MatchDetailView: View {
     private var timelineSection: some View {
         VStack(spacing: 0) {
             Text("Timeline")
-                .font(.system(size: 13, weight: .bold))
+                .font(.system(size: timelineHeaderFontSize, weight: .bold))
                 .tracking(0.8)
                 .foregroundStyle(themeTokens.textColor.opacity(0.5))
                 .textCase(.uppercase)
@@ -144,7 +154,7 @@ struct MatchDetailView: View {
 
             if sortedEvents.isEmpty {
                 Text("No events yet")
-                    .font(.system(size: 14))
+                    .font(.system(size: emptyEventsFontSize))
                     .foregroundStyle(themeTokens.textColor.opacity(0.45))
                     .padding(.top, 20)
             } else {
