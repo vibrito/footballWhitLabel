@@ -3,6 +3,8 @@ import SwiftUI
 struct StandingsView: View {
     @State private var viewModel: StandingsViewModel
     @Environment(\.themeTokens) private var themeTokens
+    @ScaledMetric private var columnHeaderFontSize: CGFloat = 11
+    @ScaledMetric private var rowFontSize: CGFloat = 14
 
     init(service: MatchService) {
         _viewModel = State(initialValue: StandingsViewModel(service: service))
@@ -89,7 +91,7 @@ struct StandingsView: View {
         Text(text)
             .lineLimit(1)
             .frame(width: width)
-            .font(.system(size: 11, weight: .bold))
+            .font(.system(size: columnHeaderFontSize, weight: .bold))
             .tracking(0.4)
             .foregroundStyle(themeTokens.textColor.opacity(0.5))
     }
@@ -114,7 +116,7 @@ struct StandingsView: View {
             statCell(signed(standing.goalDifference), width: Self.goalDifferenceWidth)
             statCell("\(standing.points)", emphasized: true)
         }
-        .font(.system(size: 14, weight: .semibold))
+        .font(.system(size: rowFontSize, weight: .semibold))
         .monospacedDigit()
         .foregroundStyle(themeTokens.textColor)
         .padding(.vertical, 8)

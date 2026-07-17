@@ -72,6 +72,12 @@ Do **not** reproduce CSS `backdrop-filter` literally.
 Derived: live chip fill = accent @ 18%, text = accent, border = accent @ 45%.
 
 ### Typography (SF Pro via system font)
+
+All sizes below are base values at the system's default Dynamic Type content size category —
+every font/icon size in the app is wired through `@ScaledMetric` (see `docs/superpowers/specs/
+2026-07-17-dynamic-type-design.md`) and responds to the user's text-size setting, capped
+app-wide at `.accessibility1`. Letter-tracking values are fixed and do not scale.
+
 | Role | Size | Weight | Notes |
 |---|---|---|---|
 | Screen title | 32 | 800 | tracking -0.5, leading 1.1 |
