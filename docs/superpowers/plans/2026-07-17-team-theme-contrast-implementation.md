@@ -410,28 +410,73 @@ Replace with:
 members — the struct's own closing `}` stays where it was, now after
 `accessibleFontColorHex`.)
 
-- [ ] **Step 4: Run the tests to verify they pass**
+- [ ] **Step 4: Run the tests to verify they pass — and confirm the ONE expected pre-existing failure**
 
 Run: `rm -rf ~/Library/Developer/Xcode/DerivedData/BR2026-* && eval "$(rbenv init -)" && bundle exec fastlane test app:br2026`
-Expected: all tests pass, including the 7 new ones and all pre-existing `ThemeTokensTests`
-(none of the existing tests' `fontColorHex` inputs are affected — they all use `"ffffff"`
-against sufficiently dark `mainColorHex` values, which passes both checks unchanged; verify
-this is actually true in the output rather than assuming it). Also confirm
-`BR2026Tests/Services/TeamThemeStoreTests.swift`'s `selectUsesSantosColorOverrides` test
-(unmodified by this task, not in this task's file list) still passes — it asserts
-`store.tokens.textColor == Color(hex: "F2F2F2")` for Santos's real curated values
-(`mainColorOverrideHex: "82827F"`, `fontColorOverrideHex: "F2F2F2"`,
-`pillFillColorOverrideHex: "000000"`), and `TeamThemeStore.select(_:)` already passes
-`pillFillColorHex: option.pillFillColorOverrideHex` through to `themed(...)` — so with the
-secondary-background chain resolving to `"000000"` (not raw `mainColorHex` `"82827F"`),
-`F2F2F2` should pass through unchanged and this pre-existing test should pass without any
-modification. If it doesn't, that's a signal something in this task's implementation
-diverged from the plan — stop and report rather than editing that test to match.
 
-- [ ] **Step 5: Commit**
+Expected: the 7 new `ThemeTokensTests` pass, all pre-existing `ThemeTokensTests` pass (none
+of their `fontColorHex` inputs are affected — they all use `"ffffff"` against sufficiently
+dark `mainColorHex` values, which passes both checks unchanged; verify this is actually true
+in the output rather than assuming it), and exactly ONE pre-existing test elsewhere in the
+suite fails: `TeamThemeStoreTests.selectUsesBahiaColorOverrides` — this is expected and
+fixed in Step 4b below, not a sign of a bug in your implementation.
+
+Also confirm `TeamThemeStoreTests.selectUsesSantosColorOverrides` (NOT in this task's file
+list, must NOT need modification) passes as-is — it asserts `store.tokens.textColor ==
+Color(hex: "F2F2F2")` for Santos's real curated values (`mainColorOverrideHex: "82827F"`,
+`fontColorOverrideHex: "F2F2F2"`, `pillFillColorOverrideHex: "000000"`), and
+`TeamThemeStore.select(_:)` already passes `pillFillColorHex:
+option.pillFillColorOverrideHex` through to `themed(...)` — so with the secondary-background
+chain resolving to `"000000"` (not raw `mainColorHex` `"82827F"`), `F2F2F2` passes through
+unchanged. If Santos fails, or if any test OTHER than Bahia fails, that's a signal something
+diverged from the plan — stop and report rather than editing tests to match.
+
+- [ ] **Step 4b: Fix the one real, second contrast bug this task's validation correctly finds — Bahia**
+
+Full audit (all 20 teams, done by hand with a Python reference implementation of the exact
+WCAG formula, before this step was written) confirms exactly ONE team's currently-shipped,
+pre-existing test breaks under the corrected (resolved-chain) validation: **Bahia**.
+Everything else either passes cleanly or resolves to the *same* value it already had via the
+fallback path (e.g. Vitória and Grêmio's white API font color scores just under 4.5 against
+their main color but the fallback still lands on white, since white remains the best
+available option — no test changes needed for those).
+
+Bahia's real curated values: `mainColorOverrideHex: "006CB5"`, `fontColorOverrideHex:
+"F2F2F2"`, `tabSelectionColorOverrideHex: "ED3237"`, no `pillFillColorOverrideHex`. The
+secondary background resolves to `tabSelectionColorHex` (`"ED3237"`, a red) since there's no
+pill-fill override — this is the exact surface the round pill's fill actually renders as for
+Bahia (per `overridePillFillColor ?? overrideTabSelectionColor ?? Color.accentColor`).
+`F2F2F2` only scores 3.67:1 against `ED3237` — a real, previously-uncaught contrast gap
+(nobody had a systematic check before this task), the same class of bug as every other
+historical fix in `TeamThemeOption`'s doc comments, just never noticed for this specific
+team/surface pairing. The corrected fallback resolves to `FFFFFF` (white scores better than
+black across both reference surfaces here, even though it doesn't fully clear 4.5 against
+`ED3237` either — 4.11:1 — matching this plan's documented "known inherent limitation":
+white is still the least-bad available choice).
+
+Update `BR2026Tests/Services/TeamThemeStoreTests.swift`'s `selectUsesBahiaColorOverrides`
+test (found via `grep -n "selectUsesBahiaColorOverrides" -A 20`) — change its
+`store.tokens.textColor` assertion from `Color(hex: "F2F2F2")` to `Color(hex: "FFFFFF")`,
+and add a one-line comment noting this value changed because the new contrast validation
+(this plan) found Bahia's original curated font color didn't actually clear WCAG AA against
+its own tab-selection-color-derived pill fill. This is the ONLY pre-existing test anywhere in
+the codebase that needs updating — do not touch any other test file. If your own test run
+surfaces a DIFFERENT pre-existing test failure beyond Bahia, stop and report rather than
+guessing at a fix — that would mean this audit missed something and needs to be redone with
+fresh eyes, not patched over.
+
+- [ ] **Step 5: Run the tests to verify they pass**
+
+Run: `rm -rf ~/Library/Developer/Xcode/DerivedData/BR2026-* && eval "$(rbenv init -)" && bundle exec fastlane test app:br2026`
+Expected: all tests pass — the 7 new `ThemeTokensTests`, all pre-existing `ThemeTokensTests`,
+the corrected `selectUsesBahiaColorOverrides`, `selectUsesSantosColorOverrides` (confirm this
+one explicitly by test name in the output — it must pass unmodified), and every other
+pre-existing `TeamThemeStoreTests` test unmodified and passing.
+
+- [ ] **Step 6: Commit**
 
 ```bash
-git add BR2026/Models/ThemeTokens.swift BR2026Tests/Models/ThemeTokensTests.swift
+git add BR2026/Models/ThemeTokens.swift BR2026Tests/Models/ThemeTokensTests.swift BR2026Tests/Services/TeamThemeStoreTests.swift
 git commit -m "Validate and auto-correct team theme text color for WCAG AA contrast"
 ```
 
