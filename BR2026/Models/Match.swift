@@ -103,10 +103,8 @@ final class Match: Identifiable {
                 )
             }
             let minuteText = minute.map { String($0) } ?? ""
-            let homeScoreText = String(home_score)
-            let awayScoreText = String(away_score)
             return String(
-                localized: "\(home) \(homeScoreText), \(away) \(awayScoreText), live, \(minuteText) minute",
+                localized: "\(home) \(home_score), \(away) \(away_score), live, \(minuteText) minute",
                 comment: "VoiceOver label for a live match card. Arguments: home team name, home score, away team name, away score, current minute."
             )
         case .finished:
@@ -116,12 +114,37 @@ final class Match: Identifiable {
                     comment: "VoiceOver label for a finished match card with no score available. Arguments: home team name, away team name."
                 )
             }
-            let homeScoreText = String(home_score)
-            let awayScoreText = String(away_score)
             return String(
-                localized: "\(home) \(homeScoreText), \(away) \(awayScoreText), final score",
+                localized: "\(home) \(home_score), \(away) \(away_score), final score",
                 comment: "VoiceOver label for a finished match card. Arguments: home team name, home score, away team name, away score."
             )
         }
+    }
+
+    func accessibilityAnnouncement(comparedTo previous: Match) -> String? {
+        if status != previous.status {
+            switch status {
+            case .live:
+                return String(
+                    localized: "\(homeTeam.displayName) versus \(awayTeam.displayName) has kicked off",
+                    comment: "VoiceOver announcement when a match transitions from scheduled to live. Arguments: home team name, away team name."
+                )
+            case .finished:
+                return String(
+                    localized: "Full time: \(accessibilityLabel)",
+                    comment: "VoiceOver announcement when a match finishes. Argument: the match's own full accessibility label (score included)."
+                )
+            case .scheduled, .halftime, .postponed:
+                return nil
+            }
+        }
+        if status == .live, homeScore != previous.homeScore || awayScore != previous.awayScore {
+            let scorer = (homeScore ?? 0) > (previous.homeScore ?? 0) ? homeTeam.displayName : awayTeam.displayName
+            return String(
+                localized: "Goal! \(scorer). \(accessibilityLabel)",
+                comment: "VoiceOver announcement when a live match's score changes. Arguments: the scoring team's name, the match's own full accessibility label."
+            )
+        }
+        return nil
     }
 }

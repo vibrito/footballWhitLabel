@@ -170,4 +170,75 @@ struct MatchTests {
         #expect(match.accessibilityLabel.contains("Flamengo"))
         #expect(match.accessibilityLabel.contains("Palmeiras"))
     }
+
+    @Test("accessibilityAnnouncement returns nil when nothing meaningful changed")
+    func accessibilityAnnouncementNilWhenUnchanged() throws {
+        let team1 = Team(id: 1, name: "Flamengo", shortName: "Flamengo", crestURL: nil)
+        let team2 = Team(id: 2, name: "Palmeiras", shortName: "Palmeiras", crestURL: nil)
+        let previous = Match(
+            id: 1, utcDate: Date(), status: .live, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team1, awayTeam: team2, homeScore: 1, awayScore: 0, winner: nil,
+            venue: nil, minute: 40
+        )
+        let current = Match(
+            id: 1, utcDate: Date(), status: .live, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team1, awayTeam: team2, homeScore: 1, awayScore: 0, winner: nil,
+            venue: nil, minute: 41
+        )
+        #expect(current.accessibilityAnnouncement(comparedTo: previous) == nil)
+    }
+
+    @Test("accessibilityAnnouncement announces a home goal")
+    func accessibilityAnnouncementHomeGoal() throws {
+        let team1 = Team(id: 1, name: "Flamengo", shortName: "Flamengo", crestURL: nil)
+        let team2 = Team(id: 2, name: "Palmeiras", shortName: "Palmeiras", crestURL: nil)
+        let previous = Match(
+            id: 1, utcDate: Date(), status: .live, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team1, awayTeam: team2, homeScore: 0, awayScore: 0, winner: nil,
+            venue: nil, minute: 40
+        )
+        let current = Match(
+            id: 1, utcDate: Date(), status: .live, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team1, awayTeam: team2, homeScore: 1, awayScore: 0, winner: nil,
+            venue: nil, minute: 41
+        )
+        let announcement = try #require(current.accessibilityAnnouncement(comparedTo: previous))
+        #expect(announcement.contains("Flamengo"))
+    }
+
+    @Test("accessibilityAnnouncement announces a status transition to live")
+    func accessibilityAnnouncementKickoff() throws {
+        let team1 = Team(id: 1, name: "Flamengo", shortName: "Flamengo", crestURL: nil)
+        let team2 = Team(id: 2, name: "Palmeiras", shortName: "Palmeiras", crestURL: nil)
+        let previous = Match(
+            id: 1, utcDate: Date(), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team1, awayTeam: team2, homeScore: nil, awayScore: nil, winner: nil,
+            venue: nil, minute: nil
+        )
+        let current = Match(
+            id: 1, utcDate: Date(), status: .live, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team1, awayTeam: team2, homeScore: 0, awayScore: 0, winner: nil,
+            venue: nil, minute: 1
+        )
+        let announcement = try #require(current.accessibilityAnnouncement(comparedTo: previous))
+        #expect(announcement.contains("Flamengo"))
+    }
+
+    @Test("accessibilityAnnouncement announces the final whistle")
+    func accessibilityAnnouncementFullTime() throws {
+        let team1 = Team(id: 1, name: "Flamengo", shortName: "Flamengo", crestURL: nil)
+        let team2 = Team(id: 2, name: "Palmeiras", shortName: "Palmeiras", crestURL: nil)
+        let previous = Match(
+            id: 1, utcDate: Date(), status: .live, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team1, awayTeam: team2, homeScore: 2, awayScore: 1, winner: nil,
+            venue: nil, minute: 90
+        )
+        let current = Match(
+            id: 1, utcDate: Date(), status: .finished, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team1, awayTeam: team2, homeScore: 2, awayScore: 1, winner: "HOME_TEAM",
+            venue: nil, minute: 90
+        )
+        let announcement = try #require(current.accessibilityAnnouncement(comparedTo: previous))
+        #expect(announcement.contains("Flamengo"))
+    }
 }
