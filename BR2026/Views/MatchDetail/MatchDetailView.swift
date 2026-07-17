@@ -52,6 +52,8 @@ struct MatchDetailView: View {
                     .frame(minWidth: 80)
                 teamColumn(match.awayTeam, isDimmed: isAwayDimmed)
             }
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel(match.accessibilityLabel)
 
             if let halfTimeText {
                 halfTimeText
@@ -67,6 +69,8 @@ struct MatchDetailView: View {
                 }
                 .font(.system(size: 13))
                 .foregroundStyle(themeTokens.textColor.opacity(0.5))
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel(String(localized: "Venue: \(venue)", comment: "VoiceOver label for the match detail venue row. Argument: the venue name."))
             }
         }
         .padding(.top, 8)
@@ -136,6 +140,7 @@ struct MatchDetailView: View {
                 .textCase(.uppercase)
                 .frame(maxWidth: .infinity)
                 .padding(.bottom, 12)
+                .accessibilityAddTraits(.isHeader)
 
             if sortedEvents.isEmpty {
                 Text("No events yet")

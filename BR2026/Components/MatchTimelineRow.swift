@@ -20,6 +20,8 @@ struct MatchTimelineRow: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding(.vertical, 10)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(event.accessibilityLabel)
     }
 
     private var timeBadge: some View {
