@@ -3,7 +3,7 @@ import Foundation
 
 /// WCAG 2.x contrast-ratio math. Plain Swift, no UI dependency, so it's independently
 /// testable and reusable from both View-layer color pickers and Model-layer validation
-/// (see `ThemeTokens.accessibleFontColorHex(candidateHex:mainColorHex:)`).
+/// (see `ThemeTokens.accessibleFontColorHex(candidateHex:secondaryBackgroundHex:)`).
 enum WCAGContrast {
     /// WCAG 2.x relative luminance: gamma-corrects each sRGB channel, then applies the
     /// standard perceptual weights (0.2126 R, 0.7152 G, 0.0722 B). Returns a value in
