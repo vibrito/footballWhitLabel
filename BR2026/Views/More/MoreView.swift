@@ -129,8 +129,9 @@ struct MoreView: View {
         }
     }
 
+    @ViewBuilder
     private func rowLabel(_ row: MoreRow, showsChevron: Bool) -> some View {
-        HStack(spacing: 12) {
+        let base = HStack(spacing: 12) {
             Image(systemName: row.systemImage)
                 .font(.system(size: 16, weight: .semibold))
                 .frame(width: 24)
@@ -152,5 +153,11 @@ struct MoreView: View {
         .contentShape(Rectangle())
         .accessibilityElement(children: .combine)
         .accessibilityLabel(String(localized: row.titleKey))
+
+        if row.isEnabled {
+            base
+        } else {
+            base.accessibilityHint(Text("Not available", comment: "VoiceOver hint appended to a More-screen row that is currently disabled/unavailable."))
+        }
     }
 }
