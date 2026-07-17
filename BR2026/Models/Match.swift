@@ -102,9 +102,11 @@ final class Match: Identifiable {
                     comment: "VoiceOver label for a live match card with no score yet available. Arguments: home team name, away team name."
                 )
             }
+            let homeScoreText = String(home_score)
+            let awayScoreText = String(away_score)
             let minuteText = minute.map { String($0) } ?? ""
             return String(
-                localized: "\(home) \(home_score), \(away) \(away_score), live, \(minuteText) minute",
+                localized: "\(home) \(homeScoreText), \(away) \(awayScoreText), live, \(minuteText) minute",
                 comment: "VoiceOver label for a live match card. Arguments: home team name, home score, away team name, away score, current minute."
             )
         case .finished:
@@ -114,8 +116,10 @@ final class Match: Identifiable {
                     comment: "VoiceOver label for a finished match card with no score available. Arguments: home team name, away team name."
                 )
             }
+            let homeScoreText = String(home_score)
+            let awayScoreText = String(away_score)
             return String(
-                localized: "\(home) \(home_score), \(away) \(away_score), final score",
+                localized: "\(home) \(homeScoreText), \(away) \(awayScoreText), final score",
                 comment: "VoiceOver label for a finished match card. Arguments: home team name, home score, away team name, away score."
             )
         }
