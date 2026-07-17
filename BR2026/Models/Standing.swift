@@ -14,6 +14,7 @@ final class Standing: Identifiable {
     var goalsAgainst: Int
     var goalDifference: Int
     var points: Int
+    var zoneDescription: String?
 
     var id: Int { teamID }
 
@@ -27,7 +28,8 @@ final class Standing: Identifiable {
         goalsFor: Int,
         goalsAgainst: Int,
         goalDifference: Int,
-        points: Int
+        points: Int,
+        zoneDescription: String? = nil
     ) {
         self.teamID = team.id
         self.position = position
@@ -40,6 +42,7 @@ final class Standing: Identifiable {
         self.goalsAgainst = goalsAgainst
         self.goalDifference = goalDifference
         self.points = points
+        self.zoneDescription = zoneDescription
     }
 
     convenience init(dto: StandingDTO) {
@@ -53,8 +56,35 @@ final class Standing: Identifiable {
             goalsFor: dto.goalsFor,
             goalsAgainst: dto.goalsAgainst,
             goalDifference: dto.goalDifference,
-            points: dto.points
+            points: dto.points,
+            zoneDescription: dto.description
         )
+    }
+
+    /// Which zone (if any) this standings position falls into, classified from the raw API
+    /// `description` text by keyword — see the plan's Global Constraints for the exact rule.
+    /// Never derived from a per-competition position-range table (e.g. "bottom 4 teams") —
+    /// those rules vary by competition/season and the API's own `description` field already
+    /// encodes the current season's actual boundaries.
+    var zone: StandingZone {
+        guard let zoneDescription else { return .none }
+        if zoneDescription.contains("Relegation") { return .relegation }
+        let qualificationKeywords = ["Promotion", "Champions League", "Europa League", "Conference League", "Libertadores", "Sudamericana"]
+        if qualificationKeywords.contains(where: { zoneDescription.contains($0) }) { return .qualification }
+        return .none
+    }
+
+    /// Our own localized label for `zone` — never the raw `zoneDescription` API text, which
+    /// is English-only and inconsistently worded across competitions. `nil` for `.none`.
+    var zoneAccessibilityLabel: String? {
+        switch zone {
+        case .qualification:
+            return String(localized: "Continental qualification", comment: "VoiceOver/legend label for a standings row in a continental-competition qualification position (Champions League, Copa Libertadores, Copa Sudamericana, etc., regardless of which specific competition or stage).")
+        case .relegation:
+            return String(localized: "Relegation zone", comment: "VoiceOver/legend label for a standings row in a relegation position.")
+        case .none:
+            return nil
+        }
     }
 
     private static let ordinalFormatter: NumberFormatter = {
@@ -80,9 +110,17 @@ final class Standing: Identifiable {
         } else {
             goalDifferenceText = String(goalDifference)
         }
-        return String(
+        let baseLabel = String(
             localized: "\(positionText) place, \(team.displayName), \(playedGamesText) played, \(wonText) won, \(drawText) drawn, \(lostText) lost, goal difference \(goalDifferenceText), \(pointsText) points",
             comment: "VoiceOver label for one standings table row. Arguments: ordinal position, team name, games played, wins, draws, losses, goal difference (already spelled out with plus/minus), points."
         )
+        guard let zoneLabel = zoneAccessibilityLabel else { return baseLabel }
+        return "\(baseLabel), \(zoneLabel)"
     }
+}
+
+enum StandingZone {
+    case qualification
+    case relegation
+    case none
 }
