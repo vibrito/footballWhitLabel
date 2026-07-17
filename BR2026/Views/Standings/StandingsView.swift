@@ -110,6 +110,13 @@ struct StandingsView: View {
             .font(.system(size: columnHeaderFontSize, weight: .bold))
             .tracking(0.4)
             .foregroundStyle(themeTokens.textColor.opacity(0.5))
+            // Same fixed-width-box problem the row's own `statCell`/team name already solved
+            // via `.minimumScaleFactor` — the abbreviated headers ("P", "W", "Pts", etc.) sit
+            // in the same non-scaling `columnWidth`/`goalDifferenceWidth` boxes, so the
+            // (correctly scaling) header font can outgrow them at larger Dynamic Type sizes.
+            // Caught by AccessibilityAuditUITests' `.textClipped` audit on "Pts" — this
+            // function was missed when that fix was applied to the row cells.
+            .minimumScaleFactor(0.7)
     }
 
     private func row(for standing: Standing) -> some View {
