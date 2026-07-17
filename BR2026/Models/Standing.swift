@@ -62,24 +62,31 @@ final class Standing: Identifiable {
     }
 
     /// Which zone (if any) this standings position falls into, classified from the raw API
-    /// `description` text by keyword — see the plan's Global Constraints for the exact rule.
-    /// Never derived from a per-competition position-range table (e.g. "bottom 4 teams") —
-    /// those rules vary by competition/season and the API's own `description` field already
+    /// `description` text by keyword. Deliberately narrow: only Copa Libertadores, UEFA
+    /// Champions League, and relegation are marked — other continental competitions (Copa
+    /// Sudamericana, Europa League, Conference League) are not shown, by request. Never
+    /// derived from a per-competition position-range table (e.g. "bottom 4 teams") — those
+    /// rules vary by competition/season and the API's own `description` field already
     /// encodes the current season's actual boundaries.
     var zone: StandingZone {
         guard let zoneDescription else { return .none }
         if zoneDescription.contains("Relegation") { return .relegation }
-        let qualificationKeywords = ["Promotion", "Champions League", "Europa League", "Conference League", "Libertadores", "Sudamericana"]
-        if qualificationKeywords.contains(where: { zoneDescription.contains($0) }) { return .qualification }
+        if zoneDescription.contains("Libertadores") { return .libertadores }
+        if zoneDescription.contains("Champions League") { return .championsLeague }
         return .none
     }
 
     /// Our own localized label for `zone` — never the raw `zoneDescription` API text, which
     /// is English-only and inconsistently worded across competitions. `nil` for `.none`.
+    /// Unlike a generic "Continental qualification" label, these name the specific
+    /// competition, matching how each is actually referred to per locale (e.g. "Libertadores"
+    /// is used as-is across en/pt/es/fr; "Champions League" has real per-locale names).
     var zoneAccessibilityLabel: String? {
         switch zone {
-        case .qualification:
-            return String(localized: "Continental qualification", comment: "VoiceOver/legend label for a standings row in a continental-competition qualification position (Champions League, Copa Libertadores, Copa Sudamericana, etc., regardless of which specific competition or stage).")
+        case .libertadores:
+            return String(localized: "Libertadores", comment: "VoiceOver/legend label for a standings row in a Copa Libertadores qualification position.")
+        case .championsLeague:
+            return String(localized: "Champions League", comment: "VoiceOver/legend label for a standings row in a UEFA Champions League qualification position.")
         case .relegation:
             return String(localized: "Relegation zone", comment: "VoiceOver/legend label for a standings row in a relegation position.")
         case .none:
@@ -120,7 +127,8 @@ final class Standing: Identifiable {
 }
 
 enum StandingZone {
-    case qualification
+    case libertadores
+    case championsLeague
     case relegation
     case none
 }

@@ -166,16 +166,26 @@ struct StandingsView: View {
 
     private func zoneBarColor(for zone: StandingZone) -> Color? {
         switch zone {
-        case .qualification: return Color(hex: "2dd4bf")
+        case .libertadores, .championsLeague: return Color(hex: "2dd4bf")
         case .relegation: return Color(hex: "ef4444")
         case .none: return nil
         }
     }
 
+    // Only shows a legend item for a zone actually present in the current standings — a
+    // Brasileirão table never shows a "Champions League" item, and vice versa, since exactly
+    // one of the two qualification competitions can appear per competition's own data.
     private var legend: some View {
         HStack(spacing: 16) {
-            legendItem(color: Color(hex: "2dd4bf"), label: String(localized: "Continental qualification", comment: "VoiceOver/legend label for a standings row in a continental-competition qualification position (Champions League, Copa Libertadores, Copa Sudamericana, etc., regardless of which specific competition or stage)."))
-            legendItem(color: Color(hex: "ef4444"), label: String(localized: "Relegation zone", comment: "VoiceOver/legend label for a standings row in a relegation position."))
+            if viewModel.standings.contains(where: { $0.zone == .libertadores }) {
+                legendItem(color: Color(hex: "2dd4bf"), label: String(localized: "Libertadores", comment: "VoiceOver/legend label for a standings row in a Copa Libertadores qualification position."))
+            }
+            if viewModel.standings.contains(where: { $0.zone == .championsLeague }) {
+                legendItem(color: Color(hex: "2dd4bf"), label: String(localized: "Champions League", comment: "VoiceOver/legend label for a standings row in a UEFA Champions League qualification position."))
+            }
+            if viewModel.standings.contains(where: { $0.zone == .relegation }) {
+                legendItem(color: Color(hex: "ef4444"), label: String(localized: "Relegation zone", comment: "VoiceOver/legend label for a standings row in a relegation position."))
+            }
             Spacer()
         }
     }

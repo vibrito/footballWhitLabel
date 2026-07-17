@@ -89,14 +89,14 @@ struct StandingTests {
         #expect(dto.description == nil)
     }
 
-    @Test("zone classifies real observed API description values correctly", arguments: [
-        ("Promotion - Copa Libertadores (Group Stage)", StandingZone.qualification),
-        ("Promotion - Copa Libertadores (Qualification)", StandingZone.qualification),
-        ("Promotion - Copa Sudamericana (Group Stage)", StandingZone.qualification),
-        ("Champions League league stage", StandingZone.qualification),
-        ("Champions League", StandingZone.qualification),
-        ("Promotion - Champions League (League phase)", StandingZone.qualification),
-        ("Promotion - Premiership (Championship Group)", StandingZone.qualification),
+    @Test("zone classifies real observed API description values correctly — narrowed to only Libertadores, Champions League, and Relegation; other continental competitions (Sudamericana, generic Promotion-only text) are deliberately not marked", arguments: [
+        ("Promotion - Copa Libertadores (Group Stage)", StandingZone.libertadores),
+        ("Promotion - Copa Libertadores (Qualification)", StandingZone.libertadores),
+        ("Promotion - Copa Sudamericana (Group Stage)", StandingZone.none),
+        ("Champions League league stage", StandingZone.championsLeague),
+        ("Champions League", StandingZone.championsLeague),
+        ("Promotion - Champions League (League phase)", StandingZone.championsLeague),
+        ("Promotion - Premiership (Championship Group)", StandingZone.none),
         ("Relegation - Serie B", StandingZone.relegation),
         ("Relegation", StandingZone.relegation),
         ("Relegation Playoffs", StandingZone.relegation),
@@ -125,15 +125,37 @@ struct StandingTests {
         #expect(standing.zone == .none)
     }
 
-    @Test("accessibilityLabel appends the qualification label when zone is qualification")
-    func accessibilityLabelAppendsQualification() throws {
+    @Test("accessibilityLabel appends the Libertadores label when zone is .libertadores")
+    func accessibilityLabelAppendsLibertadores() throws {
         let team = Team(id: 121, name: "Palmeiras", shortName: "Palmeiras", crestURL: nil)
         let standing = Standing(
             position: 1, team: team, playedGames: 15, won: 12, draw: 5, lost: 1,
             goalsFor: 41, goalsAgainst: 18, goalDifference: 23, points: 41,
             zoneDescription: "Promotion - Copa Libertadores (Group Stage)"
         )
-        #expect(standing.accessibilityLabel.hasSuffix("Continental qualification"))
+        #expect(standing.accessibilityLabel.hasSuffix("Libertadores"))
+    }
+
+    @Test("accessibilityLabel appends the Champions League label when zone is .championsLeague")
+    func accessibilityLabelAppendsChampionsLeague() throws {
+        let team = Team(id: 1, name: "Arsenal", shortName: "Arsenal", crestURL: nil)
+        let standing = Standing(
+            position: 1, team: team, playedGames: 15, won: 12, draw: 5, lost: 1,
+            goalsFor: 41, goalsAgainst: 18, goalDifference: 23, points: 41,
+            zoneDescription: "Champions League league stage"
+        )
+        #expect(standing.accessibilityLabel.hasSuffix("Champions League"))
+    }
+
+    @Test("accessibilityLabel appends nothing (zone is .none) for a Sudamericana-only description — deliberately not marked")
+    func accessibilityLabelIgnoresSudamericana() throws {
+        let team = Team(id: 131, name: "Corinthians", shortName: "Corinthians", crestURL: nil)
+        let standing = Standing(
+            position: 6, team: team, playedGames: 15, won: 7, draw: 5, lost: 3,
+            goalsFor: 21, goalsAgainst: 16, goalDifference: 5, points: 26,
+            zoneDescription: "Promotion - Copa Sudamericana (Group Stage)"
+        )
+        #expect(standing.accessibilityLabel.hasSuffix("points"))
     }
 
     @Test("accessibilityLabel appends the relegation label when zone is relegation")
