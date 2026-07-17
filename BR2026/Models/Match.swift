@@ -79,4 +79,45 @@ final class Match: Identifiable {
         minute = dto.minute
         venue = dto.venue
     }
+
+    var accessibilityLabel: String {
+        let home = homeTeam.displayName
+        let away = awayTeam.displayName
+        switch status {
+        case .scheduled:
+            let time = utcDate.formatted(date: .omitted, time: .shortened)
+            return String(
+                localized: "\(home) versus \(away), kicks off at \(time)",
+                comment: "VoiceOver label for a scheduled match card. Arguments: home team name, away team name, formatted kickoff time."
+            )
+        case .postponed:
+            return String(
+                localized: "\(home) versus \(away), postponed",
+                comment: "VoiceOver label for a postponed match card. Arguments: home team name, away team name."
+            )
+        case .live, .halftime:
+            guard let home_score = homeScore, let away_score = awayScore else {
+                return String(
+                    localized: "\(home) versus \(away), live",
+                    comment: "VoiceOver label for a live match card with no score yet available. Arguments: home team name, away team name."
+                )
+            }
+            let minuteText = minute.map { String($0) } ?? ""
+            return String(
+                localized: "\(home) \(home_score), \(away) \(away_score), live, \(minuteText) minute",
+                comment: "VoiceOver label for a live match card. Arguments: home team name, home score, away team name, away score, current minute."
+            )
+        case .finished:
+            guard let home_score = homeScore, let away_score = awayScore else {
+                return String(
+                    localized: "\(home) versus \(away), final score",
+                    comment: "VoiceOver label for a finished match card with no score available. Arguments: home team name, away team name."
+                )
+            }
+            return String(
+                localized: "\(home) \(home_score), \(away) \(away_score), final score",
+                comment: "VoiceOver label for a finished match card. Arguments: home team name, home score, away team name, away score."
+            )
+        }
+    }
 }

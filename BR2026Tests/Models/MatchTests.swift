@@ -115,4 +115,59 @@ struct MatchTests {
         #expect(match.halfTimeHomeScore == 1)
         #expect(match.halfTimeAwayScore == 0)
     }
+
+    @Test("accessibilityLabel for a scheduled match")
+    func accessibilityLabelScheduled() throws {
+        let team1 = Team(id: 1, name: "Flamengo", shortName: "Flamengo", crestURL: nil)
+        let team2 = Team(id: 2, name: "Palmeiras", shortName: "Palmeiras", crestURL: nil)
+        let match = Match(
+            id: 1, utcDate: Date(timeIntervalSince1970: 1_700_000_000), status: .scheduled,
+            matchday: 1, stage: "REGULAR_SEASON", homeTeam: team1, awayTeam: team2,
+            homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        #expect(match.accessibilityLabel.contains("Flamengo"))
+        #expect(match.accessibilityLabel.contains("Palmeiras"))
+    }
+
+    @Test("accessibilityLabel for a live match includes the score and minute")
+    func accessibilityLabelLive() throws {
+        let team1 = Team(id: 1, name: "Flamengo", shortName: "Flamengo", crestURL: nil)
+        let team2 = Team(id: 2, name: "Palmeiras", shortName: "Palmeiras", crestURL: nil)
+        let match = Match(
+            id: 1, utcDate: Date(), status: .live, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team1, awayTeam: team2, homeScore: 2, awayScore: 1, winner: nil,
+            venue: nil, minute: 67
+        )
+        let label = match.accessibilityLabel
+        #expect(label.contains("2"))
+        #expect(label.contains("1"))
+        #expect(label.contains("67"))
+    }
+
+    @Test("accessibilityLabel for a finished match")
+    func accessibilityLabelFinished() throws {
+        let team1 = Team(id: 1, name: "Flamengo", shortName: "Flamengo", crestURL: nil)
+        let team2 = Team(id: 2, name: "Palmeiras", shortName: "Palmeiras", crestURL: nil)
+        let match = Match(
+            id: 1, utcDate: Date(), status: .finished, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team1, awayTeam: team2, homeScore: 3, awayScore: 0, winner: "HOME_TEAM",
+            venue: nil, minute: 90
+        )
+        let label = match.accessibilityLabel
+        #expect(label.contains("3"))
+        #expect(label.contains("0"))
+    }
+
+    @Test("accessibilityLabel for a postponed match")
+    func accessibilityLabelPostponed() throws {
+        let team1 = Team(id: 1, name: "Flamengo", shortName: "Flamengo", crestURL: nil)
+        let team2 = Team(id: 2, name: "Palmeiras", shortName: "Palmeiras", crestURL: nil)
+        let match = Match(
+            id: 1, utcDate: Date(), status: .postponed, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team1, awayTeam: team2, homeScore: nil, awayScore: nil, winner: nil,
+            venue: nil, minute: nil
+        )
+        #expect(match.accessibilityLabel.contains("Flamengo"))
+        #expect(match.accessibilityLabel.contains("Palmeiras"))
+    }
 }
