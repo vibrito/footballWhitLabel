@@ -124,7 +124,20 @@ struct StandingsView: View {
             HStack(spacing: 8) {
                 Text("\(standing.position)")
                     .lineLimit(1)
-                    .frame(width: Self.positionWidth, alignment: .leading)
+                    .minimumScaleFactor(0.7)
+                    .frame(width: Self.positionWidth, height: Self.positionWidth)
+                    .background {
+                        if let ballColor = zoneBallColor(for: standing.zone) {
+                            Circle().fill(ballColor)
+                        }
+                    }
+                    // The ball's fixed teal/red fill is opaque regardless of the active team
+                    // theme or app accent, so the inherited `themeTokens.textColor` (which can
+                    // itself be a light color, e.g. when a light-kit team theme is active)
+                    // isn't guaranteed to read against it — black gives >5:1 contrast against
+                    // both zone colors (verified: teal 11.3:1, red 5.6:1), well past the
+                    // WCAG AA threshold this app already holds itself to elsewhere.
+                    .foregroundStyle(standing.zone == .none ? themeTokens.textColor : .black)
                 TeamCrestBadge(team: standing.team, size: 20)
             }
             .frame(width: Self.leadingWidth, alignment: .leading)
@@ -152,19 +165,11 @@ struct StandingsView: View {
         .monospacedDigit()
         .foregroundStyle(themeTokens.textColor)
         .padding(.vertical, 8)
-        .overlay(alignment: .leading) {
-            if let barColor = zoneBarColor(for: standing.zone) {
-                Rectangle()
-                    .fill(barColor)
-                    .frame(width: 3)
-                    .accessibilityHidden(true)
-            }
-        }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(standing.accessibilityLabel)
     }
 
-    private func zoneBarColor(for zone: StandingZone) -> Color? {
+    private func zoneBallColor(for zone: StandingZone) -> Color? {
         switch zone {
         case .libertadores, .championsLeague: return Color(hex: "2dd4bf")
         case .relegation: return Color(hex: "ef4444")
