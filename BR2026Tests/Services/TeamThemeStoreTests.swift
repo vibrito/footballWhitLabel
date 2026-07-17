@@ -126,7 +126,12 @@ struct TeamThemeStoreTests {
         #expect(store.tokens.overrideAccentColor == Color(hex: "006CB5"))
         #expect(store.tokens.overrideAccentColor != Color(hex: "ffffff"))
         #expect(store.tokens.overrideTabSelectionColor == Color(hex: "ED3237"))
-        #expect(store.tokens.textColor == Color(hex: "F2F2F2"))
+        // FFFFFF, not the originally-curated F2F2F2: Bahia has no pillFillColorOverrideHex,
+        // so the round pill's fill actually renders as its tab-selection red (ED3237), and
+        // F2F2F2 only scores 3.67:1 against that — below WCAG AA's 4.5 minimum. The new
+        // contrast validation in ThemeTokens.themed(...) correctly catches this and falls
+        // back to plain white.
+        #expect(store.tokens.textColor == Color(hex: "FFFFFF"))
         #expect(store.tokens.textColor != Color(hex: "043a73"))
     }
 

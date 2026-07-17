@@ -58,12 +58,20 @@ struct ThemeTokens: Equatable {
         usesDiagonalSashBackground: Bool = false
     ) -> ThemeTokens {
         let accent = Color(hex: mainColorHex)
+        // The same fallback chain the round pill's fill already resolves to (see
+        // `FixturesView.roundPill`'s `overridePillFillColor ?? overrideTabSelectionColor ??
+        // Color.accentColor`) — checking raw mainColorHex unconditionally here would
+        // validate a surface that never actually renders whenever a team overrides the
+        // pill fill away from its main color (e.g. Corinthians/Santos both override it to
+        // black), producing false positives.
+        let secondaryBackgroundHex = pillFillColorHex ?? tabSelectionColorHex ?? mainColorHex
+        let resolvedFontColorHex = accessibleFontColorHex(candidateHex: fontColorHex, secondaryBackgroundHex: secondaryBackgroundHex)
         return ThemeTokens(
             overrideAccentColor: accent,
             overrideTabSelectionColor: tabSelectionColorHex.map { Color(hex: $0) },
             overridePillFillColor: pillFillColorHex.map { Color(hex: $0) },
             usesDiagonalSashBackground: usesDiagonalSashBackground,
-            textColor: Color(hex: fontColorHex),
+            textColor: Color(hex: resolvedFontColorHex),
             gradientStops: [
                 Color.shaded(hex: mainColorHex, towardWhite: 0.35),
                 accent,
@@ -71,6 +79,39 @@ struct ThemeTokens: Equatable {
             ],
             blobColors: (top: accent, bottom: accent)
         )
+    }
+
+    /// The app's fixed darkest background stop (see `defaultGradientStops`) — one of two
+    /// reference surfaces a team's font color must contrast against.
+    private static let fixedDarkBackgroundHex = "061325"
+
+    /// WCAG AA's minimum contrast ratio for normal text.
+    private static let minimumContrastRatio = 4.5
+
+    /// Validates `candidateHex` against both the app's fixed dark background and a second
+    /// surface it's actually drawn on top of elsewhere (the round pill's fill, LiveChip's
+    /// capsule) — the two failure patterns behind every contrast bug found in this app so
+    /// far (see `TeamThemeOption`'s doc-comment history: Atlético Mineiro's tab bar
+    /// legibility, LiveChip's self-referential chip contrast). If either check fails,
+    /// returns whichever of pure white or pure black scores higher on the *minimum* of its
+    /// two contrast ratios — the candidate that's least-bad against both surfaces at once.
+    /// Otherwise returns `candidateHex` unchanged. Applied unconditionally: curated
+    /// overrides and raw API values are validated identically, with no bypass.
+    static func accessibleFontColorHex(candidateHex: String, secondaryBackgroundHex: String) -> String {
+        let passesBackground = WCAGContrast.contrastRatio(candidateHex, fixedDarkBackgroundHex) >= minimumContrastRatio
+        let passesSecondary = WCAGContrast.contrastRatio(candidateHex, secondaryBackgroundHex) >= minimumContrastRatio
+        guard passesBackground, passesSecondary else {
+            let whiteMinRatio = min(
+                WCAGContrast.contrastRatio("FFFFFF", fixedDarkBackgroundHex),
+                WCAGContrast.contrastRatio("FFFFFF", secondaryBackgroundHex)
+            )
+            let blackMinRatio = min(
+                WCAGContrast.contrastRatio("000000", fixedDarkBackgroundHex),
+                WCAGContrast.contrastRatio("000000", secondaryBackgroundHex)
+            )
+            return whiteMinRatio >= blackMinRatio ? "FFFFFF" : "000000"
+        }
+        return candidateHex
     }
 }
 
