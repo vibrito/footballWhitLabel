@@ -10,6 +10,16 @@ struct StandingsView: View {
         _viewModel = State(initialValue: StandingsViewModel(service: service))
     }
 
+    // Deliberately fixed, not `@ScaledMetric`: these columns were tried as `@ScaledMetric`
+    // first (to stop the stat digits' own boxes from clipping), but that made things worse —
+    // scaling all 7 of them up in lockstep with the row font consumed *more* total row width
+    // as Dynamic Type grew, squeezing the team name column even harder than fixed columns did
+    // (empirically: Standings' "Text clipped" count went from 6 to 17). The stat digits
+    // themselves were never actually the problem — every "Dynamic Type font sizes are
+    // partially unsupported" finding on this screen was the separately-documented app-wide
+    // cap false positive in AccessibilityAuditUITests.swift, not a real clipping bug on these
+    // cells. Only the team name column (below) has a confirmed, screenshot-verified clipping
+    // bug, fixed there directly via `.minimumScaleFactor` instead.
     private static let columnWidth: CGFloat = 24
     private static let goalDifferenceWidth: CGFloat = 34
     private static let positionWidth: CGFloat = 24
@@ -87,10 +97,10 @@ struct StandingsView: View {
         )
     }
 
-    private func columnHeader(_ text: String, width: CGFloat = columnWidth) -> some View {
+    private func columnHeader(_ text: String, width: CGFloat? = nil) -> some View {
         Text(text)
             .lineLimit(1)
-            .frame(width: width)
+            .frame(width: width ?? Self.columnWidth)
             .font(.system(size: columnHeaderFontSize, weight: .bold))
             .tracking(0.4)
             .foregroundStyle(themeTokens.textColor.opacity(0.5))
@@ -108,6 +118,15 @@ struct StandingsView: View {
             Text(standing.team.displayName)
                 .lineLimit(1)
                 .truncationMode(.tail)
+                // A longer name (e.g. "Internacional", "At. Paranaense") truncated with "…"
+                // at larger Dynamic Type sizes even though this column has `maxWidth:
+                // .infinity` — the fixed-width stat columns to its right don't grow, but the
+                // name's own font does, so at some point it simply needs more horizontal
+                // space than is left in the row. `.minimumScaleFactor` lets the name shrink
+                // itself down (as HeroMatchCard's team name and score already do) before
+                // falling back to `.truncationMode(.tail)`'s "…". Caught by
+                // AccessibilityAuditUITests' `.textClipped` audit.
+                .minimumScaleFactor(0.7)
                 .frame(maxWidth: .infinity, alignment: .leading)
             statCell("\(standing.playedGames)")
             statCell("\(standing.won)")
@@ -124,10 +143,19 @@ struct StandingsView: View {
         .accessibilityLabel(standing.accessibilityLabel)
     }
 
-    private func statCell(_ text: String, width: CGFloat = columnWidth, emphasized: Bool = false) -> some View {
+    private func statCell(_ text: String, width: CGFloat? = nil, emphasized: Bool = false) -> some View {
         Text(text)
             .lineLimit(1)
-            .frame(width: width)
+            .frame(width: width ?? Self.columnWidth)
+            // The goal-difference column needs up to 3 characters ("+17", "-16") in a fixed
+            // 34pt box — at larger Dynamic Type sizes the (correctly scaling) font no longer
+            // fits, so it truncated with "…" even though the digits themselves were never
+            // wrong. Every other stat column only ever holds 1-2 digits and stayed within its
+            // fixed 24pt box in testing, but `.minimumScaleFactor` is applied to all stat
+            // cells uniformly rather than singled out to goal difference, since any of them
+            // could in principle need a 3rd digit (e.g. a 100+ point season). Caught by
+            // AccessibilityAuditUITests' `.textClipped` audit.
+            .minimumScaleFactor(0.7)
             .fontWeight(emphasized ? .heavy : .regular)
             .foregroundStyle(emphasized ? themeTokens.textColor : themeTokens.textColor.opacity(0.85))
     }

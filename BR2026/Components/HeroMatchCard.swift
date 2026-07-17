@@ -65,6 +65,12 @@ struct HeroMatchCard: View {
                 .foregroundStyle(themeTokens.textColor)
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
+                // Without this, a long name (e.g. "Chapecoense-sc") that still doesn't fit
+                // on 2 lines at larger Dynamic Type sizes truncates with "…" on the second
+                // line — caught by AccessibilityAuditUITests' `.textClipped` audit. Matches
+                // `centerContent`'s existing `.minimumScaleFactor(0.6)` below for the same
+                // reason.
+                .minimumScaleFactor(0.6)
         }
         .frame(maxWidth: .infinity)
     }
