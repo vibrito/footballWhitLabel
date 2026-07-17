@@ -56,4 +56,33 @@ final class Standing: Identifiable {
             points: dto.points
         )
     }
+
+    private static let ordinalFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .ordinal
+        return formatter
+    }()
+
+    var accessibilityLabel: String {
+        let positionText = Self.ordinalFormatter.string(from: NSNumber(value: position)) ?? String(position)
+        let playedGamesText = String(playedGames)
+        let wonText = String(won)
+        let drawText = String(draw)
+        let lostText = String(lost)
+        let pointsText = String(points)
+        let goalDifferenceText: String
+        if goalDifference > 0 {
+            let plusWord = String(localized: "plus", comment: "VoiceOver: prefix spoken before a positive goal difference, e.g. \"plus 15\".")
+            goalDifferenceText = "\(plusWord) \(goalDifference)"
+        } else if goalDifference < 0 {
+            let minusWord = String(localized: "minus", comment: "VoiceOver: prefix spoken before a negative goal difference, e.g. \"minus 4\".")
+            goalDifferenceText = "\(minusWord) \(abs(goalDifference))"
+        } else {
+            goalDifferenceText = String(goalDifference)
+        }
+        return String(
+            localized: "\(positionText) place, \(team.displayName), \(playedGamesText) played, \(wonText) won, \(drawText) drawn, \(lostText) lost, goal difference \(goalDifferenceText), \(pointsText) points",
+            comment: "VoiceOver label for one standings table row. Arguments: ordinal position, team name, games played, wins, draws, losses, goal difference (already spelled out with plus/minus), points."
+        )
+    }
 }

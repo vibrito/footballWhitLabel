@@ -27,4 +27,28 @@ struct StandingTests {
         #expect(standing.points == 41)
         #expect(standing.id == 121)
     }
+
+    @Test("accessibilityLabel spells out every column")
+    func accessibilityLabel() throws {
+        let team = Team(id: 121, name: "Palmeiras", shortName: "Palmeiras", crestURL: nil)
+        let standing = Standing(
+            position: 3, team: team, playedGames: 10, won: 7, draw: 2, lost: 1,
+            goalsFor: 20, goalsAgainst: 5, goalDifference: 15, points: 23
+        )
+        let label = standing.accessibilityLabel
+        #expect(label.contains("Palmeiras"))
+        #expect(label.contains("10"))
+        #expect(label.contains("7"))
+        #expect(label.contains("23"))
+    }
+
+    @Test("accessibilityLabel spells out a negative goal difference")
+    func accessibilityLabelNegativeGoalDifference() throws {
+        let team = Team(id: 121, name: "Palmeiras", shortName: "Palmeiras", crestURL: nil)
+        let standing = Standing(
+            position: 18, team: team, playedGames: 10, won: 1, draw: 2, lost: 7,
+            goalsFor: 5, goalsAgainst: 20, goalDifference: -15, points: 5
+        )
+        #expect(standing.accessibilityLabel.contains("15"))
+    }
 }

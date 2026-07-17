@@ -2205,6 +2205,129 @@
           }
         }
       }
+    },
+    "plus": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plus"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plus"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "plus"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "mais"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "mais"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "más"
+          }
+        }
+      }
+    },
+    "minus": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "minus"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "minus"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "moins"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "menos"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "menos"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "menos"
+          }
+        }
+      }
+    },
+    "%@ place, %@, %@ played, %@ won, %@ drawn, %@ lost, goal difference %@, %@ points": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ place, %2$@, %3$@ played, %4$@ won, %5$@ drawn, %6$@ lost, goal difference %7$@, %8$@ points"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ place, %2$@, %3$@ played, %4$@ won, %5$@ drawn, %6$@ lost, goal difference %7$@, %8$@ points"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ place, %2$@, %3$@ joués, %4$@ gagnés, %5$@ nuls, %6$@ perdus, différence de buts %7$@, %8$@ points"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ lugar, %2$@, %3$@ jogos, %4$@ vitórias, %5$@ empates, %6$@ derrotas, saldo de gols %7$@, %8$@ pontos"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ lugar, %2$@, %3$@ jogos, %4$@ vitórias, %5$@ empates, %6$@ derrotas, saldo de golos %7$@, %8$@ pontos"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ lugar, %2$@, %3$@ jugados, %4$@ ganados, %5$@ empatados, %6$@ perdidos, diferencia de goles %7$@, %8$@ puntos"
+          }
+        }
+      }
     }
   },
   "version": "1.1"
