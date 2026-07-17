@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import UIKit
 
 @Observable
 @MainActor
@@ -72,7 +73,17 @@ final class MatchdayViewModel {
         isRefreshing = true
         defer { isRefreshing = false }
         if let fresh = try? await service.fetchMatches() {
+            announceChanges(from: matches, to: fresh)
             matches = fresh
+        }
+    }
+
+    private func announceChanges(from old: [Match], to new: [Match]) {
+        let oldByID = Dictionary(uniqueKeysWithValues: old.map { ($0.id, $0) })
+        for match in new {
+            guard let previous = oldByID[match.id],
+                  let announcement = match.accessibilityAnnouncement(comparedTo: previous) else { continue }
+            UIAccessibility.post(notification: .announcement, argument: announcement)
         }
     }
 
