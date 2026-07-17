@@ -6,6 +6,7 @@ struct FixturesView: View {
     let service: MatchService
     @Environment(\.themeTokens) private var themeTokens
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     init(service: MatchService) {
         _viewModel = State(initialValue: FixturesViewModel(service: service))
@@ -76,8 +77,12 @@ struct FixturesView: View {
             }
             .onChange(of: viewModel.selectedRound) { _, newValue in
                 guard let newValue else { return }
-                withAnimation {
+                if reduceMotion {
                     proxy.scrollTo(newValue, anchor: .center)
+                } else {
+                    withAnimation {
+                        proxy.scrollTo(newValue, anchor: .center)
+                    }
                 }
             }
         }

@@ -4,6 +4,7 @@ struct LiveChip: View {
     var minute: Int? = nil
     var isHalftime: Bool = false
     @Environment(\.themeTokens) private var themeTokens
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var pulse = false
 
     private var chipText: String {
@@ -45,6 +46,7 @@ struct LiveChip: View {
         .background(chipColor.opacity(0.18), in: Capsule())
         .overlay(Capsule().strokeBorder(chipColor.opacity(0.45), lineWidth: 0.5))
         .onAppear {
+            guard !reduceMotion else { return }
             withAnimation(.easeInOut(duration: 1.4).repeatForever(autoreverses: true)) {
                 pulse = true
             }
