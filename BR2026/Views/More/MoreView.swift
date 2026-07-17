@@ -9,6 +9,12 @@ struct MoreView: View {
     let themePurchaseStore: PurchaseStore<TeamThemeOption>
     let iconPurchaseStore: PurchaseStore<TeamIconOption>
     @Environment(\.themeTokens) private var themeTokens
+    @ScaledMetric private var competitionNameFontSize: CGFloat = 16
+    @ScaledMetric private var logoPlaceholderIconSize: CGFloat = 28
+    @ScaledMetric private var sectionTitleFontSize: CGFloat = 13
+    @ScaledMetric private var rowIconSize: CGFloat = 16
+    @ScaledMetric private var rowTitleFontSize: CGFloat = 16
+    @ScaledMetric private var chevronIconSize: CGFloat = 13
 
     init(config: ChampionshipConfig, service: MatchService, themeStore: TeamThemeStore, themePurchaseStore: PurchaseStore<TeamThemeOption>, iconPurchaseStore: PurchaseStore<TeamIconOption>) {
         _viewModel = State(initialValue: MoreViewModel(service: service))
@@ -59,7 +65,7 @@ struct MoreView: View {
                 .frame(width: 64, height: 64)
             if let name = viewModel.competitionName {
                 Text(name)
-                    .font(.system(size: 16, weight: .semibold))
+                    .font(.system(size: competitionNameFontSize, weight: .semibold))
                     .foregroundStyle(themeTokens.textColor)
             }
         }
@@ -84,7 +90,7 @@ struct MoreView: View {
                         .fill(.white.opacity(0.07))
                         .overlay(
                             Image(systemName: "soccerball")
-                                .font(.system(size: 28))
+                                .font(.system(size: logoPlaceholderIconSize))
                                 .foregroundStyle(themeTokens.textColor.opacity(0.55))
                         )
                 }
@@ -96,7 +102,7 @@ struct MoreView: View {
     private func sectionView(_ section: MoreSection) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             Text(section.titleKey)
-                .font(.system(size: 13, weight: .bold))
+                .font(.system(size: sectionTitleFontSize, weight: .bold))
                 .tracking(0.8)
                 .foregroundStyle(themeTokens.textColor.opacity(0.5))
                 .textCase(.uppercase)
@@ -133,14 +139,14 @@ struct MoreView: View {
     private func rowLabel(_ row: MoreRow, showsChevron: Bool) -> some View {
         let base = HStack(spacing: 12) {
             Image(systemName: row.systemImage)
-                .font(.system(size: 16, weight: .semibold))
+                .font(.system(size: rowIconSize, weight: .semibold))
                 .frame(width: 24)
             Text(row.titleKey)
-                .font(.system(size: 16, weight: .semibold))
+                .font(.system(size: rowTitleFontSize, weight: .semibold))
             Spacer()
             if showsChevron {
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 13, weight: .semibold))
+                    .font(.system(size: chevronIconSize, weight: .semibold))
                     .foregroundStyle(themeTokens.textColor.opacity(0.3))
             }
         }

@@ -3,6 +3,12 @@ import SwiftUI
 struct TeamThemePickerView: View {
     @State private var viewModel: TeamThemePickerViewModel
     @Environment(\.themeTokens) private var themeTokens
+    @ScaledMetric private var restoreButtonFontSize: CGFloat = 13
+    @ScaledMetric private var errorMessageFontSize: CGFloat = 13
+    @ScaledMetric private var rowFontSize: CGFloat = 16
+    @ScaledMetric private var lockIconSize: CGFloat = 12
+    @ScaledMetric private var priceFontSize: CGFloat = 13
+    @ScaledMetric private var checkmarkIconSize: CGFloat = 15
 
     init(viewModel: TeamThemePickerViewModel) {
         _viewModel = State(initialValue: viewModel)
@@ -27,14 +33,14 @@ struct TeamThemePickerView: View {
                     Task { await viewModel.restorePurchases() }
                 } label: {
                     Text("Restore Purchases")
-                        .font(.system(size: 13, weight: .semibold))
+                        .font(.system(size: restoreButtonFontSize, weight: .semibold))
                         .foregroundStyle(themeTokens.textColor.opacity(0.55))
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
                 .buttonStyle(.plain)
                 if let errorMessage = viewModel.errorMessage {
                     Text(errorMessage)
-                        .font(.system(size: 13))
+                        .font(.system(size: errorMessageFontSize))
                         .foregroundStyle(themeTokens.textColor.opacity(0.55))
                 }
             }
@@ -62,7 +68,7 @@ struct TeamThemePickerView: View {
                 trailingSlot(option)
                     .accessibilityHidden(true)
             }
-            .font(.system(size: 16, weight: .semibold))
+            .font(.system(size: rowFontSize, weight: .semibold))
             .foregroundStyle(themeTokens.textColor)
             .padding(.vertical, 10)
             .contentShape(Rectangle())
@@ -95,16 +101,16 @@ struct TeamThemePickerView: View {
         if let option, !viewModel.isPurchased(option) {
             HStack(spacing: 4) {
                 Image(systemName: "lock.fill")
-                    .font(.system(size: 12, weight: .semibold))
+                    .font(.system(size: lockIconSize, weight: .semibold))
                 if let price = viewModel.price(for: option) {
                     Text(price)
-                        .font(.system(size: 13, weight: .semibold))
+                        .font(.system(size: priceFontSize, weight: .semibold))
                 }
             }
             .foregroundStyle(themeTokens.textColor.opacity(0.55))
         } else if viewModel.selectedOption == option {
             Image(systemName: "checkmark")
-                .font(.system(size: 15, weight: .semibold))
+                .font(.system(size: checkmarkIconSize, weight: .semibold))
                 .foregroundStyle(themeTokens.textColor)
         }
     }

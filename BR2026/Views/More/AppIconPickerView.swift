@@ -3,6 +3,12 @@ import SwiftUI
 struct AppIconPickerView: View {
     @State private var viewModel: AppIconPickerViewModel
     @Environment(\.themeTokens) private var themeTokens
+    @ScaledMetric private var restoreButtonFontSize: CGFloat = 13
+    @ScaledMetric private var errorMessageFontSize: CGFloat = 13
+    @ScaledMetric private var rowTitleFontSize: CGFloat = 16
+    @ScaledMetric private var checkmarkIconSize: CGFloat = 15
+    @ScaledMetric private var lockIconSize: CGFloat = 12
+    @ScaledMetric private var priceFontSize: CGFloat = 13
 
     init(viewModel: AppIconPickerViewModel) {
         _viewModel = State(initialValue: viewModel)
@@ -44,7 +50,7 @@ struct AppIconPickerView: View {
                     Task { await viewModel.restorePurchases() }
                 } label: {
                     Text("Restore Purchases")
-                        .font(.system(size: 13, weight: .semibold))
+                        .font(.system(size: restoreButtonFontSize, weight: .semibold))
                         .foregroundStyle(themeTokens.textColor.opacity(0.55))
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
@@ -52,7 +58,7 @@ struct AppIconPickerView: View {
                 #endif
                 if let errorMessage = viewModel.errorMessage {
                     Text(errorMessage)
-                        .font(.system(size: 13))
+                        .font(.system(size: errorMessageFontSize))
                         .foregroundStyle(themeTokens.textColor.opacity(0.55))
                 }
             }
@@ -81,11 +87,11 @@ struct AppIconPickerView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                     .accessibilityHidden(true)
                 Text(option.displayName)
-                    .font(.system(size: 16, weight: .semibold))
+                    .font(.system(size: rowTitleFontSize, weight: .semibold))
                 Spacer()
                 if isSelected {
                     Image(systemName: "checkmark")
-                        .font(.system(size: 15, weight: .semibold))
+                        .font(.system(size: checkmarkIconSize, weight: .semibold))
                         .foregroundStyle(.white)
                         .accessibilityHidden(true)
                 }
@@ -111,7 +117,7 @@ struct AppIconPickerView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                     .accessibilityHidden(true)
                 Text(option.displayName)
-                    .font(.system(size: 16, weight: .semibold))
+                    .font(.system(size: rowTitleFontSize, weight: .semibold))
                 Spacer()
                 teamTrailingSlot(option)
                     .accessibilityHidden(true)
@@ -147,16 +153,16 @@ struct AppIconPickerView: View {
         if !viewModel.isPurchased(option) {
             HStack(spacing: 4) {
                 Image(systemName: "lock.fill")
-                    .font(.system(size: 12, weight: .semibold))
+                    .font(.system(size: lockIconSize, weight: .semibold))
                 if let price = viewModel.price(for: option) {
                     Text(price)
-                        .font(.system(size: 13, weight: .semibold))
+                        .font(.system(size: priceFontSize, weight: .semibold))
                 }
             }
             .foregroundStyle(themeTokens.textColor.opacity(0.55))
         } else if viewModel.isSelected(option) {
             Image(systemName: "checkmark")
-                .font(.system(size: 15, weight: .semibold))
+                .font(.system(size: checkmarkIconSize, weight: .semibold))
                 .foregroundStyle(themeTokens.textColor)
         }
     }
