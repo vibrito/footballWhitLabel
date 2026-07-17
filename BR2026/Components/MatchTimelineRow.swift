@@ -4,6 +4,11 @@ import SwiftUI
 /// belongs to, with a time badge centered between the two columns.
 struct MatchTimelineRow: View {
     let event: MatchEvent
+    @ScaledMetric private var timeBadgeFontSize: CGFloat = 13
+    @ScaledMetric private var playerNameFontSize: CGFloat = 15
+    @ScaledMetric private var subtitleFontSize: CGFloat = 12
+    @ScaledMetric private var goalIconSize: CGFloat = 13
+    @ScaledMetric private var substitutionIconSize: CGFloat = 11
 
     var body: some View {
         HStack(spacing: 12) {
@@ -26,7 +31,7 @@ struct MatchTimelineRow: View {
 
     private var timeBadge: some View {
         Text(minuteLabel)
-            .font(.system(size: 13, weight: .bold))
+            .font(.system(size: timeBadgeFontSize, weight: .bold))
             .monospacedDigit()
             .foregroundStyle(.white.opacity(0.7))
             .padding(.horizontal, 10)
@@ -48,12 +53,12 @@ struct MatchTimelineRow: View {
             if event.team == .away { icon }
             VStack(alignment: alignment, spacing: 2) {
                 Text(event.player)
-                    .font(.system(size: 15, weight: .semibold))
+                    .font(.system(size: playerNameFontSize, weight: .semibold))
                     .foregroundStyle(.white)
                     .lineLimit(1)
                 if let subtitleText {
                     subtitleText
-                        .font(.system(size: 12))
+                        .font(.system(size: subtitleFontSize))
                         .foregroundStyle(.white.opacity(0.5))
                         .lineLimit(1)
                 }
@@ -67,7 +72,7 @@ struct MatchTimelineRow: View {
         switch event.type {
         case .goal:
             Image(systemName: "soccerball")
-                .font(.system(size: 13))
+                .font(.system(size: goalIconSize))
                 .foregroundStyle(.white.opacity(0.8))
         case .yellowCard:
             RoundedRectangle(cornerRadius: 2, style: .continuous)
@@ -84,7 +89,7 @@ struct MatchTimelineRow: View {
                 Image(systemName: "arrow.up")
                     .foregroundStyle(Color.green)
             }
-            .font(.system(size: 11, weight: .bold))
+            .font(.system(size: substitutionIconSize, weight: .bold))
         case .unknown:
             EmptyView()
         }

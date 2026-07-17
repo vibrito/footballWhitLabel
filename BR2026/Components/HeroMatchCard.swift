@@ -6,6 +6,11 @@ import SwiftUI
 struct HeroMatchCard: View {
     let match: Match
     @Environment(\.themeTokens) private var themeTokens
+    @ScaledMetric private var venueFontSize: CGFloat = 13
+    @ScaledMetric private var kickoffFontSize: CGFloat = 15
+    @ScaledMetric private var teamNameFontSize: CGFloat = 19
+    @ScaledMetric private var scoreFontSize: CGFloat = 40
+    @ScaledMetric private var vsFontSize: CGFloat = 30
 
     var body: some View {
         GlassCard(cornerRadius: 28, style: .transparent) {
@@ -18,7 +23,7 @@ struct HeroMatchCard: View {
                     teamColumn(match.awayTeam)
                 }
                 Text(venueLabel)
-                    .font(.system(size: 13, weight: .medium))
+                    .font(.system(size: venueFontSize, weight: .medium))
                     .foregroundStyle(themeTokens.textColor.opacity(0.5))
                     .lineLimit(1)
             }
@@ -42,7 +47,7 @@ struct HeroMatchCard: View {
             LiveChip(isHalftime: true)
         default:
             Text(match.utcDate, style: .time)
-                .font(.system(size: 15, weight: .bold))
+                .font(.system(size: kickoffFontSize, weight: .bold))
                 .tracking(0.6)
                 .foregroundStyle(themeTokens.textColor.opacity(0.65))
         }
@@ -56,7 +61,7 @@ struct HeroMatchCard: View {
         VStack(spacing: 12) {
             TeamCrestBadge(team: team, size: 88)
             Text(team.displayName)
-                .font(.system(size: 19, weight: .bold))
+                .font(.system(size: teamNameFontSize, weight: .bold))
                 .foregroundStyle(themeTokens.textColor)
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
@@ -68,14 +73,14 @@ struct HeroMatchCard: View {
     private var centerContent: some View {
         if let home = match.homeScore, let away = match.awayScore {
             Text("\(home) – \(away)")
-                .font(.system(size: 40, weight: .heavy))
+                .font(.system(size: scoreFontSize, weight: .heavy))
                 .monospacedDigit()
                 .foregroundStyle(themeTokens.textColor)
                 .lineLimit(1)
                 .minimumScaleFactor(0.6)
         } else {
             Text("VS")
-                .font(.system(size: 30, weight: .heavy))
+                .font(.system(size: vsFontSize, weight: .heavy))
                 .foregroundStyle(themeTokens.textColor.opacity(0.35))
         }
     }

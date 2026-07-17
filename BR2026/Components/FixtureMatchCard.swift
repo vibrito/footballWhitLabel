@@ -6,6 +6,9 @@ import SwiftUI
 struct FixtureMatchCard: View {
     let match: Match
     @Environment(\.themeTokens) private var themeTokens
+    @ScaledMetric private var headerFontSize: CGFloat = 11
+    @ScaledMetric private var teamNameFontSize: CGFloat = 16
+    @ScaledMetric private var scoreFontSize: CGFloat = 19
 
     var body: some View {
         GlassCard(cornerRadius: 22, style: .transparent) {
@@ -30,7 +33,7 @@ struct FixtureMatchCard: View {
             Spacer()
             statusView
         }
-        .font(.system(size: 11, weight: .bold))
+        .font(.system(size: headerFontSize, weight: .bold))
         .tracking(0.6)
         .foregroundStyle(themeTokens.textColor.opacity(0.5))
     }
@@ -69,13 +72,13 @@ struct FixtureMatchCard: View {
         HStack(spacing: 12) {
             TeamCrestBadge(team: team, size: 28)
             Text(team.displayName)
-                .font(.system(size: 16, weight: .semibold))
+                .font(.system(size: teamNameFontSize, weight: .semibold))
                 .foregroundStyle(themeTokens.textColor)
                 .lineLimit(1)
             Spacer()
             if let score {
                 Text("\(score)")
-                    .font(.system(size: 19, weight: .heavy))
+                    .font(.system(size: scoreFontSize, weight: .heavy))
                     .monospacedDigit()
                     .foregroundStyle(themeTokens.textColor)
             }
