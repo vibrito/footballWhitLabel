@@ -290,6 +290,22 @@ enum TeamThemeOption: String, CaseIterable, Identifiable, PurchasableCatalogOpti
         self == .vascoDaGamaHome
     }
 
+    /// Overrides the Standings table's Libertadores zone-marker ball color (normally the
+    /// app-wide teal, see `StandingsView.zoneBallColor`) — Corinthians' gray and Athletico
+    /// Paranaense's red theme colors read poorly against that teal, per user request. Reuses
+    /// CLAUDE.md's existing "Gold" accent hex (`FBBF24`, also used as the `playoff` status
+    /// color) rather than inventing a new one. `nil` for every other team, unaffected.
+    var libertadoresBallColorOverrideHex: String? {
+        switch self {
+        case .palmeirasHome, .flamengoHome, .fluminenseHome, .bahiaHome,
+             .redBullBragantinoHome, .coritibaHome, .saoPauloHome, .atleticoMineiroHome,
+             .cruzeiroHome, .internacionalHome, .remoHome, .botafogoHome, .vitoriaHome,
+             .mirassolHome, .chapecoenseHome, .santosHome, .gremioHome, .vascoDaGamaHome:
+            nil
+        case .corinthiansHome, .athleticoParanaenseHome: "FBBF24"
+        }
+    }
+
     /// The StoreKit product identifier this team's theme purchase uses — one non-consumable
     /// per team, scheme `"com.vibrito.br2026.theme.<rawValue>"`. Derivable directly from the
     /// case with no separate mapping table to keep in sync as teams are added.

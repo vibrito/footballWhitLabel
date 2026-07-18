@@ -2,13 +2,15 @@ import SwiftUI
 
 struct StandingsView: View {
     @State private var viewModel: StandingsViewModel
+    let themeStore: TeamThemeStore
     @Environment(\.themeTokens) private var themeTokens
     @ScaledMetric private var columnHeaderFontSize: CGFloat = 11
     @ScaledMetric private var rowFontSize: CGFloat = 14
     @ScaledMetric private var legendFontSize: CGFloat = 11
 
-    init(service: MatchService) {
+    init(service: MatchService, themeStore: TeamThemeStore) {
         _viewModel = State(initialValue: StandingsViewModel(service: service))
+        self.themeStore = themeStore
     }
 
     // Deliberately fixed, not `@ScaledMetric`: these columns were tried as `@ScaledMetric`
@@ -171,7 +173,12 @@ struct StandingsView: View {
 
     private func zoneBallColor(for zone: StandingZone) -> Color? {
         switch zone {
-        case .libertadores, .championsLeague: return Color(hex: "2dd4bf")
+        case .libertadores:
+            if let overrideHex = themeStore.selectedOption?.libertadoresBallColorOverrideHex {
+                return Color(hex: overrideHex)
+            }
+            return Color(hex: "2dd4bf")
+        case .championsLeague: return Color(hex: "2dd4bf")
         case .relegation: return Color(hex: "ef4444")
         case .none: return nil
         }
@@ -183,13 +190,13 @@ struct StandingsView: View {
     private var legend: some View {
         HStack(spacing: 16) {
             if viewModel.standings.contains(where: { $0.zone == .libertadores }) {
-                legendItem(color: Color(hex: "2dd4bf"), label: String(localized: "Libertadores", comment: "VoiceOver/legend label for a standings row in a Copa Libertadores qualification position."))
+                legendItem(color: zoneBallColor(for: .libertadores) ?? Color(hex: "2dd4bf"), label: String(localized: "Libertadores", comment: "VoiceOver/legend label for a standings row in a Copa Libertadores qualification position."))
             }
             if viewModel.standings.contains(where: { $0.zone == .championsLeague }) {
-                legendItem(color: Color(hex: "2dd4bf"), label: String(localized: "Champions League", comment: "VoiceOver/legend label for a standings row in a UEFA Champions League qualification position."))
+                legendItem(color: zoneBallColor(for: .championsLeague) ?? Color(hex: "2dd4bf"), label: String(localized: "Champions League", comment: "VoiceOver/legend label for a standings row in a UEFA Champions League qualification position."))
             }
             if viewModel.standings.contains(where: { $0.zone == .relegation }) {
-                legendItem(color: Color(hex: "ef4444"), label: String(localized: "Relegation zone", comment: "VoiceOver/legend label for a standings row in a relegation position."))
+                legendItem(color: zoneBallColor(for: .relegation) ?? Color(hex: "ef4444"), label: String(localized: "Relegation zone", comment: "VoiceOver/legend label for a standings row in a relegation position."))
             }
             Spacer()
         }
