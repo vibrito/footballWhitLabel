@@ -32,7 +32,8 @@ struct Team: Codable, Identifiable, Hashable {
 
     private static let displayNameOverrides: [Int: String] = [
         134: "At. Paranaense",
-        133: "Vasco da Gama"
+        133: "Vasco da Gama",
+        132: "Chapecoense"
     ]
 }
 
