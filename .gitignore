@@ -21,3 +21,6 @@ fastlane/test_output/
 fastlane/report.xml
 fastlane/.env.default
 *.p8
+
+# Cloudflare Wrangler
+.wrangler/
