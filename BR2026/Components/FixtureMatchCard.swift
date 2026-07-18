@@ -30,6 +30,15 @@ struct FixtureMatchCard: View {
         HStack {
             Text(venueLabel)
                 .lineLimit(1)
+                // Long venue names ("Estádio José Maria de Campos Maia") clip at larger
+                // Dynamic Type sizes when sharing the row with statusView — same fix as
+                // every other fixed-width/shared-row text cell in the app (Standings
+                // headers, team names), but needs a lower floor than those cells' usual
+                // 0.7: this string is long enough that 0.7 still clipped in practice.
+                // Caught by AccessibilityAuditUITests' `.textClipped` audit once a round
+                // with FINISHED matches (which show a venue) became reachable as the
+                // default selected round.
+                .minimumScaleFactor(0.5)
             Spacer()
             statusView
         }

@@ -85,10 +85,13 @@ final class FixturesViewModel {
     // fixture lists have makeup games, so an early round can carry a couple of
     // matches rescheduled months later, long after later rounds have been played.
     // Instead: if a match is live right now, that round is current. Otherwise the
-    // current round is the one right after the furthest round that has a finished
-    // match — i.e. where the season has actually progressed to — falling back to
-    // the first round if nothing has been played yet, or the last round if
-    // everything has.
+    // current round is the one right after the furthest round that is fully
+    // finished (every match in it played) — i.e. where the season has actually
+    // progressed to — falling back to the first round if nothing has been played
+    // yet, or the last round if everything has. Deliberately "fully finished", not
+    // "has any finished match": Brazilian rounds spread across several days, so a
+    // round can have some matches already played and others still upcoming — that
+    // round is still current, not skipped past in favor of the next one.
     private func currentRound() -> Int? {
         let byRound = matchesByRound
         guard !byRound.isEmpty else { return nil }
@@ -97,13 +100,13 @@ final class FixturesViewModel {
             return liveRound.round
         }
 
-        guard let maxFinishedRound = byRound.filter({ round in
-            round.matches.contains { $0.status == .finished }
+        guard let maxFullyFinishedRound = byRound.filter({ round in
+            round.matches.allSatisfy { $0.status == .finished }
         }).map(\.round).max() else {
             return byRound.first?.round
         }
 
-        let nextRound = byRound.first { $0.round > maxFinishedRound }
+        let nextRound = byRound.first { $0.round > maxFullyFinishedRound }
         return nextRound?.round ?? byRound.last?.round
     }
 

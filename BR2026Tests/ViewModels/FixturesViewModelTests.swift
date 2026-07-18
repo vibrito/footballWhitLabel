@@ -47,7 +47,7 @@ struct FixturesViewModelTests {
         #expect(viewModel.rounds == [1, 2, 3])
     }
 
-    @Test("Loading selects the round right after the furthest round with a finished match")
+    @Test("Loading selects the round right after the furthest fully-finished round")
     func selectsRoundAfterFurthestFinishedRound() async {
         let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
         let round17Finished = Match(
@@ -95,6 +95,35 @@ struct FixturesViewModelTests {
         )
         let service = StubMatchService(
             matches: [round19Scheduled, round4FinishedA, round4MakeupGame, round18Finished], standings: []
+        )
+        let viewModel = FixturesViewModel(service: service)
+
+        await viewModel.load()
+
+        #expect(viewModel.selectedRound == 19)
+    }
+
+    @Test("A partially-finished round (some matches played, others still to come) isn't skipped past")
+    func partiallyFinishedRoundIsNotSkipped() async {
+        let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
+        let round18Finished = Match(
+            id: 1, utcDate: Date(timeIntervalSince1970: 100), status: .finished, matchday: 18, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: 2, awayScore: 1, winner: "HOME_TEAM", venue: nil, minute: 90
+        )
+        let round19FinishedMatch = Match(
+            id: 2, utcDate: Date(timeIntervalSince1970: 200), status: .finished, matchday: 19, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: 1, awayScore: 0, winner: "HOME_TEAM", venue: nil, minute: 90
+        )
+        let round19ScheduledMatch = Match(
+            id: 3, utcDate: Date(timeIntervalSince1970: 300), status: .scheduled, matchday: 19, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let round20Scheduled = Match(
+            id: 4, utcDate: Date(timeIntervalSince1970: 400), status: .scheduled, matchday: 20, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let service = StubMatchService(
+            matches: [round20Scheduled, round19ScheduledMatch, round19FinishedMatch, round18Finished], standings: []
         )
         let viewModel = FixturesViewModel(service: service)
 
