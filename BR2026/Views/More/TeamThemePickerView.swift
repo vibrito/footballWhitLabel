@@ -86,6 +86,10 @@ struct TeamThemePickerView: View {
         .sensoryFeedback(.impact, trigger: previewState) { _, new in
             if case .active = new { true } else { false }
         }
+        // Animates every effectiveTokens-driven color change on this screen (background,
+        // row text, hint, buttons) when previewState changes — both engaging a preview and
+        // reverting back snap smoothly instead of an instant color jump.
+        .animation(.easeInOut(duration: 0.3), value: previewState)
     }
 
     private func rowView(_ option: TeamThemeOption?) -> some View {
