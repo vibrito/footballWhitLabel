@@ -290,6 +290,14 @@ enum TeamThemeOption: String, CaseIterable, Identifiable, PurchasableCatalogOpti
         self == .vascoDaGamaHome
     }
 
+    /// A flat, single-color background instead of the usual radial gradient + ambient
+    /// blobs — Internacional-only, an experimental preview per user request to see how a
+    /// team's accent reads as a solid fill with no gradient variation. `false` for every
+    /// other team.
+    var usesSolidBackground: Bool {
+        self == .internacionalHome
+    }
+
     /// Overrides the Standings table's Libertadores zone-marker ball color (normally the
     /// app-wide teal, see `StandingsView.zoneBallColor`) — Corinthians' gray and Athletico
     /// Paranaense's red theme colors read poorly against that teal, per user request. Reuses
