@@ -28,8 +28,10 @@ struct MatchDetailView: View {
                 Divider()
                     .background(Color.white.opacity(0.1))
                     .padding(.horizontal, 16)
-                timelineSection
-                    .padding(.top, 24)
+                segmentPicker
+                    .padding(.top, 20)
+                    .padding(.bottom, 16)
+                segmentContent
             }
             .padding(16)
         }
@@ -41,7 +43,45 @@ struct MatchDetailView: View {
             await viewModel.load()
             await viewModel.pollWhileLive()
         }
+        .onChange(of: viewModel.selectedSegment) { _, newValue in
+            Task {
+                switch newValue {
+                case .stats: await viewModel.loadStatisticsIfNeeded()
+                case .lineups: await viewModel.loadLineupsIfNeeded()
+                case .timeline: break
+                }
+            }
+        }
         .trackScreen("MatchDetail")
+    }
+
+    private var segmentPicker: some View {
+        Picker("", selection: $viewModel.selectedSegment) {
+            Text("Timeline", comment: "Match detail segmented control option: shows the goals/cards/substitutions timeline.").tag(MatchDetailSegment.timeline)
+            Text("Stats", comment: "Match detail segmented control option: shows match statistics (possession, shots, etc.).").tag(MatchDetailSegment.stats)
+            Text("Lineups", comment: "Match detail segmented control option: shows both teams' starting lineups.").tag(MatchDetailSegment.lineups)
+        }
+        .pickerStyle(.segmented)
+    }
+
+    @ViewBuilder
+    private var segmentContent: some View {
+        switch viewModel.selectedSegment {
+        case .timeline:
+            timelineSection
+        case .stats:
+            if let statistics = viewModel.statistics {
+                StatisticsView(statistics: statistics)
+            } else {
+                Text("Statistics not yet available", comment: "Match detail Stats tab empty state, shown when the match hasn't started or the API hasn't published statistics yet.")
+                    .font(.system(size: emptyEventsFontSize))
+                    .foregroundStyle(themeTokens.textColor.opacity(0.45))
+                    .padding(.top, 20)
+            }
+        case .lineups:
+            // Lineups case added in Task 5.
+            EmptyView()
+        }
     }
 
     private var header: some View {
