@@ -24,6 +24,24 @@ enum WCAGContrast {
         return (lighter + 0.05) / (darker + 0.05)
     }
 
+    /// WCAG AA's minimum contrast ratio for normal text — same threshold `ThemeTokens.
+    /// accessibleFontColorHex` already uses.
+    private static let minimumContrastRatio = 4.5
+
+    /// Validates `candidateHex` (e.g. a jersey number's color) against a single
+    /// `backgroundHex` it's drawn directly on top of (e.g. that jersey's own fill) — a
+    /// one-surface simplification of `ThemeTokens.accessibleFontColorHex`'s two-surface
+    /// check, for callers (like match-lineup kit colors) with only one background to
+    /// validate against. Returns `candidateHex` unchanged if it already passes; otherwise
+    /// returns whichever of pure white or pure black contrasts better against
+    /// `backgroundHex`.
+    static func accessibleColorHex(candidateHex: String, against backgroundHex: String) -> String {
+        guard contrastRatio(candidateHex, backgroundHex) < minimumContrastRatio else { return candidateHex }
+        let whiteRatio = contrastRatio("FFFFFF", backgroundHex)
+        let blackRatio = contrastRatio("000000", backgroundHex)
+        return whiteRatio >= blackRatio ? "FFFFFF" : "000000"
+    }
+
     private static func linearize(_ channel: Double) -> Double {
         channel <= 0.03928 ? channel / 12.92 : pow((channel + 0.055) / 1.055, 2.4)
     }

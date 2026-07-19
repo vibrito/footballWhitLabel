@@ -38,4 +38,24 @@ struct WCAGContrastTests {
         #expect(abs(WCAGContrast.relativeLuminance(hex: "000000") - 0.0) < 0.0001)
         #expect(abs(WCAGContrast.relativeLuminance(hex: "FFFFFF") - 1.0) < 0.0001)
     }
+
+    @Test("accessibleColorHex returns the candidate unchanged when it already passes WCAG AA against the background")
+    func accessibleColorHexReturnsCandidateWhenPassing() {
+        // Fluminense's real away-kit-vs-shirt case: white number on grenat shirt, real API data.
+        #expect(WCAGContrast.accessibleColorHex(candidateHex: "FFFFFF", against: "6E202E") == "FFFFFF")
+    }
+
+    @Test("accessibleColorHex falls back to whichever of black/white contrasts better when the candidate fails")
+    func accessibleColorHexFallsBackWhenFailing() {
+        // Real API data: Botafogo's home lineup response gave fontColor ffffff against
+        // mainColor f7f7f7 (near-white on near-white) — the exact case this exists to fix.
+        let result = WCAGContrast.accessibleColorHex(candidateHex: "FFFFFF", against: "F7F7F7")
+        #expect(result == "000000")
+    }
+
+    @Test("accessibleColorHex picks white when black would contrast worse against a dark background")
+    func accessibleColorHexPicksWhiteAgainstDarkBackground() {
+        let result = WCAGContrast.accessibleColorHex(candidateHex: "111111", against: "000000")
+        #expect(result == "FFFFFF")
+    }
 }
