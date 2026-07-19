@@ -176,4 +176,12 @@ struct TeamThemeOptionTests {
         }
         #expect(TeamThemeOption.vascoDaGamaHome.usesDiagonalSashBackground == true)
     }
+
+    @Test("Only Internacional has a curated gradient outer-color override")
+    func gradientOuterColorOverrides() {
+        for option in TeamThemeOption.allCases where option != .internacionalHome {
+            #expect(option.gradientOuterColorOverrideHex == nil)
+        }
+        #expect(TeamThemeOption.internacionalHome.gradientOuterColorOverrideHex == "D9D9D9")
+    }
 }

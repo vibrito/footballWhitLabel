@@ -45,7 +45,7 @@ final class TeamThemeStore {
             pillFillColorHex: option.pillFillColorOverrideHex,
             gradientDarkAmount: option.gradientDarkAmountOverride ?? -0.75,
             usesDiagonalSashBackground: option.usesDiagonalSashBackground,
-            usesSolidBackground: option.usesSolidBackground
+            gradientOuterColorHex: option.gradientOuterColorOverrideHex
         )
         return true
     }
@@ -59,7 +59,7 @@ final class TeamThemeStore {
             pillFillColorHex: option.pillFillColorOverrideHex,
             gradientDarkAmount: option.gradientDarkAmountOverride ?? -0.75,
             usesDiagonalSashBackground: option.usesDiagonalSashBackground,
-            usesSolidBackground: option.usesSolidBackground
+            gradientOuterColorHex: option.gradientOuterColorOverrideHex
         )
     }
 

@@ -290,12 +290,20 @@ enum TeamThemeOption: String, CaseIterable, Identifiable, PurchasableCatalogOpti
         self == .vascoDaGamaHome
     }
 
-    /// A flat, single-color background instead of the usual radial gradient + ambient
-    /// blobs — Internacional-only, an experimental preview per user request to see how a
-    /// team's accent reads as a solid fill with no gradient variation. `false` for every
-    /// other team.
-    var usesSolidBackground: Bool {
-        self == .internacionalHome
+    /// Overrides the background gradient's outer stop (normally the main color shaded
+    /// toward black) with a literal, unrelated color instead — Internacional-only, an
+    /// experimental preview per user request ("try a gradient to light grey") after an
+    /// earlier flat-solid-fill preview for the same team was rejected. `nil` for every
+    /// other team, unaffected.
+    var gradientOuterColorOverrideHex: String? {
+        switch self {
+        case .palmeirasHome, .flamengoHome, .fluminenseHome, .athleticoParanaenseHome, .bahiaHome,
+             .redBullBragantinoHome, .coritibaHome, .saoPauloHome, .atleticoMineiroHome, .corinthiansHome,
+             .cruzeiroHome, .remoHome, .botafogoHome, .vitoriaHome, .mirassolHome, .chapecoenseHome,
+             .santosHome, .gremioHome, .vascoDaGamaHome:
+            nil
+        case .internacionalHome: "D9D9D9"
+        }
     }
 
     /// Overrides the Standings table's Libertadores zone-marker ball color (normally the

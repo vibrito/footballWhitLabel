@@ -12,8 +12,6 @@ struct StadiumBackground: View {
         Group {
             if themeTokens.usesDiagonalSashBackground {
                 diagonalSashBackground
-            } else if themeTokens.usesSolidBackground {
-                solidBackground
             } else {
                 stadiumNightBackground
             }
@@ -29,15 +27,6 @@ struct StadiumBackground: View {
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
-    }
-
-    /// Internacional-only experimental preview: a flat fill of the team's accent color,
-    /// no radial gradient, no ambient blobs. `overrideAccentColor` is always populated
-    /// whenever `usesSolidBackground` is true (both come from the same `ThemeTokens.
-    /// themed(...)` call) — the fallback only matters if this is ever reached with no
-    /// theme active, which shouldn't happen given today's single-team gating.
-    private var solidBackground: some View {
-        (themeTokens.overrideAccentColor ?? Color(hex: "173a68"))
     }
 
     private var stadiumNightBackground: some View {

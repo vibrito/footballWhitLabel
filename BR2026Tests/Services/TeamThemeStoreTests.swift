@@ -260,7 +260,10 @@ struct TeamThemeStoreTests {
         #expect(store.tokens.overrideAccentColor != Color(hex: "e00618"))
         #expect(store.tokens.overrideTabSelectionColor == nil)
         #expect(store.tokens.textColor == Color(hex: "ffffff"))
-        #expect(store.tokens.gradientStops[2] == Color.shaded(hex: "E5050F", towardWhite: -0.75))
+        // Internacional's outer gradient stop is overridden to a literal light grey
+        // (gradientOuterColorOverrideHex), not the usual shaded-toward-black default —
+        // see TeamThemeOption.gradientOuterColorOverrideHex.
+        #expect(store.tokens.gradientStops[2] == Color(hex: "D9D9D9"))
     }
 
     @Test("select() uses Remo's curated main color override — a lightened navy — instead of the API's literal black")

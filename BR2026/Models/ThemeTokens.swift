@@ -24,11 +24,6 @@ struct ThemeTokens: Equatable {
     /// `false` for every other team — this doesn't touch `gradientStops`/`blobColors`, which
     /// keep driving the hero card border and tab bar tint as usual even when this is `true`.
     var usesDiagonalSashBackground: Bool = false
-    /// A flat, single-color background instead of the usual radial gradient + ambient
-    /// blobs — an experimental preview (Internacional-only, per user request) of how a
-    /// team's accent reads as a solid fill with no gradient variation at all. `false` for
-    /// every other team.
-    var usesSolidBackground: Bool = false
     var textColor: Color = .white
     var gradientStops: [Color] = ThemeTokens.defaultGradientStops
     var blobColors: (top: Color, bottom: Color) = ThemeTokens.defaultBlobColors
@@ -48,7 +43,6 @@ struct ThemeTokens: Equatable {
             && lhs.overrideTabSelectionColor == rhs.overrideTabSelectionColor
             && lhs.overridePillFillColor == rhs.overridePillFillColor
             && lhs.usesDiagonalSashBackground == rhs.usesDiagonalSashBackground
-            && lhs.usesSolidBackground == rhs.usesSolidBackground
             && lhs.textColor == rhs.textColor
             && lhs.gradientStops == rhs.gradientStops
             && lhs.blobColors.top == rhs.blobColors.top
@@ -62,7 +56,7 @@ struct ThemeTokens: Equatable {
         pillFillColorHex: String? = nil,
         gradientDarkAmount: Double = -0.75,
         usesDiagonalSashBackground: Bool = false,
-        usesSolidBackground: Bool = false
+        gradientOuterColorHex: String? = nil
     ) -> ThemeTokens {
         let accent = Color(hex: mainColorHex)
         // The same fallback chain the round pill's fill already resolves to (see
@@ -78,12 +72,15 @@ struct ThemeTokens: Equatable {
             overrideTabSelectionColor: tabSelectionColorHex.map { Color(hex: $0) },
             overridePillFillColor: pillFillColorHex.map { Color(hex: $0) },
             usesDiagonalSashBackground: usesDiagonalSashBackground,
-            usesSolidBackground: usesSolidBackground,
             textColor: Color(hex: resolvedFontColorHex),
             gradientStops: [
                 Color.shaded(hex: mainColorHex, towardWhite: 0.35),
                 accent,
-                Color.shaded(hex: mainColorHex, towardWhite: gradientDarkAmount)
+                // Every team's default outer stop shades mainColorHex toward black
+                // (gradientDarkAmount); gradientOuterColorHex lets a team swap that for an
+                // unrelated literal color instead (e.g. Internacional's light grey preview)
+                // rather than just a darker/lighter version of its own accent.
+                gradientOuterColorHex.map { Color(hex: $0) } ?? Color.shaded(hex: mainColorHex, towardWhite: gradientDarkAmount)
             ],
             blobColors: (top: accent, bottom: accent)
         )
