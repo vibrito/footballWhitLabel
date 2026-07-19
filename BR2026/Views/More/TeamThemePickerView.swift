@@ -1,4 +1,3 @@
-// BR2026/Views/More/TeamThemePickerView.swift
 import SwiftUI
 
 struct TeamThemePickerView: View {
@@ -43,6 +42,11 @@ struct TeamThemePickerView: View {
                 Text("Long press a theme to preview it", comment: "Hint above the Team Theme picker's row list, explaining the long-press-to-preview gesture.")
                     .font(.system(size: errorMessageFontSize))
                     .foregroundStyle(effectiveTokens.textColor.opacity(0.55))
+                    // This hint describes a sighted-only gesture — VoiceOver's actual
+                    // equivalent is each row's "Preview" custom action (discoverable via
+                    // the actions rotor), not a literal long press, so the hint doesn't
+                    // apply and would just be confusing noise if spoken.
+                    .accessibilityHidden(true)
                 GlassCard(cornerRadius: 18, style: .transparent) {
                     VStack(spacing: 10) {
                         rowView(nil)
