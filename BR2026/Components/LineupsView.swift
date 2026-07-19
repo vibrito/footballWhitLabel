@@ -131,9 +131,14 @@ struct LineupsView: View {
                 // (higher opacity, thicker) since it's the boundary readers use to judge each
                 // team's own-half confinement, and the tighter midfield gap (see
                 // `halfwayMargin`) makes that boundary more load-bearing to see clearly.
+                // Filled bar, not `Rectangle().stroke()` on a zero-height frame — the latter
+                // is a degenerate shape SwiftUI doesn't reliably stroke (confirmed: it never
+                // actually rendered on device, unlike CSS's `height:0; border:...` trick this
+                // was ported from, which works because CSS borders paint around a box's edges
+                // regardless of degenerate height).
                 Rectangle()
-                    .stroke(Color.white.opacity(0.55), lineWidth: 2)
-                    .frame(width: geometry.size.width, height: 0)
+                    .fill(Color.white.opacity(0.55))
+                    .frame(width: geometry.size.width, height: 2)
                     .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
                 Circle()
                     .stroke(Color.white.opacity(0.35), lineWidth: 1.5)
