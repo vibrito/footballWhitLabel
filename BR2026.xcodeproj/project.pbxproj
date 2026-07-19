@@ -124,6 +124,7 @@
 		3ACAF35E80B7B45F5AC22DCD /* MatchStatisticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEBACF605A73636B6D7EE18 /* MatchStatisticsTests.swift */; };
 		3B1945BC840FDB9FBF25D1D6 /* MatchEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8EA6912B1D21368F06E9D0 /* MatchEvent.swift */; };
 		3B63EDD85D4CB8AF1FD2B950 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7B366A838D69FA9D60CAA769 /* FirebaseCrashlytics */; };
+		3B66EBC6092C656D70C4A343 /* LineupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45B0F20470314532867D660 /* LineupsView.swift */; };
 		3B95EFBE4C88EB14E4F31E90 /* MatchDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD89602CB168BCB0121EAA /* MatchDTO.swift */; };
 		3C791B326F68ACB2847373B5 /* FixtureMatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5323866C610E927C418D01F7 /* FixtureMatchCard.swift */; };
 		3C8D76A7F4D25DA22D6D3A80 /* FixturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0B10181CB912E1D1C2625 /* FixturesView.swift */; };
@@ -131,6 +132,7 @@
 		3EE6164C0E8FFFC9CB0A0098 /* AppIconOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7BD7162D81299AB5D44D51 /* AppIconOption.swift */; };
 		3F00E7933FE9AEBFE7597F75 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A550575E6347EE4F9B8C7E8 /* Color+Hex.swift */; };
 		3F09F8EFA821813CF8D2B2BE /* AccentPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0A7BD56D54A97E185D54C /* AccentPill.swift */; };
+		40E909ECAE1135FEA4E9914E /* LineupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45B0F20470314532867D660 /* LineupsView.swift */; };
 		412C383E82A46F860B5F5AC8 /* MatchdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB8A210105388EE24ECD77 /* MatchdayView.swift */; };
 		413AACA7E4F0F61D18E6D4EF /* Championship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF94F1B7FFEA78845976994 /* Championship.swift */; };
 		418699922B957B737BF3179D /* TeamCrestBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E434E6CB924EEBF2ED52FF /* TeamCrestBadge.swift */; };
@@ -160,6 +162,7 @@
 		516DCEFFEC2A861895812738 /* ThemeTokensTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DF4A284E1FEB1CFD556FE6 /* ThemeTokensTests.swift */; };
 		518B028CEAF8A9B4D14652BE /* ChampionshipConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51FB666340CB6033EB7277 /* ChampionshipConfig.swift */; };
 		518BA36F8FA83BD5DBBEABB2 /* MockPurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8B3CF0A783D9F8DA80AF9 /* MockPurchaseService.swift */; };
+		51D35BB87DFAB5EF9915E553 /* LineupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45B0F20470314532867D660 /* LineupsView.swift */; };
 		52111A2B37EC80C751EB0F77 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE7CD31B3A17497FD8945EA /* StandingsView.swift */; };
 		523EF9B8EF214C6DF9351452 /* TeamIconOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6677F3D0E470A6CB971B47D4 /* TeamIconOption.swift */; };
 		52AC218C2E201C2208F0492C /* AppIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A466914FB52022A91A3EFDC /* AppIconPickerView.swift */; };
@@ -269,12 +272,14 @@
 		87C0542AEE22603F74C337D1 /* Championship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF94F1B7FFEA78845976994 /* Championship.swift */; };
 		8919015A2F075B957EF63415 /* StandingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B5197C926950D13285B1E1 /* StandingTests.swift */; };
 		8919F9AA34EBB4F97AF48844 /* LiveChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286FB1656839DC4F8940242C /* LiveChip.swift */; };
+		895D4CB41273208F0D0C8BFF /* LineupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45B0F20470314532867D660 /* LineupsView.swift */; };
 		89653F509F388F21425BC874 /* MockMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EB245877F3BE6246A841B9 /* MockMatchService.swift */; };
 		89693DBE6F9E63618C3897DC /* MatchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855292C3DDAE65CCAE220B7F /* MatchDetailView.swift */; };
 		89D54DD920AF8B23605BED08 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 7A20B375D7094C6D4E1961B1 /* Localizable.xcstrings */; };
 		8A32EA18735863FADD5FB978 /* AppIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A466914FB52022A91A3EFDC /* AppIconPickerView.swift */; };
 		8A9DAFC0D7423F13C744C218 /* CrossAppLinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2218558E3790F197562D732 /* CrossAppLinkTests.swift */; };
 		8AC49F5B9D3F8C6C1F93A895 /* FixturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0B10181CB912E1D1C2625 /* FixturesView.swift */; };
+		8B463B268FBEA267C279AE6B /* LineupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45B0F20470314532867D660 /* LineupsView.swift */; };
 		8B753002E537CD200E5B3EE0 /* MatchLineupDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE093DE3BA3DFAB4EF20AE9E /* MatchLineupDTO.swift */; };
 		8B8A0D40C106556309985BEE /* TeamIconOptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA17CB79990E311A53067156 /* TeamIconOptionTests.swift */; };
 		8BB37D2B789041A8DF10D688 /* TeamThemePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D809CFAC5AD024BF5FB199D0 /* TeamThemePickerViewModel.swift */; };
@@ -403,6 +408,7 @@
 		C7059B81212B835BE78F8E68 /* ScreenTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404494D46245C078DB19DE9E /* ScreenTracking.swift */; };
 		C9EF467DD9142BDA3B3BF483 /* HeroMatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BD698E976EAC4B8C3CF2B7 /* HeroMatchCard.swift */; };
 		CA5A5066A282B6BD4CF054FA /* MatchLineup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A31C8E821533DAE21A17D2 /* MatchLineup.swift */; };
+		CA9043306BCA645BFAE8609E /* LineupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45B0F20470314532867D660 /* LineupsView.swift */; };
 		CB9EEE216AE845D22D321EB0 /* MatchEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8EA6912B1D21368F06E9D0 /* MatchEvent.swift */; };
 		CBA43E13A581D2F0312E7B51 /* ScoreRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422EC54CAAA878A2718771BB /* ScoreRow.swift */; };
 		CBD5490399BD77B3DE5FA7AB /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322CAB2B4DE8D3A9DEA34EE0 /* MockDataProvider.swift */; };
@@ -611,6 +617,7 @@
 		A0DD669373635203B9093D6C /* StatisticsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		A0FD16E360A6B3F8DCB8362C /* TeamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTests.swift; sourceTree = "<group>"; };
 		A2DF4A284E1FEB1CFD556FE6 /* ThemeTokensTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ThemeTokensTests.swift; sourceTree = "<group>"; };
+		A45B0F20470314532867D660 /* LineupsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LineupsView.swift; sourceTree = "<group>"; };
 		A4792BA65EDA88BE348EAF2C /* TeamThemeStoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamThemeStoreTests.swift; sourceTree = "<group>"; };
 		A891A6379A8E24051EBE4113 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AE7BD7162D81299AB5D44D51 /* AppIconOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconOption.swift; sourceTree = "<group>"; };
@@ -794,6 +801,7 @@
 				17A71A2EA3718A5D31948205 /* StadiumBackground.swift */,
 				E7E434E6CB924EEBF2ED52FF /* TeamCrestBadge.swift */,
 				A0DD669373635203B9093D6C /* StatisticsView.swift */,
+				A45B0F20470314532867D660 /* LineupsView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1650,6 +1658,7 @@
 				2A75F85FADA71C589925E832 /* MatchLineupDTO.swift in Sources */,
 				4B56E893B6913F167061F783 /* MatchLineup.swift in Sources */,
 				084E3D501547B48E57002C52 /* StatisticsView.swift in Sources */,
+				3B66EBC6092C656D70C4A343 /* LineupsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1728,6 +1737,7 @@
 				9043322EE841F9A7DD85A4EE /* MatchLineupDTO.swift in Sources */,
 				CA5A5066A282B6BD4CF054FA /* MatchLineup.swift in Sources */,
 				91243AEC1F53CD82A8A54966 /* StatisticsView.swift in Sources */,
+				51D35BB87DFAB5EF9915E553 /* LineupsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1843,6 +1853,7 @@
 				8B753002E537CD200E5B3EE0 /* MatchLineupDTO.swift in Sources */,
 				C545B1E68CCE2EC2CCAE9619 /* MatchLineup.swift in Sources */,
 				5B22933EC307FD03D6F2817B /* StatisticsView.swift in Sources */,
+				CA9043306BCA645BFAE8609E /* LineupsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1920,6 +1931,7 @@
 				6278C57AF02062B1F23E19C7 /* MatchLineupDTO.swift in Sources */,
 				03E0C9815DE827A9418D21C7 /* MatchLineup.swift in Sources */,
 				D853188276CAAB265D8049E8 /* StatisticsView.swift in Sources */,
+				895D4CB41273208F0D0C8BFF /* LineupsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1998,6 +2010,7 @@
 				233EB7B3771CA0643382C39F /* MatchLineupDTO.swift in Sources */,
 				9D990195949F6258C021DDAD /* MatchLineup.swift in Sources */,
 				633D3091D77D647F4424A9F5 /* StatisticsView.swift in Sources */,
+				8B463B268FBEA267C279AE6B /* LineupsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2075,6 +2088,7 @@
 				118CD7A06F5914DCB3ADCF12 /* MatchLineupDTO.swift in Sources */,
 				65EB3C884BC1BB70D4871BA6 /* MatchLineup.swift in Sources */,
 				DFFF33617F011747D573626B /* StatisticsView.swift in Sources */,
+				40E909ECAE1135FEA4E9914E /* LineupsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -79,8 +79,14 @@ struct MatchDetailView: View {
                     .padding(.top, 20)
             }
         case .lineups:
-            // Lineups case added in Task 5.
-            EmptyView()
+            if let lineups = viewModel.lineups {
+                LineupsView(lineup: lineups, homeTeamName: match.homeTeam.displayName, awayTeamName: match.awayTeam.displayName)
+            } else {
+                Text("Lineups not yet available", comment: "Match detail Lineups tab empty state, shown when the API hasn't published starting lineups yet (typically ~1 hour before kickoff).")
+                    .font(.system(size: emptyEventsFontSize))
+                    .foregroundStyle(themeTokens.textColor.opacity(0.45))
+                    .padding(.top, 20)
+            }
         }
     }
 

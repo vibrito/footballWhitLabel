@@ -648,6 +648,48 @@
         }
       }
     },
+    "%@, formation %@": {
+      "comment": "VoiceOver heading label spoken before a team's players on the lineup formation pitch. Arguments: team name, formation string (e.g. \"4-2-3-1\").",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, formation %2$@"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, formation %2$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, formación %2$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, formation %2$@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, formação %2$@"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, formação %2$@"
+          }
+        }
+      }
+    },
     "%@, locked, %@": {
       "extractionState": "manual",
       "localizations": {
@@ -685,6 +727,48 @@
           "stringUnit": {
             "state": "translated",
             "value": "%1$@, bloqueado, %2$@"
+          }
+        }
+      }
+    },
+    "%@, number %@, %@, %@": {
+      "comment": "VoiceOver label for one lineup player marker on the formation pitch. Arguments: player name, jersey number (already formatted as a string), position (already localized, e.g. \"Goalkeeper\"), team name.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, number %2$@, %3$@, %4$@"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, number %2$@, %3$@, %4$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, número %2$@, %3$@, %4$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, numéro %2$@, %3$@, %4$@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, número %2$@, %3$@, %4$@"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, número %2$@, %3$@, %4$@"
           }
         }
       }
@@ -1892,6 +1976,48 @@
         }
       }
     },
+    "Lineups not yet available": {
+      "comment": "Match detail Lineups tab empty state, shown when the API hasn't published starting lineups yet (typically ~1 hour before kickoff).",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lineups not yet available"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lineups not yet available"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alineaciones aún no disponibles"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compositions pas encore disponibles"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escalações ainda não disponíveis"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Onzes ainda não disponíveis"
+          }
+        }
+      }
+    },
     "Matchday": {
       "extractionState": "manual",
       "localizations": {
@@ -2894,6 +3020,48 @@
           "stringUnit": {
             "state": "translated",
             "value": "Estatísticas"
+          }
+        }
+      }
+    },
+    "Substitutes": {
+      "comment": "Match detail Lineups tab section header, above the list of bench players.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Substitutes"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Substitutes"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suplentes"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remplaçants"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reservas"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suplentes"
           }
         }
       }
