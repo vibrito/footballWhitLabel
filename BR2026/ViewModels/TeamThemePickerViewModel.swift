@@ -60,6 +60,10 @@ final class TeamThemePickerViewModel {
         purchaseStore.price(for: option)
     }
 
+    func previewTokens(for option: TeamThemeOption?) async -> ThemeTokens? {
+        await themeStore.previewTokens(for: option)
+    }
+
     func select(_ option: TeamThemeOption?) async {
         guard option != selectedOption else { return }
         errorMessage = nil

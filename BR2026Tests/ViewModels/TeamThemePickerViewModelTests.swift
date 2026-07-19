@@ -1,4 +1,5 @@
 import Testing
+import SwiftUI
 @testable import BR2026
 
 @Suite("TeamThemePickerViewModel")
@@ -261,5 +262,22 @@ struct TeamThemePickerViewModelTests {
         await viewModel.loadOnce()
 
         #expect(service.fetchStandingsCallCount == 1)
+    }
+
+    @Test("previewTokens(for:) resolves colors without mutating selectedOption or the store's tokens")
+    func previewTokensDoesNotMutateState() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = palmeirasColors
+        let store = TeamThemeStore(setting: setting, service: service)
+        let purchaseStore = PurchaseStore<TeamThemeOption>(service: MockPurchaseService())
+        let viewModel = TeamThemePickerViewModel(themeStore: store, purchaseStore: purchaseStore, setting: setting, service: service)
+
+        let previewed = await viewModel.previewTokens(for: .palmeirasHome)
+
+        #expect(previewed?.overrideAccentColor == Color(hex: "006437"))
+        #expect(viewModel.selectedOption == nil)
+        #expect(store.selectedOption == nil)
+        #expect(store.tokens == ThemeTokens())
     }
 }
