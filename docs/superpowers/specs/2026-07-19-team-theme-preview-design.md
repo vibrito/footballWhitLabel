@@ -36,6 +36,25 @@ everywhere, including by `TeamThemePickerView` and `StadiumBackground` today.
 - **Release**: reverts instantly, regardless of whether the long-press threshold was reached
   (so a quick tap-and-release never flashes a preview first).
 
+### Discoverability hint
+
+Long-press has no visual affordance on its own, so a short hint line is added above the row
+list (inside `TeamThemePickerView.body`'s outer `VStack`, before the `GlassCard`), reusing this
+view's existing muted-caption style (matching `errorMessage`'s own
+`Text(...).font(.system(size: errorMessageFontSize)).foregroundStyle(themeTokens.textColor.opacity(0.55))`
+— same role, small secondary informational text, just at the top instead of the bottom):
+
+```swift
+Text("Long press a theme to preview it", comment: "Hint above the Team Theme picker's row list, explaining the long-press-to-preview gesture.")
+    .font(.system(size: errorMessageFontSize))
+    .foregroundStyle(themeTokens.textColor.opacity(0.55))
+```
+
+Shown unconditionally (not dismissible, not one-time) — it's short enough to not be
+intrusive, and a persistent reminder is more useful than a hint that disappears after first
+use, given nothing else on this screen otherwise indicates the gesture exists. New localized
+string across all 6 locales, no interpolated arguments so no format-specifier risk.
+
 ### Gesture composition
 
 Each row's `Button` is replaced with a plain view carrying two independent gesture
