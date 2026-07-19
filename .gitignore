@@ -24,3 +24,6 @@ fastlane/.env.default
 
 # Cloudflare Wrangler
 .wrangler/
+
+# Superpowers scratch (brainstorm mockups, SDD progress ledger)
+.superpowers/
