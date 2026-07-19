@@ -154,6 +154,28 @@ final class AccessibilityAuditUITests: XCTestCase {
         try app.performAccessibilityAudit(for: Self.auditTypes) { issue in
             isDynamicTypeCapFalsePositive(issue)
         }
+
+        // The audit only catches issues in whatever's currently on screen — extend
+        // coverage to the two new segments, not just the default Timeline one, the same
+        // lesson the Dynamic Type phase learned the hard way (two picker audits had been
+        // silently checking the wrong screen for an entire prior phase). Index-based
+        // `.buttons.element(boundBy:)`, matching this file's own established convention:
+        // SwiftUI segmented-control buttons don't reliably propagate
+        // `.accessibilityIdentifier`, and a text-based lookup would break on this
+        // project's pt-BR test-simulator locale (see testAppIconPickerAudit's comment for
+        // that exact prior failure).
+        let segmentedControl = app.segmentedControls.firstMatch
+        segmentedControl.buttons.element(boundBy: 1).tap()  // Stats
+        sleep(1)
+        try app.performAccessibilityAudit(for: Self.auditTypes) { issue in
+            isDynamicTypeCapFalsePositive(issue)
+        }
+
+        segmentedControl.buttons.element(boundBy: 2).tap()  // Lineups
+        sleep(1)
+        try app.performAccessibilityAudit(for: Self.auditTypes) { issue in
+            isDynamicTypeCapFalsePositive(issue)
+        }
     }
 
     func testAppIconPickerAudit() throws {
