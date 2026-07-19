@@ -2018,6 +2018,48 @@
         }
       }
     },
+    "Long press a theme to preview it": {
+      "comment": "Hint above the Team Theme picker's row list, explaining the long-press-to-preview gesture.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Long press a theme to preview it"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Long press a theme to preview it"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantén pulsado un tema para previsualizarlo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appuyez longuement sur un thème pour le prévisualiser"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toque e segure um tema para pré-visualizá-lo"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantenha premido um tema para pré-visualizá-lo"
+          }
+        }
+      }
+    },
     "Matchday": {
       "extractionState": "manual",
       "localizations": {
@@ -2596,6 +2638,48 @@
         }
       }
     },
+    "Preview": {
+      "comment": "VoiceOver custom action name: previews this team theme's colors without selecting it.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preview"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preview"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vista previa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aperçu"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pré-visualizar"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pré-visualizar"
+          }
+        }
+      }
+    },
     "Pts": {
       "comment": "Standings table column header: abbreviation for \"Points\". Keep as short as the other column headers in this table.",
       "extractionState": "manual",
@@ -3020,6 +3104,48 @@
           "stringUnit": {
             "state": "translated",
             "value": "Estatísticas"
+          }
+        }
+      }
+    },
+    "Stop Previewing": {
+      "comment": "VoiceOver custom action name: stops previewing this team theme's colors, currently active on this row.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop Previewing"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop Previewing"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dejar de previsualizar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrêter l'aperçu"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parar pré-visualização"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parar pré-visualização"
           }
         }
       }
