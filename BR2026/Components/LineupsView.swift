@@ -53,14 +53,18 @@ struct LineupsView: View {
 
     private static let jerseyWidth: CGFloat = 30
     private static let jerseyHeight: CGFloat = 32
-    // GK stays off the very edge (byline); the deepest attacking line stays well clear of
-    // the halfway line so the two teams' closest rows never collide regardless of
-    // formation. An earlier mockup iteration used halfwayMargin = 2, which visually
-    // collided the two teams' lone strikers (each centered horizontally, since each was
-    // the only player in its row) directly on the halfway line — do not regress this
-    // value back down without re-checking that exact case.
+    // GK stays off the very edge (byline); the deepest attacking line stays clear of the
+    // halfway line so the two teams' closest rows never collide regardless of formation.
+    // An earlier mockup iteration used halfwayMargin = 2, which visually collided the two
+    // teams' lone strikers (each centered horizontally, since each was the only player in
+    // its row) directly on the halfway line. 12 fixed that but left a lot of unused
+    // midfield green; 8 still gives markers (~32pt jersey + name label, fixed size,
+    // unscaled by pitch size) roughly 20pt+ of clearance at typical on-screen pitch sizes —
+    // comfortably above the ~2pt collision case, well below the original 12's excess.
+    // Don't regress below ~6-8 without re-checking the two-lone-strikers case on a real
+    // device at the largest supported Dynamic Type size.
     private static let bylineMargin: Double = 6
-    private static let halfwayMargin: Double = 12
+    private static let halfwayMargin: Double = 8
 
     var body: some View {
         VStack(spacing: 16) {
@@ -123,8 +127,12 @@ struct LineupsView: View {
     private var pitchLines: some View {
         GeometryReader { geometry in
             ZStack {
+                // The halfway line — deliberately more visible than the other pitch markings
+                // (higher opacity, thicker) since it's the boundary readers use to judge each
+                // team's own-half confinement, and the tighter midfield gap (see
+                // `halfwayMargin`) makes that boundary more load-bearing to see clearly.
                 Rectangle()
-                    .stroke(Color.white.opacity(0.35), lineWidth: 1.5)
+                    .stroke(Color.white.opacity(0.55), lineWidth: 2)
                     .frame(width: geometry.size.width, height: 0)
                     .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
                 Circle()
