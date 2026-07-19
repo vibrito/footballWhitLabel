@@ -380,6 +380,8 @@ final class StubMatchService: MatchService {
     var cachedMatchesOverride: [Match]?
     var cachedStandingsOverride: [Standing]?
     var cachedCompetitionOverride: Competition?
+    var statisticsOverride: MatchStatistics?
+    var lineupsOverride: MatchLineup?
     var teamThemeColorSetOverride: TeamThemeColorSet?
     var cachedTeamThemeColorSetOverride: TeamThemeColorSet?
     var shouldThrowOnFetch = false
@@ -419,6 +421,16 @@ final class StubMatchService: MatchService {
     func fetchEvents(matchID: Int) async throws -> [MatchEvent] {
         if shouldThrowOnFetch { throw StubServiceError.simulatedFailure }
         return events
+    }
+
+    func fetchMatchStatistics(matchID: Int) async throws -> MatchStatistics? {
+        if shouldThrowOnFetch { throw StubServiceError.simulatedFailure }
+        return statisticsOverride
+    }
+
+    func fetchMatchLineups(matchID: Int) async throws -> MatchLineup? {
+        if shouldThrowOnFetch { throw StubServiceError.simulatedFailure }
+        return lineupsOverride
     }
 
     func fetchCompetition() async throws -> Competition {

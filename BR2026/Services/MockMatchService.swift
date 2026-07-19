@@ -12,6 +12,8 @@ final class MockMatchService: MatchService {
     private let matches: [Match]
     private let standings: [Standing]
     private let events: [MatchEvent]
+    private let statistics: MatchStatistics?
+    private let lineups: MatchLineup?
     private let competition: Competition?
     // Keyed by team id (the live API's own identifier) — mirrors the real /colors endpoint's
     // per-team shape, which only guarantees `home` (away/third are `null` for some teams,
@@ -46,12 +48,20 @@ final class MockMatchService: MatchService {
         let standingsData = Data(MockDataProvider.standingsJSON.utf8)
         let eventsData = Data(MockDataProvider.eventsJSON.utf8)
         let competitionData = Data(MockDataProvider.competitionJSON.utf8)
+        let statisticsData = Data(MockDataProvider.statisticsJSON.utf8)
+        let lineupsData = Data(MockDataProvider.lineupsJSON.utf8)
         let matchResponse = try? decoder.decode(MatchesResponse.self, from: matchesData)
         let standingsResponse = try? decoder.decode(StandingsResponse.self, from: standingsData)
         let eventsResponse = try? decoder.decode(MatchEventsResponse.self, from: eventsData)
         self.matches = (matchResponse?.matches ?? []).map(Match.init(dto:))
         self.standings = (standingsResponse?.standings ?? []).map(Standing.init(dto:))
         self.events = eventsResponse?.events ?? []
+        self.statistics = try? decoder.decode(MatchStatistics.self, from: statisticsData)
+        if let lineupsDTO = try? decoder.decode(MatchLineupDTO.self, from: lineupsData) {
+            self.lineups = MatchLineup(dto: lineupsDTO)
+        } else {
+            self.lineups = nil
+        }
         let competitionDTO = try? decoder.decode(CompetitionDTO.self, from: competitionData)
         self.competition = competitionDTO.map { Competition(dto: $0) }
     }
@@ -59,6 +69,8 @@ final class MockMatchService: MatchService {
     func fetchMatches() async throws -> [Match] { matches }
     func fetchStandings() async throws -> [Standing] { standings }
     func fetchEvents(matchID: Int) async throws -> [MatchEvent] { events }
+    func fetchMatchStatistics(matchID: Int) async throws -> MatchStatistics? { statistics }
+    func fetchMatchLineups(matchID: Int) async throws -> MatchLineup? { lineups }
 
     func fetchCompetition() async throws -> Competition {
         guard let competition else { throw MatchServiceError.invalidResponse }

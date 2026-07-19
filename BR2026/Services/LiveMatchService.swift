@@ -67,6 +67,22 @@ final class LiveMatchService: MatchService {
         return response.events
     }
 
+    func fetchMatchStatistics(matchID: Int) async throws -> MatchStatistics? {
+        let url = config.apiBaseURL
+            .appendingPathComponent("v4/competitions/\(config.competitionCode)/matches/\(matchID)/statistics")
+        let statistics: MatchStatistics = try await get(url)
+        guard statistics.home.hasAnyValue || statistics.away.hasAnyValue else { return nil }
+        return statistics
+    }
+
+    func fetchMatchLineups(matchID: Int) async throws -> MatchLineup? {
+        let url = config.apiBaseURL
+            .appendingPathComponent("v4/competitions/\(config.competitionCode)/matches/\(matchID)/lineups")
+        let dto: MatchLineupDTO = try await get(url)
+        guard !dto.home.startingXI.isEmpty || !dto.away.startingXI.isEmpty else { return nil }
+        return MatchLineup(dto: dto)
+    }
+
     func fetchCompetition() async throws -> Competition {
         let url = config.apiBaseURL.appendingPathComponent("v4/competitions/\(config.competitionCode)")
         let dto: CompetitionDTO = try await get(url)

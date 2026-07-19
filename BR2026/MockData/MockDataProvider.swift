@@ -55,6 +55,61 @@ enum MockDataProvider {
     }
     """
 
+    static let statisticsJSON = """
+    {
+        "home": { "fouls": 10, "shots": 17, "corners": 5, "possession": 48, "passAccuracy": 81, "shotsOnTarget": 7 },
+        "away": { "fouls": 13, "shots": 22, "corners": 5, "possession": 52, "passAccuracy": 79, "shotsOnTarget": 9 }
+    }
+    """
+
+    static let lineupsJSON = """
+    {
+        "home": {
+            "colors": { "fontColor": "ffffff", "mainColor": "1e1e20", "secondaryColor": "1e1e20" },
+            "formation": "4-4-2",
+            "startingXI": [
+                { "col": 1, "row": 1, "name": "Léo Linck", "number": 24, "position": "G" },
+                { "col": 4, "row": 2, "name": "Vitinho", "number": 2, "position": "D" },
+                { "col": 3, "row": 2, "name": "Gabriel Justino", "number": 34, "position": "D" },
+                { "col": 2, "row": 2, "name": "Nahuel Ferraresi", "number": 5, "position": "D" },
+                { "col": 1, "row": 2, "name": "Alex Telles", "number": 13, "position": "D" },
+                { "col": 4, "row": 3, "name": "Lucas Villalba", "number": 77, "position": "M" },
+                { "col": 3, "row": 3, "name": "Huguinho", "number": 75, "position": "M" },
+                { "col": 2, "row": 3, "name": "Marlon Freitas", "number": 8, "position": "M" },
+                { "col": 1, "row": 3, "name": "Allan", "number": 14, "position": "M" },
+                { "col": 2, "row": 4, "name": "Chris Ramos", "number": 19, "position": "F" },
+                { "col": 1, "row": 4, "name": "Igor Jesus", "number": 9, "position": "F" }
+            ],
+            "substitutes": [
+                { "name": "Diogenes", "number": 1, "position": "G" },
+                { "name": "Adonis Frías", "number": 98, "position": "D" },
+                { "name": "Gabriel Menino", "number": 25, "position": "M" }
+            ]
+        },
+        "away": {
+            "colors": { "fontColor": "000000", "mainColor": "ffffff", "secondaryColor": "ffffff" },
+            "formation": "4-2-3-1",
+            "startingXI": [
+                { "col": 1, "row": 1, "name": "Gabriel Brazão", "number": 77, "position": "G" },
+                { "col": 4, "row": 2, "name": "Igor Vinícius", "number": 18, "position": "D" },
+                { "col": 3, "row": 2, "name": "Lucas Veríssimo", "number": 4, "position": "D" },
+                { "col": 2, "row": 2, "name": "Luan Peres", "number": 14, "position": "D" },
+                { "col": 1, "row": 2, "name": "Gonzalo Escobar", "number": 31, "position": "D" },
+                { "col": 2, "row": 3, "name": "Gustavo Henrique Pereira", "number": 48, "position": "M" },
+                { "col": 1, "row": 3, "name": "Willian Arão", "number": 15, "position": "M" },
+                { "col": 3, "row": 4, "name": "Miguelito", "number": 30, "position": "M" },
+                { "col": 2, "row": 4, "name": "Benjamín Rollheiser", "number": 32, "position": "M" },
+                { "col": 1, "row": 4, "name": "Álvaro Barreal", "number": 22, "position": "M" },
+                { "col": 1, "row": 5, "name": "Thaciano", "number": 16, "position": "F" }
+            ],
+            "substitutes": [
+                { "name": "João Paulo Ananias", "number": 26, "position": "D" },
+                { "name": "Rony", "number": 11, "position": "F" }
+            ]
+        }
+    }
+    """
+
     static let competitionJSON = """
     {
         "code": "BSA",

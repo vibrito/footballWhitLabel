@@ -220,4 +220,22 @@ struct MockMatchServiceTests {
         let fetched = try await service.fetchTeamThemeColorSet(teamID: 121)
         #expect(service.cachedTeamThemeColorSet(teamID: 121) == fetched)
     }
+
+    @Test("fetchMatchStatistics returns real-shaped mock statistics")
+    func fetchMatchStatisticsReturnsRealShapedData() async throws {
+        let service = MockMatchService()
+        let statistics = try await service.fetchMatchStatistics(matchID: 1)
+        #expect(statistics?.home.possession == 48)
+        #expect(statistics?.away.possession == 52)
+    }
+
+    @Test("fetchMatchLineups returns real-shaped mock lineups with WCAG-safe kit colors")
+    func fetchMatchLineupsReturnsRealShapedData() async throws {
+        let service = MockMatchService()
+        let lineups = try await service.fetchMatchLineups(matchID: 1)
+        #expect(lineups?.home.formation == "4-4-2")
+        #expect(lineups?.home.startingXI.count == 11)
+        #expect(lineups?.home.substitutes.count == 3)
+        #expect(lineups?.home.substitutes.first?.row == nil)
+    }
 }
