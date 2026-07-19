@@ -21,6 +21,7 @@
 		06EC4E1AF43BAED925F30457 /* MatchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED24EAB2931D750D08DD21 /* MatchDetailViewModel.swift */; };
 		07F41E524217D53DC9FDD53C /* TeamThemeOptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488E6D224DEAE7CA297007DD /* TeamThemeOptionTests.swift */; };
 		08001FA0EE21E73B579D3F7F /* ThemeTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105A10788BCFFB4D2950B8EF /* ThemeTokens.swift */; };
+		084E3D501547B48E57002C52 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DD669373635203B9093D6C /* StatisticsView.swift */; };
 		098DD9BD159B4CA6F50EF072 /* LivePoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ABE63BF80531C90749DDE3 /* LivePoller.swift */; };
 		09AB2DF1621E5DB0017B85D0 /* PurchaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = WK6S4MCUE0CQB84197N3WTPO /* PurchaseStore.swift */; };
 		0C21749DC14E676A145EED88 /* AccentPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0A7BD56D54A97E185D54C /* AccentPill.swift */; };
@@ -183,6 +184,7 @@
 		5955032D66ABE1EAA97E4DB2 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A550575E6347EE4F9B8C7E8 /* Color+Hex.swift */; };
 		5A3917C26582E8F0CDD8388E /* AppIconOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7BD7162D81299AB5D44D51 /* AppIconOption.swift */; };
 		5AAC81217D6725B527D5B86F /* MoreRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F82B99CAA89D84274D4532B /* MoreRow.swift */; };
+		5B22933EC307FD03D6F2817B /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DD669373635203B9093D6C /* StatisticsView.swift */; };
 		5BB8E4884649CC35EB9B9D2B /* MatchdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB8A210105388EE24ECD77 /* MatchdayView.swift */; };
 		5D1B5C22E68044C6635E8F8D /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F044BBD1673E744B7A1A7F /* TermsOfServiceView.swift */; };
 		5E5E7696288935FF2619E778 /* TeamThemeOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9849E4F99F5D2DA4D8081 /* TeamThemeOption.swift */; };
@@ -202,12 +204,12 @@
 		6278C57AF02062B1F23E19C7 /* MatchLineupDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE093DE3BA3DFAB4EF20AE9E /* MatchLineupDTO.swift */; };
 		62816290B66561889C7AE924 /* MatchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED24EAB2931D750D08DD21 /* MatchDetailViewModel.swift */; };
 		631A0993EC5BCE64DE831D27 /* LivePoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ABE63BF80531C90749DDE3 /* LivePoller.swift */; };
+		633D3091D77D647F4424A9F5 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DD669373635203B9093D6C /* StatisticsView.swift */; };
 		64B9ABB929E47A0C0092B35B /* MatchTimelineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D44350EAD06089AFB83195 /* MatchTimelineRow.swift */; };
 		6508D40E265ABF59D00207E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2CB89C3BBC773A2685A57 /* AppDelegate.swift */; };
 		655B45711BF46C336B487D0D /* MoreDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58243C349D4EF0FFEFA192A4 /* MoreDestination.swift */; };
 		6587AE599CFCCDB14E96E4A2 /* ScoreRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422EC54CAAA878A2718771BB /* ScoreRow.swift */; };
 		65EB3C884BC1BB70D4871BA6 /* MatchLineup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A31C8E821533DAE21A17D2 /* MatchLineup.swift */; };
-		66568A8DD08A8181C695846C /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		6687E4423A11B9EE5F1FC2BF /* MatchTimelineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D44350EAD06089AFB83195 /* MatchTimelineRow.swift */; };
 		670B63B61129F85B04D93F81 /* AccentPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0A7BD56D54A97E185D54C /* AccentPill.swift */; };
 		671728A6588D475383C8BA48 /* AppIconSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEBD8CC8C85D68BA0C23F8 /* AppIconSetting.swift */; };
@@ -431,6 +433,7 @@
 		D6982F1AF81EECB1D0E228AC /* CompetitionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4E5DB77DD896FEAF3C9B6 /* CompetitionDTO.swift */; };
 		D839CC408F36F49B48BC1510 /* TeamThemePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F1954F52A8493517B231F2 /* TeamThemePickerView.swift */; };
 		D84EB2BF219D4E197C9CE1CA /* PurchasableCatalogOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = UA91XX0HK8J3C9YKZ5ZLT2HC /* PurchasableCatalogOption.swift */; };
+		D853188276CAAB265D8049E8 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DD669373635203B9093D6C /* StatisticsView.swift */; };
 		DA0EFCE3A0B6693B52E57659 /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322CAB2B4DE8D3A9DEA34EE0 /* MockDataProvider.swift */; };
 		DA1F1C68819F4844D66DB70C /* MoreViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D9AD201506F2944831655 /* MoreViewModelTests.swift */; };
 		DB672B2E871F76766B677C3C /* MoreRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F82B99CAA89D84274D4532B /* MoreRow.swift */; };
@@ -440,6 +443,7 @@
 		DD6966C4F787F570336AF510 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2CB89C3BBC773A2685A57 /* AppDelegate.swift */; };
 		DD740B6D82B4B20133C03048 /* AccessibilityAuditUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD55A80289882A934CB0A50 /* AccessibilityAuditUITests.swift */; };
 		DE3F15138FC6258D10F0E345 /* MatchdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750454E4C32D9EEA69417686 /* MatchdayViewModel.swift */; };
+		DFFF33617F011747D573626B /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DD669373635203B9093D6C /* StatisticsView.swift */; };
 		E0E20A54E332A9FA3DD18D67 /* ThemeTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105A10788BCFFB4D2950B8EF /* ThemeTokens.swift */; };
 		E12C954DE715E98D3B020AD7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 7A20B375D7094C6D4E1961B1 /* Localizable.xcstrings */; };
 		E1CB5F49CAFA6905BEAD3763 /* MatchDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BD89602CB168BCB0121EAA /* MatchDTO.swift */; };
@@ -528,7 +532,6 @@
 		05E997B71FC9534C0287BE63 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		0623F774E7695B36808EDD20 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		07C00E16086BB9C6ED819462 /* MatchdayViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchdayViewModelTests.swift; sourceTree = "<group>"; };
-		0883B7BFDBCABA86808D850B /* StatisticsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StatisticsView.swift; path = BR2026/Components/StatisticsView.swift; sourceTree = "<group>"; };
 		0B84BA767820581A92592C99 /* MatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTests.swift; sourceTree = "<group>"; };
 		0BF94F1B7FFEA78845976994 /* Championship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Championship.swift; sourceTree = "<group>"; };
 		0C29958FFCCB017304D720DB /* TeamThemePickerViewModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TeamThemePickerViewModelTests.swift; sourceTree = "<group>"; };
@@ -790,7 +793,6 @@
 				422EC54CAAA878A2718771BB /* ScoreRow.swift */,
 				17A71A2EA3718A5D31948205 /* StadiumBackground.swift */,
 				E7E434E6CB924EEBF2ED52FF /* TeamCrestBadge.swift */,
-				0883B7BFDBCABA86808D850B /* StatisticsView.swift */,
 				A0DD669373635203B9093D6C /* StatisticsView.swift */,
 			);
 			path = Components;
@@ -1647,6 +1649,7 @@
 				EBBA231468F895992A3F683C /* MatchStatistics.swift in Sources */,
 				2A75F85FADA71C589925E832 /* MatchLineupDTO.swift in Sources */,
 				4B56E893B6913F167061F783 /* MatchLineup.swift in Sources */,
+				084E3D501547B48E57002C52 /* StatisticsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1724,7 +1727,6 @@
 				768AA14C6F1ECCD2B311E805 /* MatchStatistics.swift in Sources */,
 				9043322EE841F9A7DD85A4EE /* MatchLineupDTO.swift in Sources */,
 				CA5A5066A282B6BD4CF054FA /* MatchLineup.swift in Sources */,
-				66568A8DD08A8181C695846C /* BuildFile in Sources */,
 				91243AEC1F53CD82A8A54966 /* StatisticsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1840,6 +1842,7 @@
 				90EA6E31A3F10884667BC354 /* MatchStatistics.swift in Sources */,
 				8B753002E537CD200E5B3EE0 /* MatchLineupDTO.swift in Sources */,
 				C545B1E68CCE2EC2CCAE9619 /* MatchLineup.swift in Sources */,
+				5B22933EC307FD03D6F2817B /* StatisticsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1916,6 +1919,7 @@
 				BE49DD2917D494936ACA248E /* MatchStatistics.swift in Sources */,
 				6278C57AF02062B1F23E19C7 /* MatchLineupDTO.swift in Sources */,
 				03E0C9815DE827A9418D21C7 /* MatchLineup.swift in Sources */,
+				D853188276CAAB265D8049E8 /* StatisticsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1993,6 +1997,7 @@
 				23F676D316DB3174F6170F3E /* MatchStatistics.swift in Sources */,
 				233EB7B3771CA0643382C39F /* MatchLineupDTO.swift in Sources */,
 				9D990195949F6258C021DDAD /* MatchLineup.swift in Sources */,
+				633D3091D77D647F4424A9F5 /* StatisticsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2069,6 +2074,7 @@
 				E8DB3F5437F07E2C4FC651B7 /* MatchStatistics.swift in Sources */,
 				118CD7A06F5914DCB3ADCF12 /* MatchLineupDTO.swift in Sources */,
 				65EB3C884BC1BB70D4871BA6 /* MatchLineup.swift in Sources */,
+				DFFF33617F011747D573626B /* StatisticsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
