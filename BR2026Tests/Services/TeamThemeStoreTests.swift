@@ -549,6 +549,47 @@ struct TeamThemeStoreTests {
         #expect(secondSucceeded == false)
         #expect(store.selectedOption == .palmeirasHome)
     }
+
+    @Test("previewTokens(nil) returns today's default tokens")
+    func previewTokensNilReturnsDefault() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        let previewed = await store.previewTokens(for: nil)
+
+        #expect(previewed == ThemeTokens())
+    }
+
+    @Test("previewTokens(for:) resolves the same tokens select() would, without mutating tokens or selectedOption")
+    func previewTokensResolvesWithoutMutating() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.cachedTeamThemeColorSetOverride = palmeirasColors
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        let previewed = await store.previewTokens(for: .palmeirasHome)
+
+        #expect(previewed?.overrideAccentColor == Color(hex: "006437"))
+        #expect(previewed?.overrideAccentColor != Color(hex: "225638"))
+        #expect(previewed?.textColor == Color(hex: "ffffff"))
+        // Unlike select(), nothing about the store's own state changed.
+        #expect(store.tokens == ThemeTokens())
+        #expect(store.selectedOption == nil)
+        #expect(setting.selectedThemeID == nil)
+    }
+
+    @Test("previewTokens(for:) returns nil when both cache and fetch fail")
+    func previewTokensFailsWhenResolutionFails() async {
+        let setting = StubTeamThemeSetting()
+        let service = StubMatchService(matches: [], standings: [])
+        service.shouldThrowOnTeamThemeFetch = true
+        let store = TeamThemeStore(setting: setting, service: service)
+
+        let previewed = await store.previewTokens(for: .palmeirasHome)
+
+        #expect(previewed == nil)
+    }
 }
 
 final class StubTeamThemeSetting: TeamThemeSetting {
