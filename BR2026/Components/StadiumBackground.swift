@@ -49,6 +49,18 @@ struct StadiumBackground: View {
                 .frame(width: 420, height: 420)
                 .blur(radius: 120)
                 .offset(x: 160, y: 320)
+
+            // Mirrors the bottom-right blob above onto the bottom-left — the app's default
+            // top-left/bottom-right pair is intentionally asymmetric (see CLAUDE.md
+            // "Background"), but Internacional's exploration wanted the bottom corners to
+            // match each other.
+            if themeTokens.usesSymmetricBottomGlow {
+                Circle()
+                    .fill(themeTokens.blobColors.bottom.opacity(0.32))
+                    .frame(width: 420, height: 420)
+                    .blur(radius: 120)
+                    .offset(x: -160, y: 320)
+            }
         }
     }
 }

@@ -24,6 +24,12 @@ struct ThemeTokens: Equatable {
     /// `false` for every other team — this doesn't touch `gradientStops`/`blobColors`, which
     /// keep driving the hero card border and tab bar tint as usual even when this is `true`.
     var usesDiagonalSashBackground: Bool = false
+    /// Mirrors the bottom-right ambient blob onto the bottom-left too, instead of the
+    /// app's default top-left/bottom-right asymmetric pair (see CLAUDE.md "Background") —
+    /// Internacional-only, part of the same gradient-preview exploration as
+    /// `gradientOuterColorHex`. `false` for every other team and the default (no-theme)
+    /// state, which keep the standard asymmetric pair unchanged.
+    var usesSymmetricBottomGlow: Bool = false
     var textColor: Color = .white
     var gradientStops: [Color] = ThemeTokens.defaultGradientStops
     var blobColors: (top: Color, bottom: Color) = ThemeTokens.defaultBlobColors
@@ -43,6 +49,7 @@ struct ThemeTokens: Equatable {
             && lhs.overrideTabSelectionColor == rhs.overrideTabSelectionColor
             && lhs.overridePillFillColor == rhs.overridePillFillColor
             && lhs.usesDiagonalSashBackground == rhs.usesDiagonalSashBackground
+            && lhs.usesSymmetricBottomGlow == rhs.usesSymmetricBottomGlow
             && lhs.textColor == rhs.textColor
             && lhs.gradientStops == rhs.gradientStops
             && lhs.blobColors.top == rhs.blobColors.top
@@ -56,7 +63,8 @@ struct ThemeTokens: Equatable {
         pillFillColorHex: String? = nil,
         gradientDarkAmount: Double = -0.75,
         usesDiagonalSashBackground: Bool = false,
-        gradientOuterColorHex: String? = nil
+        gradientOuterColorHex: String? = nil,
+        usesSymmetricBottomGlow: Bool = false
     ) -> ThemeTokens {
         let accent = Color(hex: mainColorHex)
         // The same fallback chain the round pill's fill already resolves to (see
@@ -72,6 +80,7 @@ struct ThemeTokens: Equatable {
             overrideTabSelectionColor: tabSelectionColorHex.map { Color(hex: $0) },
             overridePillFillColor: pillFillColorHex.map { Color(hex: $0) },
             usesDiagonalSashBackground: usesDiagonalSashBackground,
+            usesSymmetricBottomGlow: usesSymmetricBottomGlow,
             textColor: Color(hex: resolvedFontColorHex),
             gradientStops: [
                 Color.shaded(hex: mainColorHex, towardWhite: 0.35),

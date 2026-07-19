@@ -45,7 +45,8 @@ final class TeamThemeStore {
             pillFillColorHex: option.pillFillColorOverrideHex,
             gradientDarkAmount: option.gradientDarkAmountOverride ?? -0.75,
             usesDiagonalSashBackground: option.usesDiagonalSashBackground,
-            gradientOuterColorHex: option.gradientOuterColorOverrideHex
+            gradientOuterColorHex: option.gradientOuterColorOverrideHex,
+            usesSymmetricBottomGlow: option.usesSymmetricBottomGlow
         )
         return true
     }
@@ -59,7 +60,8 @@ final class TeamThemeStore {
             pillFillColorHex: option.pillFillColorOverrideHex,
             gradientDarkAmount: option.gradientDarkAmountOverride ?? -0.75,
             usesDiagonalSashBackground: option.usesDiagonalSashBackground,
-            gradientOuterColorHex: option.gradientOuterColorOverrideHex
+            gradientOuterColorHex: option.gradientOuterColorOverrideHex,
+            usesSymmetricBottomGlow: option.usesSymmetricBottomGlow
         )
     }
 

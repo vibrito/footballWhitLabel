@@ -264,6 +264,7 @@ struct TeamThemeStoreTests {
         // (gradientOuterColorOverrideHex), not the usual shaded-toward-black default —
         // see TeamThemeOption.gradientOuterColorOverrideHex.
         #expect(store.tokens.gradientStops[2] == Color(hex: "D9D9D9"))
+        #expect(store.tokens.usesSymmetricBottomGlow == true)
     }
 
     @Test("select() uses Remo's curated main color override — a lightened navy — instead of the API's literal black")

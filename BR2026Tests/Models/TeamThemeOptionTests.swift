@@ -184,4 +184,12 @@ struct TeamThemeOptionTests {
         }
         #expect(TeamThemeOption.internacionalHome.gradientOuterColorOverrideHex == "D9D9D9")
     }
+
+    @Test("Only Internacional uses the symmetric bottom glow")
+    func usesSymmetricBottomGlowOverrides() {
+        for option in TeamThemeOption.allCases where option != .internacionalHome {
+            #expect(option.usesSymmetricBottomGlow == false)
+        }
+        #expect(TeamThemeOption.internacionalHome.usesSymmetricBottomGlow == true)
+    }
 }

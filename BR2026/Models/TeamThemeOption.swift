@@ -306,6 +306,14 @@ enum TeamThemeOption: String, CaseIterable, Identifiable, PurchasableCatalogOpti
         }
     }
 
+    /// Mirrors the bottom-right ambient glow onto the bottom-left too, instead of the
+    /// app's default top-left/bottom-right asymmetric pair — Internacional-only, part of
+    /// the same gradient-preview exploration as `gradientOuterColorOverrideHex`. `false`
+    /// for every other team.
+    var usesSymmetricBottomGlow: Bool {
+        self == .internacionalHome
+    }
+
     /// Overrides the Standings table's Libertadores zone-marker ball color (normally the
     /// app-wide teal, see `StandingsView.zoneBallColor`) — Corinthians' gray and Athletico
     /// Paranaense's red theme colors read poorly against that teal, per user request. Reuses
