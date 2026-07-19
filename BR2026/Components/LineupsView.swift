@@ -148,7 +148,13 @@ struct LineupsView: View {
         guard let maxRow = team.startingXI.compactMap(\.row).max(), maxRow >= 1 else { return [] }
         let rows = Dictionary(grouping: team.startingXI, by: { $0.row ?? 0 })
         var placed: [PlacedPlayer] = []
-        for (row, players) in rows {
+        // Iterate rows in a fixed, sorted order (back-to-front, i.e. ascending row number) —
+        // Dictionary's own iteration order is unspecified and randomized per-process, which
+        // would otherwise make VoiceOver's swipe order non-deterministic across launches.
+        // See the Accessibility section of docs/superpowers/specs/
+        // 2026-07-19-match-detail-statistics-lineups-design.md.
+        for row in rows.keys.sorted() {
+            let players = rows[row] ?? []
             let sorted = players.sorted { ($0.col ?? 0) < ($1.col ?? 0) }
             for (index, player) in sorted.enumerated() {
                 let xPercent = Double(index + 1) / Double(sorted.count + 1) * 100
@@ -213,14 +219,37 @@ struct LineupsView: View {
                 .textCase(.uppercase)
                 .accessibilityAddTraits(.isHeader)
 
+            // Split by team (rather than one flat combined list) so a reader — visual or
+            // VoiceOver — can tell which bench a given substitute belongs to.
+            substitutesSection(teamName: homeTeamName, players: lineup.home.substitutes)
+            substitutesSection(teamName: awayTeamName, players: lineup.away.substitutes)
+        }
+    }
+
+    private func substitutesSection(teamName: String, players: [LineupPlayer]) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(teamName.uppercased())
+                .font(.system(size: substituteRowFontSize, weight: .bold))
+                .tracking(0.3)
+                .foregroundStyle(themeTokens.textColor.opacity(0.4))
+                .accessibilityAddTraits(.isHeader)
+
             // Enumerated, not `id: \.number` — two different teams' substitutes can share
             // the same jersey number (e.g. both backup goalkeepers wearing #12), which
-            // would break ForEach's identity requirement across the combined array.
-            ForEach(Array((lineup.home.substitutes + lineup.away.substitutes).enumerated()), id: \.offset) { _, player in
+            // would break ForEach's identity requirement within this team's own array too.
+            ForEach(Array(players.enumerated()), id: \.offset) { _, player in
                 Text("\(player.number)  \(player.name) (\(player.position))")
                     .font(.system(size: substituteRowFontSize, weight: .medium))
                     .foregroundStyle(themeTokens.textColor.opacity(0.65))
+                    .accessibilityLabel(substituteAccessibilityLabel(player: player, teamName: teamName))
             }
         }
+    }
+
+    private func substituteAccessibilityLabel(player: LineupPlayer, teamName: String) -> String {
+        String(
+            localized: "\(player.name), number \(String(player.number)), \(player.positionAccessibilityLabel), \(teamName)",
+            comment: "VoiceOver label for one substitute row in the lineup's bench list. Arguments: player name, jersey number (already formatted as a string), position (already localized, e.g. \"Goalkeeper\"), team name."
+        )
     }
 }

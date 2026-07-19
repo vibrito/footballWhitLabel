@@ -158,6 +158,36 @@ struct MatchDetailViewModelTests {
         #expect(viewModel.lineups?.home.formation == "4-2-3-1")
     }
 
+    @Test("loadStatisticsIfNeeded() leaves statistics nil when the fetch throws")
+    func loadStatisticsIfNeededLeavesStatisticsNilWhenFetchThrows() async {
+        let match = Match(
+            id: 42, utcDate: Date(), status: .finished, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: 2, awayScore: 1, winner: "HOME_TEAM", venue: nil, minute: 90
+        )
+        let service = StubMatchService(matches: [match], standings: [])
+        service.shouldThrowOnFetch = true
+        let viewModel = MatchDetailViewModel(match: match, service: service)
+
+        await viewModel.loadStatisticsIfNeeded()
+
+        #expect(viewModel.statistics == nil)
+    }
+
+    @Test("loadLineupsIfNeeded() leaves lineups nil when the fetch throws")
+    func loadLineupsIfNeededLeavesLineupsNilWhenFetchThrows() async {
+        let match = Match(
+            id: 42, utcDate: Date(), status: .finished, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: 2, awayScore: 1, winner: "HOME_TEAM", venue: nil, minute: 90
+        )
+        let service = StubMatchService(matches: [match], standings: [])
+        service.shouldThrowOnFetch = true
+        let viewModel = MatchDetailViewModel(match: match, service: service)
+
+        await viewModel.loadLineupsIfNeeded()
+
+        #expect(viewModel.lineups == nil)
+    }
+
     @Test("statistics and lineups are nil before either load method runs")
     func statisticsAndLineupsNilBeforeLoad() {
         let match = Match(
