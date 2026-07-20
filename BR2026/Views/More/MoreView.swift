@@ -43,7 +43,7 @@ struct MoreView: View {
             .navigationDestination(for: MoreDestination.self) { destination in
                 switch destination {
                 case .termsOfService:
-                    TermsOfServiceView(config: config)
+                    TermsOfServiceView()
                 case .appIconPicker:
                     AppIconPickerView(
                         viewModel: AppIconPickerViewModel(iconSetting: UIKitAppIconSetting(), purchaseStore: iconPurchaseStore, service: service)

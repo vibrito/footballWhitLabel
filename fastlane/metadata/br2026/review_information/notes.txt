@@ -1,0 +1,6 @@
+BR 2026 is an independent, unofficial live football scores app. It is not affiliated with, endorsed by, or sponsored by any football league, club, or governing body. All match, team, and competition data is sourced from a third-party public sports-data API and shown for informational purposes only.
+
+Following this review's feedback, we've revised the app's App Store metadata, in-app Terms of Service, and Privacy Policy to remove references to any specific league or competition name, and added an explicit non-affiliation disclaimer to the Privacy Policy.
+
+Marketing site: https://br26-80k.pages.dev/brasileirao/
+Support: https://br26-80k.pages.dev/brasileirao/support/
