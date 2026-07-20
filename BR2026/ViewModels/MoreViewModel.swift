@@ -42,15 +42,17 @@ final class MoreViewModel {
             )
         ]
         #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA || TARGET_SCOTTISH_PREMIERSHIP || TARGET_LA_LIGA)
-        rows.append(
-            MoreRow(
-                id: "teamTheme",
-                titleKey: "Team Theme",
-                systemImage: "paintpalette",
-                destination: .teamThemePicker,
-                isEnabled: true
+        if FeatureFlags.iapEnabled {
+            rows.append(
+                MoreRow(
+                    id: "teamTheme",
+                    titleKey: "Team Theme",
+                    systemImage: "paintpalette",
+                    destination: .teamThemePicker,
+                    isEnabled: true
+                )
             )
-        )
+        }
         #endif
         return rows
     }

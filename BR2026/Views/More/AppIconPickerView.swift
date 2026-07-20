@@ -30,31 +30,36 @@ struct AppIconPickerView: View {
                         // Team icons are Brasileirão-specific purchasable content — gated the
                         // same way Team Theme's row is gated in MoreViewModel, so the other
                         // championship targets show only the free Default/Stadium rows above.
+                        // Also behind FeatureFlags.iapEnabled — see that type's comment.
                         #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA || TARGET_SCOTTISH_PREMIERSHIP || TARGET_LA_LIGA)
-                        Rectangle()
-                            .fill(Color.white.opacity(0.16))
-                            .frame(height: 0.5)
-                        ForEach(Array(viewModel.sortedTeamOptions.enumerated()), id: \.element.id) { index, option in
-                            teamRowView(option)
-                            if index < viewModel.sortedTeamOptions.count - 1 {
-                                Rectangle()
-                                    .fill(Color.white.opacity(0.16))
-                                    .frame(height: 0.5)
+                        if FeatureFlags.iapEnabled {
+                            Rectangle()
+                                .fill(Color.white.opacity(0.16))
+                                .frame(height: 0.5)
+                            ForEach(Array(viewModel.sortedTeamOptions.enumerated()), id: \.element.id) { index, option in
+                                teamRowView(option)
+                                if index < viewModel.sortedTeamOptions.count - 1 {
+                                    Rectangle()
+                                        .fill(Color.white.opacity(0.16))
+                                        .frame(height: 0.5)
+                                }
                             }
                         }
                         #endif
                     }
                 }
                 #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA || TARGET_SCOTTISH_PREMIERSHIP || TARGET_LA_LIGA)
-                Button {
-                    Task { await viewModel.restorePurchases() }
-                } label: {
-                    Text("Restore Purchases")
-                        .font(.system(size: restoreButtonFontSize, weight: .semibold))
-                        .foregroundStyle(themeTokens.textColor.opacity(0.55))
-                        .frame(maxWidth: .infinity, alignment: .center)
+                if FeatureFlags.iapEnabled {
+                    Button {
+                        Task { await viewModel.restorePurchases() }
+                    } label: {
+                        Text("Restore Purchases")
+                            .font(.system(size: restoreButtonFontSize, weight: .semibold))
+                            .foregroundStyle(themeTokens.textColor.opacity(0.55))
+                            .frame(maxWidth: .infinity, alignment: .center)
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
                 #endif
                 if let errorMessage = viewModel.errorMessage {
                     Text(errorMessage)
