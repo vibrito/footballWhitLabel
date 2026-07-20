@@ -1,0 +1,13 @@
+SP 2026 is an independent, unofficial live football scores app covering Scotland's top football division. It is not affiliated with, endorsed by, or sponsored by any football league, club, or governing body. All match, team, and competition data is sourced from a third-party public sports-data API and shown for informational purposes only.
+
+The app is a native SwiftUI app, not a content aggregator or a wrapper around a website:
+
+- Offline-first: the last-seen scores, fixtures, and table are stored on-device and load instantly on launch, then refresh in the background.
+- Live match tracking: scores, match minute, and status update in real time while a match is in progress.
+- A dedicated Match Detail screen with a goals/cards/substitutions timeline, head-to-head statistics comparison, and a pitch-formation lineup view for every match.
+- Full VoiceOver support, Dynamic Type text scaling, and reduced-motion handling.
+- App icon customization from within the app.
+- No ads, no third-party web views, no account or sign-in required.
+
+Marketing site: https://br26-80k.pages.dev/sp2026/
+Support: https://br26-80k.pages.dev/sp2026/support/

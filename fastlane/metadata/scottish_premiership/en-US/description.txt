@@ -1,0 +1,11 @@
+Scottish top-flight football, live and always up to date. Follow every match of the season with real-time scores, the full fixture list, and a standings table that updates the moment a match ends.
+
+FEATURES
+
+• Matchday — live scores that update as goals go in, with a clear view of everything happening today
+• Fixtures — the full season schedule, round by round
+• Standings — the complete table, refreshed after every match
+• Match Details — goals, cards, and substitutions for any match, in order
+• Instant on launch — your last-seen scores and table load immediately, then refresh in the background
+
+No clutter, no accounts, no sign-in required — just open the app and see what's happening in Scottish football right now.

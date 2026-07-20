@@ -1,0 +1,11 @@
+Futebol escocês de elite, ao vivo e sempre atualizado. Acompanhe cada partida da temporada com placares em tempo real, o calendário completo e uma tabela que atualiza assim que a partida termina.
+
+RECURSOS
+
+• Rodada — placares ao vivo que atualizam a cada gol, com uma visão clara de tudo que acontece hoje
+• Jogos — o calendário completo da temporada, rodada por rodada
+• Classificação — a tabela completa, atualizada após cada partida
+• Detalhes da partida — gols, cartões e substituições de qualquer jogo, em ordem
+• Instantâneo ao abrir — seus últimos placares e a tabela carregam na hora, depois atualizam automaticamente
+
+Sem poluição visual, sem conta, sem login necessário — basta abrir o app e ver o que está acontecendo no futebol escocês agora.
