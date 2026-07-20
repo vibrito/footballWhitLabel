@@ -1,2 +1,3 @@
-/privacy/*  /brasileirao/privacy/:splat  301
-/support/*  /brasileirao/support/:splat  301
+/privacy/*  /br2026/privacy/:splat  301
+/support/*  /br2026/support/:splat  301
+/brasileirao/*  /br2026/:splat  301
