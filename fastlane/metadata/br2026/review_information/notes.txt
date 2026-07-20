@@ -4,3 +4,14 @@ Following this review's feedback, we've revised the app's App Store metadata, in
 
 Marketing site: https://br26-80k.pages.dev/br2026/
 Support: https://br26-80k.pages.dev/br2026/support/
+
+Regarding Guideline 4.2.2 (Minimum Functionality): BR 2026 is a native SwiftUI app, not a content aggregator or a wrapper around a website. Specifically:
+
+- Offline-first: the last-seen scores, fixtures, and table are stored on-device and load instantly on launch, then refresh in the background — the app is fully usable the moment it opens, with no loading spinner and no hard dependency on a live connection.
+- Live match tracking: scores, match minute, and status update in real time while a match is in progress, with an animated live indicator.
+- A dedicated Match Detail screen with three native views per match: a goals/cards/substitutions timeline, a head-to-head statistics comparison (possession, shots, corners, fouls, pass accuracy), and a pitch-formation lineup view rendering each team's real starting XI with their actual kit colors — all built natively, not embedded web content.
+- Full VoiceOver support with custom accessibility labels and actions throughout, Dynamic Type text scaling, and reduced-motion handling.
+- App icon customization from within the app.
+- No ads, no third-party web views, no account or sign-in required anywhere in the app.
+
+We're happy to walk through any specific screen or provide a demo video if that would help clarify the app's native functionality.
