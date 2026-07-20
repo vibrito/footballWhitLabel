@@ -203,3 +203,321 @@ html, body {
 .back-link:hover {
   text-decoration: underline;
 }
+
+/* Marketing site: hub + per-app feature showcase (2026-07-20) */
+
+.hub-page .content {
+  max-width: 960px;
+  align-items: center;
+}
+
+.league-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .league-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .league-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.league-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  background:
+    linear-gradient(color-mix(in srgb, var(--accent) 12%, transparent),
+                     color-mix(in srgb, var(--accent) 12%, transparent)),
+    rgba(255, 255, 255, 0.07);
+  border: 0.5px solid rgba(255, 255, 255, 0.16);
+  border-radius: 22px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+  padding: 20px;
+  text-decoration: none;
+  color: #ffffff;
+  transition: transform 0.2s ease;
+}
+
+.league-card:hover,
+.league-card:focus-visible {
+  transform: translateY(-2px);
+}
+
+.league-card h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.league-card p {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.hub-footer {
+  margin-top: 32px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.hub-footer a {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+}
+
+.hub-footer a:hover {
+  color: #ffffff;
+}
+
+/* Per-app feature showcase */
+
+.app-page .content {
+  max-width: 720px;
+  align-items: stretch;
+  text-align: left;
+}
+
+.app-page .hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.app-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.feature-block {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin: 48px 0;
+}
+
+.feature-block.reverse {
+  flex-direction: row-reverse;
+}
+
+.feature-block .copy {
+  flex: 1;
+}
+
+.feature-block .copy h3 {
+  margin: 0 0 8px 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.feature-block .copy p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.feature-block .mock {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 700px) {
+  .feature-block,
+  .feature-block.reverse {
+    flex-direction: column;
+  }
+}
+
+/* Mock UI components — mirror the real app's Liquid Glass tokens (CLAUDE.md Design System) */
+
+.mock-match-card {
+  width: 280px;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 0.5px solid rgba(255, 255, 255, 0.16);
+  border-radius: 22px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+  padding: 20px;
+}
+
+.mock-team {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 90px;
+}
+
+.mock-crest {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.mock-team-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.mock-score {
+  font-size: 19px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: #ffffff;
+}
+
+.mock-live-chip {
+  width: 100%;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  border-radius: 13px;
+  padding: 4px 10px;
+  animation: mock-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes mock-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mock-live-chip {
+    animation: none;
+  }
+}
+
+.mock-fixtures {
+  width: 280px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mock-fixture-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.07);
+  border: 0.5px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.mock-fixture-row--finished {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.mock-fixture-meta {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.mock-standings {
+  width: 280px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mock-standings-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.mock-standings-row .mock-team-name {
+  flex: 1;
+  font-size: 14px;
+}
+
+.mock-position {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.mock-zone-ball {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #000000;
+}
+
+.mock-zone-ball--teal {
+  background: #2dd4bf;
+}
+
+.mock-zone-ball--red {
+  background: #ef4444;
+}
+
+.mock-standings-row .mock-points {
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.7);
+}
