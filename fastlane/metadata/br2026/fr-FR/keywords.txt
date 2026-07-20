@@ -1,1 +1,1 @@
-brasileirao,football,foot,scores en direct,classement,calendrier,serie a,bresil,resultats,matchs
+football,foot,scores en direct,classement,calendrier,bresil,resultats,matchs,division,tableau

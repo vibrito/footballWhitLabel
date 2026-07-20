@@ -1,1 +1,1 @@
-brasileirao,football,soccer,live scores,table,fixtures,serie a,brazil,results,futebol
+football,soccer,live scores,table,fixtures,brazil,results,futebol,top flight,scoreboard

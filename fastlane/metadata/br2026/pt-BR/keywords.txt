@@ -1,1 +1,1 @@
-brasileirao,futebol,placar ao vivo,tabela,jogos,serie a,classificação,rodada,brasil,resultados
+futebol,placar ao vivo,tabela,jogos,classificação,rodada,brasil,resultados,divisão,pontuação

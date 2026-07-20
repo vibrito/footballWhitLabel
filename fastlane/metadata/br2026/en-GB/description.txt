@@ -1,11 +1,11 @@
-Follow the Brasileirão like never before. Live scores, fixtures, and the full standings table — fast, clean, and always up to date.
+Follow Brazilian top-flight football like never before. Live scores, fixtures, and the full standings table — fast, clean, and always up to date.
 
 FEATURES
 
 • Matchday — live scores that update as goals go in, with a clean view of everything happening today
 • Fixtures — the full season schedule, match by match
-• Standings — the complete Série A table, updated after every round
+• Standings — the complete table, updated after every round
 • Match Details — goals, cards, and substitutions for any match, in order
 • Instant on launch — your last-seen scores and table load immediately, then refresh automatically
 
-Built for speed and clarity: no clutter, no accounts, no sign-in. Just open the app and see what's happening in the Brasileirão right now.
+Built for speed and clarity: no clutter, no accounts, no sign-in. Just open the app and see what's happening in Brazilian football right now.
