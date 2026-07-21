@@ -27,6 +27,7 @@ struct ContentView: View {
         .tint(themeStore.tokens.overrideTabSelectionColor ?? themeStore.tokens.overrideAccentColor ?? Color(hex: config.tabSelectionColorHex))
         .background(StadiumBackground())
         .environment(\.themeTokens, themeStore.tokens)
+        .environment(\.matchService, service)
         .task { await themeStore.loadOnce() }
         .task { await themePurchaseStore.loadOnce() }
         .task { await iconPurchaseStore.loadOnce() }
