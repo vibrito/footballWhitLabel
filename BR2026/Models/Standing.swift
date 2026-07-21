@@ -68,12 +68,22 @@ final class Standing: Identifiable {
     /// derived from a per-competition position-range table (e.g. "bottom 4 teams") — those
     /// rules vary by competition/season and the API's own `description` field already
     /// encodes the current season's actual boundaries.
+    ///
+    /// Scottish Premiership always returns `.none`: its split-season format has the backend
+    /// label the entire bottom-6 group as "Premiership (Relegation Group)" — a group name,
+    /// not a per-team outcome — so the keyword match below would mark all 6 teams as
+    /// relegation zone, when in reality only 1 is actually relegated. Hidden entirely rather
+    /// than half-fixed, until the backend exposes a per-team signal for this format.
     var zone: StandingZone {
+        #if TARGET_SCOTTISH_PREMIERSHIP
+        return .none
+        #else
         guard let zoneDescription else { return .none }
         if zoneDescription.contains("Relegation") { return .relegation }
         if zoneDescription.contains("Libertadores") { return .libertadores }
         if zoneDescription.contains("Champions League") { return .championsLeague }
         return .none
+        #endif
     }
 
     /// Our own localized label for `zone` — never the raw `zoneDescription` API text, which
