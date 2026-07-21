@@ -26,7 +26,11 @@ struct StandingsView: View {
     private static let columnWidth: CGFloat = 24
     private static let goalDifferenceWidth: CGFloat = 34
     private static let positionWidth: CGFloat = 24
-    private static let leadingWidth: CGFloat = 58
+    // The position column plus a small gap before the team name (the team crest badge that
+    // used to sit beside it was removed — too small at this size to render its kit-color ball
+    // meaningfully). Shared by the header spacer so the stat columns stay aligned between
+    // header and rows.
+    private static let leadingWidth: CGFloat = positionWidth + 8
 
     var body: some View {
         NavigationStack {
@@ -123,26 +127,23 @@ struct StandingsView: View {
 
     private func row(for standing: Standing) -> some View {
         HStack(spacing: 0) {
-            HStack(spacing: 8) {
-                Text("\(standing.position)")
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.7)
-                    .frame(width: Self.positionWidth, height: Self.positionWidth)
-                    .background {
-                        if let ballColor = zoneBallColor(for: standing.zone) {
-                            Circle().fill(ballColor)
-                        }
+            Text("\(standing.position)")
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .frame(width: Self.positionWidth, height: Self.positionWidth)
+                .background {
+                    if let ballColor = zoneBallColor(for: standing.zone) {
+                        Circle().fill(ballColor)
                     }
-                    // The ball's fixed teal/red fill is opaque regardless of the active team
-                    // theme or app accent, so the inherited `themeTokens.textColor` (which can
-                    // itself be a light color, e.g. when a light-kit team theme is active)
-                    // isn't guaranteed to read against it — black gives >5:1 contrast against
-                    // both zone colors (verified: teal 11.3:1, red 5.6:1), well past the
-                    // WCAG AA threshold this app already holds itself to elsewhere.
-                    .foregroundStyle(standing.zone == .none ? themeTokens.textColor : .black)
-                TeamCrestBadge(team: standing.team, size: 20)
-            }
-            .frame(width: Self.leadingWidth, alignment: .leading)
+                }
+                // The ball's fixed teal/red fill is opaque regardless of the active team
+                // theme or app accent, so the inherited `themeTokens.textColor` (which can
+                // itself be a light color, e.g. when a light-kit team theme is active)
+                // isn't guaranteed to read against it — black gives >5:1 contrast against
+                // both zone colors (verified: teal 11.3:1, red 5.6:1), well past the
+                // WCAG AA threshold this app already holds itself to elsewhere.
+                .foregroundStyle(standing.zone == .none ? themeTokens.textColor : .black)
+                .frame(width: Self.leadingWidth, alignment: .leading)
             Text(standing.team.displayName)
                 .lineLimit(1)
                 .truncationMode(.tail)
