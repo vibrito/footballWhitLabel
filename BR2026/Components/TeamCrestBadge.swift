@@ -32,6 +32,7 @@ struct TeamCrestBadge: View {
         }
         .frame(width: size, height: size)
         .task(id: team.crestURL) {
+            guard FeatureFlags.showsRemoteCrests else { return }
             await loadCrest()
         }
         .accessibilityHidden(true)

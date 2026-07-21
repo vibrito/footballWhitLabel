@@ -63,7 +63,10 @@ struct MoreView: View {
         VStack(spacing: 8) {
             logoView
                 .frame(width: 64, height: 64)
-            if let name = viewModel.competitionName {
+            // The API's competition name is the real league name (e.g. "Brasileirão") — a
+            // third-party mark shown only for branding here, so it's hidden alongside the
+            // logo under the same flag to keep this header generic. See FeatureFlags.
+            if FeatureFlags.showsRemoteCrests, let name = viewModel.competitionName {
                 Text(name)
                     .font(.system(size: competitionNameFontSize, weight: .semibold))
                     .foregroundStyle(themeTokens.textColor)
@@ -75,28 +78,35 @@ struct MoreView: View {
 
     @ViewBuilder
     private var logoView: some View {
-        if let logoData = viewModel.competitionLogoData, let uiImage = UIImage(data: logoData) {
+        if FeatureFlags.showsRemoteCrests, let logoData = viewModel.competitionLogoData, let uiImage = UIImage(data: logoData) {
             Image(uiImage: uiImage)
                 .resizable()
                 .scaledToFit()
                 .accessibilityHidden(true)
-        } else {
+        } else if FeatureFlags.showsRemoteCrests {
             AsyncImage(url: viewModel.competitionLogoURL) { phase in
                 switch phase {
                 case .success(let image):
                     image.resizable().scaledToFit()
                 default:
-                    Circle()
-                        .fill(.white.opacity(0.07))
-                        .overlay(
-                            Image(systemName: "soccerball")
-                                .font(.system(size: logoPlaceholderIconSize))
-                                .foregroundStyle(themeTokens.textColor.opacity(0.55))
-                        )
+                    logoPlaceholder
                 }
             }
             .accessibilityHidden(true)
+        } else {
+            logoPlaceholder
+                .accessibilityHidden(true)
         }
+    }
+
+    private var logoPlaceholder: some View {
+        Circle()
+            .fill(.white.opacity(0.07))
+            .overlay(
+                Image(systemName: "soccerball")
+                    .font(.system(size: logoPlaceholderIconSize))
+                    .foregroundStyle(themeTokens.textColor.opacity(0.55))
+            )
     }
 
     private func sectionView(_ section: MoreSection) -> some View {
