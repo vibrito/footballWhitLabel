@@ -7,10 +7,11 @@ import Foundation
 enum TeamCrestPalette {
     private static let palettes: [Int: [String]] = [
         // Bahia — tricolor azul/vermelho/branco (blue / red / white)
-        118: ["1C3F94", "E20E17", "FFFFFF"],
-        // Atlético Mineiro — black & white (charcoal so it reads on the dark background,
-        // matching the curated theme color for this club)
-        1062: ["2B2B2E", "FFFFFF"],
+        118: ["006CB5", "ED3237", "FFFFFF"],
+        // Atlético Mineiro — black & white
+        1062: ["000000", "FFFFFF"],
+        // Cruzeiro — blue & white
+        135: ["2F529E", "FFFFFF"],
     ]
 
     static func hexes(forTeamID id: Int) -> [String]? {
