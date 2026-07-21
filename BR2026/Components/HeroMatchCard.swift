@@ -59,7 +59,7 @@ struct HeroMatchCard: View {
 
     private func teamColumn(_ team: Team) -> some View {
         VStack(spacing: 12) {
-            TeamCrestBadge(team: team, size: 88)
+            TeamCrestBadge(team: team, size: 88, showsInitials: true)
             Text(team.displayName)
                 .font(.system(size: teamNameFontSize, weight: .bold))
                 .foregroundStyle(themeTokens.textColor)

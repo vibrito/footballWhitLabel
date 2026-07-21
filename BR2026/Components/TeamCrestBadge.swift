@@ -5,6 +5,10 @@ import UIKit
 struct TeamCrestBadge: View {
     let team: Team
     var size: CGFloat = 32
+    // Overlays the team's initials on the color ball. Off by default (the team name is
+    // usually shown right beside the badge); enabled only where the ball is large enough to
+    // carry them legibly, e.g. the Matchday hero card.
+    var showsInitials: Bool = false
 
     @Environment(\.modelContext) private var modelContext
     @Environment(\.themeTokens) private var themeTokens
@@ -14,6 +18,14 @@ struct TeamCrestBadge: View {
     // hidden — a curated palette when one exists, otherwise the distinct API kit colors.
     // `nil` until loaded / when unavailable.
     @State private var kitColorHexes: [String]?
+    @ScaledMetric private var initialsFontSize: CGFloat
+
+    init(team: Team, size: CGFloat = 32, showsInitials: Bool = false) {
+        self.team = team
+        self.size = size
+        self.showsInitials = showsInitials
+        self._initialsFontSize = ScaledMetric(wrappedValue: size * 0.32)
+    }
 
     var body: some View {
         Group {
@@ -109,6 +121,18 @@ struct TeamCrestBadge: View {
             }
         }
         .clipShape(Circle())
+        .overlay {
+            if showsInitials {
+                Text(initials)
+                    .font(.system(size: initialsFontSize, weight: .heavy))
+                    .foregroundStyle(.white)
+                    .shadow(color: .black.opacity(0.55), radius: 2)
+            }
+        }
+    }
+
+    private var initials: String {
+        String(team.displayName.prefix(2)).uppercased()
     }
 }
 
