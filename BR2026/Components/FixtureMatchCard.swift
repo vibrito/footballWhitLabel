@@ -79,7 +79,6 @@ struct FixtureMatchCard: View {
 
     private func teamRow(_ team: Team, score: Int?) -> some View {
         HStack(spacing: 12) {
-            TeamCrestBadge(team: team, size: 28)
             Text(team.displayName)
                 .font(.system(size: teamNameFontSize, weight: .semibold))
                 .foregroundStyle(themeTokens.textColor)
