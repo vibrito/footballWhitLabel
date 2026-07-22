@@ -17,9 +17,10 @@ enum TeamCrestSymbols {
     static let byTeamID: [Int: TeamCrestSymbol] = [
         // Fluminense — the club's grená/branco/verde tricolour (burgundy / white / green).
         124: TeamCrestSymbol(colorHexes: ["870A28", "FFFFFF", "00613C"], pattern: .verticalStripes),
-        // Atlético Mineiro — the black & white striped jersey (many thin alternating bands).
+        // Atlético Mineiro — the black & white striped jersey. Odd number of bands so the
+        // first and last stripe are both black (symmetric edges).
         1062: TeamCrestSymbol(
-            colorHexes: ["000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF"],
+            colorHexes: ["000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000"],
             pattern: .verticalStripes
         ),
     ]
