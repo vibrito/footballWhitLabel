@@ -155,6 +155,13 @@ enum TeamCrestSymbols {
         ]),
         // Santos — the iconic all-white home shirt (solid, no stripe pattern).
         128: .equalStripes(["FFFFFF"]),
+        // Mirassol — solid yellow shirt with a single thin green vertical stripe (same structure
+        // as Internacional).
+        7848: .verticalStripes([
+            .init("F3EC0A", 8),
+            .init("126F3D", 1),
+            .init("F3EC0A", 2),
+        ]),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
