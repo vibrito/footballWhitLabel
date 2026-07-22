@@ -19,6 +19,8 @@ enum TeamCrestSymbol {
 
     /// Vertical bands, left→right, widths proportional to their weights.
     case verticalStripes([Band])
+    /// Horizontal bands, top→bottom, heights proportional to their weights.
+    case horizontalStripes([Band])
     /// Concentric filled circles, outer→inner — the last band is the solid centre, earlier
     /// ones are rings around it (radial thickness proportional to weight).
     case concentric([Band])
@@ -46,6 +48,15 @@ enum TeamCrestSymbols {
         ]),
         // Atlético Mineiro — black & white striped jersey, equal bands, black on both edges.
         1062: .equalStripes(["000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000"]),
+        // Coritiba — white shirt with two horizontal green bars across the middle (a thicker
+        // upper bar and a thinner lower one, separated by a thin white line).
+        147: .horizontalStripes([
+            .init("FFFFFF", 5),
+            .init("00544D", 2),
+            .init("FFFFFF", 0.7),
+            .init("00544D", 1.2),
+            .init("FFFFFF", 5),
+        ]),
         // Palmeiras — retro green shirt: wide green bars separated by equal thin white
         // pinstripes (same even structure as Fluminense, but every wide bar is green).
         121: .verticalStripes([

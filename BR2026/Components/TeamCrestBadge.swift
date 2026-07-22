@@ -125,6 +125,14 @@ struct TeamCrestBadge: View {
                         .frame(width: size * band.weight / max(total, 1))
                 }
             }
+        case .horizontalStripes(let bands):
+            let total = bands.reduce(0) { $0 + $1.weight }
+            VStack(spacing: 0) {
+                ForEach(Array(bands.enumerated()), id: \.offset) { _, band in
+                    Color(hex: band.hex)
+                        .frame(height: size * band.weight / max(total, 1))
+                }
+            }
         case .concentric(let bands):
             let total = bands.reduce(0) { $0 + $1.weight }
             // Draw outer→inner so each smaller circle sits on top. A band's circle spans the
