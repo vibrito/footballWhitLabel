@@ -94,6 +94,18 @@ enum TeamCrestSymbols {
             .init("006437", 3), .init("FFFFFF", 1),
             .init("006437", 3), .init("FFFFFF", 1),
         ]),
+        // Bahia — tricolor: same structure as Palmeiras (wide bars separated by equal thin
+        // white pinstripes), but the wide bars alternate blue & red (blue on both edges).
+        118: .verticalStripes([
+            .init("FFFFFF", 1),
+            .init("006CB5", 3), .init("FFFFFF", 1),
+            .init("ED3237", 3), .init("FFFFFF", 1),
+            .init("006CB5", 3), .init("FFFFFF", 1),
+            .init("ED3237", 3), .init("FFFFFF", 1),
+            .init("006CB5", 3), .init("FFFFFF", 1),
+            .init("ED3237", 3), .init("FFFFFF", 1),
+            .init("006CB5", 3), .init("FFFFFF", 1),
+        ]),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
