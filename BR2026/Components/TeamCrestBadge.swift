@@ -55,14 +55,35 @@ struct TeamCrestBadge: View {
         store.store(data, forTeamID: team.id, url: url)
     }
 
+    @ViewBuilder
     private var placeholder: some View {
-        Circle()
-            .fill(.white.opacity(0.07))
-            .overlay(
-                Text(initials)
-                    .font(.system(size: initialsFontSize, weight: .bold))
-                    .foregroundStyle(themeTokens.textColor)
-            )
+        if let symbol = TeamCrestSymbols.symbol(forTeamID: team.id) {
+            symbolBall(symbol)
+        } else {
+            Circle()
+                .fill(.white.opacity(0.07))
+                .overlay(
+                    Text(initials)
+                        .font(.system(size: initialsFontSize, weight: .bold))
+                        .foregroundStyle(themeTokens.textColor)
+                )
+        }
+    }
+
+    // A curated flag-style ball standing in for the club crest — no lettering, just the
+    // club's colors in the symbol's pattern, clipped to a circle.
+    private func symbolBall(_ symbol: TeamCrestSymbol) -> some View {
+        Group {
+            switch symbol.pattern {
+            case .verticalStripes:
+                HStack(spacing: 0) {
+                    ForEach(Array(symbol.colorHexes.enumerated()), id: \.offset) { _, hex in
+                        Color(hex: hex)
+                    }
+                }
+            }
+        }
+        .clipShape(Circle())
     }
 
     private var initials: String {
