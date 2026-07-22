@@ -169,6 +169,9 @@ enum TeamCrestSymbols {
             .init("FFFFFF", 1),
             .init("0A1F5C", 2),
         ]),
+        // Chapecoense — five equal vertical stripes alternating white & green, white on both
+        // edges (white, green, white, green, white).
+        132: .equalStripes(["FFFFFF", "1B552A", "FFFFFF", "1B552A", "FFFFFF"]),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
