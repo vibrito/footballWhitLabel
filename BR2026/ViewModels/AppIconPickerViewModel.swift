@@ -43,7 +43,7 @@ final class AppIconPickerViewModel {
     /// `TeamThemePickerViewModel.sortedOptions`.
     var sortedTeamOptions: [TeamIconOption] {
         let positionsByTeamID = Dictionary(standings.map { ($0.teamID, $0.position) }, uniquingKeysWith: { first, _ in first })
-        return TeamIconOption.allCases.sorted { lhs, rhs in
+        return TeamIconOption.offeredCases().sorted { lhs, rhs in
             let lhsPurchased = purchaseStore.isPurchased(lhs)
             let rhsPurchased = purchaseStore.isPurchased(rhs)
             guard lhsPurchased == rhsPurchased else { return lhsPurchased }

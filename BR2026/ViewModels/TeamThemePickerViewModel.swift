@@ -42,7 +42,7 @@ final class TeamThemePickerViewModel {
     /// crashing or reordering unpredictably.
     var sortedOptions: [TeamThemeOption] {
         let positionsByTeamID = Dictionary(standings.map { ($0.teamID, $0.position) }, uniquingKeysWith: { first, _ in first })
-        return TeamThemeOption.allCases.sorted { lhs, rhs in
+        return TeamThemeOption.offeredCases().sorted { lhs, rhs in
             let lhsPurchased = purchaseStore.isPurchased(lhs)
             let rhsPurchased = purchaseStore.isPurchased(rhs)
             guard lhsPurchased == rhsPurchased else { return lhsPurchased }

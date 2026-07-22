@@ -11,3 +11,14 @@ protocol PurchasableCatalogOption: CaseIterable, Hashable, Sendable {
     var productID: String { get }
     static func rawValue(fromProductID productID: String) -> String?
 }
+
+extension PurchasableCatalogOption {
+    /// `allCases`, filtered to those currently on offer per `FeatureFlags.iapProductAllowlist`.
+    /// An empty allowlist offers every case (normal operation); a non-empty one offers only
+    /// the cases whose `productID` it lists. Used everywhere the purchase catalog is displayed
+    /// or its products fetched, so a hidden IAP never surfaces a row a user (or App reviewer)
+    /// could tap. Parameterized on `allowlist` for testability; defaults to the live flag.
+    static func offeredCases(allowlist: Set<String> = FeatureFlags.iapProductAllowlist) -> [Self] {
+        allowlist.isEmpty ? Array(allCases) : allCases.filter { allowlist.contains($0.productID) }
+    }
+}

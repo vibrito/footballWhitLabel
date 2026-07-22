@@ -22,7 +22,7 @@ final class PurchaseStore<Option: PurchasableCatalogOption> {
     func loadOnce() async {
         guard !hasLoadedOnce else { return }
         hasLoadedOnce = true
-        let productIDs = Option.allCases.map(\.productID)
+        let productIDs = Option.offeredCases().map(\.productID)
         products = (try? await service.fetchProducts(productIDs: productIDs)) ?? [:]
         await refreshPurchasedIDs()
     }
