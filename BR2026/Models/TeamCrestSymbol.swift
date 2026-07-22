@@ -53,6 +53,15 @@ enum TeamCrestSymbols {
         1062: .equalStripes(["000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000"]),
         // Vasco da Gama — inverted: a white diagonal sash on black.
         133: .diagonalSash(background: "000000", stripe: "FFFFFF", widthFraction: 0.3),
+        // Red Bull Bragantino — white with two thin red vertical bars, one on the left and one
+        // on the right (inset from the edges).
+        794: .verticalStripes([
+            .init("FFFFFF", 1),
+            .init("D2003C", 0.6),
+            .init("FFFFFF", 5),
+            .init("D2003C", 0.6),
+            .init("FFFFFF", 1),
+        ]),
         // Flamengo — rubro-negro: five equal horizontal hoops, black at top & bottom with red
         // between (black, red, black, red, black).
         127: .horizontalStripes([
