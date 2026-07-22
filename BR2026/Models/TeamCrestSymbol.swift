@@ -136,6 +136,9 @@ enum TeamCrestSymbols {
         // Botafogo — alvinegro: equal vertical stripes alternating black & white, black on both
         // edges (black, white, black, white, black, white, black).
         120: .equalStripes(["000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000"]),
+        // Vitória — rubro-negro: five equal vertical bars alternating black & red, black on both
+        // edges (black, red, black, red, black).
+        136: .equalStripes(["000000", "FF1100", "000000", "FF1100", "000000"]),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
