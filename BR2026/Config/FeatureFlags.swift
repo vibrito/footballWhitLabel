@@ -5,7 +5,7 @@ enum FeatureFlags {
     /// (banking/tax information) is still pending approval — StoreKit purchases can't
     /// complete until that's accepted, so the purchase UI is hidden entirely rather than
     /// shown in a broken state. Flip back to `true` once the agreement clears.
-    static let iapEnabled = false
+    static let iapEnabled = true
 
     /// When `false`, real club crests and the competition's own logo are never fetched or
     /// shown — `TeamCrestBadge` and the More screen's competition header fall back to their
