@@ -15,9 +15,8 @@ struct TeamCrestSymbol {
 
 enum TeamCrestSymbols {
     static let byTeamID: [Int: TeamCrestSymbol] = [
-        // Fluminense — the Italian tricolour (green / white / red), matching the club's
-        // own tricolor identity and the World Cup app's Italy flag.
-        124: TeamCrestSymbol(colorHexes: ["009246", "FFFFFF", "CE2B37"], pattern: .verticalStripes),
+        // Fluminense — the club's grená/branco/verde tricolour (burgundy / white / green).
+        124: TeamCrestSymbol(colorHexes: ["870A28", "FFFFFF", "00613C"], pattern: .verticalStripes),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
