@@ -14,16 +14,31 @@ struct MoreViewModelTests {
         #expect(legal?.rows.first?.isEnabled == true)
     }
 
-    // Team Theme is additionally gated behind FeatureFlags.iapEnabled (currently false —
-    // IAP purchases are hidden while Apple's Paid Apps Agreement is pending), so with
-    // today's flag value the Preferences section has only the App Icon row.
-    @Test("Preferences section has only the App Icon row while IAP is disabled")
+    // The App Icon row is always present. The Team Theme row is additionally gated behind
+    // both this being the Brasileirão target and FeatureFlags.iapEnabled — so this mirrors
+    // production's exact condition rather than hard-coding a row count that a flag flip
+    // (or a different target) would silently invalidate.
+    @Test("Preferences section always has App Icon, and Team Theme only when enabled")
     func preferencesSection() {
         let viewModel = MoreViewModel(service: StubMatchService(matches: [], standings: []))
         let preferences = viewModel.sections.first { $0.id == "preferences" }
-        #expect(preferences?.rows.count == 1)
-        #expect(preferences?.rows.first?.destination == .appIconPicker)
-        #expect(preferences?.rows.first?.isEnabled == true)
+        let destinations = preferences?.rows.map(\.destination) ?? []
+
+        #expect(destinations.contains(.appIconPicker))
+        #expect(preferences?.rows.allSatisfy { $0.isEnabled } == true)
+
+        #if !(TARGET_PREMIER_LEAGUE || TARGET_LIGUE_1 || TARGET_PRIMEIRA_LIGA || TARGET_SCOTTISH_PREMIERSHIP || TARGET_LA_LIGA)
+        let expectsTeamTheme = FeatureFlags.iapEnabled
+        #else
+        let expectsTeamTheme = false
+        #endif
+
+        if expectsTeamTheme {
+            #expect(preferences?.rows.count == 2)
+            #expect(destinations.contains(.teamThemePicker))
+        } else {
+            #expect(destinations == [.appIconPicker])
+        }
     }
 
     @Test("load() shows a fresh cached competition immediately, with no network fetch")
