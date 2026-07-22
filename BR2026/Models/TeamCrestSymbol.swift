@@ -106,6 +106,18 @@ enum TeamCrestSymbols {
             .init("ED3237", 3), .init("FFFFFF", 1),
             .init("006CB5", 3), .init("FFFFFF", 1),
         ]),
+        // Grêmio — tricolor: same structure as Bahia (wide bars separated by equal thin white
+        // pinstripes), but the wide bars alternate celeste blue & black (blue on both edges).
+        130: .verticalStripes([
+            .init("FFFFFF", 1),
+            .init("0F8BD0", 3), .init("FFFFFF", 1),
+            .init("000000", 3), .init("FFFFFF", 1),
+            .init("0F8BD0", 3), .init("FFFFFF", 1),
+            .init("000000", 3), .init("FFFFFF", 1),
+            .init("0F8BD0", 3), .init("FFFFFF", 1),
+            .init("000000", 3), .init("FFFFFF", 1),
+            .init("0F8BD0", 3), .init("FFFFFF", 1),
+        ]),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
