@@ -51,8 +51,8 @@ enum TeamCrestSymbols {
         ]),
         // Atlético Mineiro — black & white striped jersey, equal bands, black on both edges.
         1062: .equalStripes(["000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000"]),
-        // Vasco da Gama — the famous black diagonal sash on a white shirt.
-        133: .diagonalSash(background: "FFFFFF", stripe: "000000", widthFraction: 0.32),
+        // Vasco da Gama — inverted: a thicker white diagonal sash on black.
+        133: .diagonalSash(background: "000000", stripe: "FFFFFF", widthFraction: 0.38),
         // Flamengo — rubro-negro: five equal horizontal hoops, black at top & bottom with red
         // between (black, red, black, red, black).
         127: .horizontalStripes([
