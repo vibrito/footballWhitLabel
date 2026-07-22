@@ -133,6 +133,14 @@ struct TeamCrestBadge: View {
                         .frame(height: size * band.weight / max(total, 1))
                 }
             }
+        case .diagonalSash(let background, let stripe, let widthFraction):
+            ZStack {
+                Color(hex: background)
+                Rectangle()
+                    .fill(Color(hex: stripe))
+                    .frame(width: size * widthFraction, height: size * 1.6)
+                    .rotationEffect(.degrees(45))
+            }
         case .concentric(let bands):
             let total = bands.reduce(0) { $0 + $1.weight }
             // Draw outer→inner so each smaller circle sits on top. A band's circle spans the

@@ -24,6 +24,9 @@ enum TeamCrestSymbol {
     /// Concentric filled circles, outer→inner — the last band is the solid centre, earlier
     /// ones are rings around it (radial thickness proportional to weight).
     case concentric([Band])
+    /// A single diagonal stripe (top-left → bottom-right) of `stripe` over a `background`.
+    /// `widthFraction` is the stripe's width as a fraction of the badge size.
+    case diagonalSash(background: String, stripe: String, widthFraction: CGFloat)
 
     /// Convenience for equal-width vertical bands from a plain list of hex colors.
     static func equalStripes(_ hexes: [String]) -> TeamCrestSymbol {
@@ -48,6 +51,8 @@ enum TeamCrestSymbols {
         ]),
         // Atlético Mineiro — black & white striped jersey, equal bands, black on both edges.
         1062: .equalStripes(["000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000"]),
+        // Vasco da Gama — the famous black diagonal sash on a white shirt.
+        133: .diagonalSash(background: "FFFFFF", stripe: "000000", widthFraction: 0.32),
         // Flamengo — rubro-negro: five equal horizontal hoops, black at top & bottom with red
         // between (black, red, black, red, black).
         127: .horizontalStripes([
