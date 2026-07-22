@@ -133,6 +133,12 @@ enum TeamCrestSymbols {
             .init("000000", 2),
             .init("FFFFFF", 5),
         ]),
+        // Botafogo — alvinegro: equal horizontal bars alternating black & white, black on both
+        // edges (black, white, black, white, black, white, black).
+        120: .horizontalStripes([
+            .init("000000"), .init("FFFFFF"), .init("000000"), .init("FFFFFF"),
+            .init("000000"), .init("FFFFFF"), .init("000000"),
+        ]),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
