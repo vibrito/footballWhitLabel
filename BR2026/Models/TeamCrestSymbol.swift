@@ -62,6 +62,12 @@ enum TeamCrestSymbols {
             .init("D2003C", 0.6),
             .init("FFFFFF", 1),
         ]),
+        // Athletico Paranaense — rubro-negro: equal vertical bars alternating red & black,
+        // red on both edges (red, black, red, black, red, black, red).
+        134: .verticalStripes([
+            .init("CE181E"), .init("000000"), .init("CE181E"), .init("000000"),
+            .init("CE181E"), .init("000000"), .init("CE181E"),
+        ]),
         // Flamengo — rubro-negro: five equal horizontal hoops, black at top & bottom with red
         // between (black, red, black, red, black).
         127: .horizontalStripes([
