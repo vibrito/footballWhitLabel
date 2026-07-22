@@ -146,6 +146,13 @@ enum TeamCrestSymbols {
             .init("000000", 1),
             .init("FFFFFF", 2),
         ]),
+        // Cruzeiro — solid blue shirt with a single thin white vertical stripe (same structure
+        // as Internacional).
+        135: .verticalStripes([
+            .init("2F529E", 8),
+            .init("FFFFFF", 1),
+            .init("2F529E", 2),
+        ]),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
