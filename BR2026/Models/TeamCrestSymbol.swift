@@ -46,8 +46,15 @@ enum TeamCrestSymbols {
         ]),
         // Atlético Mineiro — black & white striped jersey, equal bands, black on both edges.
         1062: .equalStripes(["000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000"]),
-        // Palmeiras — solid green centre inside a white ring.
-        121: .concentric([.init("FFFFFF", 1), .init("006437", 6)]),
+        // Palmeiras — retro green shirt with white vertical stripes in a pair on each side of
+        // centre (wide green base, thin white pinstripes).
+        121: .verticalStripes([
+            .init("006437", 4),
+            .init("FFFFFF", 1), .init("006437", 1), .init("FFFFFF", 1),  // left pair
+            .init("006437", 4),  // centre
+            .init("FFFFFF", 1), .init("006437", 1), .init("FFFFFF", 1),  // right pair
+            .init("006437", 4),
+        ]),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
