@@ -46,14 +46,17 @@ enum TeamCrestSymbols {
         ]),
         // Atlético Mineiro — black & white striped jersey, equal bands, black on both edges.
         1062: .equalStripes(["000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000"]),
-        // Palmeiras — retro green shirt with white vertical stripes in a pair on each side of
-        // centre (wide green base, thin white pinstripes).
+        // Palmeiras — retro green shirt: wide green bars separated by equal thin white
+        // pinstripes (same even structure as Fluminense, but every wide bar is green).
         121: .verticalStripes([
-            .init("006437", 4),
-            .init("FFFFFF", 1), .init("006437", 1), .init("FFFFFF", 1),  // left pair
-            .init("006437", 4),  // centre
-            .init("FFFFFF", 1), .init("006437", 1), .init("FFFFFF", 1),  // right pair
-            .init("006437", 4),
+            .init("FFFFFF", 1),
+            .init("006437", 3), .init("FFFFFF", 1),
+            .init("006437", 3), .init("FFFFFF", 1),
+            .init("006437", 3), .init("FFFFFF", 1),
+            .init("006437", 3), .init("FFFFFF", 1),
+            .init("006437", 3), .init("FFFFFF", 1),
+            .init("006437", 3), .init("FFFFFF", 1),
+            .init("006437", 3), .init("FFFFFF", 1),
         ]),
     ]
 
