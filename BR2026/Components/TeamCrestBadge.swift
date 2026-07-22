@@ -70,19 +70,18 @@ struct TeamCrestBadge: View {
         }
     }
 
-    // A curated flag-style ball standing in for the club crest — no lettering, just the
-    // club's colors in the symbol's pattern, styled like a glossy "futebol de botão" disc.
+    // A curated jersey-style ball standing in for the club crest — no lettering, just the
+    // club's colored vertical bands (proportional widths), styled like a glossy "futebol de
+    // botão" disc.
     private func symbolBall(_ symbol: TeamCrestSymbol) -> some View {
-        Group {
-            switch symbol.pattern {
-            case .verticalStripes:
-                HStack(spacing: 0) {
-                    ForEach(Array(symbol.colorHexes.enumerated()), id: \.offset) { _, hex in
-                        Color(hex: hex)
-                    }
-                }
+        let totalWeight = symbol.stripes.reduce(0) { $0 + $1.weight }
+        return HStack(spacing: 0) {
+            ForEach(Array(symbol.stripes.enumerated()), id: \.offset) { _, stripe in
+                Color(hex: stripe.hex)
+                    .frame(width: size * stripe.weight / max(totalWeight, 1))
             }
         }
+        .frame(width: size, height: size)
         .clipShape(Circle())
         // Convex shading: darken toward the lower-right so the disc reads as domed, not flat.
         .overlay(
