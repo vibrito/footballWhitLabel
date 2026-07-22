@@ -162,6 +162,13 @@ enum TeamCrestSymbols {
             .init("126F3D", 1),
             .init("F3EC0A", 2),
         ]),
+        // Remo — the Leão Azul: solid navy-blue shirt with a single thin white vertical stripe
+        // (same structure as Internacional).
+        1198: .verticalStripes([
+            .init("0A1F5C", 8),
+            .init("FFFFFF", 1),
+            .init("0A1F5C", 2),
+        ]),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
