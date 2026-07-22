@@ -71,18 +71,11 @@ struct TeamCrestBadge: View {
     }
 
     // A curated jersey-style ball standing in for the club crest — no lettering, just the
-    // club's colored vertical bands (proportional widths), styled like a glossy "futebol de
-    // botão" disc.
+    // club's colors in its pattern, styled like a glossy "futebol de botão" disc.
     private func symbolBall(_ symbol: TeamCrestSymbol) -> some View {
-        let totalWeight = symbol.stripes.reduce(0) { $0 + $1.weight }
-        return HStack(spacing: 0) {
-            ForEach(Array(symbol.stripes.enumerated()), id: \.offset) { _, stripe in
-                Color(hex: stripe.hex)
-                    .frame(width: size * stripe.weight / max(totalWeight, 1))
-            }
-        }
-        .frame(width: size, height: size)
-        .clipShape(Circle())
+        symbolPattern(symbol)
+            .frame(width: size, height: size)
+            .clipShape(Circle())
         // Convex shading: darken toward the lower-right so the disc reads as domed, not flat.
         .overlay(
             Circle().fill(
@@ -119,6 +112,32 @@ struct TeamCrestBadge: View {
         )
         // Drop shadow so the disc sits above the surface.
         .shadow(color: .black.opacity(0.45), radius: size * 0.05, x: 0, y: size * 0.045)
+    }
+
+    @ViewBuilder
+    private func symbolPattern(_ symbol: TeamCrestSymbol) -> some View {
+        switch symbol {
+        case .verticalStripes(let bands):
+            let total = bands.reduce(0) { $0 + $1.weight }
+            HStack(spacing: 0) {
+                ForEach(Array(bands.enumerated()), id: \.offset) { _, band in
+                    Color(hex: band.hex)
+                        .frame(width: size * band.weight / max(total, 1))
+                }
+            }
+        case .concentric(let bands):
+            let total = bands.reduce(0) { $0 + $1.weight }
+            // Draw outer→inner so each smaller circle sits on top. A band's circle spans the
+            // radius from the centre out to the sum of its own and all inner bands' weights.
+            ZStack {
+                ForEach(Array(bands.enumerated()), id: \.offset) { index, band in
+                    let innerWeight = bands[index...].reduce(0) { $0 + $1.weight }
+                    Circle()
+                        .fill(Color(hex: band.hex))
+                        .frame(width: size * innerWeight / max(total, 1))
+                }
+            }
+        }
     }
 
     private var initials: String {

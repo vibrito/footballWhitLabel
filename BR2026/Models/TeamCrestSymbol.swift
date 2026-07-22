@@ -1,13 +1,13 @@
 import Foundation
 import CoreGraphics
 
-/// A hand-curated "jersey-style" symbol standing in for a club's (unlicensed) crest, painted
-/// into the round crest badge as vertical bands. Keyed by team id; teams without an entry
-/// fall back to the plain initials placeholder. Add clubs here over time.
-struct TeamCrestSymbol {
-    /// One vertical band: a color and its relative width (a thin white pinstripe is a small
-    /// weight next to wider colored bands).
-    struct Stripe {
+/// A hand-curated symbol standing in for a club's (unlicensed) crest, painted into the round
+/// crest badge. Keyed by team id; teams without an entry fall back to the plain initials
+/// placeholder. Add clubs (and patterns) here over time.
+enum TeamCrestSymbol {
+    /// One band/ring: a color and its relative size (a thin pinstripe / thin ring is a small
+    /// weight next to wider ones).
+    struct Band {
         let hex: String
         let weight: CGFloat
 
@@ -17,11 +17,15 @@ struct TeamCrestSymbol {
         }
     }
 
-    let stripes: [Stripe]
+    /// Vertical bands, left→right, widths proportional to their weights.
+    case verticalStripes([Band])
+    /// Concentric filled circles, outer→inner — the last band is the solid centre, earlier
+    /// ones are rings around it (radial thickness proportional to weight).
+    case concentric([Band])
 
-    /// Convenience for equal-width bands from a plain list of hex colors.
+    /// Convenience for equal-width vertical bands from a plain list of hex colors.
     static func equalStripes(_ hexes: [String]) -> TeamCrestSymbol {
-        TeamCrestSymbol(stripes: hexes.map { Stripe($0) })
+        .verticalStripes(hexes.map { Band($0) })
     }
 }
 
@@ -30,7 +34,7 @@ enum TeamCrestSymbols {
         // Fluminense — the striped home shirt: green & grená vertical stripes (grená at the
         // centre, green on the outer bands) separated by thin white pinstripes. Colored bands
         // are 3× the width of the white pinstripes.
-        124: TeamCrestSymbol(stripes: [
+        124: .verticalStripes([
             .init("FFFFFF", 1),
             .init("00613C", 3), .init("FFFFFF", 1),
             .init("870A28", 3), .init("FFFFFF", 1),
@@ -42,8 +46,8 @@ enum TeamCrestSymbols {
         ]),
         // Atlético Mineiro — black & white striped jersey, equal bands, black on both edges.
         1062: .equalStripes(["000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000"]),
-        // Palmeiras — solid green.
-        121: .equalStripes(["006437"]),
+        // Palmeiras — solid green centre inside a white ring.
+        121: .concentric([.init("FFFFFF", 1), .init("006437", 6)]),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
