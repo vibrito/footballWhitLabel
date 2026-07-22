@@ -118,6 +118,8 @@ enum TeamCrestSymbols {
             .init("000000", 3), .init("FFFFFF", 1),
             .init("0F8BD0", 3), .init("FFFFFF", 1),
         ]),
+        // Internacional — the Colorado: a solid red shirt with no stripe pattern.
+        119: .equalStripes(["E30613"]),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
