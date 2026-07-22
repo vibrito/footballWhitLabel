@@ -118,8 +118,21 @@ enum TeamCrestSymbols {
             .init("000000", 3), .init("FFFFFF", 1),
             .init("0F8BD0", 3), .init("FFFFFF", 1),
         ]),
-        // Internacional — the Colorado: a solid red shirt with no stripe pattern.
-        119: .equalStripes(["E30613"]),
+        // Internacional — the Colorado: a solid red shirt with a little white stripe.
+        119: .verticalStripes([
+            .init("E30613", 8),
+            .init("FFFFFF", 1),
+            .init("E30613", 2)
+        ]),
+        // São Paulo — white shirt with two equal horizontal bars across the middle (same
+        // structure as Coritiba), the top bar red and the bottom bar black.
+        126: .horizontalStripes([
+            .init("FFFFFF", 5),
+            .init("FE0000", 2),
+            .init("FFFFFF", 0.7),
+            .init("000000", 2),
+            .init("FFFFFF", 5),
+        ]),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
