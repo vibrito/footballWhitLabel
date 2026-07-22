@@ -153,6 +153,8 @@ enum TeamCrestSymbols {
             .init("FFFFFF", 1),
             .init("2F529E", 2),
         ]),
+        // Santos — the iconic all-white home shirt (solid, no stripe pattern).
+        128: .equalStripes(["FFFFFF"]),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
