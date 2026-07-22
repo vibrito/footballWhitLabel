@@ -139,6 +139,13 @@ enum TeamCrestSymbols {
         // Vitória — rubro-negro: five equal vertical bars alternating black & red, black on both
         // edges (black, red, black, red, black).
         136: .equalStripes(["000000", "FF1100", "000000", "FF1100", "000000"]),
+        // Corinthians — white shirt with a single thin black vertical stripe (same structure as
+        // Internacional, colors inverted: white base, black stripe).
+        131: .verticalStripes([
+            .init("FFFFFF", 8),
+            .init("000000", 1),
+            .init("FFFFFF", 2),
+        ]),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
