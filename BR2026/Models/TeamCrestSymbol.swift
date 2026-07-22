@@ -42,6 +42,8 @@ enum TeamCrestSymbols {
         ]),
         // Atlético Mineiro — black & white striped jersey, equal bands, black on both edges.
         1062: .equalStripes(["000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000"]),
+        // Palmeiras — solid green.
+        121: .equalStripes(["006437"]),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
