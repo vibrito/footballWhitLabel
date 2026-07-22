@@ -99,14 +99,22 @@ struct MoreView: View {
         }
     }
 
+    @ViewBuilder
     private var logoPlaceholder: some View {
-        Circle()
-            .fill(.white.opacity(0.07))
-            .overlay(
-                Image(systemName: "soccerball")
-                    .font(.system(size: logoPlaceholderIconSize))
-                    .foregroundStyle(themeTokens.textColor.opacity(0.55))
-            )
+        // Each app shows its league's country as a World-Cup-style flag roundel in place of
+        // the (scrubbed) competition logo; a national flag isn't a third-party trademark.
+        // Configs without a flag fall back to a generic soccerball.
+        if let flag = config.flagAssetName {
+            FlagRoundel(assetName: flag)
+        } else {
+            Circle()
+                .fill(.white.opacity(0.07))
+                .overlay(
+                    Image(systemName: "soccerball")
+                        .font(.system(size: logoPlaceholderIconSize))
+                        .foregroundStyle(themeTokens.textColor.opacity(0.55))
+                )
+        }
     }
 
     private func sectionView(_ section: MoreSection) -> some View {
@@ -175,5 +183,21 @@ struct MoreView: View {
         } else {
             base.accessibilityHint(Text("Not available", comment: "VoiceOver hint appended to a More-screen row that is currently disabled/unavailable."))
         }
+    }
+}
+
+/// A circular national-flag badge — the World-Cup-style roundel standing in for the
+/// competition logo on the More header. Renders a bundled flag image (the same assets the
+/// World Cup app's `FlagBadge` uses) clipped to a circle; the specific flag comes from
+/// `ChampionshipConfig.flagAssetName`.
+private struct FlagRoundel: View {
+    let assetName: String
+
+    var body: some View {
+        Image(assetName)
+            .resizable()
+            .scaledToFill()
+            .clipShape(Circle())
+            .accessibilityHidden(true)
     }
 }
