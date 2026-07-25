@@ -40,11 +40,18 @@ Constraints measured on the same date, all of which shape the design below:
 |---|---|---|
 | Matches with non-empty `broadcasts` | 10 of 380 (BSA) | Current round only; the rest return `[]` |
 | Competitions with any broadcast data | BSA only (PL, FL1, PPL, SPL, PD all zero) | Feature is Brasileirão-only in practice |
-| Distinct `country` values | `["BR"]` | Country control has exactly one entry today |
+| Distinct `country` values | `["BR"]` at 13:32 UTC; `["BR", "PT"]` by 22:00 UTC same day | Country control must handle multiple entries — see note below |
 | `url` / `logo` populated | 0 of 20 entries | Text-only rendering; nothing to link or show |
 | `type` values seen | `PPV` (12), `STREAMING` (3), `FREE_TV` (3), `PAY_TV` (2) | Enables free-to-air-first ordering |
 | Full payload size | 207 KB raw / **8.3 KB gzipped** | Cheap enough to send whole and filter client-side |
 | Days with ≥1 scheduled BSA match | **12 of the next 30**, longest gap 7 days | A strict "today" section would be empty most days |
+
+**The country list moved while this spec was being written.** The 13:32 UTC measurement found
+only `BR`; by 22:00 UTC the same day the backend was returning 8 Portuguese listings (`Canal
+11` as `PAY_TV`, `Betclic` as `STREAMING`) alongside the 20 Brazilian ones. This vindicates
+deriving the control's options from the data rather than hardcoding a country list, and it
+means the 2+ branch (a real `<select>`) is live now rather than hypothetical. Treat every
+coverage figure in the table above as a snapshot, not a fixed property of the API.
 
 Two API behaviours worth recording because they cost time to discover:
 
@@ -158,8 +165,11 @@ Each card carries, reusing `.mock-match-card`'s glass vocabulary at 22px radius:
 
 - both teams' crests as `<img>` straight from the API's `crest` URL
   (`media.api-sports.io`), with a team-initials fallback on a muted glass fill matching the
-  app's `TeamCrestBadge` placeholder behaviour, plus `loading="lazy"` and explicit
-  width/height to avoid layout shift
+  app's `TeamCrestBadge` placeholder behaviour, and explicit width/height to avoid layout
+  shift. Deliberately **not** `loading="lazy"`: the crest is attached to the DOM only once
+  its `load` event confirms a successful decode, and a lazy image is not fetched until it is
+  already in the rendered layout tree — the two together deadlock and the placeholder never
+  clears. At 28px and above the fold, lazy loading buys nothing here.
 - both team names (`shortName`, falling back to `name`)
 - the score when the match is `IN_PLAY`, `PAUSED` or `FINISHED`; otherwise the kickoff time
   in the visitor's own timezone via `toLocaleTimeString`
@@ -256,7 +266,8 @@ case renders the static pill rather than a `<select>`.
   spec (the API work is already done — `include=broadcasts` on the existing
   `LiveMatchService.fetchMatches()` call plus a `broadcasts` field on `MatchDTO`).
 - **Broadcaster logos and deep links**, until the backend populates `url` and `logo`.
-- **Countries beyond BR**, until the backend has upstream coverage. The design picks these up
-  automatically — the control is built from whatever the API returns.
+- **Curating or relabelling countries.** The control shows whatever the API returns, resolved
+  through `Intl.DisplayNames`. Portugal appeared on its own within hours of the first
+  measurement, which is the design working as intended; no code change was needed.
 - **Live score polling.** The section renders once on page load. The 60s edge cache means a
   reload reflects reasonably fresh scores; a `setInterval` refresh is a later addition.

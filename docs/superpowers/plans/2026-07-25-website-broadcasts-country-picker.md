@@ -1099,11 +1099,17 @@ function crestEl(team) {
     const img = document.createElement("img");
     img.src = team.crest;
     img.alt = "";
-    img.loading = "lazy";
     img.width = 28;
     img.height = 28;
     // Swap the initials out only once the crest has actually decoded, so a
     // failed or slow load leaves the placeholder in place with no flicker.
+    //
+    // Deliberately NOT loading="lazy": a lazy image must be in the rendered
+    // layout tree before the browser will fetch it, but this one is only
+    // attached inside its own load listener — which deadlocks, leaving the
+    // initials permanently. Detached non-lazy images fetch and fire load
+    // normally. These crests are 28px and above the fold, so lazy buys
+    // nothing anyway.
     img.addEventListener("load", () => badge.replaceChildren(img));
   }
   return badge;
