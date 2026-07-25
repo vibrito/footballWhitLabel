@@ -8,6 +8,11 @@
 
 **Tech Stack:** Vanilla ES modules (no framework, no build step), Cloudflare Pages Functions, Node's built-in test runner (`node --test`, zero dependencies), `Intl.DateTimeFormat`/`Intl.DisplayNames`/`Intl.Locale` for all localization.
 
+> **Suite command:** run `node --test tests/*.test.js`, not `node --test tests/`. Verified on
+> Node v24.17.0 in this repo: the bare-directory form fails with a spurious `Cannot find
+> module '.../tests'` and reports a phantom failing test named `tests`, while the glob form
+> discovers and passes everything. Use the glob form everywhere.
+
 ## Global Constraints
 
 - Spec: `docs/superpowers/specs/2026-07-25-website-broadcasts-country-picker-design.md`
@@ -611,7 +616,7 @@ Expected: PASS — 16 tests
 - [ ] **Step 5: Run the whole suite**
 
 ```bash
-node --test tests/
+node --test tests/*.test.js
 ```
 
 Expected: PASS — 24 tests total (8 proxy + 16 data)
@@ -1163,7 +1168,7 @@ function broadcastsEl(match, country) {
 - [ ] **Step 2: Verify the full test suite still passes**
 
 ```bash
-node --test tests/
+node --test tests/*.test.js
 ```
 
 Expected: PASS — 24 tests (this task adds no tests; `matchday.js` is DOM glue whose logic lives in the tested module. The "empty broadcasts renders No listings" case the spec lists is covered at the data layer by `listingsFor({}, "BR") === []`, which drives that branch; the DOM half is covered by manual verification in Step 3.)
@@ -1293,7 +1298,7 @@ discover against the live API."
 - [ ] **Step 7: Final full verification**
 
 ```bash
-node --test tests/
+node --test tests/*.test.js
 ```
 
 Expected: PASS — 24 tests.
