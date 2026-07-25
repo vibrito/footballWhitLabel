@@ -13,8 +13,12 @@ const STORAGE_KEY = "br26.broadcastCountry";
 // The page copy (labels, "Today"/"Tomorrow"/"No listings") is hardcoded
 // English, so the Intl formatters below must render in English too — passing
 // `undefined` would follow the visitor's own language and produce a mismatch
-// like a Portuguese weekday next to the English word "Today".
-const LOCALE = "en";
+// like a Portuguese weekday next to the English word "Today". Specifically
+// "en-GB" rather than plain "en": weekday/month/country names are identical
+// between the two, but "en" resolves to US month-first ordering ("JUL 25")
+// while the design spec's header format is day-first ("25 JUL") — do not
+// simplify this back to "en".
+const LOCALE = "en-GB";
 
 const root = document.querySelector(".live-matchday");
 if (root) {
