@@ -55,11 +55,14 @@ coverage figure in the table above as a snapshot, not a fixed property of the AP
 
 Two API behaviours worth recording because they cost time to discover:
 
-- The `country=` query parameter **filters but never falls back**. `country=BR` returns the
-  same 20 entries as omitting it; `US`, `PT`, `GB` and even the nonsense `XX` all return
-  empty. A naive `country=<visitor locale>` would silently show nothing to everyone outside
-  Brazil. This spec therefore **never sends `country=`** — it fetches unfiltered and buckets
-  client-side.
+- The `country=` query parameter **filters correctly but never falls back**. Re-measured at
+  22:00 UTC once PT coverage appeared: `country=BR` returns 20 entries, `country=PT` returns
+  8, while `US` and the nonsense `XX` both return empty and are indistinguishable from each
+  other. (An earlier 13:32 UTC measurement, when BR was the only country present, wrongly
+  suggested the parameter worked *only* for `BR`.) This spec **never sends `country=`**
+  regardless: the page needs every country's listings in one request in order to build its
+  country control from the data, and filtering server-side would hide the very options the
+  control exists to offer.
 - `include` is **not validated**. `include=bogus`, `include=BROADCASTS` and
   `include=broadcasts,lineups` all return `200` and simply add no key. Exact-match and
   case-sensitive; a typo fails silently rather than erroring, which is why the initial probe

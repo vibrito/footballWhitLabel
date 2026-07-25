@@ -24,7 +24,7 @@
 - Allowed competition codes: `BSA`, `PL`, `FL1`, `PPL`, `SPL`, `PD`
 - Backend live statuses are `IN_PLAY` and `PAUSED` — **never** the literal `LIVE`. Unknown statuses are treated as scheduled.
 - `broadcasts[].url` and `broadcasts[].logo` are null in all live data. Render text only; never emit an anchor or `<img>` for a broadcaster.
-- Never send `country=` to the upstream API — it filters without falling back, returning empty for every country except `BR`.
+- Never send `country=` to the upstream API. It filters correctly for any country that has coverage (`BR` and `PT` both return their own listings) but never falls back — an uncovered country returns empty, indistinguishable from an invalid code. The page fetches unfiltered because it needs every country's listings in one request to build the country control from the data.
 - Build DOM with `createElement`/`textContent`, never `innerHTML` — team, venue, and broadcaster names are server-driven strings.
 - Design tokens (match existing `styles.css` values exactly): card fill `rgba(255,255,255,0.07)`, border `0.5px solid rgba(255,255,255,0.16)`, shadow `0 8px 22px rgba(0,0,0,0.22)`, match-card radius `22px`, accent `var(--accent)`, numerics `font-variant-numeric: tabular-nums`.
 
