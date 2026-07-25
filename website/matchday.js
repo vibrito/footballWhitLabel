@@ -182,7 +182,6 @@ function crestEl(team) {
     const img = document.createElement("img");
     img.src = team.crest;
     img.alt = "";
-    img.loading = "lazy";
     img.width = 28;
     img.height = 28;
     // Swap the initials out only once the crest has actually decoded, so a
