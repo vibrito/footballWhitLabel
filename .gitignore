@@ -27,3 +27,6 @@ fastlane/.env.default
 
 # Superpowers scratch (brainstorm mockups, SDD progress ledger)
 .superpowers/
+
+# Claude Code worktrees
+.claude/worktrees/
