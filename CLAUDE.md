@@ -200,12 +200,16 @@ BR2026/
 - `GET /v4/competitions/{code}/matches` — supports `?status=LIVE`, `?matchday=N`
 - `GET /v4/competitions/{code}/matches?include=broadcasts` — adds a `broadcasts` array
   (`name`/`type`/`country`, plus always-null `url`/`logo`) to each match. Undocumented and
-  **unvalidated**: a typo like `include=bogus` returns 200 and silently adds no key. Only
-  `BSA` has data, only for the current round, and the set of countries varies over time — BR
-  and PT observed so far. Do not send `country=` — it filters without falling back, so
-  anything but `BR` returns empty. Consumed by the marketing site (`website/matchday.js`) via
-  a Pages Function proxy that keeps the API key server-side; the iOS app does not consume it
-  yet.
+  **unvalidated**: a typo like `include=bogus` returns 200 with the `broadcasts` key simply
+  absent from the JSON, not an error. Only `BSA` has data, only for the current round, and
+  the set of countries varies over time — BR and PT observed so far. `country=` does filter
+  correctly (`country=PT` returns only PT listings), but it has no fallback — a country with
+  no upstream coverage returns empty rather than defaulting to anything, and an invalid code
+  is indistinguishable from a valid-but-uncovered one. The site never sends `country=` because
+  it needs listings for every country in one request to build its country picker from the
+  data — filtering server-side would hide the very options the picker is meant to offer.
+  Consumed by the marketing site (`website/matchday.js`) via a Pages Function proxy that keeps
+  the API key server-side; the iOS app does not consume it yet.
 - `GET /v4/competitions/{code}/standings`
 - `GET /v4/competitions/{code}` — competition name and logo, consumed by the More screen's
   competition header.
