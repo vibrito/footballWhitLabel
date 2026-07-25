@@ -205,11 +205,11 @@ BR2026/
   the set of countries varies over time — BR and PT observed so far. `country=` does filter
   correctly (`country=PT` returns only PT listings), but it has no fallback — a country with
   no upstream coverage returns empty rather than defaulting to anything, and an invalid code
-  is indistinguishable from a valid-but-uncovered one. The site never sends `country=` because
-  it needs listings for every country in one request to build its country picker from the
-  data — filtering server-side would hide the very options the picker is meant to offer.
-  Consumed by the marketing site (`website/matchday.js`) via a Pages Function proxy that keeps
-  the API key server-side; the iOS app does not consume it yet.
+  is indistinguishable from a valid-but-uncovered one. A consumer wanting a country picker
+  must omit `country=` and build the picker from the returned data — filtering server-side
+  would hide the very options the picker is meant to offer.
+  Not consumed anywhere in this repo: the iOS app doesn't use it, and the marketing site's
+  live matchday section was removed on 2026-07-26 (see the Marketing Site section).
 - `GET /v4/competitions/{code}/standings`
 - `GET /v4/competitions/{code}` — competition name and logo, consumed by the More screen's
   competition header.
@@ -307,11 +307,25 @@ same copy with the league name swapped in. Apple rejected Ligue 1 2026 and Liga 
 2026 under Guideline 4.3(a) (Spam) on 2026-07-13 partly because the four apps' listings
 were identical find-and-replace text; this is a recurrence check, not a style preference.
 
-The marketing site's live matchday section needs `FOOTBALL_API_KEY` set as a Cloudflare Pages
-environment secret (dashboard → the `br26` project → Settings → Environment variables, marked
-Encrypted) for the deployed site, and in a gitignored `.dev.vars` at the repo root for local
-`npx wrangler pages dev`. Without it `/api/matches` returns 502 and the section stays hidden —
-the page degrades to its pre-broadcasts appearance rather than breaking.
+## Marketing Site
+
+`website/` deploys to Cloudflare Pages as the `br26` project (`br26-80k.pages.dev`). It is
+**load-bearing for the App Store**: every app's `privacy_url`, `support_url` and
+`marketing_url` in `fastlane/metadata/` points at it, and Apple requires a reachable privacy
+policy for each listing. Do not delete the project or rename its paths without migrating
+those URLs and pushing the metadata first — a 404 there puts all six listings out of
+compliance at once.
+
+It is now fully static: no Pages Functions, no build step, no API key. The live matchday
+section (a `/api/matches` proxy plus `website/matchday.js`) was removed on 2026-07-26. It
+bucketed matches by the *visitor's* calendar day and dropped anything before their local
+today, so a Brasileirão match kicking off 21:30 UTC vanished from the board mid-first-half
+for any viewer east of Brazil — correct in São Paulo, wrong everywhere else. The section was
+optional; the legal pages it sat beside are not, so it was cut rather than fixed. The
+`FOOTBALL_API_KEY` Cloudflare secret and any local `.dev.vars` are now unused.
+
+The same bug existed in the separate `fixture-live` site and was fixed there instead (live
+matches are exempt from the past-day filter) — that site's whole purpose is the live board.
 
 ---
 
@@ -354,14 +368,10 @@ the page degrades to its pre-broadcasts appearance rather than breaking.
 - Test files live in `BR2026Tests/`, mirroring the source structure.
 - Use `MockMatchService` in all tests — no network calls, no SwiftData container in unit tests.
 - Name tests descriptively: `@Test("Matchday tab shows only today's matches")`.
-- The marketing site's JS (the live matchday section) is covered separately, by Node's
-  built-in test runner: `node --test tests/*.test.js` (the bare-directory form
-  `node --test tests/` fails spuriously on Node v24.17.0 — always glob the files). Tests
-  live in `tests/` at the repo root and must never move under `functions/` — Cloudflare
-  Pages maps every `.js` file there to a public route. `website/matchday-data.js` is
-  deliberately DOM-free so it can be imported directly by the test runner. This all requires
-  Node >= 22.7, since there is no `package.json` and ESM support relies on automatic
-  module-syntax detection.
+- The marketing site has no JS left to test — the Node test suite at `tests/` went with the
+  live matchday section on 2026-07-26. If JS ever returns to `website/`, note that any `.js`
+  file placed under `functions/` becomes a public Cloudflare Pages route, so tests belong at
+  the repo root, and keep DOM-free logic in its own module so `node --test` can import it.
 
 ---
 
