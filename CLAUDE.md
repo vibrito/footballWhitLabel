@@ -354,6 +354,14 @@ the page degrades to its pre-broadcasts appearance rather than breaking.
 - Test files live in `BR2026Tests/`, mirroring the source structure.
 - Use `MockMatchService` in all tests — no network calls, no SwiftData container in unit tests.
 - Name tests descriptively: `@Test("Matchday tab shows only today's matches")`.
+- The marketing site's JS (the live matchday section) is covered separately, by Node's
+  built-in test runner: `node --test tests/*.test.js` (the bare-directory form
+  `node --test tests/` fails spuriously on Node v24.17.0 — always glob the files). Tests
+  live in `tests/` at the repo root and must never move under `functions/` — Cloudflare
+  Pages maps every `.js` file there to a public route. `website/matchday-data.js` is
+  deliberately DOM-free so it can be imported directly by the test runner. This all requires
+  Node >= 22.7, since there is no `package.json` and ESM support relies on automatic
+  module-syntax detection.
 
 ---
 

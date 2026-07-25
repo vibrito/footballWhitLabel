@@ -10,6 +10,12 @@ import {
 
 const STORAGE_KEY = "br26.broadcastCountry";
 
+// The page copy (labels, "Today"/"Tomorrow"/"No listings") is hardcoded
+// English, so the Intl formatters below must render in English too — passing
+// `undefined` would follow the visitor's own language and produce a mismatch
+// like a Portuguese weekday next to the English word "Today".
+const LOCALE = "en";
+
 const root = document.querySelector(".live-matchday");
 if (root) {
   start(root).catch((error) => {
@@ -50,8 +56,8 @@ async function start(section) {
 function renderHeader(section, day) {
   // Noon avoids any DST edge when turning a date key back into a Date.
   const date = new Date(`${day.dateKey}T12:00:00`);
-  const weekdayShort = new Intl.DateTimeFormat(undefined, { weekday: "short" }).format(date);
-  const dayMonth = new Intl.DateTimeFormat(undefined, { day: "numeric", month: "short" }).format(date);
+  const weekdayShort = new Intl.DateTimeFormat(LOCALE, { weekday: "short" }).format(date);
+  const dayMonth = new Intl.DateTimeFormat(LOCALE, { day: "numeric", month: "short" }).format(date);
 
   section.querySelector(".live-eyebrow").textContent =
     `${weekdayShort} · ${dayMonth}`.toUpperCase();
@@ -60,7 +66,7 @@ function renderHeader(section, day) {
   const titles = {
     today: "Today",
     tomorrow: "Tomorrow",
-    later: new Intl.DateTimeFormat(undefined, { weekday: "long" }).format(date),
+    later: new Intl.DateTimeFormat(LOCALE, { weekday: "long" }).format(date),
   };
   section.querySelector(".live-title").textContent = titles[kind];
 }
@@ -69,7 +75,7 @@ function renderHeader(section, day) {
 
 function displayCountry(code) {
   try {
-    return new Intl.DisplayNames(undefined, { type: "region" }).of(code) ?? code;
+    return new Intl.DisplayNames(LOCALE, { type: "region" }).of(code) ?? code;
   } catch {
     return code;
   }
@@ -117,7 +123,15 @@ function renderCountryControl(section, countries, selected, onChange) {
   if (countries.length === 1) {
     const pill = document.createElement("span");
     pill.className = "live-country-pill";
-    pill.textContent = `📺 ${displayCountry(countries[0])}`;
+
+    const icon = document.createElement("span");
+    icon.setAttribute("aria-hidden", "true");
+    icon.textContent = "📺";
+
+    const name = document.createElement("span");
+    name.textContent = displayCountry(countries[0]);
+
+    pill.append(icon, name);
     host.appendChild(pill);
     return;
   }
@@ -184,6 +198,7 @@ function crestEl(team) {
     img.alt = "";
     img.width = 28;
     img.height = 28;
+    img.referrerPolicy = "no-referrer";
     // Swap the initials out only once the crest has actually decoded, so a
     // failed or slow load leaves the placeholder in place with no flicker.
     img.addEventListener("load", () => badge.replaceChildren(img));
@@ -195,11 +210,12 @@ function centerEl(match) {
   const center = document.createElement("div");
   center.className = "live-center";
 
-  if (hasScore(match)) {
+  const home = match.score?.fullTime?.home;
+  const away = match.score?.fullTime?.away;
+
+  if (hasScore(match) && home != null && away != null) {
     const score = document.createElement("span");
     score.className = "live-score";
-    const home = match.score?.fullTime?.home ?? 0;
-    const away = match.score?.fullTime?.away ?? 0;
     score.textContent = `${home} – ${away}`;
     center.appendChild(score);
   } else {
