@@ -521,3 +521,202 @@ html, body {
   font-variant-numeric: tabular-nums;
   color: rgba(255, 255, 255, 0.7);
 }
+
+/* ---- Live matchday section (br2026 only) ---- */
+
+.live-matchday {
+  width: 100%;
+  margin: 8px 0 48px;
+}
+
+.live-matchday[hidden] {
+  display: none;
+}
+
+.live-eyebrow {
+  margin: 0 0 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.live-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.live-title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.live-country-pill,
+.live-country select {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.07);
+  border: 0.5px solid rgba(255, 255, 255, 0.16);
+  border-radius: 15px;
+  padding: 8px 14px;
+}
+
+.live-country select {
+  appearance: none;
+  padding-right: 30px;
+  background-image: linear-gradient(45deg, transparent 50%, rgba(255, 255, 255, 0.6) 50%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.6) 50%, transparent 50%);
+  background-position: right 14px center, right 9px center;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+/* The native dropdown list is OS-rendered, so its options need a dark-on-light
+   pairing that survives outside our glass surface. */
+.live-country select option {
+  color: #061325;
+  background: #ffffff;
+}
+
+.live-cards {
+  display: grid;
+  gap: 12px;
+}
+
+.live-card {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 0.5px solid rgba(255, 255, 255, 0.16);
+  border-radius: 22px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+  padding: 18px 20px;
+}
+
+.live-card--finished {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.live-team {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.live-team--away {
+  flex-direction: row-reverse;
+}
+
+.live-team-name {
+  font-size: 15px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.live-crest {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.live-crest img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.live-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 74px;
+}
+
+.live-score,
+.live-kickoff {
+  font-variant-numeric: tabular-nums;
+}
+
+.live-score {
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.live-kickoff {
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.live-chip {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  border-radius: 13px;
+  padding: 3px 9px;
+}
+
+.live-chip--live {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.live-chip--muted {
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.live-broadcasts {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.16);
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.live-broadcasts--empty {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 500;
+}
+
+@media (max-width: 520px) {
+  .live-card {
+    padding: 16px;
+  }
+
+  .live-title {
+    font-size: 26px;
+  }
+}
