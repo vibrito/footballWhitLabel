@@ -198,6 +198,14 @@ BR2026/
 - Auth: `X-Auth-Token` header, value in `Secrets.xcconfig` (see `Secrets.xcconfig.example`);
   never commit the real key.
 - `GET /v4/competitions/{code}/matches` — supports `?status=LIVE`, `?matchday=N`
+- `GET /v4/competitions/{code}/matches?include=broadcasts` — adds a `broadcasts` array
+  (`name`/`type`/`country`, plus always-null `url`/`logo`) to each match. Undocumented and
+  **unvalidated**: a typo like `include=bogus` returns 200 and silently adds no key. Only
+  `BSA` has data, only for the current round, and the set of countries varies over time — BR
+  and PT observed so far. Do not send `country=` — it filters without falling back, so
+  anything but `BR` returns empty. Consumed by the marketing site (`website/matchday.js`) via
+  a Pages Function proxy that keeps the API key server-side; the iOS app does not consume it
+  yet.
 - `GET /v4/competitions/{code}/standings`
 - `GET /v4/competitions/{code}` — competition name and logo, consumed by the More screen's
   competition header.
@@ -294,6 +302,12 @@ structure, real league-specific details (rival clubs, competition nicknames) —
 same copy with the league name swapped in. Apple rejected Ligue 1 2026 and Liga Portugal
 2026 under Guideline 4.3(a) (Spam) on 2026-07-13 partly because the four apps' listings
 were identical find-and-replace text; this is a recurrence check, not a style preference.
+
+The marketing site's live matchday section needs `FOOTBALL_API_KEY` set as a Cloudflare Pages
+environment secret (dashboard → the `br26` project → Settings → Environment variables, marked
+Encrypted) for the deployed site, and in a gitignored `.dev.vars` at the repo root for local
+`npx wrangler pages dev`. Without it `/api/matches` returns 502 and the section stays hidden —
+the page degrades to its pre-broadcasts appearance rather than breaking.
 
 ---
 
