@@ -9,7 +9,6 @@ struct MatchdayView: View {
     @Environment(\.scenePhase) private var scenePhase
     @ScaledMetric private var eyebrowFontSize: CGFloat = 11
     @ScaledMetric private var titleFontSize: CGFloat = 32
-    @ScaledMetric private var sectionHeaderFontSize: CGFloat = 13
     @ScaledMetric private var emptyStateTitleFontSize: CGFloat = 16
     @ScaledMetric private var emptyStateSubtitleFontSize: CGFloat = 13
 
@@ -107,12 +106,7 @@ struct MatchdayView: View {
 
     private func matchSection(title: Text, matches: [Match]) -> some View {
         VStack(alignment: .leading, spacing: 12) {
-            title
-                .font(.system(size: sectionHeaderFontSize, weight: .bold))
-                .tracking(0.8)
-                .foregroundStyle(themeTokens.textColor.opacity(0.5))
-                .textCase(.uppercase)
-                .accessibilityAddTraits(.isHeader)
+            SectionHeader(title)
             ForEach(matches, id: \.id) { match in
                 Button { selectedMatch = match } label: {
                     FixtureMatchCard(match: match)

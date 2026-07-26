@@ -2,6 +2,12 @@ import Foundation
 import Observation
 import UIKit
 
+struct FixturesSection: Identifiable {
+    let id: String
+    let title: String
+    let matches: [Match]
+}
+
 @Observable
 @MainActor
 final class FixturesViewModel {
@@ -28,6 +34,46 @@ final class FixturesViewModel {
     var selectedRoundMatches: [Match] {
         guard let selectedRound else { return [] }
         return matchesByRound.first { $0.round == selectedRound }?.matches ?? []
+    }
+
+    /// The selected round split into live / finished / upcoming, mirroring Fixture 2026's
+    /// Fixtures screen. Empty groups are dropped so no header appears without rows.
+    var sections: [FixturesSection] {
+        let matches = selectedRoundMatches
+        var result: [FixturesSection] = []
+
+        let live = matches.filter(\.status.isLiveOrHalftime)
+        if !live.isEmpty {
+            result.append(FixturesSection(
+                id: "live",
+                title: String(localized: "Live now", comment: "Fixtures section header above matches currently being played."),
+                matches: live
+            ))
+        }
+
+        let finished = matches.filter { $0.status == .finished }
+        if !finished.isEmpty {
+            result.append(FixturesSection(
+                id: "finished",
+                title: String(localized: "Finished", comment: "Fixtures section header above matches that have ended."),
+                matches: finished
+            ))
+        }
+
+        let upcoming = matches.filter { !$0.status.isLiveOrHalftime && $0.status != .finished }
+        if !upcoming.isEmpty {
+            // Fixture 2026 never says "later today" for a league, because a round can span
+            // several days and the label would lie. Decide per round instead: only claim
+            // "today" when every unplayed match in this round actually is today.
+            let calendar = Calendar.current
+            let allToday = upcoming.allSatisfy { calendar.isDateInToday($0.utcDate) }
+            let title = allToday
+                ? String(localized: "Later today", comment: "Fixtures section header above matches still to be played today.")
+                : String(localized: "Upcoming", comment: "Fixtures section header above matches still to be played, on this or a later day.")
+            result.append(FixturesSection(id: "upcoming", title: title, matches: upcoming))
+        }
+
+        return result
     }
 
     // `.task` on the view restarts every time the tab reappears, not just on first

@@ -21,13 +21,17 @@ struct FixturesView: View {
                 roundPicker
                 ScrollViewReader { proxy in
                     ScrollView {
-                        LazyVStack(spacing: 12) {
+                        LazyVStack(alignment: .leading, spacing: 12) {
                             Color.clear.frame(height: 0).id(Self.topAnchor)
-                            ForEach(viewModel.selectedRoundMatches, id: \.id) { match in
-                                Button { selectedMatch = match } label: {
-                                    FixtureMatchCard(match: match)
+                            ForEach(viewModel.sections) { section in
+                                SectionHeader(section.title)
+                                    .padding(.top, section.id == viewModel.sections.first?.id ? 0 : 8)
+                                ForEach(section.matches, id: \.id) { match in
+                                    Button { selectedMatch = match } label: {
+                                        FixtureMatchCard(match: match)
+                                    }
+                                    .buttonStyle(.plain)
                                 }
-                                .buttonStyle(.plain)
                             }
                         }
                         .padding(16)

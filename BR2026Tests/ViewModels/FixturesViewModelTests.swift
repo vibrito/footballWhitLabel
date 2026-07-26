@@ -325,4 +325,88 @@ struct FixturesViewModelTests {
 
         #expect(service.fetchMatchesCallCount == 3)
     }
+
+    @Test("Sections split the selected round into live, finished and upcoming, in that order")
+    func sectionsSplitByStatus() async {
+        let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
+        func match(_ id: Int, _ status: MatchStatus, _ offset: TimeInterval) -> Match {
+            Match(
+                id: id, utcDate: Date().addingTimeInterval(offset), status: status, matchday: 1,
+                stage: "REGULAR_SEASON", homeTeam: team, awayTeam: team,
+                homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+            )
+        }
+        // All on the same day as now, so the upcoming label resolves to "later today".
+        let service = StubMatchService(
+            matches: [match(1, .finished, -7200), match(2, .live, -600), match(3, .scheduled, 3600)],
+            standings: []
+        )
+        let viewModel = FixturesViewModel(service: service)
+        await viewModel.load()
+        viewModel.selectedRound = 1
+
+        #expect(viewModel.sections.map(\.id) == ["live", "finished", "upcoming"])
+        #expect(viewModel.sections[0].matches.map(\.id) == [2])
+        #expect(viewModel.sections[1].matches.map(\.id) == [1])
+        #expect(viewModel.sections[2].matches.map(\.id) == [3])
+    }
+
+    @Test("Empty groups are omitted rather than shown with no rows")
+    func sectionsOmitEmptyGroups() async {
+        let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
+        let finished = Match(
+            id: 1, utcDate: Date().addingTimeInterval(-7200), status: .finished, matchday: 1,
+            stage: "REGULAR_SEASON", homeTeam: team, awayTeam: team,
+            homeScore: 1, awayScore: 0, winner: "HOME_TEAM", venue: nil, minute: 90
+        )
+        let service = StubMatchService(matches: [finished], standings: [])
+        let viewModel = FixturesViewModel(service: service)
+        await viewModel.load()
+        viewModel.selectedRound = 1
+
+        #expect(viewModel.sections.map(\.id) == ["finished"])
+    }
+
+    @Test("Halftime counts as live, not upcoming")
+    func sectionsTreatHalftimeAsLive() async {
+        let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
+        let ht = Match(
+            id: 1, utcDate: Date().addingTimeInterval(-2700), status: .halftime, matchday: 1,
+            stage: "REGULAR_SEASON", homeTeam: team, awayTeam: team,
+            homeScore: 1, awayScore: 1, winner: nil, venue: nil, minute: 45
+        )
+        let service = StubMatchService(matches: [ht], standings: [])
+        let viewModel = FixturesViewModel(service: service)
+        await viewModel.load()
+        viewModel.selectedRound = 1
+
+        #expect(viewModel.sections.map(\.id) == ["live"])
+    }
+
+    @Test("The upcoming title is 'later today' only when every unplayed match is today")
+    func sectionsUpcomingTitleDependsOnDay() async {
+        let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
+        func scheduled(_ id: Int, _ offset: TimeInterval) -> Match {
+            Match(
+                id: id, utcDate: Date().addingTimeInterval(offset), status: .scheduled, matchday: 1,
+                stage: "REGULAR_SEASON", homeTeam: team, awayTeam: team,
+                homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+            )
+        }
+        let sameDay = FixturesViewModel(
+            service: StubMatchService(matches: [scheduled(1, 3600)], standings: [])
+        )
+        await sameDay.load()
+        sameDay.selectedRound = 1
+        let sameDayTitle = sameDay.sections[0].title
+
+        // Three days out cannot be "today" regardless of when the suite runs.
+        let spanning = FixturesViewModel(
+            service: StubMatchService(matches: [scheduled(1, 3600), scheduled(2, 259_200)], standings: [])
+        )
+        await spanning.load()
+        spanning.selectedRound = 1
+
+        #expect(sameDayTitle != spanning.sections[0].title)
+    }
 }
