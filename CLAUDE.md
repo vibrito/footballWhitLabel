@@ -215,8 +215,9 @@ BR2026/
   competition header.
 - `GET /v4/competitions/{code}/matches/:id/events` — consumed by the match-detail sheet
   (`MatchDetailView`), which shows a goals/cards/substitutions timeline.
-- `GET /v4/competitions/{code}/matches/:id/{statistics,lineups}` — not yet consumed;
-  deferred to a future phase.
+- `GET /v4/competitions/{code}/matches/:id/{statistics,lineups}` — consumed by the
+  match-detail sheet's Stats and Lineups segments (`StatisticsView`/`LineupsView`, backed by
+  `MatchDetailViewModel`).
 - `GET /v4/competitions/{code}/teams/{id}/colors` — per-team home/away/third kit colors
   (`mainColor`/`fontColor`/`secondaryColor`, hex without a leading `#`), consumed by the More
   screen's Team Theme picker.

@@ -648,6 +648,48 @@
         }
       }
     },
+    "%@, assist %@": {
+      "comment": "VoiceOver label for an assisted goal. Arguments: the base event label, and the assisting player's name.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, assist %2$@"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, assist %2$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, asistencia %2$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, passe décisive %2$@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, assistência %2$@"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, assistência %2$@"
+          }
+        }
+      }
+    },
     "%@, formation %@": {
       "comment": "VoiceOver heading label spoken before a team's players on the lineup formation pitch. Arguments: team name, formation string (e.g. \"4-2-3-1\").",
       "extractionState": "manual",
@@ -976,6 +1018,47 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ícone da Aplicação"
+          }
+        }
+      }
+    },
+    "Assist: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assist: %@"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assist: %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Asistencia: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passe décisive : %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assistência: %@"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assistência: %@"
           }
         }
       }
