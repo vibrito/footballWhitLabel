@@ -1,3 +1,12 @@
+// ⚠️ SHARED FILE — kept byte-identical with the Fixture 2026 app.
+//
+// The white-label repo is the source of truth. After editing, run
+// `scripts/sync-crests.sh` there to copy this into ../worldcup and refresh the
+// integrity hash below. CrestSyncTests fails if the file and its hash disagree,
+// which is how an un-synced edit gets caught in either repo.
+//
+// crest-sync: 4108de1d7c9e066e531bb844ff3e186f718cd3c270366c65af30b37507c62f5a
+
 import Foundation
 import CoreGraphics
 
