@@ -95,8 +95,9 @@ Scottish sets. One is horizontal. One needs the new case.
   (8 : 1 : 2).
 - **Halves** — Gil Vicente only, two equal vertical bands. New to the vocabulary, but it needs
   no new case.
-- **Off-centre bar** — Casa Pia only, two bands weighted 7 : 2 so the gold sits down one side.
-  The only asymmetric disc in any set.
+- **Off-centre bar** — Casa Pia only, three bands weighted 7 : 2 : 1. The trailing black band
+  is what makes it work: with only two bands the gold ran off the disc's edge and the circular
+  clip read it as a crescent. The only asymmetric disc in any set.
 - **Centred band** — Alverca, 5 : 3 : 5.
 - **Tricolour pinstripes** — Estrela Amadora, Fluminense's structure with the white bars
   thickened to 1.8 (against Fluminense's 1).
@@ -146,7 +147,7 @@ every existing entry.
 | Gil Vicente | `E4002B` 1, `0A2E6E` 1 |
 | Arouca | `FFD400` 8, `0A2E6E` 1, `FFD400` 2 |
 | Famalicão | `0A2E6E` 8, `FFFFFF` 1, `0A2E6E` 2 |
-| Casa Pia | `111111` 7, `D4AF37` 2 |
+| Casa Pia | `111111` 7, `D4AF37` 2, `111111` 1 |
 | Académico Viseu | `FFFFFF` 1, `111111` 6, `FFFFFF` 1 |
 | Alverca | `0060A8` 5, `F6002A` 3, `0060A8` 5 |
 | Estrela Amadora | 15 bands: `FFFFFF` 1.8 alternating with `00613C` 3 and `870A28` 3 |
@@ -172,7 +173,9 @@ roughly 24pt on match cards.
 
 - **Casa Pia's off-centre gold bar.** On a circle, a bar down one side reads as a crescent
   rather than a stripe. This is the one to look at hardest. If it reads wrong, centring it
-  (`111111` 4, `D4AF37` 2, `111111` 4) is a data change, no code.
+  (`111111` 4, `D4AF37` 2, `111111` 4) is a data change, no code. **Resolved:** this did happen at
+  24pt, confirmed in the simulator. Fixed in `6f65331` by adding a trailing `111111` band at
+  weight 1 rather than by centring — the asymmetry was worth keeping.
 - **Moreirense at 4 across.** The whole reason for the new case. If the cells shimmer against
   the disc's glossy highlight, 3 across is the fallback — again data, no code.
 - **The 1-weight thin stripes** on Guimarães, Arouca and Famalicão. Same class of risk the
