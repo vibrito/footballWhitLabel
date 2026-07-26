@@ -380,8 +380,8 @@ matches are exempt from the past-day filter) — that site's whole purpose is th
 - This white label will be used by other apps — championships beyond Brasileirão are a
   future phase, added via new `ChampionshipConfig` values.
 - Brasileirão is the only wired-up championship; a championship switcher UI and theming
-  beyond one accent color are out of scope. Match detail covers the events timeline;
-  statistics and lineups are deferred to a future phase.
+  beyond one accent color are out of scope. Match detail covers the events timeline,
+  statistics and lineups.
 - Alternate home variants (B/C) are **out of scope**.
 - No user accounts, no user-visible notifications, no watchOS/widgets — future phases.
   Firebase Messaging is wired up at the plumbing level (APNs registration, FCM token

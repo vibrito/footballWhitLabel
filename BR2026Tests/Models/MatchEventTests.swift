@@ -67,4 +67,30 @@ struct MatchEventTests {
         #expect(label.contains("Player In"))
         #expect(label.contains("Player Out"))
     }
+
+    @Test("accessibilityLabel names the assisting player on an assisted goal")
+    func accessibilityLabelGoalWithAssist() {
+        let event = MatchEvent(
+            team: .away, type: .goal, assist: "Reinaldo", detail: "Normal Goal", minute: 30,
+            player: "Igor Formiga", playerOut: nil, extraMinute: nil
+        )
+        let label = event.accessibilityLabel
+        #expect(label.contains("Igor Formiga"))
+        #expect(label.contains("Reinaldo"))
+    }
+
+    @Test("accessibilityLabel is unchanged for a goal with no assist")
+    func accessibilityLabelGoalWithoutAssist() {
+        let assisted = MatchEvent(
+            team: .away, type: .goal, assist: "Reinaldo", detail: "Normal Goal", minute: 30,
+            player: "Igor Formiga", playerOut: nil, extraMinute: nil
+        )
+        let unassisted = MatchEvent(
+            team: .away, type: .goal, assist: nil, detail: "Normal Goal", minute: 30,
+            player: "Igor Formiga", playerOut: nil, extraMinute: nil
+        )
+        // The unassisted label must not grow an empty or dangling assist clause.
+        #expect(unassisted.accessibilityLabel != assisted.accessibilityLabel)
+        #expect(!unassisted.accessibilityLabel.contains("Reinaldo"))
+    }
 }

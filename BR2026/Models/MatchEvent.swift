@@ -68,9 +68,15 @@ struct MatchEvent: Decodable, Identifiable {
         } else {
             detailText = player
         }
-        return String(
+        let base = String(
             localized: "\(minuteText) minute, \(eventWord), \(detailText)",
             comment: "VoiceOver label for one match timeline event. Arguments: the minute, the event type word (goal/yellow card/etc.), and the player detail."
+        )
+        // Only goals carry an assist, and only when the API supplied one.
+        guard type == .goal, let assist else { return base }
+        return String(
+            localized: "\(base), assist \(assist)",
+            comment: "VoiceOver label for an assisted goal. Arguments: the base event label, and the assisting player's name."
         )
     }
 }

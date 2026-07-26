@@ -102,7 +102,10 @@ struct MatchTimelineRow: View {
             return Text("For \(playerOut)")
         case .goal:
             switch event.detail {
-            case "Normal Goal": return nil
+            // The assist is the subtitle for an ordinary goal. Penalty and own goal keep
+            // their own text — the same precedence Fixture 2026 uses, where own goal and
+            // penalty win over the assist.
+            case "Normal Goal": return event.assist.map { Text("Assist: \($0)") }
             case "Penalty": return Text("Penalty")
             case "Own Goal": return Text("Own Goal")
             default: return Text(event.detail)
