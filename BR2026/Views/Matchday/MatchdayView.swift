@@ -30,11 +30,12 @@ struct MatchdayView: View {
                                 HeroMatchCard(match: nextMatch)
                             }
                             .buttonStyle(.plain)
-                            if !viewModel.finishedMatchesForNextMatchDay.isEmpty {
-                                matchSection(title: Text("Finished"), matches: viewModel.finishedMatchesForNextMatchDay)
-                            }
+                            // Finished sits below what is still to come, matching Fixtures.
                             if !viewModel.upcomingMatchesForNextMatchDay.isEmpty {
                                 matchSection(title: alsoTodayLabel, matches: viewModel.upcomingMatchesForNextMatchDay)
+                            }
+                            if !viewModel.finishedMatchesForNextMatchDay.isEmpty {
+                                matchSection(title: Text("Finished"), matches: viewModel.finishedMatchesForNextMatchDay)
                             }
                         } else {
                             emptyState

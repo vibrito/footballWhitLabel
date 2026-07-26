@@ -84,3 +84,38 @@ bare-minimum support/privacy-policy site built to satisfy App Store Connect requ
 plain per-app landing pages with a "Coming soon" badge. This item is about building
 something genuinely presentable to advertise the whole app family together, not just
 extending the existing minimal site's structure further. Last in the sequence.
+
+## 9. Matchday and Fixtures have converged — decide whether they should merge
+
+**Noted 2026-07-26.** These two screens started out distinct and have quietly grown into
+near-neighbours. Both now render the same `FixtureMatchCard`, both group by match status under
+the same `SectionHeader`, and as of today both order those groups the same way: live first,
+then still-to-come, then finished.
+
+What actually differs is smaller than what is shared:
+
+| | Matchday | Fixtures |
+|---|---|---|
+| Scope | one matchday | one round, chosen from a picker |
+| Hero card | yes — the featured match | no |
+| Grouping | Also Today / Finished | Live now / Upcoming-or-Later today / Finished |
+| Section source | two `MatchdayViewModel` properties | `FixturesViewModel.sections` |
+
+Matchday is roughly "Fixtures for the current round, with a hero on top and no round picker."
+The same convergence happened in the Fixture 2026 app, where `LeagueTodayContent` and its
+Fixtures screen have the same relationship.
+
+Worth deciding deliberately rather than letting it drift further. Options, unranked:
+
+- Keep both, and extract the shared grouping so section order and labels cannot diverge again.
+  Today they are kept in step by hand, which is how the ordering got inconsistent in the first
+  place.
+- Fold Matchday into Fixtures as a "current round" default, with the hero as a Fixtures
+  affordance rather than a separate screen. Removes a tab.
+- Leave as-is and accept the duplication, on the grounds that Matchday's job (one glance,
+  today) is genuinely different from Fixtures' (browse the season).
+
+Related: the two apps' `Match` models are also slated for unification, which would make any
+shared component genuinely shareable across repos instead of hand-copied. Worth sequencing
+these together — see the cross-app parity spec,
+`docs/superpowers/specs/2026-07-26-cross-app-match-ui-parity-design.md`.
