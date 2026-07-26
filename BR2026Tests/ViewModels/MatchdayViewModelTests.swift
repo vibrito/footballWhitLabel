@@ -370,6 +370,68 @@ struct MatchdayViewModelTests {
 
         #expect(service.fetchMatchesCallCount == 3)
     }
+    // MARK: - The shared board rule
+    //
+    // Matches the marketing site's dayGroups and Fixture 2026's LeagueTodayViewModel:
+    // a match is on the board if it is on the featured day, OR live now, OR kicked off
+    // within the last 24 hours.
+
+    private func match(_ id: Int, _ utcDate: Date, _ status: MatchStatus,
+                       minute: Int? = nil) -> Match {
+        Match(id: id, utcDate: utcDate, status: status, matchday: 1, stage: "REGULAR_SEASON",
+              homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil,
+              winner: nil, venue: nil, minute: minute)
+    }
+
+    private func viewModel(_ matches: [Match], now: Date) async -> MatchdayViewModel {
+        let service = StubMatchService(matches: matches, standings: [])
+        let vm = MatchdayViewModel(service: service,
+                                   themeStore: TeamThemeStore(setting: StubTeamThemeSetting(), service: service))
+        vm.now = { now }
+        await vm.load()
+        return vm
+    }
+
+    @Test("A live match stays on the board after the reader's midnight")
+    func liveMatchSurvivesMidnight() async {
+        // The Lisbon case: kicked off 22:30 yesterday local, the clock has just passed
+        // midnight, and the match is barely into the first half.
+        let now = Date()
+        let live = match(10, now.addingTimeInterval(-30 * 60), .live, minute: 30)
+        let laterToday = match(11, now.addingTimeInterval(6 * 3600), .scheduled)
+
+        let vm = await viewModel([live, laterToday], now: now)
+        let onBoard = ([vm.nextMatch] + vm.otherMatchesForNextMatchDay).compactMap(\.self).map(\.id)
+        #expect(onBoard.contains(10), "a match being played is never off the board")
+    }
+
+    @Test("A finished match is held for 24 hours after kickoff")
+    func finishedMatchHeldForADay() async {
+        let now = Date()
+        // Kicked off 20 hours ago — inside the window — but on the previous local day.
+        let lastNight = match(20, now.addingTimeInterval(-20 * 3600), .finished)
+        let upcoming = match(21, now.addingTimeInterval(4 * 3600), .scheduled)
+
+        let vm = await viewModel([lastNight, upcoming], now: now)
+        #expect(vm.otherMatchesForNextMatchDay.map(\.id).contains(20))
+        #expect(vm.finishedMatchesForNextMatchDay.map(\.id).contains(20))
+    }
+
+    @Test("The hold window expires: an older finished match is dropped")
+    func oldFinishedMatchDropped() async {
+        let now = Date()
+        let longAgo = match(30, now.addingTimeInterval(-26 * 3600), .finished)
+        let upcoming = match(31, now.addingTimeInterval(4 * 3600), .scheduled)
+
+        let vm = await viewModel([longAgo, upcoming], now: now)
+        #expect(!vm.otherMatchesForNextMatchDay.map(\.id).contains(30),
+                "past 24h from kickoff, last night's result is no longer news")
+    }
+
+    @Test("holdWindow is 24 hours, the same value the other two codebases use")
+    func holdWindowIsOneDay() {
+        #expect(MatchdayViewModel.holdWindow == 24 * 60 * 60)
+    }
 }
 
 final class StubMatchService: MatchService {

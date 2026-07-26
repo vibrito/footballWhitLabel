@@ -16,6 +16,9 @@ final class MatchdayViewModel {
         self.themeStore = themeStore
     }
 
+    /// Injectable so the hold window can be tested without waiting for real time to pass.
+    var now: () -> Date = Date.init
+
     // The featured match is the selected Team Theme's own next match, but only when it's
     // happening today — the personalization is only worth surfacing when it's actually
     // relevant to what the user would see on screen right now, not a match weeks away
@@ -38,11 +41,36 @@ final class MatchdayViewModel {
             .min { $0.utcDate < $1.utcDate }
     }
 
+    /// How long a finished match stays on the board after kickoff.
+    ///
+    /// Measured from kickoff rather than the final whistle because the API reports no end
+    /// time, and a fixed offset from a known instant beats guessing at stoppage.
+    nonisolated static let holdWindow: TimeInterval = 24 * 60 * 60
+
+    /// The rule shared with the marketing site and the Fixture 2026 app. A match belongs
+    /// on the board when *any* of these hold:
+    ///
+    /// 1. it falls on the featured match's calendar day — the day being shown;
+    /// 2. it is being played right now, whatever day it started on;
+    /// 3. it kicked off within the last `holdWindow`.
+    ///
+    /// (2) and (3) are the two failures a day-only filter has, both found on the site.
+    /// A 21:30 UTC kickoff is still the 25th in São Paulo but already the 26th in Lisbon,
+    /// so a European reader watched live matches vanish mid-first-half; and last night's
+    /// results disappeared at local midnight, leaving only upcoming fixtures for anyone
+    /// opening the app over breakfast.
     var otherMatchesForNextMatchDay: [Match] {
         guard let nextMatch else { return [] }
         let calendar = Calendar.current
+        let now = now()
         return matches
-            .filter { $0.id != nextMatch.id && calendar.isDate($0.utcDate, inSameDayAs: nextMatch.utcDate) }
+            .filter { match in
+                guard match.id != nextMatch.id else { return false }
+                if calendar.isDate(match.utcDate, inSameDayAs: nextMatch.utcDate) { return true }
+                if match.status.isLiveOrHalftime { return true }
+                let since = now.timeIntervalSince(match.utcDate)
+                return since >= 0 && since <= Self.holdWindow
+            }
             .sorted { $0.utcDate < $1.utcDate }
     }
 
