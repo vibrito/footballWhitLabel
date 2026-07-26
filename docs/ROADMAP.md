@@ -6,6 +6,12 @@ Premiership and La Liga are not yet submitted for review but all 6 apps are on T
 (version 1.1, build 8). Items #1 and #2 below have shipped. The agreed next steps are, in
 order:
 
+> **Next up (agreed 2026-07-26): #6, the where-to-watch page.** The broadcasts API already
+> exists and is unconsumed — see that section for its verified limits, which are significant
+> enough to shape the design. Note the rest of this file is a status document that has drifted:
+> #3 and #6b look shipped, and #8's deployment target is wrong (it says Netlify; the site is on
+> Cloudflare Pages). Treat item status here as unverified until it is brought current.
+
 ## 1. In-app-purchase team themes ✅ Shipped 2026-07-16
 
 Purchasable per-team customization: alternate app icon, accent colors, and the purchased
@@ -50,11 +56,39 @@ Notify users about the teams they've purchased a theme for (via item #1).
 
 Companion experiences across the platform.
 
-## 6. Where-to-watch page
+## 6. Where-to-watch page — ⏭️ NEXT UP (agreed 2026-07-26)
 
 Location-based broadcast channel listings per match — show which channels are airing a
-given match based on the user's location. Not strictly sequenced; can be fit in anytime
-relative to the other items.
+given match based on the user's location.
+
+**The API already exists and nothing in either app consumes it yet.**
+`GET /v4/competitions/{code}/matches?include=broadcasts` adds a `broadcasts` array to each
+match: `name`, `type`, `country`, `url`, `logo`.
+
+Verified against the live API on 2026-07-26 — read these before scoping, several will shape
+the design:
+
+- **Coverage is thin and BSA-only.** 13 of 380 `BSA` matches carried broadcasts (the current
+  round). `PPL` returned 306 matches and **zero**. Whatever the UI does must treat "no
+  listings" as the normal case, not an error state.
+- **Two countries so far**, and the set varies over time: 20 `BR` listings and 8 `PT` across
+  28 total.
+- **`type` is a useful axis**: `PPV` (12), `PAY_TV` (8), `STREAMING` (5), `FREE_TV` (3).
+  Worth grouping or badging by it — "free to air" is the answer most people want.
+- **`url` is populated for some listings** — 8 of 28, all `PT` (e.g. Canal 11, Betclic). So a
+  listing can sometimes be tappable and sometimes not; the row has to handle both.
+  (This is a change: CLAUDE.md previously recorded `url` as always-null. Corrected there.)
+- **`logo` is still always null** across all 28. Don't design around broadcaster logos.
+- **The endpoint is unvalidated.** `include=bogus` returns 200 with the `broadcasts` key
+  simply absent rather than an error, so a typo fails silently.
+- **`country=` filters correctly but has no fallback.** An uncovered country returns empty,
+  and an invalid code is indistinguishable from a valid-but-uncovered one. A country picker
+  must therefore omit `country=` and be built from whatever the response contains — filtering
+  server-side would hide the very options the picker exists to offer.
+
+Open questions for the design session: where it lives (match detail vs its own screen), how
+country is chosen (device locale vs explicit picker vs both), and what to show for the ~97% of
+matches with no listings at all.
 
 ## 6b. Relegation and Libertadores zones in Standings
 

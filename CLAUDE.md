@@ -199,7 +199,10 @@ BR2026/
   never commit the real key.
 - `GET /v4/competitions/{code}/matches` — supports `?status=LIVE`, `?matchday=N`
 - `GET /v4/competitions/{code}/matches?include=broadcasts` — adds a `broadcasts` array
-  (`name`/`type`/`country`, plus always-null `url`/`logo`) to each match. Undocumented and
+  (`name`/`type`/`country`/`url`/`logo`) to each match. `url` is populated for *some*
+  listings — 8 of 28 on 2026-07-26, all `PT` — so a listing may or may not be tappable; treat
+  it as optional rather than absent. `logo` is still always null. `type` is one of
+  `PPV`/`PAY_TV`/`STREAMING`/`FREE_TV`. Undocumented and
   **unvalidated**: a typo like `include=bogus` returns 200 with the `broadcasts` key simply
   absent from the JSON, not an error. Only `BSA` has data, only for the current round, and
   the set of countries varies over time — BR and PT observed so far. `country=` does filter
