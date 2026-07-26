@@ -5,7 +5,7 @@
 // integrity hash below. CrestSyncTests fails if the file and its hash disagree,
 // which is how an un-synced edit gets caught in either repo.
 //
-// crest-sync: 81c7519084475cd5e2e13daea877bcaf29b3bd0203d8730491acfcc5101bb8ad
+// crest-sync: 1f2ba1c103e465e85a0a56230bb5e5fe957bb28f8cd92a62bee586df5ead57d6
 
 import SwiftUI
 
@@ -100,6 +100,20 @@ struct CrestDisc: View {
                     Circle()
                         .fill(Color(hex: band.hex))
                         .frame(width: size * innerWeight / max(total, 1))
+                }
+            }
+        case .checkerboard(let light, let dark, let squares):
+            // Guard the divisor: a zero or negative count would divide by zero below.
+            let count = max(squares, 1)
+            let cell = size / CGFloat(count)
+            VStack(spacing: 0) {
+                ForEach(Array(0..<count), id: \.self) { row in
+                    HStack(spacing: 0) {
+                        ForEach(Array(0..<count), id: \.self) { column in
+                            Color(hex: (row + column).isMultiple(of: 2) ? light : dark)
+                                .frame(width: cell, height: cell)
+                        }
+                    }
                 }
             }
         }

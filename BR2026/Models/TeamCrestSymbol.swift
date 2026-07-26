@@ -5,7 +5,7 @@
 // integrity hash below. CrestSyncTests fails if the file and its hash disagree,
 // which is how an un-synced edit gets caught in either repo.
 //
-// crest-sync: 4108de1d7c9e066e531bb844ff3e186f718cd3c270366c65af30b37507c62f5a
+// crest-sync: 4a14378d64cdbae91ca8c34d0555731d4295f85e3cd0e389f200facac6cc95b3
 
 import Foundation
 import CoreGraphics
@@ -36,6 +36,9 @@ enum TeamCrestSymbol {
     /// A single diagonal stripe (top-left → bottom-right) of `stripe` over a `background`.
     /// `widthFraction` is the stripe's width as a fraction of the badge size.
     case diagonalSash(background: String, stripe: String, widthFraction: CGFloat)
+    /// A checkerboard of `squares` × `squares` alternating cells, `light` in the top-left.
+    /// The only two-dimensional pattern — every other case is a one-dimensional band list.
+    case checkerboard(light: String, dark: String, squares: Int)
 
     /// Convenience for equal-width vertical bands from a plain list of hex colors.
     static func equalStripes(_ hexes: [String]) -> TeamCrestSymbol {
