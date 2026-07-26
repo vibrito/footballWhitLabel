@@ -5,7 +5,7 @@
 // integrity hash below. CrestSyncTests fails if the file and its hash disagree,
 // which is how an un-synced edit gets caught in either repo.
 //
-// crest-sync: 4a14378d64cdbae91ca8c34d0555731d4295f85e3cd0e389f200facac6cc95b3
+// crest-sync: d0500794f90e81fde5e71913e53d5f9ddb32f7c89ccdaf68f802fc9a1d04d105
 
 import Foundation
 import CoreGraphics
@@ -261,6 +261,101 @@ enum TeamCrestSymbols {
             .init("000F4F", 0.7),
             .init("FFFFFF", 2),
             .init("000F4F", 5),
+        ]),
+
+        // ── Liga Portugal ───────────────────────────────────────────────────────────────
+        // Keyed by team id like everything above, so these are inert in the Brazilian,
+        // Scottish and World Cup builds and need no target gating. Ids come from the live
+        // PPL standings.
+        // See docs/superpowers/specs/2026-07-26-portuguese-crest-symbols-design.md.
+
+        // Benfica — solid red.
+        211: .equalStripes(["DA020E"]),
+        // FC Porto — blue & white vertical stripes, blue at both edges.
+        212: .equalStripes(["003DA5", "FFFFFF", "003DA5", "FFFFFF", "003DA5", "FFFFFF", "003DA5"]),
+        // Marítimo — green & red vertical stripes, green at both edges.
+        214: .equalStripes(["00A551", "E4002B", "00A551", "E4002B", "00A551", "E4002B", "00A551"]),
+        // Moreirense — green & white checkerboard, 4 squares across (the Croatia pattern).
+        // Six across was tested on the crest board and rejected: it collapses into noise
+        // below 32pt.
+        215: .checkerboard(light: "FFFFFF", dark: "0A6B3D", squares: 4),
+        // SC Braga — red body with white sleeves (the Arsenalistas heritage). Same shape as
+        // Hibernian and Falkirk.
+        217: .verticalStripes([
+            .init("FFFFFF"),
+            .init("DC0B15", 6),
+            .init("FFFFFF"),
+        ]),
+        // Vitória de Guimarães — white with a thin black stripe (the Internacional structure).
+        224: .verticalStripes([
+            .init("FFFFFF", 8),
+            .init("000000", 1),
+            .init("FFFFFF", 2),
+        ]),
+        // Nacional — black & white vertical stripes, black at both edges.
+        225: .equalStripes(["000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000"]),
+        // Rio Ave — green & white vertical stripes, white at both edges.
+        226: .equalStripes(["FFFFFF", "007A3D", "FFFFFF", "007A3D", "FFFFFF", "007A3D", "FFFFFF"]),
+        // Santa Clara — red & white vertical stripes, red at both edges.
+        227: .equalStripes(["E4002B", "FFFFFF", "E4002B", "FFFFFF", "E4002B", "FFFFFF", "E4002B"]),
+        // Sporting CP — green & white horizontal hoops, white at top & bottom. `equalStripes`
+        // is vertical-only, so the equal bands are spelled out (same as Celtic).
+        228: .horizontalStripes([
+            .init("FFFFFF"),
+            .init("008057"),
+            .init("FFFFFF"),
+            .init("008057"),
+            .init("FFFFFF"),
+            .init("008057"),
+            .init("FFFFFF"),
+        ]),
+        // Estoril — yellow & blue vertical stripes, yellow at both edges.
+        230: .equalStripes(["FFD400", "0033A0", "FFD400", "0033A0", "FFD400", "0033A0", "FFD400"]),
+        // Académico de Viseu — black body with white sleeves (the same shape as SC Braga).
+        238: .verticalStripes([
+            .init("FFFFFF"),
+            .init("111111", 6),
+            .init("FFFFFF"),
+        ]),
+        // Arouca — yellow with a thin blue stripe (the Internacional structure).
+        240: .verticalStripes([
+            .init("FFD400", 8),
+            .init("0A2E6E", 1),
+            .init("FFD400", 2),
+        ]),
+        // Famalicão — blue with a thin white stripe (the Internacional structure).
+        242: .verticalStripes([
+            .init("0A2E6E", 8),
+            .init("FFFFFF", 1),
+            .init("0A2E6E", 2),
+        ]),
+        // Gil Vicente — red and blue halves. The only halved kit in any set.
+        762: .equalStripes(["E4002B", "0A2E6E"]),
+        // Casa Pia — black with a gold bar down the right. The only asymmetric disc in any
+        // set: on a circle a bar down one side reads as a crescent rather than a stripe.
+        4716: .verticalStripes([
+            .init("111111", 7),
+            .init("D4AF37", 2),
+        ]),
+        // Alverca — blue with a central red band. Colours sampled from a kit photo rather
+        // than guessed; the kit's thin white edging was dropped because it would not have
+        // survived 24pt.
+        4724: .verticalStripes([
+            .init("0060A8", 5),
+            .init("F6002A", 3),
+            .init("0060A8", 5),
+        ]),
+        // Estrela da Amadora — Fluminense's tricolour structure with thicker white bars
+        // (1.8 against Fluminense's 1), so the three colours still read at badge size.
+        15130: .verticalStripes([
+            .init("FFFFFF", 1.8),
+            .init("00613C", 3), .init("FFFFFF", 1.8),
+            .init("870A28", 3), .init("FFFFFF", 1.8),
+            .init("00613C", 3), .init("FFFFFF", 1.8),
+            .init("870A28", 3), .init("FFFFFF", 1.8),
+            .init("00613C", 3), .init("FFFFFF", 1.8),
+            .init("870A28", 3), .init("FFFFFF", 1.8),
+            .init("00613C", 3), .init("FFFFFF", 1.8),
         ]),
     ]
 
