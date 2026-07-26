@@ -326,7 +326,7 @@ struct FixturesViewModelTests {
         #expect(service.fetchMatchesCallCount == 3)
     }
 
-    @Test("Sections split the selected round into live, finished and upcoming, in that order")
+    @Test("Sections split the selected round into live, upcoming and finished, in that order")
     func sectionsSplitByStatus() async {
         let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
         func match(_ id: Int, _ status: MatchStatus, _ offset: TimeInterval) -> Match {
@@ -345,10 +345,11 @@ struct FixturesViewModelTests {
         await viewModel.load()
         viewModel.selectedRound = 1
 
-        #expect(viewModel.sections.map(\.id) == ["live", "finished", "upcoming"])
-        #expect(viewModel.sections[0].matches.map(\.id) == [2])
-        #expect(viewModel.sections[1].matches.map(\.id) == [1])
-        #expect(viewModel.sections[2].matches.map(\.id) == [3])
+        #expect(viewModel.sections.map(\.id) == ["live", "upcoming", "finished"])
+        // Finished sits last: what is still to come matters more than what is done.
+        #expect(viewModel.sections[0].matches.map(\.id) == [2])   // live
+        #expect(viewModel.sections[1].matches.map(\.id) == [3])   // upcoming
+        #expect(viewModel.sections[2].matches.map(\.id) == [1])   // finished
     }
 
     @Test("Empty groups are omitted rather than shown with no rows")

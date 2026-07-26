@@ -51,15 +51,6 @@ final class FixturesViewModel {
             ))
         }
 
-        let finished = matches.filter { $0.status == .finished }
-        if !finished.isEmpty {
-            result.append(FixturesSection(
-                id: "finished",
-                title: String(localized: "Finished", comment: "Fixtures section header above matches that have ended."),
-                matches: finished
-            ))
-        }
-
         let upcoming = matches.filter { !$0.status.isLiveOrHalftime && $0.status != .finished }
         if !upcoming.isEmpty {
             // Fixture 2026 never says "later today" for a league, because a round can span
@@ -71,6 +62,17 @@ final class FixturesViewModel {
                 ? String(localized: "Later today", comment: "Fixtures section header above matches still to be played today.")
                 : String(localized: "Upcoming", comment: "Fixtures section header above matches still to be played, on this or a later day.")
             result.append(FixturesSection(id: "upcoming", title: title, matches: upcoming))
+        }
+
+        // Finished goes last, below what is still to come — a round you are checking is
+        // usually about the matches ahead, not the ones already played.
+        let finished = matches.filter { $0.status == .finished }
+        if !finished.isEmpty {
+            result.append(FixturesSection(
+                id: "finished",
+                title: String(localized: "Finished", comment: "Fixtures section header above matches that have ended."),
+                matches: finished
+            ))
         }
 
         return result
