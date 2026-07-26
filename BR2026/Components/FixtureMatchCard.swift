@@ -78,7 +78,10 @@ struct FixtureMatchCard: View {
     }
 
     private func teamRow(_ team: Team, score: Int?) -> some View {
-        HStack(spacing: 12) {
+        // 24pt with 10pt spacing, matching Fixture 2026's MatchCard row and the site's
+        // board cards, so the same match reads the same way in all three.
+        HStack(spacing: 10) {
+            TeamCrestBadge(team: team, size: 24)
             Text(team.displayName)
                 .font(.system(size: teamNameFontSize, weight: .semibold))
                 .foregroundStyle(themeTokens.textColor)
