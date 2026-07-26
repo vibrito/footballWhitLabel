@@ -386,15 +386,22 @@ struct FixturesViewModelTests {
     @Test("The upcoming title is 'later today' only when every unplayed match is today")
     func sectionsUpcomingTitleDependsOnDay() async {
         let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
-        func scheduled(_ id: Int, _ offset: TimeInterval) -> Match {
+        func scheduled(_ id: Int, _ date: Date) -> Match {
             Match(
-                id: id, utcDate: Date().addingTimeInterval(offset), status: .scheduled, matchday: 1,
+                id: id, utcDate: date, status: .scheduled, matchday: 1,
                 stage: "REGULAR_SEASON", homeTeam: team, awayTeam: team,
                 homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
             )
         }
+
+        // Pinned to today at noon rather than `Date().addingTimeInterval(3600)`: a
+        // fixed +1h offset crosses midnight when the suite runs after 23:00 local time,
+        // silently turning "same day" into "tomorrow" and collapsing both titles to
+        // "Upcoming". Noon is always still today regardless of the wall-clock time the
+        // suite happens to run at, so this case can no longer depend on the clock.
+        let noonToday = Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date()) ?? Date()
         let sameDay = FixturesViewModel(
-            service: StubMatchService(matches: [scheduled(1, 3600)], standings: [])
+            service: StubMatchService(matches: [scheduled(1, noonToday)], standings: [])
         )
         await sameDay.load()
         sameDay.selectedRound = 1
@@ -402,7 +409,7 @@ struct FixturesViewModelTests {
 
         // Three days out cannot be "today" regardless of when the suite runs.
         let spanning = FixturesViewModel(
-            service: StubMatchService(matches: [scheduled(1, 3600), scheduled(2, 259_200)], standings: [])
+            service: StubMatchService(matches: [scheduled(1, noonToday), scheduled(2, noonToday.addingTimeInterval(259_200))], standings: [])
         )
         await spanning.load()
         spanning.selectedRound = 1
