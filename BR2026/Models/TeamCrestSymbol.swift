@@ -172,6 +172,84 @@ enum TeamCrestSymbols {
         // Chapecoense — five equal vertical stripes alternating white & green, white on both
         // edges (white, green, white, green, white).
         132: .equalStripes(["FFFFFF", "1B552A", "FFFFFF", "1B552A", "FFFFFF"]),
+
+        // ── Scottish Premiership ────────────────────────────────────────────────────────
+        // Keyed by team id like everything above, so these are inert in the Brazilian build
+        // and need no target gating. Ids come from the live SPL standings.
+        // See docs/superpowers/specs/2026-07-26-scottish-crest-symbols-design.md.
+
+        // Celtic — green & white horizontal hoops, white at top & bottom. `equalStripes` is
+        // vertical-only, so the equal bands are spelled out.
+        247: .horizontalStripes([
+            .init("FFFFFF"),
+            .init("018749"),
+            .init("FFFFFF"),
+            .init("018749"),
+            .init("FFFFFF"),
+            .init("018749"),
+            .init("FFFFFF"),
+        ]),
+        // Rangers — royal blue with five thin white pinstripes. Far finer than any Brazilian
+        // band (0.35 against Bragantino's 0.6, the previous thinnest); the blue is sampled
+        // from a kit photo rather than guessed.
+        257: .verticalStripes([
+            .init("005ABA", 6),
+            .init("FFFFFF", 0.35),
+            .init("005ABA", 6),
+            .init("FFFFFF", 0.35),
+            .init("005ABA", 6),
+            .init("FFFFFF", 0.35),
+            .init("005ABA", 6),
+            .init("FFFFFF", 0.35),
+            .init("005ABA", 6),
+            .init("FFFFFF", 0.35),
+            .init("005ABA", 6),
+        ]),
+        // Heart of Midlothian — solid maroon.
+        254: .equalStripes(["660033"]),
+        // Hibernian — green body between two thin white sleeve bands.
+        249: .verticalStripes([
+            .init("FFFFFF"),
+            .init("006633", 6),
+            .init("FFFFFF"),
+        ]),
+        // Aberdeen — solid red.
+        252: .equalStripes(["DA291C"]),
+        // Dundee United — tangerine & black vertical stripes, tangerine on both edges (the
+        // same seven-band shape as St Mirren and Kilmarnock).
+        1386: .equalStripes(["FF6600", "000000", "FF6600", "000000", "FF6600", "000000", "FF6600"]),
+        // Falkirk — navy body between two thin white sleeve bands (same shape as Hibernian).
+        1389: .verticalStripes([
+            .init("FFFFFF"),
+            .init("0A2240", 6),
+            .init("FFFFFF"),
+        ]),
+        // Kilmarnock — blue & white vertical stripes, white on both edges.
+        250: .equalStripes(["FFFFFF", "003C7D", "FFFFFF", "003C7D", "FFFFFF", "003C7D", "FFFFFF"]),
+        // Motherwell — amber with a claret band across the chest.
+        256: .horizontalStripes([
+            .init("FFBF00", 4),
+            .init("8A1538", 2),
+            .init("FFBF00", 4),
+        ]),
+        // St Mirren — black & white vertical stripes, white on both edges.
+        251: .equalStripes(["FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF", "000000", "FFFFFF"]),
+        // St Johnstone — royal blue with a single thin white vertical stripe (same structure
+        // as Internacional).
+        258: .verticalStripes([
+            .init("0033A0", 8),
+            .init("FFFFFF"),
+            .init("0033A0", 2),
+        ]),
+        // Dundee — navy with two centred white vertical bars separated by a thin navy line
+        // (São Paulo's paired-bar structure, rotated vertical).
+        253: .verticalStripes([
+            .init("000F4F", 5),
+            .init("FFFFFF", 2),
+            .init("000F4F", 0.7),
+            .init("FFFFFF", 2),
+            .init("000F4F", 5),
+        ]),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
