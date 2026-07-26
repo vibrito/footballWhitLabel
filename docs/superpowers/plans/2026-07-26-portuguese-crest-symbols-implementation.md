@@ -19,7 +19,7 @@
 - **Test commands** (destinations verified available on this machine):
   - White-label: `xcodebuild test -project BR2026.xcodeproj -scheme BR2026 -destination 'platform=iOS Simulator,name=iPhone 17,OS=26.5' -only-testing:BR2026Tests`
   - Fixture 2026: `xcodebuild test -project Fixture2026.xcodeproj -scheme Fixture2026 -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=26.5' -only-testing:Fixture2026Tests`
-  - Always pipe through `tail` with `set -o pipefail` and echo `${PIPESTATUS[0]}` — a bare pipe reports `tail`'s exit code, which hides a failed build.
+  - Always pipe through `tail` with `set -o pipefail`, then echo the pipeline's status — a bare pipe reports `tail`'s exit code, which hides a failed build. **This shell is zsh, not bash:** use `${pipestatus[1]}` (lowercase, 1-indexed). Bash's `${PIPESTATUS[0]}` expands to the empty string here, which reads as a passing check when nothing was checked at all.
 
 **Spec:** `docs/superpowers/specs/2026-07-26-portuguese-crest-symbols-design.md`
 
