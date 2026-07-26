@@ -5,7 +5,7 @@
 // integrity hash below. CrestSyncTests fails if the file and its hash disagree,
 // which is how an un-synced edit gets caught in either repo.
 //
-// crest-sync: d0500794f90e81fde5e71913e53d5f9ddb32f7c89ccdaf68f802fc9a1d04d105
+// crest-sync: 5fd1e39d58cfd95cc0888821134c6e60645fca6aa3b489388555525ff79ba059
 
 import Foundation
 import CoreGraphics
@@ -332,10 +332,12 @@ enum TeamCrestSymbols {
         // Gil Vicente — red and blue halves. The only halved kit in any set.
         762: .equalStripes(["E4002B", "0A2E6E"]),
         // Casa Pia — black with a gold bar down the right. The only asymmetric disc in any
-        // set: on a circle a bar down one side reads as a crescent rather than a stripe.
+        // set. The bar needs the thin black band beyond it: without one the gold runs off
+        // the edge and the circular clip reads it as a crescent rather than a stripe.
         4716: .verticalStripes([
             .init("111111", 7),
             .init("D4AF37", 2),
+            .init("111111", 1),
         ]),
         // Alverca — blue with a central red band. Colours sampled from a kit photo rather
         // than guessed; the kit's thin white edging was dropped because it would not have
