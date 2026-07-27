@@ -417,4 +417,24 @@ struct FixturesViewModelTests {
 
         #expect(sameDayTitle != spanning.sections[0].title)
     }
+
+    @Test("Postponed matches are kept out of the round entirely")
+    func postponedIsExcludedFromSections() async {
+        let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
+        func m(_ id: Int, _ status: MatchStatus, _ offset: TimeInterval) -> Match {
+            Match(id: id, utcDate: Date().addingTimeInterval(offset), status: status, matchday: 1,
+                  stage: "REGULAR_SEASON", homeTeam: team, awayTeam: team,
+                  homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil)
+        }
+        let service = StubMatchService(
+            matches: [m(1, .scheduled, 3600), m(2, .postponed, 5400), m(3, .finished, -3600)],
+            standings: [])
+        let viewModel = FixturesViewModel(service: service)
+        await viewModel.load()
+        viewModel.selectedRound = 1
+
+        let shown = viewModel.sections.flatMap(\.matches).map(\.id)
+        #expect(!shown.contains(2), "a postponed match must not appear in any Fixtures section")
+        #expect(shown.sorted() == [1, 3])
+    }
 }

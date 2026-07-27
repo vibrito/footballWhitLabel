@@ -39,7 +39,10 @@ final class FixturesViewModel {
     /// The selected round split into live / finished / upcoming, mirroring Fixture 2026's
     /// Fixtures screen. Empty groups are dropped so no header appears without rows.
     var sections: [FixturesSection] {
-        let matches = selectedRoundMatches
+        // Postponed matches are dropped before any grouping: they are not being played on
+        // the date they still carry, so they would sit under "Upcoming" claiming a kickoff
+        // that will not happen. Filtered once here so no section can reintroduce them.
+        let matches = selectedRoundMatches.filter { $0.status != .postponed }
         var result: [FixturesSection] = []
 
         let live = matches.filter(\.status.isLiveOrHalftime)

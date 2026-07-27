@@ -432,6 +432,32 @@ struct MatchdayViewModelTests {
     func holdWindowIsOneDay() {
         #expect(MatchdayViewModel.holdWindow == 24 * 60 * 60)
     }
+
+    @Test("Postponed matches are kept off the board entirely")
+    func postponedIsExcludedFromTheBoard() async {
+        let scheduled = Match(
+            id: 1, utcDate: date(day: 10, hour: 16), status: .scheduled, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let postponed = Match(
+            id: 2, utcDate: date(day: 10, hour: 18), status: .postponed, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil
+        )
+        let finished = Match(
+            id: 3, utcDate: date(day: 10, hour: 14), status: .finished, matchday: 1, stage: "REGULAR_SEASON",
+            homeTeam: team, awayTeam: team, homeScore: 1, awayScore: 0, winner: "HOME_TEAM", venue: nil, minute: 90
+        )
+        let service = StubMatchService(matches: [scheduled, postponed, finished], standings: [])
+        let themeStore = TeamThemeStore(setting: StubTeamThemeSetting(), service: service)
+        let viewModel = MatchdayViewModel(service: service, themeStore: themeStore)
+
+        await viewModel.load()
+
+        let shown = (viewModel.finishedMatchesForNextMatchDay
+                     + viewModel.upcomingMatchesForNextMatchDay).map(\.id)
+        #expect(!shown.contains(2), "a postponed match must not appear in any Matchday section")
+    }
+
 }
 
 final class StubMatchService: MatchService {

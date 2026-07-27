@@ -66,6 +66,10 @@ final class MatchdayViewModel {
         return matches
             .filter { match in
                 guard match.id != nextMatch.id else { return false }
+                // A postponed match is not being played on the day it still claims, so it
+                // is noise on a board about today. Excluded here rather than per section,
+                // so it cannot reappear in one of them later.
+                guard match.status != .postponed else { return false }
                 if calendar.isDate(match.utcDate, inSameDayAs: nextMatch.utcDate) { return true }
                 if match.status.isLiveOrHalftime { return true }
                 let since = now.timeIntervalSince(match.utcDate)
