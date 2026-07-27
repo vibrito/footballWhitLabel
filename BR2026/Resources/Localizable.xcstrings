@@ -1166,47 +1166,6 @@
         }
       }
     },
-    "Broadcast not confirmed yet" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Broadcast not confirmed yet"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Broadcast not confirmed yet"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Emisión aún no confirmada"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Diffusion pas encore confirmée"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Transmissão ainda não confirmada"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Transmissão ainda não confirmada"
-          }
-        }
-      }
-    },
     "Champions League" : {
       "extractionState" : "manual",
       "localizations" : {

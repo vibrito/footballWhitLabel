@@ -135,19 +135,11 @@ struct MatchDetailView: View {
                 .accessibilityLabel(String(localized: "Venue: \(venue)", comment: "VoiceOver label for the match detail venue row. Argument: the venue name."))
             }
 
-            // Unlike the cards, which stay silent, the sheet says when it has nothing. A card
-            // has a whole screen of neighbours to speak for it; the sheet is about one match,
-            // and an unexplained gap there reads as a fault. "Not confirmed" rather than
-            // "none": listings are entered by hand, so an absence means nobody has filled it
-            // in yet, not that the match is untelevised.
-            if broadcasts.isEmpty {
-                Text("Broadcast not confirmed yet",
-                     comment: "Match detail: no TV channel has been entered for this match in the reader's country yet.")
-                    .font(.system(size: venueFontSize))
-                    .foregroundStyle(themeTokens.textColor.opacity(0.45))
-            } else {
-                BroadcastChips(broadcasts: broadcasts, alignment: .center)
-            }
+            // Nothing is drawn when there are no listings — not even a "not confirmed" line.
+            // Coverage is entered by hand and thin outside the current round, so that line
+            // would sit on most matches, and a sheet that keeps apologising is worse than one
+            // that simply says less. Matches the cards, and Fixture 2026.
+            BroadcastChips(broadcasts: broadcasts, alignment: .center)
         }
         .padding(.top, 8)
         .padding(.bottom, 24)
