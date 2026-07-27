@@ -11,6 +11,9 @@ struct MatchDTO: Decodable {
     let score: ScoreDTO
     let venue: String?
     let minute: Int?
+    /// Present only when the request asked for `include=broadcasts`; absent otherwise, hence
+    /// optional. Not carried onto the SwiftData `Match` — see `Broadcast`.
+    let broadcasts: [BroadcastDTO]?
 }
 
 struct ScoreDTO: Decodable {

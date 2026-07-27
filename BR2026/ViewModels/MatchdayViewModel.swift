@@ -100,6 +100,17 @@ final class MatchdayViewModel {
         await load()
     }
 
+    /// Listings for the loaded matches, keyed by match id, unfiltered by country.
+    ///
+    /// Empty on a cold launch until the refresh lands: they are not persisted with the
+    /// matches, so cached cards appear first and their chips a moment later. See `Broadcast`.
+    private(set) var broadcasts: [Int: [Broadcast]] = [:]
+
+    /// Every country the loaded listings cover — what the settings picker is built from.
+    var broadcastCountries: [String] {
+        Array(Set(broadcasts.values.flatMap { $0 }.map(\.country))).sorted()
+    }
+
     func load() async {
         matches = service.cachedMatches()
         isRefreshing = true
@@ -107,6 +118,7 @@ final class MatchdayViewModel {
         if let fresh = try? await service.fetchMatches() {
             announceChanges(from: matches, to: fresh)
             matches = fresh
+            broadcasts = service.latestBroadcasts()
         }
     }
 

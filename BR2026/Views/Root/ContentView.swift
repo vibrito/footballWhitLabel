@@ -6,6 +6,9 @@ struct ContentView: View {
     let themeStore: TeamThemeStore
     let themePurchaseStore: PurchaseStore<TeamThemeOption>
     let iconPurchaseStore: PurchaseStore<TeamIconOption>
+    /// Owned here so every tab's cards resolve the same market, and so the More screen's
+    /// picker and the cards cannot disagree.
+    @State private var broadcastCountry = BroadcastCountryStore()
 
     var body: some View {
         TabView {
@@ -27,6 +30,7 @@ struct ContentView: View {
         .tint(themeStore.tokens.overrideTabSelectionColor ?? themeStore.tokens.overrideAccentColor ?? Color(hex: config.tabSelectionColorHex))
         .background(StadiumBackground())
         .environment(\.themeTokens, themeStore.tokens)
+        .environment(broadcastCountry)
         .task { await themeStore.loadOnce() }
         .task { await themePurchaseStore.loadOnce() }
         .task { await iconPurchaseStore.loadOnce() }

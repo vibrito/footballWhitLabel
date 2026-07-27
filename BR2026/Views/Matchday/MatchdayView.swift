@@ -7,6 +7,7 @@ struct MatchdayView: View {
     let themeStore: TeamThemeStore
     @Environment(\.themeTokens) private var themeTokens
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(BroadcastCountryStore.self) private var broadcastCountry
     @ScaledMetric private var eyebrowFontSize: CGFloat = 11
     @ScaledMetric private var titleFontSize: CGFloat = 32
     @ScaledMetric private var emptyStateTitleFontSize: CGFloat = 16
@@ -78,6 +79,9 @@ struct MatchdayView: View {
                 .task(id: scenePhase) {
                     guard scenePhase == .active else { return }
                     await viewModel.refreshIfNeeded()
+                    // Remember which markets the listings covered, so the More screen's
+                    // picker is built from data we have seen rather than a world list.
+                    broadcastCountry.observe(countries: viewModel.broadcastCountries)
                     await viewModel.pollWhileLive()
                 }
                 .sheet(item: $selectedMatch) { match in
@@ -105,12 +109,18 @@ struct MatchdayView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
+    /// This match's listings, narrowed to the reader's country. Empty for most matches —
+    /// coverage is hand-entered — and empty on a cold launch until the refresh lands.
+    private func listings(for match: Match) -> [Broadcast] {
+        (viewModel.broadcasts[match.id] ?? []).inCountry(broadcastCountry.resolved)
+    }
+
     private func matchSection(title: Text, matches: [Match]) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             SectionHeader(title)
             ForEach(matches, id: \.id) { match in
                 Button { selectedMatch = match } label: {
-                    FixtureMatchCard(match: match)
+                    FixtureMatchCard(match: match, broadcasts: listings(for: match))
                 }
                 .buttonStyle(.plain)
             }

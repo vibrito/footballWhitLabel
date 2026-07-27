@@ -48,6 +48,8 @@ struct MoreView: View {
                     AppIconPickerView(
                         viewModel: AppIconPickerViewModel(iconSetting: UIKitAppIconSetting(), purchaseStore: iconPurchaseStore, service: service)
                     )
+                case .broadcastCountryPicker:
+                    BroadcastCountryPickerView()
                 case .teamThemePicker:
                     TeamThemePickerView(
                         viewModel: TeamThemePickerViewModel(themeStore: themeStore, purchaseStore: themePurchaseStore, setting: UserDefaultsTeamThemeSetting(), service: service)

@@ -4,4 +4,5 @@ enum MoreDestination: Hashable {
     case termsOfService
     case appIconPicker
     case teamThemePicker
+    case broadcastCountryPicker
 }

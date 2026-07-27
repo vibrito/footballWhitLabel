@@ -14,8 +14,21 @@ protocol MatchService {
     func fetchMatchLineups(matchID: Int) async throws -> MatchLineup?
     func fetchCompetition() async throws -> Competition
     func fetchTeamThemeColorSet(teamID: Int) async throws -> TeamThemeColorSet
+    /// Broadcast listings from the most recent `fetchMatches()`, keyed by match id.
+    ///
+    /// Deliberately in memory rather than in SwiftData: listings are an enrichment on the
+    /// fixture, and persisting them would mean a schema change to the model every screen
+    /// depends on. Empty until a fetch lands, which is why a cold launch shows its cached
+    /// cards first and the chips a moment later.
+    func latestBroadcasts() -> [Int: [Broadcast]]
     func cachedMatches() -> [Match]
     func cachedStandings() -> [Standing]
     func cachedCompetition() -> Competition?
     func cachedTeamThemeColorSet(teamID: Int) -> TeamThemeColorSet?
+}
+
+extension MatchService {
+    /// Services with no listings behind them — the mock, and any future offline source —
+    /// report none rather than each having to say so.
+    func latestBroadcasts() -> [Int: [Broadcast]] { [:] }
 }

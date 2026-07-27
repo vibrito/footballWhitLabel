@@ -54,6 +54,17 @@ final class MoreViewModel {
             )
         }
         #endif
+        // Not gated per championship: every league's matches can carry listings, and the
+        // row is how a reader picks whose channels they see.
+        rows.append(
+            MoreRow(
+                id: "broadcastCountry",
+                titleKey: "Broadcast Country",
+                systemImage: "tv",
+                destination: .broadcastCountryPicker,
+                isEnabled: true
+            )
+        )
         return rows
     }
     private nonisolated(unsafe) let service: MatchService

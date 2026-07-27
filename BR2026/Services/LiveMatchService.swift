@@ -38,13 +38,35 @@ final class LiveMatchService: MatchService {
         return LiveMatchService(config: config, apiKey: apiKey, modelContext: modelContext)
     }
 
+    /// Listings from the last `fetchMatches()`. In memory only — see `Broadcast`.
+    private var broadcastsByMatchID: [Int: [Broadcast]] = [:]
+
+    func latestBroadcasts() -> [Int: [Broadcast]] { broadcastsByMatchID }
+
     func fetchMatches() async throws -> [Match] {
-        let url = config.apiBaseURL.appendingPathComponent("v4/competitions/\(config.competitionCode)/matches")
+        // `include=broadcasts` is undocumented upstream and unvalidated: a typo returns 200
+        // with the key simply absent, so the whole feature would go quietly dead — no test
+        // failure, no error. Do not "tidy" it away.
+        var components = URLComponents(
+            url: config.apiBaseURL.appendingPathComponent("v4/competitions/\(config.competitionCode)/matches"),
+            resolvingAgainstBaseURL: false
+        )
+        components?.queryItems = [URLQueryItem(name: "include", value: "broadcasts")]
+        guard let url = components?.url else { throw URLError(.badURL) }
+
         let response: MatchesResponse = try await get(url)
         for dto in response.matches {
             upsert(dto)
         }
         try modelContext.save()
+
+        // Replaced wholesale rather than merged: a listing removed upstream should disappear
+        // here too, and this map is only ever as good as the last fetch.
+        broadcastsByMatchID = response.matches.reduce(into: [:]) { map, dto in
+            let listings = (dto.broadcasts ?? []).compactMap(\.model)
+            if !listings.isEmpty { map[dto.id] = listings }
+        }
+
         let fetchedIDs = Set(response.matches.map(\.id))
         return try modelContext.fetch(FetchDescriptor<Match>()).filter { fetchedIDs.contains($0.id) }
     }

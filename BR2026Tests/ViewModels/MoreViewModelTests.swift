@@ -33,11 +33,15 @@ struct MoreViewModelTests {
         let expectsTeamTheme = false
         #endif
 
+        // Broadcast Country is not gated per championship: every league's matches can carry
+        // listings, and the row is how a reader picks whose channels they see.
+        #expect(destinations.contains(.broadcastCountryPicker))
+
         if expectsTeamTheme {
-            #expect(preferences?.rows.count == 2)
+            #expect(preferences?.rows.count == 3)
             #expect(destinations.contains(.teamThemePicker))
         } else {
-            #expect(destinations == [.appIconPicker])
+            #expect(destinations == [.appIconPicker, .broadcastCountryPicker])
         }
     }
 

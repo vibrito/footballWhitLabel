@@ -5,6 +5,9 @@ import SwiftUI
 /// design rather than ScoreRow's side-by-side layout.
 struct FixtureMatchCard: View {
     let match: Match
+    /// Already narrowed to the reader's country by the caller, which is what holds the
+    /// listings — they are not on the `Match` model. Empty is the normal case.
+    var broadcasts: [Broadcast] = []
     @Environment(\.themeTokens) private var themeTokens
     @ScaledMetric private var headerFontSize: CGFloat = 11
     @ScaledMetric private var teamNameFontSize: CGFloat = 16
@@ -19,6 +22,11 @@ struct FixtureMatchCard: View {
                     divider
                     teamRow(match.awayTeam, score: match.awayScore)
                 }
+                // Nothing is drawn when the reader's country has no listing for this match,
+                // which is the normal case: coverage is entered by hand and tracks the
+                // current round. A placeholder on almost every card would turn a quiet
+                // absence into a screenful of apology.
+                BroadcastChips(broadcasts: broadcasts)
             }
         }
         .accessibilityElement(children: .combine)
