@@ -1083,6 +1083,9 @@
         }
       }
     },
+    "Broadcast Country" : {
+      "comment" : "Title of the screen for choosing which country's TV listings to show."
+    },
     "Champions League" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2666,6 +2669,9 @@
           }
         }
       }
+    },
+    "Only countries with listings are shown. Coverage is partial, so many matches have none." : {
+      "comment" : "Footnote under the broadcast-country picker, explaining why the list is short and why most matches show no channels."
     },
     "own goal" : {
       "extractionState" : "manual",

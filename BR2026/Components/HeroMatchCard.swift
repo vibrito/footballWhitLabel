@@ -5,6 +5,9 @@ import SwiftUI
 /// side-by-side layout used elsewhere.
 struct HeroMatchCard: View {
     let match: Match
+    /// Already narrowed to the reader's country by the caller — listings are not on the
+    /// `Match` model. Empty is the normal case and draws nothing.
+    var broadcasts: [Broadcast] = []
     @Environment(\.themeTokens) private var themeTokens
     @ScaledMetric private var venueFontSize: CGFloat = 13
     @ScaledMetric private var kickoffFontSize: CGFloat = 15
@@ -26,6 +29,9 @@ struct HeroMatchCard: View {
                     .font(.system(size: venueFontSize, weight: .medium))
                     .foregroundStyle(themeTokens.textColor.opacity(0.5))
                     .lineLimit(1)
+                // The featured match is the screen's thesis, so "here is the match, here is
+                // how to watch it" belongs together. Centred like everything else here.
+                BroadcastChips(broadcasts: broadcasts, alignment: .center)
             }
             .frame(maxWidth: .infinity)
         }

@@ -5,8 +5,14 @@ struct MatchDetailView: View {
     @Environment(\.themeTokens) private var themeTokens
     @Environment(\.scenePhase) private var scenePhase
 
-    init(match: Match, service: MatchService) {
+    /// Passed in by whichever screen presented the sheet, already narrowed to the reader's
+    /// country — so the sheet and the card that opened it can never disagree. Listings are
+    /// not on the `Match` model; see `Broadcast`.
+    private let broadcasts: [Broadcast]
+
+    init(match: Match, service: MatchService, broadcasts: [Broadcast] = []) {
         _viewModel = State(initialValue: MatchDetailViewModel(match: match, service: service))
+        self.broadcasts = broadcasts
     }
 
     private var match: Match { viewModel.match }
@@ -127,6 +133,20 @@ struct MatchDetailView: View {
                 .foregroundStyle(themeTokens.textColor.opacity(0.5))
                 .accessibilityElement(children: .combine)
                 .accessibilityLabel(String(localized: "Venue: \(venue)", comment: "VoiceOver label for the match detail venue row. Argument: the venue name."))
+            }
+
+            // Unlike the cards, which stay silent, the sheet says when it has nothing. A card
+            // has a whole screen of neighbours to speak for it; the sheet is about one match,
+            // and an unexplained gap there reads as a fault. "Not confirmed" rather than
+            // "none": listings are entered by hand, so an absence means nobody has filled it
+            // in yet, not that the match is untelevised.
+            if broadcasts.isEmpty {
+                Text("Broadcast not confirmed yet",
+                     comment: "Match detail: no TV channel has been entered for this match in the reader's country yet.")
+                    .font(.system(size: venueFontSize))
+                    .foregroundStyle(themeTokens.textColor.opacity(0.45))
+            } else {
+                BroadcastChips(broadcasts: broadcasts, alignment: .center)
             }
         }
         .padding(.top, 8)

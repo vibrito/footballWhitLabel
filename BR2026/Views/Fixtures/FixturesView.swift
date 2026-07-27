@@ -7,6 +7,7 @@ struct FixturesView: View {
     @Environment(\.themeTokens) private var themeTokens
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(BroadcastCountryStore.self) private var broadcastCountry
     @ScaledMetric private var roundLabelFontSize: CGFloat = 10
     @ScaledMetric private var roundNumberFontSize: CGFloat = 17
 
@@ -28,7 +29,7 @@ struct FixturesView: View {
                                     .padding(.top, section.id == viewModel.sections.first?.id ? 0 : 8)
                                 ForEach(section.matches, id: \.id) { match in
                                     Button { selectedMatch = match } label: {
-                                        FixtureMatchCard(match: match)
+                                        FixtureMatchCard(match: match, broadcasts: listings(for: match))
                                     }
                                     .buttonStyle(.plain)
                                 }
@@ -64,7 +65,7 @@ struct FixturesView: View {
                 await viewModel.pollWhileLive()
             }
             .sheet(item: $selectedMatch) { match in
-                MatchDetailView(match: match, service: service)
+                MatchDetailView(match: match, service: service, broadcasts: listings(for: match))
             }
         }
         .trackScreen("Fixtures")
@@ -122,4 +123,10 @@ struct FixturesView: View {
     }
 
     private static let topAnchor = "fixturesTop"
+    /// This match's listings, narrowed to the reader's country. Empty for most matches —
+    /// coverage is hand-entered — and empty on a cold launch until the refresh lands.
+    private func listings(for match: Match) -> [Broadcast] {
+        (viewModel.broadcasts[match.id] ?? []).inCountry(broadcastCountry.resolved)
+    }
+
 }

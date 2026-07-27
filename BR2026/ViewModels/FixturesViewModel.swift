@@ -95,6 +95,15 @@ final class FixturesViewModel {
         await load()
     }
 
+    /// Listings for the loaded matches, keyed by match id, unfiltered by country. Not
+    /// persisted with the matches, so empty until a refresh lands. See `Broadcast`.
+    private(set) var broadcasts: [Int: [Broadcast]] = [:]
+
+    /// Every country the loaded listings cover — what the More screen's picker offers.
+    var broadcastCountries: [String] {
+        Array(Set(broadcasts.values.flatMap { $0 }.map(\.country))).sorted()
+    }
+
     func load() async {
         matches = service.cachedMatches()
         selectRoundIfNeeded()
@@ -103,6 +112,7 @@ final class FixturesViewModel {
         if let fresh = try? await service.fetchMatches() {
             announceChanges(from: matches, to: fresh)
             matches = fresh
+            broadcasts = service.latestBroadcasts()
             selectRoundIfNeeded()
         }
     }

@@ -28,7 +28,7 @@ struct MatchdayView: View {
                         if let nextMatch = viewModel.nextMatch {
                             header
                             Button { selectedMatch = nextMatch } label: {
-                                HeroMatchCard(match: nextMatch)
+                                HeroMatchCard(match: nextMatch, broadcasts: listings(for: nextMatch))
                             }
                             .buttonStyle(.plain)
                             // Finished sits below what is still to come, matching Fixtures.
@@ -85,7 +85,7 @@ struct MatchdayView: View {
                     await viewModel.pollWhileLive()
                 }
                 .sheet(item: $selectedMatch) { match in
-                    MatchDetailView(match: match, service: service)
+                    MatchDetailView(match: match, service: service, broadcasts: listings(for: match))
                 }
             }
         }
