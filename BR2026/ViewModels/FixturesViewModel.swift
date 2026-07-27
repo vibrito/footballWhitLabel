@@ -39,10 +39,12 @@ final class FixturesViewModel {
     /// The selected round split into live / finished / upcoming, mirroring Fixture 2026's
     /// Fixtures screen. Empty groups are dropped so no header appears without rows.
     var sections: [FixturesSection] {
-        // Postponed matches are dropped before any grouping: they are not being played on
-        // the date they still carry, so they would sit under "Upcoming" claiming a kickoff
-        // that will not happen. Filtered once here so no section can reintroduce them.
-        let matches = selectedRoundMatches.filter { $0.status != .postponed }
+        // Postponed matches stay in the list. This screen is the round, and a round of ten
+        // with one called off is still a round of ten — dropping it made the round look
+        // short with no explanation. What they must not do is sit among the upcoming ones:
+        // they keep the kickoff they were called off from, and that time will not happen.
+        // So they are excluded from every other section and collected into their own, last.
+        let matches = selectedRoundMatches
         var result: [FixturesSection] = []
 
         let live = matches.filter(\.status.isLiveOrHalftime)
@@ -54,7 +56,9 @@ final class FixturesViewModel {
             ))
         }
 
-        let upcoming = matches.filter { !$0.status.isLiveOrHalftime && $0.status != .finished }
+        let upcoming = matches.filter {
+            !$0.status.isLiveOrHalftime && $0.status != .finished && $0.status != .postponed
+        }
         if !upcoming.isEmpty {
             // Fixture 2026 never says "later today" for a league, because a round can span
             // several days and the label would lie. Decide per round instead: only claim
@@ -75,6 +79,18 @@ final class FixturesViewModel {
                 id: "finished",
                 title: String(localized: "Finished", comment: "Fixtures section header above matches that have ended."),
                 matches: finished
+            ))
+        }
+
+        // Last, below even the finished ones: a called-off fixture is the least useful thing
+        // on the screen, and its kickoff time is the one piece of information on the card
+        // that is no longer true.
+        let postponed = matches.filter { $0.status == .postponed }
+        if !postponed.isEmpty {
+            result.append(FixturesSection(
+                id: "postponed",
+                title: String(localized: "Postponed", comment: "Fixtures section header above matches that have been called off. They stay in the round but sit below everything else, because the kickoff they still carry will not happen."),
+                matches: postponed
             ))
         }
 

@@ -418,8 +418,12 @@ struct FixturesViewModelTests {
         #expect(sameDayTitle != spanning.sections[0].title)
     }
 
-    @Test("Postponed matches are kept out of the round entirely")
-    func postponedIsExcludedFromSections() async {
+    @Test("A postponed match is still part of its round, and is listed last")
+    func postponedIsListedLast() async {
+        // This screen is the round, so a called-off fixture belongs on it — leaving it out
+        // made a round of ten look like a round of nine with no explanation. It goes below
+        // everything else because the kickoff it still carries will not happen, so it must
+        // not sit among the upcoming ones claiming a time.
         let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
         func m(_ id: Int, _ status: MatchStatus, _ offset: TimeInterval) -> Match {
             Match(id: id, utcDate: Date().addingTimeInterval(offset), status: status, matchday: 1,
@@ -434,7 +438,23 @@ struct FixturesViewModelTests {
         viewModel.selectedRound = 1
 
         let shown = viewModel.sections.flatMap(\.matches).map(\.id)
-        #expect(!shown.contains(2), "a postponed match must not appear in any Fixtures section")
-        #expect(shown.sorted() == [1, 3])
+        #expect(shown.sorted() == [1, 2, 3], "the whole round is the round")
+        #expect(viewModel.sections.last?.id == "postponed")
+        #expect(viewModel.sections.map(\.id) == ["upcoming", "finished", "postponed"])
+    }
+
+    @Test("A postponed match never appears among the upcoming ones")
+    func postponedIsNotUpcoming() async {
+        let team = Team(id: 1, name: "Test FC", shortName: "TFC", crestURL: nil)
+        let service = StubMatchService(
+            matches: [Match(id: 1, utcDate: Date().addingTimeInterval(3600), status: .postponed,
+                            matchday: 1, stage: "REGULAR_SEASON", homeTeam: team, awayTeam: team,
+                            homeScore: nil, awayScore: nil, winner: nil, venue: nil, minute: nil)],
+            standings: [])
+        let viewModel = FixturesViewModel(service: service)
+        await viewModel.load()
+        viewModel.selectedRound = 1
+
+        #expect(viewModel.sections.map(\.id) == ["postponed"])
     }
 }
