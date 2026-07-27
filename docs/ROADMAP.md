@@ -284,14 +284,19 @@ simply absent from the list — the client keeps its initials fallback for those
 like scores do), and keep the bundled catalog as the offline/first-launch default rather than
 deleting it. That also means the endpoint can ship before either app consumes it.
 
-### Open, for whoever picks this up
+### Decided 2026-07-27
 
-- **Where the data is authored.** The broadcast overrides already have an admin front-end
-  and an `editorial` source; crest symbols are the same kind of hand-curated data and would
-  fit that pattern rather than inventing a second one.
-- **Whether to serve a derived disc for uncurated teams.** The kit-colours table is empty for
-  them today, but if it were filled, a plain two-tone disc would beat initials. Decide whether
-  the endpoint returns only curated discs or also derived ones, because it changes whether the
-  client's initials fallback is a rare case or a dead one.
-- **Whether the World Cup app's national teams stay on bundled flag roundels.** They do not use
-  `CrestDisc` at all, and nothing here should change that.
+- **Authored like the broadcast overrides.** Same shape as `fixture_broadcasts`: an editorial
+  table behind the existing admin front-end, not a second bespoke mechanism.
+- **Curated discs only. Initials stay the fallback.** The endpoint does not derive a disc from
+  kit colours for teams nobody has drawn. The client's initials-on-muted-glass path stays live
+  and is the normal outcome for an uncurated club, not a rare one.
+- **The World Cup app is never touched.** Its national teams use bundled flag roundels and no
+  `CrestDisc` at all. Nothing here reaches them.
+
+**The consequence of "curated only", stated plainly:** coverage becomes a function of how many
+discs someone sits down and draws, exactly like the broadcast listings — see the note above §6.
+It will not fill in on its own. The Sudamericana alone is 49 clubs, and the Libertadores will
+add more, so the board carrying another competition's fixtures and the discs for those fixtures
+existing are two separate pieces of work. Shipping the endpoint changes where the data lives and
+removes the app release from the loop; it does not by itself put a disc on River Plate.
