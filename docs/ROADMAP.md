@@ -210,3 +210,88 @@ Related: the two apps' `Match` models are also slated for unification, which wou
 shared component genuinely shareable across repos instead of hand-copied. Worth sequencing
 these together — see the cross-app parity spec,
 `docs/superpowers/specs/2026-07-26-cross-app-match-ui-parity-design.md`.
+
+## 10. Serve the *futebol de botão* discs from the backend (requested 2026-07-27)
+
+`CrestDisc` draws a club as a glossy button-football disc — the club's colours in its
+pattern, no lettering. What it draws comes from `TeamCrestSymbols.byTeamID`, a **hardcoded
+Swift dictionary**, and `TeamBadge` deliberately never falls back to the remote crest for a
+club: a team with no entry gets initials on muted glass instead.
+
+That was fine while the apps only ever showed their own league. It stops being fine now that
+a board can carry another competition's fixtures.
+
+**Measured 2026-07-27, against live data:**
+
+| Competition | teams with a disc |
+|---|---|
+| Brasileirão (BSA) | 20 / 20 |
+| CONMEBOL Sudamericana (CSA) | **7 / 56** |
+
+The seven are exactly the Brazilian clubs that also play in the Brasileirão. The other 49 —
+River Plate, Boca Juniors, Sporting Cristal, every Argentine, Peruvian, Colombian and
+Venezuelan side — render as initials. Libertadores will be the same or worse.
+
+The existing kit-colours endpoint is **not** a fallback: `GET /v4/competitions/CSA/teams/{id}/colors`
+answers 200 with `home`, `away` and `third` all `null` for every uncurated team checked
+(435, 451, 1128, 2546, 2840). There is no colour data to derive a plain disc from either.
+
+**Why it needs to be server-side.** The catalog is 50 entries of Swift that must stay
+byte-identical across two repos — `scripts/sync-crests.sh` copies it into `../worldcup` and
+`CrestSyncTests` fails if the copy drifts. So adding one club today means editing Swift,
+running the sync, and **shipping both apps**. Enabling a competition should not require an
+App Store release to draw its badges.
+
+### What the endpoint has to serve
+
+One disc is a tagged union — five patterns, all colours as hex **without** a leading `#`, to
+match the kit-colours endpoint:
+
+```json
+{ "teamId": 124, "pattern": "verticalStripes",
+  "bands": [ { "hex": "9F1239", "weight": 1 }, { "hex": "0F5132", "weight": 1 } ] }
+
+{ "teamId": 131, "pattern": "horizontalStripes", "bands": [ … ] }
+
+{ "teamId": 121, "pattern": "concentric",       "bands": [ … ] }   // outer → inner
+
+{ "teamId": 133, "pattern": "diagonalSash",
+  "background": "FFFFFF", "stripe": "000000", "widthFraction": 0.28 }
+
+{ "teamId": 435, "pattern": "checkerboard",
+  "light": "FFFFFF", "dark": "000000", "squares": 4 }
+```
+
+`weight` is a band's relative size, so a pinstripe is a small weight beside wider ones — the
+renderer normalises against the sum, it does not require them to total 1. `widthFraction` is
+the sash's width as a fraction of the disc. `squares` is the checkerboard's count per side.
+These names and semantics are `TeamCrestSymbol`'s; keeping them identical means the client
+decoder is a straight map onto the existing enum.
+
+**Shape: one cacheable catalog, not one request per team.** A single matchday board holds up
+to 28 teams, so per-team requests are the wrong trade. Prefer:
+
+```
+GET /v4/crest-symbols            → { "symbols": [ … ] }
+```
+
+with a long `Cache-Control` and an `ETag`, so clients fetch it once and revalidate cheaply.
+50 entries today is a few KB; even ten leagues' worth stays small. A team with no disc is
+simply absent from the list — the client keeps its initials fallback for those, unchanged.
+
+**Client side, when it lands:** decode into `TeamCrestSymbol`, cache it the way
+`TeamThemeColorCache` caches kit colours (SwiftData, no TTL — a club's colours do not change
+like scores do), and keep the bundled catalog as the offline/first-launch default rather than
+deleting it. That also means the endpoint can ship before either app consumes it.
+
+### Open, for whoever picks this up
+
+- **Where the data is authored.** The broadcast overrides already have an admin front-end
+  and an `editorial` source; crest symbols are the same kind of hand-curated data and would
+  fit that pattern rather than inventing a second one.
+- **Whether to serve a derived disc for uncurated teams.** The kit-colours table is empty for
+  them today, but if it were filled, a plain two-tone disc would beat initials. Decide whether
+  the endpoint returns only curated discs or also derived ones, because it changes whether the
+  client's initials fallback is a rare case or a dead one.
+- **Whether the World Cup app's national teams stay on bundled flag roundels.** They do not use
+  `CrestDisc` at all, and nothing here should change that.
