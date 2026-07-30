@@ -300,3 +300,92 @@ It will not fill in on its own. The Sudamericana alone is 49 clubs, and the Libe
 add more, so the board carrying another competition's fixtures and the discs for those fixtures
 existing are two separate pieces of work. Shipping the endpoint changes where the data lives and
 removes the app release from the loop; it does not by itself put a disc on River Plate.
+
+## 11. An Android version — assessed 2026-07-30, not started
+
+There is already an Android codebase: `~/projects/WorldCupAndroid`, package
+`com.vibrito.fixture2026`, 54 Kotlin files, `versionCode 3`, last touched 2026-06-25. It is a
+real asset rather than a sketch, and it is **not** the app we would be shipping.
+
+### What it already has
+
+Jetpack Compose + Material3, Hilt, Retrofit/OkHttp/Gson, Coil, coroutines, and MVVM with a
+`UiState` per screen — structurally a close mirror of our ViewModels. Built and working:
+**Today, Fixtures, Standings, Bracket, and Match Detail with Timeline/Stats/Lineups tabs.**
+
+It also carries the unglamorous things that eat calendar time: signing config, R8 with
+ProGuard keep rules, launcher icons, a Play Store feature graphic and 512px icon, and
+**localisation for EN/FR/pt-BR/pt-PT explicitly matched to the iOS translations** (`a6628f0`).
+
+Worth noting it does **not** have the `IN_PLAY`/`PAUSED` decoder bug that broke live scores in
+every shipped iOS app — it maps both correctly.
+
+### Three findings that reframe it
+
+1. **It points at a dead backend.** `local.properties` sets
+   `worldcupapi-production.up.railway.app`, which now returns 404 on every path including
+   `/health`. The live World Cup backend is `fixture2026-production.up.railway.app`.
+2. **Its competition code is wrong even for that backend.** Every Retrofit path hardcodes
+   `WC`. The World Cup API serves `2026`; our white-label API answers
+   `{"error":"Unknown competition: WC"}` — its codes are BSA, PL, FL1, PPL, PD, SPL, CSA, CDB.
+   The app cannot currently fetch anything from either host.
+3. **It is the World Cup app, and that tournament is over.** The live `2026` competition
+   returns 104 matches, all `FINISHED`. There is no `ChampionshipConfig` equivalent and no
+   product flavors, so the entire white-label dimension is absent.
+
+### The gap
+
+| Area | iOS | Android | |
+|---|---|---|---|
+| Matchday / Fixtures / Standings | ✅ | ✅ | polish only |
+| Match detail (events/stats/lineups) | ✅ | ✅ | polish only |
+| More tab + its four sub-screens | ✅ | ❌ | build |
+| Persistence, cache-then-refresh | SwiftData | none | build |
+| Multi-championship config | 6 targets | hardcoded | build |
+| IAP (20 team themes) | StoreKit | ❌ | build |
+| Team theming engine | `ThemeTokens` | static theme | build |
+| Alternate app icons | 3 | ❌ | build |
+| Firebase Analytics/Crashlytics/Messaging | ✅ | ❌ | build |
+| Live polling | ✅ | ❌ | build |
+| Where-to-watch (§6) | ✅ | ❌ | build |
+| Accessibility (Dynamic Type, VoiceOver) | wired throughout | default | build |
+| Tests | 32 files | 5 files | extend |
+
+Roughly **35–40% of the app is standing**, and it is the portion most tedious to start cold.
+
+### Effort
+
+One experienced Android dev, reusing this codebase. Sizings, not measured velocities:
+
+| Scope | Estimate |
+|---|---|
+| **Lean v1** — one championship, no IAP, no team themes | **6–9 weeks** |
+| **Full parity** — six championships, IAP, themes, icons | **2–3 months** |
+
+The lean path drops the four most expensive optional items — flavor matrix, theming engine,
+Play Billing, alternate icons — for roughly 13–21 days. §1 shipped on iOS with
+`FeatureFlags.iapEnabled` off, so there is precedent for that ordering.
+
+The largest single line item either way is **Room + cache-then-refresh (4–6 days)**, because the
+semantics are specific — persisted data on screen immediately, background refresh once on first
+load only, pull-to-refresh forces — and getting it subtly wrong is exactly what produced the
+visible content-jump bug documented in CLAUDE.md's Data & Persistence section.
+
+### The part that is not an effort number
+
+**Liquid Glass does not port.** It is a native iOS 26 material and Compose has no equivalent.
+Blurs and translucent surfaces approximate it; they will not match. Decide that deliberately
+rather than discover it at review.
+
+### Unverified
+
+**Whether it still compiles.** No Gradle build was run — the dependency set is from June and
+`compileSdk` is 35. "The existing code works" is load-bearing for every number above, so that
+is the first thing to establish, and it is cheap.
+
+### Open decisions
+
+- One app or six? The engineering delta is small; the Play Console and store-listing overhead
+  is not, and Guideline 4.3(a)-style templated-metadata risk has a Play equivalent.
+- Which championship first? Brasileirão has the live data and the existing audience.
+- Does the World Cup Android app get repointed and kept alive for 2030, or archived?
