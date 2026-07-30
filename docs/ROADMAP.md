@@ -349,7 +349,7 @@ every shipped iOS app — it maps both correctly.
 | Live polling | ✅ | ❌ | build |
 | Where-to-watch (§6) | ✅ | ❌ | build |
 | Accessibility (Dynamic Type, VoiceOver) | wired throughout | default | build |
-| Tests | 32 files | 5 files | extend |
+| Tests | 285 cases / 32 files | 53 cases / 4 classes | extend |
 
 Roughly **35–40% of the app is standing**, and it is the portion most tedious to start cold.
 
@@ -377,11 +377,27 @@ visible content-jump bug documented in CLAUDE.md's Data & Persistence section.
 Blurs and translucent surfaces approximate it; they will not match. Decide that deliberately
 rather than discover it at review.
 
-### Unverified
+### Verified 2026-07-30: it builds, and the tests pass
 
-**Whether it still compiles.** No Gradle build was run — the dependency set is from June and
-`compileSdk` is 35. "The existing code works" is load-bearing for every number above, so that
-is the first thing to establish, and it is cheap.
+`./gradlew assembleDebug` → **BUILD SUCCESSFUL**. `./gradlew testDebugUnitTest` → **53 tests,
+0 failures** across `MatchDetailDtosTest` (17), `MatchRepositoryTest` (15),
+`MatchDetailViewModelTest` (10) and `TodayViewModelTest` (11). The load-bearing assumption behind
+every estimate above holds: the June-era codebase compiles and its tests are green.
+
+The toolchain is more current than the June date suggests — **AGP 9.2.1, Gradle 9.4.1, Kotlin
+2.2.10, KSP, `compileSdk 35`, Java 17 source/target.** Nothing needs upgrading before work starts.
+
+**One gotcha that will cost someone an afternoon.** The system default `java` on this machine is
+**8** (`/Library/Internet Plug-Ins/JavaAppletPlugin.plugin`), and it is the only JDK
+`/usr/libexec/java_home` knows about. Gradle 9 and AGP 9 need 17+, so an unqualified `./gradlew`
+fails. Build with Android Studio's bundled JBR:
+
+```
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"   # JDK 21
+```
+
+Worth setting in `gradle.properties` via `org.gradle.java.home` so it survives a fresh shell,
+rather than being rediscovered each time.
 
 ### Open decisions
 
