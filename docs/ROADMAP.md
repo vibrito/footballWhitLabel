@@ -236,7 +236,7 @@ The existing kit-colours endpoint is **not** a fallback: `GET /v4/competitions/C
 answers 200 with `home`, `away` and `third` all `null` for every uncurated team checked
 (435, 451, 1128, 2546, 2840). There is no colour data to derive a plain disc from either.
 
-**Why it needs to be server-side.** The catalog is 50 entries of Swift that must stay
+**Why it needs to be server-side.** The catalog is 70 entries of Swift that must stay
 byte-identical across two repos — `scripts/sync-crests.sh` copies it into `../worldcup` and
 `CrestSyncTests` fails if the copy drifts. So adding one club today means editing Swift,
 running the sync, and **shipping both apps**. Enabling a competition should not require an
@@ -276,7 +276,7 @@ GET /v4/crest-symbols            → { "symbols": [ … ] }
 ```
 
 with a long `Cache-Control` and an `ETag`, so clients fetch it once and revalidate cheaply.
-50 entries today is a few KB; even ten leagues' worth stays small. A team with no disc is
+70 entries today is a few KB; even ten leagues' worth stays small. A team with no disc is
 simply absent from the list — the client keeps its initials fallback for those, unchanged.
 
 **Client side, when it lands:** decode into `TeamCrestSymbol`, cache it the way

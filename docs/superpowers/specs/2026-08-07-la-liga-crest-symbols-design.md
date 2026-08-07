@@ -95,6 +95,31 @@ stripes**, and using a **`concentric`** treatment where the club wears stripes. 
 have invented a pattern the club does not wear. Every separator in the final set is
 something real about the club.
 
+### The board reviewed for collisions within La Liga only
+
+Every pair above was checked against the other nineteen La Liga discs, not against the 50
+already in the catalogue. Two cross-league near-duplicates fell out when someone checked
+afterwards:
+
+- **Real Sociedad (548, `003C8F`) and Kilmarnock (250, `003C7D`)** — the same disc: seven
+  equal vertical bands, white-edged. The hexes are 18 RGB units apart in the blue channel
+  alone, the same magnitude the board rejected as invisible when it lightened Málaga's blue
+  away from Deportivo's.
+- **Real Betis (543, `00954C`) and Rio Ave (226, `007A3D`)** — same shape, seven equal bands,
+  a 31-unit delta. Second closest.
+
+Neither pair is being touched. These hexes were approved on the board and the constraint
+above is explicit: no crest data changes as a result of this review.
+
+They are also currently unreachable together: the matchday feed is scoped per championship
+and `PD` carries no cup fixtures, so a Real Sociedad card and a Kilmarnock card cannot appear
+on the same board today, and likewise for Betis and Rio Ave. The trigger that would make a
+pair reachable is adding UCL, UEL or UECL as `fixturesOnly` competitions and listing one of
+them in a matchday feed's `cups` — European competition is the only route by which a Spanish
+and a non-Spanish (or, here, a Scottish and a Portuguese) club end up on the same round list.
+That isn't planned by anything in this change; this is the record so the next person who
+does add a `cups` entry does not have to rediscover the pair from scratch.
+
 ## Team IDs
 
 Taken from the live `PD` standings, not assumed, so they match what the apps receive.

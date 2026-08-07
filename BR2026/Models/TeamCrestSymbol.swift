@@ -5,7 +5,7 @@
 // integrity hash below. CrestSyncTests fails if the file and its hash disagree,
 // which is how an un-synced edit gets caught in either repo.
 //
-// crest-sync: f729b586e7139ab40bdeb035cd7b922f604e175a490e1a9759dfeb3202dffa3f
+// crest-sync: c31fb56801522cf97371f66c61b0debab1b980f904bce69a1e33d6790d6a72c3
 
 import Foundation
 import CoreGraphics
@@ -360,7 +360,12 @@ enum TeamCrestSymbols {
             .init("00613C", 3), .init("FFFFFF", 1.8),
         ]),
 
-        // ---- La Liga ------------------------------------------------------------------
+        // ── La Liga ─────────────────────────────────────────────────────────────────────
+        // Keyed by team id like everything above, so these are inert in the Brazilian,
+        // Scottish, Portuguese and World Cup builds and need no target gating. Ids come
+        // from the live PD standings.
+        // See docs/superpowers/specs/2026-08-07-la-liga-crest-symbols-design.md.
+
         // Eleven of the twenty clubs share a look with a neighbour, which no previous set
         // had to solve. The rule these follow is shape before hue: at badge size a shift
         // between two royal blues is invisible where five bands against nine is not.
