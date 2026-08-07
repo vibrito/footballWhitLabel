@@ -113,12 +113,20 @@ above is explicit: no crest data changes as a result of this review.
 
 They are also currently unreachable together: the matchday feed is scoped per championship
 and `PD` carries no cup fixtures, so a Real Sociedad card and a Kilmarnock card cannot appear
-on the same board today, and likewise for Betis and Rio Ave. The trigger that would make a
-pair reachable is adding UCL, UEL or UECL as `fixturesOnly` competitions and listing one of
-them in a matchday feed's `cups` — European competition is the only route by which a Spanish
-and a non-Spanish (or, here, a Scottish and a Portuguese) club end up on the same round list.
-That isn't planned by anything in this change; this is the record so the next person who
-does add a `cups` entry does not have to rediscover the pair from scratch.
+on the same board today, and likewise for Betis and Rio Ave.
+
+Adding UCL, UEL or UECL as `fixturesOnly` competitions and listing one in a matchday feed's
+`cups` is the route by which clubs from different countries reach the same round list — but
+it is **necessary, not sufficient**, and an earlier draft of this section wrongly treated it
+as the whole trigger. Two clubs also have to be *in* that competition in the same season.
+Kilmarnock are not in Europe, so the Real Sociedad pair would not appear together even if the
+cups were wired tomorrow.
+
+Which makes the useful form of this note the general one rather than the two pairs: **the
+board only ever checks within one division, so the first time a `cups` entry puts two
+divisions on one board, the cross-league comparison has to be run again for whichever clubs
+actually qualified.** The two pairs above are what that check found in August 2026, and they
+are worth knowing — but they are a sample, not the standing risk.
 
 ## Team IDs
 
