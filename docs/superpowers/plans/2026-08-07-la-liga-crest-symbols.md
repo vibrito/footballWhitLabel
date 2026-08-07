@@ -373,8 +373,8 @@ it matches how the Brazilian, Scottish and Portuguese runs are separated:
         // ---- La Liga ----
         // Eleven of the twenty clubs share a look with a neighbour, so these follow shape
         // before hue: at badge size a shift between two royal blues is invisible where
-        // five bands against nine is not. The four rings are the catalogue's first
-        // Concentric entries.
+        // five bands against nine is not. Six of these are rings, and they are the
+        // catalogue's first Concentric entries.
 ```
 
 Do not add per-club comments here. The Swift file carries them, and duplicating prose
