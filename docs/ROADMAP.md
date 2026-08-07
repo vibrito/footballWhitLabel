@@ -218,6 +218,12 @@ pattern, no lettering. What it draws comes from `TeamCrestSymbols.byTeamID`, a *
 Swift dictionary**, and `TeamBadge` deliberately never falls back to the remote crest for a
 club: a team with no entry gets initials on muted glass instead.
 
+**Android diverged on 2026-08-07.** `WorldCupAndroid` now draws clubs with their real crests
+from the API, ranked above the curated disc, behind the compile-time constant
+`CrestDisplay.USE_REAL_CRESTS` — see that repo's
+`docs/superpowers/specs/2026-08-07-real-club-crests-design.md`. The paragraph above still
+describes both iOS apps exactly. It no longer describes Android.
+
 That was fine while the apps only ever showed their own league. It stops being fine now that
 a board can carry another competition's fixtures.
 
@@ -239,7 +245,7 @@ answers 200 with `home`, `away` and `third` all `null` for every uncurated team 
 **Why it needs to be server-side.** The catalog is 70 entries of Swift that must stay
 byte-identical across two repos — `scripts/sync-crests.sh` copies it into `../worldcup` and
 `CrestSyncTests` fails if the copy drifts. So adding one club today means editing Swift,
-running the sync, and **shipping both apps**. Enabling a competition should not require an
+running the sync, and **shipping the iOS apps**. Enabling a competition should not require an
 App Store release to draw its badges.
 
 ### What the endpoint has to serve
