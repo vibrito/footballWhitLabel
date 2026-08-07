@@ -5,7 +5,7 @@
 // integrity hash below. CrestSyncTests fails if the file and its hash disagree,
 // which is how an un-synced edit gets caught in either repo.
 //
-// crest-sync: 5fd1e39d58cfd95cc0888821134c6e60645fca6aa3b489388555525ff79ba059
+// crest-sync: f729b586e7139ab40bdeb035cd7b922f604e175a490e1a9759dfeb3202dffa3f
 
 import Foundation
 import CoreGraphics
