@@ -39,6 +39,25 @@ the Android app did not exist when the other two were written. Nothing in
 `TeamCrestSymbol` or `CrestDisc` changes — every one of the 20 fits the existing
 vocabulary.
 
+### But six of them exercise a renderer branch that has never run
+
+`concentric` has **zero entries in any of the three catalogues today.** The case is
+declared, documented, and implemented on both platforms — and no club has ever used it. Six
+of these twenty do: Real Madrid, Sevilla, Elche, Valencia, Villarreal, Osasuna.
+
+So "no renderer change" is accurate but incomplete. No renderer code is *edited*, but a
+quarter of this set is the first traffic through a path that has only ever been dead code.
+Both implementations were read side by side and they agree — outer→inner, each band's
+circle spanning the radius out to the sum of its own weight and every inner band's, over
+the total (`CrestDisc.swift:92-104`, `CrestDisc.kt:73-85`; iOS sets a diameter, Android a
+radius, which is the same thing). The crest board's renderer reproduces that algorithm and
+the discs were approved against it.
+
+That is a code read, not a run. The implementation plan must **look at one concentric disc
+on each platform** before the set is called done. It is the one part of this change where
+"the tests pass" would not tell us anything: a geometry error here renders wrong rather
+than throwing.
+
 ## The problem specific to this league
 
 The previous two sets could give almost every club its own palette. This division cannot.
@@ -196,7 +215,8 @@ the whole catalogue, so the 20 new entries are covered by it the moment they lan
 
 ## Out of scope
 
-- **No new enum case and no renderer change.** Every disc fits the existing vocabulary.
+- **No new enum case and no renderer edit.** Every disc fits the existing vocabulary —
+  though six are the first ever to use `concentric`, so that path wants a look. See above.
 - **No change to when a disc is shown** — `TeamCrestBadge`'s policy, `TeamBadge`, and the
   crest cache are all untouched.
 - **Not the marketing site.** `website/` has no band engine.
