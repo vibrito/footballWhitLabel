@@ -348,7 +348,8 @@ for tid in IDS:
         raise SystemExit(f"unrecognised symbol for {tid}: {body[:60]}")
 print(f"# generated {len(IDS)} entries", flush=True)
 PY
-cat /tmp/laliga-kotlin.txt```
+cat /tmp/laliga-kotlin.txt
+```
 
 Expected: 20 lines of Kotlin plus a `# generated 20 entries` trailer. If it raises
 `unrecognised symbol` or prints fewer than 20, stop — the Swift file is not shaped the way
