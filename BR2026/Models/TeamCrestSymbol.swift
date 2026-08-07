@@ -359,6 +359,75 @@ enum TeamCrestSymbols {
             .init("870A28", 3), .init("FFFFFF", 1.8),
             .init("00613C", 3), .init("FFFFFF", 1.8),
         ]),
+
+        // ---- La Liga ------------------------------------------------------------------
+        // Eleven of the twenty clubs share a look with a neighbour, which no previous set
+        // had to solve. The rule these follow is shape before hue: at badge size a shift
+        // between two royal blues is invisible where five bands against nine is not.
+
+        // Deportivo La Coruña — blue and white, the broadest stripes of the five blue-and-
+        // white sides. Málaga matches this shape exactly; the blue is what separates them.
+        544: .equalStripes(["0055A5", "FFFFFF", "0055A5", "FFFFFF", "0055A5"]),
+        // Málaga — the same five broad bands, in a distinctly lighter blue. Their blue
+        // really is lighter than Depor's royal; drawn any closer the two discs were one.
+        535: .equalStripes(["33B5E5", "FFFFFF", "33B5E5", "FFFFFF", "33B5E5"]),
+        // Real Sociedad — seven bands, white-edged, the darkest blue of the five.
+        548: .equalStripes(["FFFFFF", "003C8F", "FFFFFF", "003C8F", "FFFFFF", "003C8F", "FFFFFF"]),
+        // Alavés — thin white pinstripes between wide blue bands. The only one of the five
+        // with unequal weights, which is what separates it at badge size.
+        542: .verticalStripes([
+            .init("FFFFFF", 1), .init("0761AF", 3), .init("FFFFFF", 1), .init("0761AF", 3),
+            .init("FFFFFF", 1), .init("0761AF", 3), .init("FFFFFF", 1)
+        ]),
+        // Espanyol — nine narrow bands in the brightest blue; they are known for narrow
+        // stripes, and it is the far end of the count scale from Depor and Málaga.
+        540: .equalStripes(["FFFFFF", "007FC8", "FFFFFF", "007FC8", "FFFFFF", "007FC8", "FFFFFF", "007FC8", "FFFFFF"]),
+
+        // Atlético Madrid — red and white, with navy edge bands. The navy is their real
+        // third colour (shorts, collar) and is the honest separator from Athletic below.
+        530: .verticalStripes([
+            .init("262E62", 1), .init("CB3524", 3), .init("FFFFFF", 3), .init("CB3524", 3),
+            .init("FFFFFF", 3), .init("CB3524", 3), .init("262E62", 1)
+        ]),
+        // Athletic Club — pure red and white, seven narrower bands, no third colour.
+        531: .equalStripes(["FFFFFF", "EE2523", "FFFFFF", "EE2523", "FFFFFF", "EE2523", "FFFFFF"]),
+
+        // Barcelona — blaugrana, five broad bands with blue on the outside.
+        529: .equalStripes(["004D98", "A50044", "004D98", "A50044", "004D98"]),
+        // Levante — the same two colours as Barcelona, so it is inverted: garnet on the
+        // outside, seven narrower bands.
+        539: .equalStripes(["A61B2B", "004B9B", "A61B2B", "004B9B", "A61B2B", "004B9B", "A61B2B"]),
+
+        // Real Betis — seven bands, green and white.
+        543: .equalStripes(["FFFFFF", "00954C", "FFFFFF", "00954C", "FFFFFF", "00954C", "FFFFFF"]),
+        // Racing Santander — the home shirt: white body, green at the sides. Green lands on
+        // the left and right arcs only, white through the middle. Deliberately not green
+        // and white stripes, which would have been a second Betis.
+        4665: .verticalStripes([.init("009540", 1), .init("FFFFFF", 3), .init("009540", 1)]),
+
+        // The four mostly-white clubs take their accent colour as a ring. A plain white
+        // disc vanishes on a light background, and the ring colour also keeps these four
+        // apart from each other. These are the first concentric entries in the catalogue.
+        // Real Madrid — gold ring on white, the club's only real accent.
+        541: .concentric([.init("FEBE10", 0.8), .init("FFFFFF", 4)]),
+        // Sevilla — red ring on white.
+        536: .concentric([.init("D8020E", 1), .init("FFFFFF", 4)]),
+        // Elche — green ring on white. Sits near Racing above; they differ in shape, since
+        // Racing's green touches only the side arcs where this goes all the way round.
+        797: .concentric([.init("00714A", 1), .init("FFFFFF", 4)]),
+        // Valencia — orange ring on white.
+        532: .concentric([.init("F18E00", 1), .init("FFFFFF", 4)]),
+
+        // Rayo Vallecano — the red sash on white. The only diagonal in the division.
+        728: .diagonalSash(background: "FFFFFF", stripe: "E53027", widthFraction: 0.30),
+        // Villarreal — El Submarino Amarillo: yellow with a navy ring.
+        533: .concentric([.init("003D7C", 0.7), .init("FFE667", 4)]),
+        // Celta Vigo — solid sky blue; nothing else in the division is this pale.
+        538: .equalStripes(["8AC3EE"]),
+        // Getafe — solid royal blue.
+        546: .equalStripes(["005999"]),
+        // Osasuna — red with a navy ring, their shirt and shorts.
+        727: .concentric([.init("0A1D5B", 0.8), .init("D91A21", 4)]),
     ]
 
     static func symbol(forTeamID id: Int) -> TeamCrestSymbol? {
