@@ -20,7 +20,7 @@ Three repositories are involved. This plan lives in `footballWhiteLabel`, which 
 - **Neither Swift repo uses Conventional Commits**; both use a sentence-case imperative subject with no prefix. Same for the Android repo. End every commit message with:
   `Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>`
 - **Do not push any repository.** Vinicius decides when these ship; both apps go through store review.
-- **`WorldCupAndroid` has a dirty working tree that is not yours** (`.DS_Store`, `fastlane/README.md`, deleted files under `prints/`, untracked `android-export/` and `res/`). Stage only the exact paths each step names. Never `git add -A` or `git add .`.
+- **All three repositories have dirty working trees, and none of it is yours.** `footballWhiteLabel` carries ~45 untracked screenshots, design assets and fastlane metadata plus one modified doc; `worldcup` has a couple; `WorldCupAndroid` has ~18 (`.DS_Store`, `fastlane/README.md`, deleted files under `prints/`, untracked `android-export/` and `res/`). **Stage only the exact paths each step names. Never `git add -A`, `git add .`, or `git commit -a`.** Run `git status --short` before each commit and confirm you are staging only your own files. The crest files themselves are clean in every repo, so nothing you need is caught up in this.
 - **Do not add a committed Android port script.** The spec names it as the follow-up and puts it out of scope.
 
 ## File Structure
